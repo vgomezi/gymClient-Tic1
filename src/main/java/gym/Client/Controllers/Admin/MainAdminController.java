@@ -8,10 +8,16 @@ import org.springframework.stereotype.Component;
 public class MainAdminController {
 
     @FXML
-    protected void onAdministrarEmpresaButtonClick() {}
+    protected void onCrearUsuarioButtonClick() {}
 
     @FXML
-    protected void onAdministrarCentrosButtonClick() {}
+    protected void onBuscarUsuarioButtonClick() {}
+
+    @FXML
+    protected void onEliminarUsuarioButtonClick() {}
+
+    @FXML
+    protected void onActualizarUsuarioButtonClick() {}
 
 
 }

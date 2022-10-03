@@ -31,13 +31,13 @@
           <Label text="Nombre Usuario:" GridPane.rowIndex="1" />
       
           <Label text="Telefono Usuario:" GridPane.rowIndex="3" />
-          <TextField fx:id="nombre" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-          <TextField fx:id="telefono" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-          <TextField fx:id="direccion" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+          <TextField fx:id="nombretext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <TextField fx:id="telefonotext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+          <TextField fx:id="emailtext" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
          <Label text="Apellido Usuario:" GridPane.rowIndex="2" />
          <Label text="Contraseña:" GridPane.rowIndex="4" />
-         <TextField fx:id="nombre1" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <TextField fx:id="nombre2" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <TextField fx:id="apellidotext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <TextField fx:id="contrasenatext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          <Label text="Email Usuario:" />
       </children>
    </GridPane>

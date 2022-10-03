@@ -24,10 +24,10 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Darse de baja" />
-         <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Registrarse a la actividad" GridPane.rowIndex="1" />
-         <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Bajarse de la actividad" GridPane.rowIndex="2" />
-         <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Ver actividades disponibles" GridPane.rowIndex="3" />
+            <Button alignment="CENTER" onAction="#onDarseBajaButtonClick" text="Darse de baja" />
+         <Button alignment="CENTER" onAction="#onRegistrarseActividadButtonClick" text="Registrarse a la actividad" GridPane.rowIndex="1" />
+         <Button alignment="CENTER" onAction="#onBajarseActividadButtonClick" text="Bajarse de la actividad" GridPane.rowIndex="2" />
+         <Button alignment="CENTER" onAction="#onVerActividadesDisponiblesButtonClick" text="Ver actividades disponibles" GridPane.rowIndex="3" />
       </children>
    </GridPane>
 

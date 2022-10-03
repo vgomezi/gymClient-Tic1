@@ -24,15 +24,14 @@
      <rowConstraints>
        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
       
           <Label text="Email:" />
       
           <Label text="Contraseña:" GridPane.rowIndex="1" />
-          <TextField fx:id="nombre" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-          <TextField fx:id="telefono" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <TextField fx:id="emailtext" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+          <TextField fx:id="contrasenatext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
    </GridPane>
    <GridPane alignment="CENTER">

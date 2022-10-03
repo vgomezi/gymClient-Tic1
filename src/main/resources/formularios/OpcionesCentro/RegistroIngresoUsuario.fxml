@@ -22,15 +22,14 @@
      <rowConstraints>
        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
       
           <Label text="Email Usuario:" />
       
           <Label text="Id Actividad:" GridPane.rowIndex="1" />
-          <TextField fx:id="nombre" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-          <TextField fx:id="telefono" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <TextField fx:id="emailtext" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+          <TextField fx:id="idactividadtext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
    </GridPane>
    <GridPane alignment="CENTER">
@@ -42,7 +41,7 @@
        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Registrar!" />
+            <Button alignment="CENTER" onAction="#onRegistrarButtonClick" text="Registrar!" />
             <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
       </children>
    </GridPane>

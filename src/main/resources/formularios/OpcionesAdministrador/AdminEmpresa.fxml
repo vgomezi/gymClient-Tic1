@@ -24,10 +24,10 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Registrar Empresa" />
-            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Actualizar Empresa" GridPane.rowIndex="2" />
-         <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Borrar Empresa" GridPane.rowIndex="1" />
-         <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Buscar Empresa" GridPane.rowIndex="3" />
+            <Button alignment="CENTER" onAction="#onRegistrarEmpresaButtonClick" text="Registrar Empresa" />
+            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarEmpresaButtonClick" text="Actualizar Empresa" GridPane.rowIndex="2" />
+         <Button alignment="CENTER" onAction="#onBorrarEmpresaButtonClick" text="Borrar Empresa" GridPane.rowIndex="1" />
+         <Button alignment="CENTER" onAction="#onBuscarEmpresaButtonClick" text="Buscar Empresa" GridPane.rowIndex="3" />
       </children>
    </GridPane>
 

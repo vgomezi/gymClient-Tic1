@@ -1,13 +1,11 @@
-package gym.Client.Controllers;
+package gym.Client.Controllers.Usuario;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LoginController {
+public class BajaUsuarioController {
 
 
     @FXML
@@ -23,19 +21,11 @@ public class LoginController {
     private TextField contrasenatext;
 
     @FXML
-    protected void onIngresarButtonClick() {}
+    protected void onBajaButtonClick() {}
 
     @FXML
     protected void onCancelarButtonClick() {}
 
-    @FXML
-    protected void onEntrarEmpresaButtonClick() {}
-
-    @FXML
-    protected void onEntrarCDButtonClick() {}
-
-    @FXML
-    protected void onAButtonClick() {}
 
 
 }

@@ -25,7 +25,7 @@
       <children>
       
           <Label text="Contraseña:" />
-          <TextField fx:id="telefono" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+          <TextField fx:id="contrasenatext" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
       </children>
    </GridPane>
    <GridPane alignment="CENTER">

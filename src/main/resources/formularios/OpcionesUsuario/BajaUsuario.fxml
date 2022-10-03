@@ -13,7 +13,7 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Label text="Usuairo, ingrese email y contraseñ para darse de baja:" />
+   <Label text="Usuario, ingrese email y contraseñ para darse de baja:" />
    <GridPane prefHeight="83.0" prefWidth="307.0">
      <columnConstraints>
        <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="71.0" />
@@ -28,8 +28,8 @@
           <Label text="Email:" />
       
           <Label text="Contraseña:" GridPane.rowIndex="1" />
-          <TextField fx:id="nombre" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-          <TextField fx:id="telefono" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <TextField fx:id="emailtext" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+          <TextField fx:id="contrasenatext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
    </GridPane>
    <GridPane alignment="CENTER" prefHeight="42.0" prefWidth="307.0">

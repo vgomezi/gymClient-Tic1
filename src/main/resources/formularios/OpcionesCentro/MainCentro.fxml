@@ -25,11 +25,11 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Registrar Ingreso Usuario" />
-            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Actualizar Actividad" GridPane.rowIndex="4" />
-         <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Registrar Actividad" GridPane.rowIndex="1" />
-         <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Buscar Actividad" GridPane.rowIndex="2" />
-         <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Borrar Actividad" GridPane.rowIndex="3" />
+            <Button alignment="CENTER" onAction="#onRegistrarIngresoUsuarioButtonClick" text="Registrar Ingreso Usuario" />
+            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarActividadClick" text="Actualizar Actividad" GridPane.rowIndex="4" />
+         <Button alignment="CENTER" onAction="#onRegistrarActividadButtonClick" text="Registrar Actividad" GridPane.rowIndex="1" />
+         <Button alignment="CENTER" onAction="#onBuscarActividadButtonClick" text="Buscar Actividad" GridPane.rowIndex="2" />
+         <Button alignment="CENTER" onAction="#onBorrarActividadButtonClick" text="Borrar Actividad" GridPane.rowIndex="3" />
       </children>
    </GridPane>
 

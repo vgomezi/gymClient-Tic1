@@ -26,7 +26,7 @@
          </rowConstraints>
          <children>
             <Label text="Email Usuario:" GridPane.rowIndex="1" />
-            <TextField fx:id="nombre1" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="emailtext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <GridPane alignment="CENTER">
@@ -38,7 +38,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button alignment="CENTER" onAction="#onCrearButtonClick" text="Eliminar!" />
+            <Button alignment="CENTER" onAction="#onEliminarButtonClick" text="Eliminar!" />
             <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
          </children>
       </GridPane>

@@ -33,18 +33,18 @@
           <Label text="Tipo Actividad:" GridPane.rowIndex="1" />
       
           <Label text="Hora Actividad:" GridPane.rowIndex="3" />
-          <TextField fx:id="nombre" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-          <TextField fx:id="telefono" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-          <TextField fx:id="direccion" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+          <TextField fx:id="tipotext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <TextField fx:id="horatext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+          <TextField fx:id="nombretext" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
          <Label text="Descripcion Actividad" GridPane.rowIndex="2" />
          <Label text="Dia Actividad:" GridPane.rowIndex="4" />
-         <TextField fx:id="nombre1" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <TextField fx:id="nombre2" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <TextField fx:id="descripciontext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <TextField fx:id="diatext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          <Label text="Nombre Actividad:" />
          <Label text="Cupos Actividad:" GridPane.rowIndex="5" />
          <Label text="Reservable:" GridPane.rowIndex="6" />
-         <TextField fx:id="nombre21" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-         <TextField fx:id="nombre22" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         <TextField fx:id="cupostext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         <TextField fx:id="reservabletext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       </children>
    </GridPane>
    <GridPane alignment="CENTER">
