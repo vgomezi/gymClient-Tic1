@@ -11,10 +11,10 @@ public class EliminarActividadController {
 
 
     @FXML
-    private TextField Id;
+    private Label Id;
 
     @FXML
-    private Label idactividadtext;
+    private TextField idactividadtext;
 
     @FXML
     private Button onEliminarButtonClick;

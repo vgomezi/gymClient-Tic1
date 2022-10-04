@@ -11,34 +11,34 @@ public class CrearUsuarioController {
 
 
     @FXML
-    private TextField Email;
+    private Label Email;
 
     @FXML
-    private Label emailtext;
+    private TextField emailtext;
 
     @FXML
-    private TextField Nombre;
+    private Label Nombre;
 
     @FXML
-    private Label nombretext;
+    private TextField nombretext;
 
     @FXML
-    private TextField Apellido;
+    private Label Apellido;
 
     @FXML
-    private Label apellidotext;
+    private TextField apellidotext;
 
     @FXML
-    private TextField Telefono;
+    private Label Telefono;
 
     @FXML
-    private Label telefonotext;
+    private TextField telefonotext;
 
     @FXML
-    private TextField Contraseña;
+    private Label Contraseña;
 
     @FXML
-    private Label contrasenatext;
+    private TextField contrasenatext;
 
     @FXML
     private Button onCrearButtonClick;

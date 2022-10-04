@@ -11,10 +11,10 @@ public class EliminarUsuarioController {
 
 
     @FXML
-    private TextField Email;
+    private Label Email;
 
     @FXML
-    private Label emailtext;
+    private TextField emailtext;
 
     @FXML
     private Button onEliminarButtonClick;

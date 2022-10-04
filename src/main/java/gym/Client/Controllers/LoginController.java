@@ -39,23 +39,13 @@ public class LoginController {
     @FXML
     private Button cancelarboton;
 
-    @FXML
-    private Button entrarempresaBoton;
-
-    @FXML
-    private Button entrarCDboton;
-
-    @FXML
-    private Button Aboton;
 
     @FXML
     protected void onIngresarButtonClick() {}
 
     @FXML
     protected void onCancelarButtonClick() {}
-
-    @FXML
-    protected void onEntrarEmpresaButtonClick() {
+    /*
 
         try {
 
@@ -76,11 +66,7 @@ public class LoginController {
             }
     }
 
-    @FXML
-    protected void onEntrarCDButtonClick() {}
-
-    @FXML
-    protected void onAButtonClick() {}
+     */
 
 
 

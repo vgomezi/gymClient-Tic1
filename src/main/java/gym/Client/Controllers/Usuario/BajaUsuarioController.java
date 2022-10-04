@@ -11,22 +11,22 @@ public class BajaUsuarioController {
 
 
     @FXML
-    private TextField Email;
+    private Label Email;
 
     @FXML
-    private Label emailtext;
+    private TextField emailtext;
 
     @FXML
-    private TextField Contraseña;
+    private Label Contraseña;
 
     @FXML
-    private Label contrasenatext;
+    private TextField contrasenatext;
 
     @FXML
-    private Button onBajaButtonClick;
+    private Button bajaboton;
 
     @FXML
-    private Button onCancelarButtonClick;
+    private Button cancelarboton;
 
     @FXML
     protected void onBajaButtonClick() {}

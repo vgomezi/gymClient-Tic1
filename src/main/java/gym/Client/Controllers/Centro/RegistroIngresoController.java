@@ -11,16 +11,16 @@ public class RegistroIngresoController {
 
 
     @FXML
-    private TextField Email;
+    private Label Email;
 
     @FXML
-    private Label emailtext;
+    private TextField emailtext;
 
     @FXML
-    private TextField Id;
+    private Label Id;
 
     @FXML
-    private Label idactividadtext;
+    private TextField idactividadtext;
 
     @FXML
     private Button onRegistrarButtonClick;
@@ -33,7 +33,6 @@ public class RegistroIngresoController {
 
     @FXML
     protected void onCancelarButtonClick() {}
-
 
 
 }
