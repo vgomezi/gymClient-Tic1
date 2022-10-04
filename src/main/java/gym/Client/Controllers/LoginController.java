@@ -3,41 +3,42 @@ package gym.Client.Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.awt.*;
 
 @Component
+@Controller
 public class LoginController {
 
 
     @FXML
-    private TextField Email;
+    private Label Email;
 
     @FXML
-    private Label emailtext;
+    private TextField emailtext;
 
     @FXML
-    private TextField Contraseña;
+    private Label Contraseña;
 
     @FXML
-    private Label contrasenatext;
+    private TextField contrasenatext;
 
     @FXML
-    private Button onIngresarActividadButtonClick;
+    private Button ingresarboton;
 
     @FXML
-    private Button onCancelarButtonClick;
+    private Button cancelarboton;
 
     @FXML
-    private Button onEntrarEmpresaButtonClick;
+    private Button entrarempresaBoton;
 
     @FXML
-    private Button onEntrarCDButtonClick;
+    private Button entrarCDboton;
 
     @FXML
-    private Button onAButtonClick;
+    private Button Aboton;
 
     @FXML
     protected void onIngresarButtonClick() {}
@@ -46,13 +47,35 @@ public class LoginController {
     protected void onCancelarButtonClick() {}
 
     @FXML
-    protected void onEntrarEmpresaButtonClick() {}
+    protected void onEntrarEmpresaButtonClick() {
+
+        /*
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainEmpresa.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.setTitle("Login Empresa");
+                stage.setScene(new Scene(root1));
+                stage.show();
+            } catch (Exception ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+         */
+    }
 
     @FXML
     protected void onEntrarCDButtonClick() {}
 
     @FXML
     protected void onAButtonClick() {}
+
+
 
 
 }

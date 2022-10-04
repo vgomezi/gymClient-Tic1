@@ -11,10 +11,10 @@ public class ContrasenaAdminController {
 
 
     @FXML
-    private TextField Contraseña;
+    private Label Contraseña;
 
     @FXML
-    private Label contrasenatext;
+    private TextField contrasenatext;
 
     @FXML
     private Button onIngresarButtonClick;

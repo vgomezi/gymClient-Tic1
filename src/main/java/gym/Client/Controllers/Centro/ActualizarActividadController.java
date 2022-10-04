@@ -11,46 +11,46 @@ public class ActualizarActividadController {
 
 
     @FXML
-    private TextField Nombre;
+    private Label Nombre;
 
     @FXML
-    private Label nombretext;
+    private TextField nombretext;
 
     @FXML
-    private TextField Tipo;
+    private Label Tipo;
 
     @FXML
-    private Label tipotext;
+    private TextField tipotext;
 
     @FXML
-    private TextField Descripcion;
+    private Label Descripcion;
 
     @FXML
-    private Label descripciontext;
+    private TextField descripciontext;
 
     @FXML
-    private TextField Hora;
+    private Label Hora;
 
     @FXML
-    private Label horatext;
+    private TextField horatext;
 
     @FXML
-    private TextField Dia;
+    private Label Dia;
 
     @FXML
-    private Label diatext;
+    private TextField diatext;
 
     @FXML
-    private TextField Reservable;
+    private Label Reservable;
 
     @FXML
-    private Label reservabletext;
+    private TextField reservabletext;
 
     @FXML
-    private TextField Cupos;
+    private Label Cupos;
 
     @FXML
-    private Label cupostext;
+    private TextField cupostext;
 
     @FXML
     private Button onActualizarButtonClick;
