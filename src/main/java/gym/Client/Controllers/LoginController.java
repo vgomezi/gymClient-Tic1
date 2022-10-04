@@ -1,12 +1,20 @@
 package gym.Client.Controllers;
 
+import gym.Client.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.awt.*;
+import java.util.logging.Logger;
 
 @Component
 @Controller
@@ -49,24 +57,23 @@ public class LoginController {
     @FXML
     protected void onEntrarEmpresaButtonClick() {
 
-        /*
-            try {
+        try {
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainEmpresa.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
                 Stage stage = new Stage();
 
                 stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UNDECORATED);
 
                 stage.setTitle("Login Empresa");
                 stage.setScene(new Scene(root1));
                 stage.show();
-            } catch (Exception ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
-         */
+            } catch (Exception ex) {
+                System.out.println(ex.toString());
+                System.out.println("Error");
+                //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
     @FXML

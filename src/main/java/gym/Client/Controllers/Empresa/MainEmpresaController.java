@@ -2,38 +2,39 @@ package gym.Client.Controllers.Empresa;
 
 import javafx.fxml.FXML;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.awt.*;
 
-@Component
+@Controller
 public class MainEmpresaController {
 
 
     @FXML
-    private Button onRegistrarIngresoUsuarioButtonClick;
+    private Button crearUsuarioBoton;
 
     @FXML
-    private Button onActualizarActividadButtonClick;
+    private Button buscarUsuarioBoton;
 
     @FXML
-    private Button onRegistrarActividadButtonClick;
+    private Button eliminarUsuarioBoton;
 
     @FXML
-    private Button onBuscarActividadButtonClick;
+    private Button actualizarUsuarioBoton;
 
     @FXML
-    private Button onBorrarActividadButtonClick;
-    @FXML
-    protected void onRegistrarIngresoUsuarioButtonClick() {}
+    protected void onCrearUsuarioButtonClick() {}
 
     @FXML
-    protected void onActualizarActividadButtonClick() {}
+    protected void onBuscarUsuarioButtonClick() {}
 
     @FXML
-    protected void onRegistrarActividadButtonClick() {}
+    protected void onEliminarUsuarioButtonClick() {
+        System.out.println("Belen");
+    }
 
     @FXML
-    protected void onBuscarActividadButtonClick() {}
+    protected void onActualizarUsuarioButtonClick() {}
 
     @FXML
     protected void onBorrarActividadButtonClick() {}

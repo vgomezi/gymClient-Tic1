@@ -11,16 +11,16 @@ public class AdminEmpresaController {
 
 
     @FXML
-    private Button onRegistrarEmpresaButtonClick;
+    private Button registrarEmpresaButton;
 
     @FXML
-    private Button onActualizarEmpresaButtonClick;
+    private Button actualizarEmpresaButton;
 
     @FXML
-    private Button onBorrarEmpresaButtonClick;
+    private Button borrarEmpresaButton;
 
     @FXML
-    private Button onBuscarEmpresaButtonClick;
+    private Button buscarEmpresaButton;
 
     @FXML
     protected void onRegistrarEmpresaButtonClick() {}
