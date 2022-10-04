@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
+
 @Component
 public class BajaUsuarioController {
 
@@ -12,13 +14,19 @@ public class BajaUsuarioController {
     private TextField Email;
 
     @FXML
-    private TextField emailtext;
+    private Label emailtext;
 
     @FXML
     private TextField Contraseña;
 
     @FXML
-    private TextField contrasenatext;
+    private Label contrasenatext;
+
+    @FXML
+    private Button onBajaButtonClick;
+
+    @FXML
+    private Button onCancelarButtonClick;
 
     @FXML
     protected void onBajaButtonClick() {}

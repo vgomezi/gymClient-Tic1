@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
+
 @Component
 public class CrearUsuarioController {
 
@@ -12,31 +14,37 @@ public class CrearUsuarioController {
     private TextField Email;
 
     @FXML
-    private TextField emailtext;
+    private Label emailtext;
 
     @FXML
     private TextField Nombre;
 
     @FXML
-    private TextField nombretext;
+    private Label nombretext;
 
     @FXML
     private TextField Apellido;
 
     @FXML
-    private TextField apellidotext;
+    private Label apellidotext;
 
     @FXML
     private TextField Telefono;
 
     @FXML
-    private TextField telefonotext;
+    private Label telefonotext;
 
     @FXML
     private TextField Contraseña;
 
     @FXML
-    private TextField contrasenatext;
+    private Label contrasenatext;
+
+    @FXML
+    private Button onCrearButtonClick;
+
+    @FXML
+    private Button onCancelarButtonClick;
 
     @FXML
     protected void onCrearButtonClick() {}

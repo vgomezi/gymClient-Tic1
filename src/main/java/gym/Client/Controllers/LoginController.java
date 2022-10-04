@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
+
 @Component
 public class LoginController {
 
@@ -14,13 +16,28 @@ public class LoginController {
     private TextField Email;
 
     @FXML
-    private TextField emailtext;
+    private Label emailtext;
 
     @FXML
     private TextField Contraseña;
 
     @FXML
-    private TextField contrasenatext;
+    private Label contrasenatext;
+
+    @FXML
+    private Button onIngresarActividadButtonClick;
+
+    @FXML
+    private Button onCancelarButtonClick;
+
+    @FXML
+    private Button onEntrarEmpresaButtonClick;
+
+    @FXML
+    private Button onEntrarCDButtonClick;
+
+    @FXML
+    private Button onAButtonClick;
 
     @FXML
     protected void onIngresarButtonClick() {}

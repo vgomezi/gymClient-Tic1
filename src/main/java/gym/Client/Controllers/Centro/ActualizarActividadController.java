@@ -4,52 +4,59 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
+
 @Component
 public class ActualizarActividadController {
-
 
 
     @FXML
     private TextField Nombre;
 
     @FXML
-    private TextField nombretext;
+    private Label nombretext;
 
     @FXML
     private TextField Tipo;
 
     @FXML
-    private TextField tipotext;
+    private Label tipotext;
 
     @FXML
     private TextField Descripcion;
 
     @FXML
-    private TextField descripciontext;
+    private Label descripciontext;
 
     @FXML
     private TextField Hora;
 
     @FXML
-    private TextField horatext;
+    private Label horatext;
 
     @FXML
     private TextField Dia;
 
     @FXML
-    private TextField diatext;
+    private Label diatext;
 
     @FXML
     private TextField Reservable;
 
     @FXML
-    private TextField reservabletext;
+    private Label reservabletext;
 
     @FXML
     private TextField Cupos;
 
     @FXML
-    private TextField cupostext;
+    private Label cupostext;
+
+    @FXML
+    private Button onActualizarButtonClick;
+
+    @FXML
+    private Button onCancelarButtonClick;
 
     @FXML
     protected void onActualizarButtonClick() {}

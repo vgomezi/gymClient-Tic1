@@ -4,8 +4,26 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
+
 @Component
 public class MainCentroController {
+
+
+    @FXML
+    private Button onIngresoUsuarioButtonClick;
+
+    @FXML
+    private Button onActualizarActividadButtonClick;
+
+    @FXML
+    private Button onRegistrarActividadButtonClick;
+
+    @FXML
+    private Button onBuscarActividadButtonClick;
+
+    @FXML
+    private Button onBorrarActividadButtonClick;
 
     @FXML
     protected void onRegistrarIngresoUsuarioButtonClick() {}

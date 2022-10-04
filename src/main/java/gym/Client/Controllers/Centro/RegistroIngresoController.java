@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
+
 @Component
 public class RegistroIngresoController {
 
@@ -12,13 +14,19 @@ public class RegistroIngresoController {
     private TextField Email;
 
     @FXML
-    private TextField emailtext;
+    private Label emailtext;
 
     @FXML
     private TextField Id;
 
     @FXML
-    private TextField idactividadtext;
+    private Label idactividadtext;
+
+    @FXML
+    private Button onRegistrarButtonClick;
+
+    @FXML
+    private Button onCancelarButtonClick;
 
     @FXML
     protected void onRegistrarButtonClick() {}
