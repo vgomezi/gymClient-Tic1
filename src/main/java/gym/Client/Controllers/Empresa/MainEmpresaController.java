@@ -11,16 +11,16 @@ public class MainEmpresaController {
 
 
     @FXML
-    private Button crearUsuarioBoton;
+    private Button crearusuarioboton;
 
     @FXML
-    private Button buscarUsuarioBoton;
+    private Button buscarusuarioboton;
 
     @FXML
-    private Button eliminarUsuarioBoton;
+    private Button eliminarusuarioboton;
 
     @FXML
-    private Button actualizarUsuarioBoton;
+    private Button actualizarusuarioboton;
 
     @FXML
     protected void onCrearUsuarioButtonClick() {}

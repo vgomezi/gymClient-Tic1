@@ -41,10 +41,10 @@ public class CrearUsuarioController {
     private TextField contrasenatext;
 
     @FXML
-    private Button onCrearButtonClick;
+    private Button crearboton;
 
     @FXML
-    private Button onCancelarButtonClick;
+    private Button cancelarboton;
 
     @FXML
     protected void onCrearButtonClick() {}

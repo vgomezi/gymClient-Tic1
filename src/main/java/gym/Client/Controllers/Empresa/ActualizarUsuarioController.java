@@ -41,10 +41,10 @@ public class ActualizarUsuarioController {
     private TextField contrasenatext;
 
     @FXML
-    private Button onActualizarButtonClick;
+    private Button actualizarboton;
 
     @FXML
-    private Button onCancelarButtonClick;
+    private Button cancelarboton;
 
     @FXML
     protected void onActualizarButtonClick() {}

@@ -10,13 +10,13 @@ public class MainUsuarioController {
 
 
     @FXML
-    private Button onDarseBajaButtonClick;
+    private Button darsebajaboton;
 
     @FXML
-    private Button onBajarseActividadButtonClick;
+    private Button bajarseactividadboton;
 
     @FXML
-    private Button onVerYRegistrarseActividadesDisponiblesButtonClick;
+    private Button verregistrarboton;
 
     @FXML
     protected void onDarseBajaButtonClick() {}

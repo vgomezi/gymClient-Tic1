@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="207.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.restaurantePack.restaurante.HelloController">
+<VBox prefHeight="207.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.MainUsuarioController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -23,9 +23,9 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button alignment="CENTER" onAction="#onDarseBajaButtonClick" text="Darse de baja" />
-         <Button alignment="CENTER" onAction="#onBajarseActividadButtonClick" text="Bajarse de la actividad" GridPane.rowIndex="1" />
-         <Button alignment="CENTER" onAction="#onVerYRegistrarseActividadesDisponiblesButtonClick" text="Ver y registrarse a actividades disponibles" GridPane.rowIndex="2" />
+            <Button fx:id="darseBajaBoton" alignment="CENTER" onAction="#onDarseBajaButtonClick" text="Darse de baja" />
+         <Button fx:id="bajarseActividadBoton" alignment="CENTER" onAction="#onBajarseActividadButtonClick" text="Bajarse de la actividad" GridPane.rowIndex="1" />
+         <Button fx:id="verRegistrarBoton" alignment="CENTER" onAction="#onVerYRegistrarseActividadesDisponiblesButtonClick" text="Ver y registrarse a actividades disponibles" GridPane.rowIndex="2" />
       </children>
    </GridPane>
 

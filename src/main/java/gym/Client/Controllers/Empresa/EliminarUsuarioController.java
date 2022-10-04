@@ -17,10 +17,10 @@ public class EliminarUsuarioController {
     private TextField emailtext;
 
     @FXML
-    private Button onEliminarButtonClick;
+    private Button eliminarboton;
 
     @FXML
-    private Button onCancelarButtonClick;
+    private Button cancelarboton;
 
     @FXML
     protected void onEliminarButtonClick() {}

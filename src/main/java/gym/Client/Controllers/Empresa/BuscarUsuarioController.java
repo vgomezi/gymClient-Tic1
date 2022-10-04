@@ -17,10 +17,10 @@ public class BuscarUsuarioController {
     private TextField emailtext;
 
     @FXML
-    private Button onBuscarButtonClick;
+    private Button buscarboton;
 
     @FXML
-    private Button onCancelarButtonClick;
+    private Button cancelarboton;
 
     @FXML
     protected void onBuscarButtonClick() {}
