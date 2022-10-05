@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="204.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.restaurantePack.restaurante.HelloController">
+<VBox prefHeight="204.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Admin.AdminEmpresa.MainAdminEmpresaController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -24,10 +24,10 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button alignment="CENTER" onAction="#onRegistrarEmpresaButtonClick" text="Registrar Empresa" />
-            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarEmpresaButtonClick" text="Actualizar Empresa" GridPane.rowIndex="2" />
-         <Button alignment="CENTER" onAction="#onBorrarEmpresaButtonClick" text="Eliminar Empresa" GridPane.rowIndex="3" />
-         <Button alignment="CENTER" onAction="#onBuscarEmpresaButtonClick" text="Buscar Empresa" GridPane.rowIndex="1" />
+            <Button fx:id="registrarEmpresaBoton" alignment="CENTER" onAction="#onRegistrarEmpresaButtonClick" text="Registrar Empresa" />
+            <Button fx:id="actualizarEmpresaBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarEmpresaButtonClick" text="Actualizar Empresa" GridPane.rowIndex="2" />
+         <Button fx:id="eliminarEmpresaBoton" alignment="CENTER" onAction="#onEliminarEmpresaButtonClick" text="Eliminar Empresa" GridPane.rowIndex="3" />
+         <Button fx:id="buscarEmpresaBoton" alignment="CENTER" onAction="#onBuscarEmpresaButtonClick" text="Buscar Empresa" GridPane.rowIndex="1" />
       </children>
    </GridPane>
 
