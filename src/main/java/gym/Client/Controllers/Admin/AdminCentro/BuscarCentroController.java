@@ -1,15 +1,14 @@
-package gym.Client.Controllers.Empresa;
+package gym.Client.Controllers.Admin.AdminCentro;
 
 import javafx.fxml.FXML;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-@Component
-public class EliminarUsuarioController {
-
+@Controller
+public class BuscarCentroController {
 
     @FXML
     private Label emailLabel;
@@ -18,17 +17,18 @@ public class EliminarUsuarioController {
     private TextField emailText;
 
     @FXML
-    private Button eliminarBoton;
+    private Button buscarBoton;
 
     @FXML
     private Button cancelarBoton;
 
     @FXML
-    protected void onEliminarButtonClick() {}
+    protected void onBuscarButtonClick() {
+        System.out.println("Se buscará el centro");
+    }
 
     @FXML
     protected void onCancelarButtonClick() {}
-
 
 
 }

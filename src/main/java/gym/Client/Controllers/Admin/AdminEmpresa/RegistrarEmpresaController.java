@@ -12,22 +12,22 @@ public class RegistrarEmpresaController {
 
 
     @FXML
-    private Label nombreEmpresaLabel;
+    private Label nombreLabel;
 
     @FXML
-    private Label emailEmpresaLabel;
+    private TextField nombreText;
 
     @FXML
-    private Label contrasenaEmpresaLabel;
+    private Label emailLabel;
 
     @FXML
-    private TextField nombreEmpresaText;
+    private TextField emailText;
 
     @FXML
-    private TextField emailEmpresaText;
+    private Label contrasenaLabel;
 
     @FXML
-    private TextField contrasenaEmpresaText;
+    private TextField contrasenaText;
 
     @FXML
     private Button crearBoton;

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="257.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.restaurantePack.restaurante.HelloController">
+<VBox prefHeight="257.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.RegistroIngresoUsuairoController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -25,11 +25,11 @@
      </rowConstraints>
       <children>
       
-          <Label text="Email Usuario:" />
+          <Label fx:id="emailLabel" text="Email Usuario:" />
       
-          <Label text="Id Actividad:" GridPane.rowIndex="1" />
-          <TextField fx:id="emailtext" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-          <TextField fx:id="idactividadtext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <Label fx:id="idActividadLabel" text="Id Actividad:" GridPane.rowIndex="1" />
+          <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+          <TextField fx:id="idActividadText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
    </GridPane>
    <GridPane alignment="CENTER">
@@ -41,8 +41,8 @@
        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button alignment="CENTER" onAction="#onRegistrarButtonClick" text="Registrar!" />
-            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
+            <Button fx:id="registrarUsuarioBoton" alignment="CENTER" onAction="#onRegistrarUsuarioButtonClick" text="Registrar Usuario!" />
+            <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
       </children>
    </GridPane>
 

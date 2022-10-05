@@ -25,11 +25,11 @@
      </rowConstraints>
       <children>
       
-          <Label text="Email:" />
+          <Label text="emailLabel:" />
       
-          <Label text="Contraseña:" GridPane.rowIndex="1" />
-          <TextField fx:id="emailtext" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-          <TextField fx:id="contrasenatext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <Label text="contrasenaLabel:" GridPane.rowIndex="1" />
+          <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+          <TextField fx:id="contrasenaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
    </GridPane>
    <GridPane alignment="CENTER" prefHeight="42.0" prefWidth="307.0">

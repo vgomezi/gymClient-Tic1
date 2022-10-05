@@ -37,7 +37,7 @@
        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button fx:id="buscarEmpresaBoton" alignment="CENTER" onAction="#onBuscarButtonClick" text="Buscar!" />
+            <Button fx:id="buscarBoton" alignment="CENTER" onAction="#onBuscarButtonClick" text="Buscar!" />
             <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
       </children>
    </GridPane>

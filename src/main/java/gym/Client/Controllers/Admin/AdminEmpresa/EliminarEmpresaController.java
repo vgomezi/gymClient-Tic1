@@ -12,7 +12,7 @@ public class EliminarEmpresaController {
 
 
     @FXML
-    private Label emailEmpresaLabel;
+    private Label emailLabel;
 
     @FXML
     private TextField emailText;

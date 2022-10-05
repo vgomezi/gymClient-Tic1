@@ -1,4 +1,4 @@
-package gym.Client.Controllers.Empresa;
+package gym.Client.Controllers.Centro;
 
 import javafx.fxml.FXML;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 @Component
-public class EliminarUsuarioController {
+public class RegistroIngresoUsuairoController {
 
 
     @FXML
@@ -18,17 +18,22 @@ public class EliminarUsuarioController {
     private TextField emailText;
 
     @FXML
-    private Button eliminarBoton;
+    private Label idActividadLabel;
+
+    @FXML
+    private TextField idActividadText;
+
+    @FXML
+    private Button registrarUsuarioBoton;
 
     @FXML
     private Button cancelarBoton;
 
     @FXML
-    protected void onEliminarButtonClick() {}
+    protected void onRegistrarUsuarioButtonClick() {}
 
     @FXML
     protected void onCancelarButtonClick() {}
-
 
 
 }

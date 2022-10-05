@@ -1,26 +1,27 @@
 package gym.Client.Controllers.Centro;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 @Component
 public class BuscarActividadController {
 
 
     @FXML
-    private Label Id;
+    private Label idActividadLabel;
 
     @FXML
-    private TextField idactividadtext;
+    private TextField idActividadText;
 
     @FXML
-    private Button onBuscaButtonClick;
+    private Button buscarBoton;
 
     @FXML
-    private Button onCancelarButtonClick;
+    private Button cancelarBoton;
 
     @FXML
     protected void onBuscarButtonClick() {}

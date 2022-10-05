@@ -24,7 +24,7 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <Label fx:id="emailEmpresaLabel" text="Email Empresa:" GridPane.rowIndex="1" />
+         <Label fx:id="emailLabel" text="Email Empresa:" GridPane.rowIndex="1" />
          <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
    </GridPane>

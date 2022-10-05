@@ -19,13 +19,13 @@ public class LoginController {
     private Label emailLabel;
 
     @FXML
-    private TextField emailtext;
+    private TextField emailText;
 
     @FXML
     private Label contrasenaLabel;
 
     @FXML
-    private TextField contrasenatext;
+    private TextField contrasenaText;
 
     @FXML
     private Button ingresarBoton;

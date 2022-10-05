@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="237.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.restaurantePack.restaurante.HelloController">
+<VBox prefHeight="237.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.MainCentroController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -25,11 +25,11 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button alignment="CENTER" onAction="#onRegistrarIngresoUsuarioButtonClick" text="Registrar Ingreso Usuario" />
-            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarActividadClick" text="Actualizar Actividad" GridPane.rowIndex="4" />
-         <Button alignment="CENTER" onAction="#onRegistrarActividadButtonClick" text="Registrar Actividad" GridPane.rowIndex="1" />
-         <Button alignment="CENTER" onAction="#onBuscarActividadButtonClick" text="Buscar Actividad" GridPane.rowIndex="2" />
-         <Button alignment="CENTER" onAction="#onBorrarActividadButtonClick" text="Borrar Actividad" GridPane.rowIndex="3" />
+            <Button fx:id="registrarIngresoUsuarioBoton" alignment="CENTER" onAction="#onRegistrarIngresoUsuarioButtonClick" text="Registrar Ingreso Usuario" />
+            <Button fx:id="actualizarActividadBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarActividadClick" text="Actualizar Actividad" GridPane.rowIndex="4" />
+         <Button fx:id="registrarActividadBoton" alignment="CENTER" onAction="#onRegistrarActividadButtonClick" text="Registrar Actividad" GridPane.rowIndex="1" />
+         <Button fx:id="buscarActividadBoton" alignment="CENTER" onAction="#onBuscarActividadButtonClick" text="Buscar Actividad" GridPane.rowIndex="2" />
+         <Button fx:id="eliminarActividadBoton" alignment="CENTER" onAction="#onEliminarActividadButtonClick" text="Eliminar Actividad" GridPane.rowIndex="3" />
       </children>
    </GridPane>
 
