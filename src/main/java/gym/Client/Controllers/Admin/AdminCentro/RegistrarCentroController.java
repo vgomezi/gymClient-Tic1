@@ -65,19 +65,20 @@ public class RegistrarCentroController {
                     ObjectMapper mapper2 = new ObjectMapper();
                     ObjectNode rest1 = mapper1.createObjectNode();
                     ObjectNode rest2 = mapper2.createObjectNode();
-                    rest1.put("email", email);
                     rest1.put("contrasena", contrasena);
-                    rest1.put("tipo", "Centro Deportivo");
-                    rest2.put("email", email);
+                    rest1.put("mail", email);
+                    rest1.put("tipoDeUsuario", "Centro Deportivo");
+                    rest2.put("mail", email);
                     rest2.put("nombre", nombre);
                     json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest1);
                     json2 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest2);
                 } catch (Exception ignored) {
                 }
-                HttpResponse<JsonNode> apiResponse = null;
+                HttpResponse<JsonNode> apiResponse1 = null;
+                HttpResponse<JsonNode> apiResponse2 = null;
                 try {
-                    apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json1").body(json1).asJson();
-                    apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json2").body(json2).asJson();
+                    apiResponse1 = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json1).asJson();
+                    apiResponse2 = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json2).asJson();
                     System.out.println("Hecho apiResponse");
 
                 } catch (UnirestException el) {
