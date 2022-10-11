@@ -45,7 +45,7 @@
                <children>
                   <Label fx:id="emailLabel2" text="Email:" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                   <Label fx:id="contrasenaLabel" text="Contraseña:" textFill="WHITE" GridPane.rowIndex="1">

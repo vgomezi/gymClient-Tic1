@@ -76,8 +76,8 @@ public class RegistrarCentroController {
                 }
                 HttpResponse<JsonNode> apiResponse = null;
                 try {
-                    apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json1).asJson();
-                    apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json2).asJson();
+                    apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json1").body(json1).asJson();
+                    apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json2").body(json2).asJson();
                     System.out.println("Hecho apiResponse");
 
                 } catch (UnirestException el) {

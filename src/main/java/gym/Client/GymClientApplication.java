@@ -19,7 +19,7 @@ public class GymClientApplication extends Application {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-			Scene scene = new Scene(fxmlLoader.load(GymClientApplication.class.getResourceAsStream("LoginPrueba.fxml")), 320, 240);
+			Scene scene = new Scene(fxmlLoader.load(GymClientApplication.class.getResourceAsStream("LoginPrueba.fxml")), 400, 340);
 			stage.setTitle("Login");
 			stage.setScene(scene);
 			stage.show();
