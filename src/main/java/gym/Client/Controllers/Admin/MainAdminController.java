@@ -18,7 +18,6 @@ import javafx.scene.control.TextField;
 @Controller
 public class MainAdminController {
 
-    /*hola*/
 
     @FXML
     private Button administrarEmpresasBoton;
