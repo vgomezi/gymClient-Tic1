@@ -1,6 +1,9 @@
 package gym.Client.Controllers.Centro;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
@@ -39,7 +42,7 @@ public class RegistrarActividadController {
     private Label diaLabel;
 
     @FXML
-    private TextField diatext;
+    private TextField diaText;
 
     @FXML
     private Label reservableLabel;
@@ -63,7 +66,18 @@ public class RegistrarActividadController {
     protected void onRegistrarButtonClick() {}
 
     @FXML
-    protected void onCancelarButtonClick() {}
+    protected void onCancelarButtonClick(ActionEvent event) {
+        nombreText.clear();
+        tipoText.clear();
+        descripcionText.clear();
+        horaText.clear();
+        diaText.clear();
+        reservableText.clear();
+        cuposText.clear();
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 
 
 }
