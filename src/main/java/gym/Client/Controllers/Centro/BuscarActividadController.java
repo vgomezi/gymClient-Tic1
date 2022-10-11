@@ -15,10 +15,10 @@ public class BuscarActividadController {
 
 
     @FXML
-    private Label idActividadLabel;
+    private Label actividadLabel;
 
     @FXML
-    private TextField idActividadText;
+    private TextField actividadText;
 
     @FXML
     private Button buscarBoton;
@@ -31,7 +31,7 @@ public class BuscarActividadController {
 
     @FXML
     protected void onCancelarButtonClick(ActionEvent event) {
-        idActividadText.clear();
+        actividadText.clear();
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();

@@ -50,7 +50,7 @@ public class MainAdminController {
     protected void onAdministrarCentrosButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/MainAdminCentro.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/MainAdminCentro.fxml"));
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);

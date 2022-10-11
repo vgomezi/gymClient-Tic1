@@ -25,8 +25,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="idActividadLabel" text="Id Actividad:" GridPane.rowIndex="1" />
-            <TextField fx:id="idActividadText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="actividadLabel" text="Id Actividad:" GridPane.rowIndex="1" />
+            <TextField fx:id="actividadText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <GridPane alignment="CENTER">
