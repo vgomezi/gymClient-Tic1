@@ -1,9 +1,12 @@
 package gym.Client.Controllers.Admin.AdminEmpresa;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 
@@ -41,7 +44,12 @@ public class RegistrarEmpresaController {
     }
 
     @FXML
-    protected void onCancelarButtonClick() {
-        System.out.println("Accion cancelada");
+    protected void onCancelarButtonClick(ActionEvent event) {
+        nombreText.clear();
+        emailText.clear();
+        contrasenaText.clear();
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }
