@@ -13,21 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.LoginController">
    <children>
-      <ImageView fitHeight="351.0" fitWidth="412.0" layoutX="-6.0" layoutY="-1.0" opacity="0.84">
+      <ImageView fitHeight="344.0" fitWidth="403.0" opacity="0.8">
          <image>
-            <Image url="/background.jpg" />
-
+            <Image url="@../../../../../../../background.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="54.0" layoutY="41.0" opacity="0.7" prefHeight="44.0" prefWidth="296.0" style="-fx-background-color: #F2F1F0;" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="54.0" layoutY="41.0" prefHeight="44.0" prefWidth="296.0" text="Bienvenido a su Login, ingrese su usuairo:">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
       <VBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="106.0" prefHeight="223.0" prefWidth="388.0" spacing="20.0" style="-fx-background-image: url(“/Users/valegomez/Desktop/background.jpg”);">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -72,5 +64,15 @@
             </GridPane>
          </children>
       </VBox>
+      
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="54.0" layoutY="41.0" opacity="0.7" prefHeight="44.0" prefWidth="296.0" style="-fx-background-color: #F2F1F0;">
+         <graphic>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="296.0" text="Bienvenido a su Login, ingrese su usuairo:">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </graphic>
+      </Label>
    </children>
 </AnchorPane>
