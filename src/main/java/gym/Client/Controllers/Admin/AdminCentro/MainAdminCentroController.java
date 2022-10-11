@@ -38,7 +38,7 @@ public class MainAdminCentroController {
 
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            stage.setTitle("Login Empresa");
+            stage.setTitle("Login Centro");
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -61,7 +61,7 @@ public class MainAdminCentroController {
 
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            stage.setTitle("Login Empresa");
+            stage.setTitle("Login Centro");
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -81,7 +81,7 @@ public class MainAdminCentroController {
 
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            stage.setTitle("Login Empresa");
+            stage.setTitle("Login Centro");
             stage.setScene(new Scene(root1));
             stage.show();
 
