@@ -57,24 +57,33 @@ public class RegistrarCentroController {
 
         if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
             try {
-                String json = "";
+                String json1 = "";
+                String json2 = "";
 
                 try {
-                    ObjectMapper mapper = new ObjectMapper();
-                    ObjectNode rest = mapper.createObjectNode();
-                    rest.put("nombre", nombre);
-                    rest.put("email", email);
-                    rest.put("contrasena", contrasena);
-                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rest);
+                    ObjectMapper mapper1 = new ObjectMapper();
+                    ObjectMapper mapper2 = new ObjectMapper();
+                    ObjectNode rest1 = mapper1.createObjectNode();
+                    ObjectNode rest2 = mapper2.createObjectNode();
+                    rest1.put("email", email);
+                    rest1.put("contrasena", contrasena);
+                    rest1.put("tipo", "Centro Deportivo");
+                    rest2.put("email", email);
+                    rest2.put("nombre", nombre);
+                    json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest1);
+                    json2 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest2);
                 } catch (Exception ignored) {
                 }
                 HttpResponse<JsonNode> apiResponse = null;
                 try {
-                    apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json).asJson();
+                    apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json1).asJson();
+                    apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json2).asJson();
+                    System.out.println("Hecho apiResponse");
 
                 } catch (UnirestException el) {
                     throw new RuntimeException(el);
                 }
+                System.out.println("Hecho");
             }catch (Exception e) {
                 System.out.println(e.toString());
                 System.out.println("Error");
