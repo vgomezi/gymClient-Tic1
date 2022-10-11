@@ -1,38 +1,28 @@
 package gym.Client.Controllers.Admin;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import java.awt.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
 
 @Controller
 public class MainAdminController {
 
     @FXML
-    private Button crearUsuarioButton;
+    private Button administrarEmpresasBoton;
 
     @FXML
-    private Button buscarUsuarioButton;
+    private Button administrarCentrosBoton;
 
     @FXML
-    private Button eliminarUsuarioButton;
+    protected void onAdministrarEmpresasButtonClick() {}
 
     @FXML
-    private Button actualizarUsuarioButton;
-
-    @FXML
-    protected void onCrearUsuarioButtonClick() {}
-
-    @FXML
-    protected void onBuscarUsuarioButtonClick() {}
-
-    @FXML
-    protected void onEliminarUsuarioButtonClick() {}
-
-    @FXML
-    protected void onActualizarUsuarioButtonClick() {}
+    protected void onAdministrarCentrosButtonClick() {}
 
 
 }

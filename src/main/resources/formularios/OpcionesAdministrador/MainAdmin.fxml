@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="169.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.restaurantePack.restaurante.HelloController">
+<VBox prefHeight="169.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Admin.MainAdminController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -22,8 +22,8 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button alignment="CENTER" onAction="#onAdministrarEmpresaButtonClick" text="Administrar Empresas" />
-         <Button alignment="CENTER" onAction="#onAdministrarCentrosButtonClick" text="Administrar Centros Deportivos" GridPane.rowIndex="1" />
+            <Button fx:id="administrarEmpresasBoton" alignment="CENTER" onAction="#onAdministrarEmpresasButtonClick" text="Administrar Empresas" />
+         <Button fx:id="administrarCentrosBoton" alignment="CENTER" onAction="#onAdministrarCentrosButtonClick" text="Administrar Centros Deportivos" GridPane.rowIndex="1" />
       </children>
    </GridPane>
 
