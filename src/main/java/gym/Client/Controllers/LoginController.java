@@ -56,29 +56,24 @@ public class LoginController {
     }
 
     @FXML
-    protected void onCancelarButtonClick() {}
-    /*
-
+    protected void onCancelarButtonClick() {
         try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/MainAdminCentro.fxml"));
+            Stage stage = new Stage();
 
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
-                Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
 
-                stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Login Centro");
+            stage.setScene(new Scene(root1));
+            stage.show();
 
-                stage.setTitle("Login Empresa");
-                stage.setScene(new Scene(root1));
-                stage.show();
-
-            } catch (Exception ex) {
-                System.out.println(ex.toString());
-                System.out.println("Error");
-                //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
-     */
 
 
 
