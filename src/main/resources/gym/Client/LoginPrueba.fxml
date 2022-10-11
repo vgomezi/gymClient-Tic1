@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.LoginController">
    <children>
       <ImageView fitHeight="351.0" fitWidth="412.0" layoutX="-6.0" layoutY="-1.0" opacity="0.84">
          <image>
-            <Image url="@../../../../../../../background.jpg" />
+            <Image url="/background.jpg" />
          </image>
       </ImageView>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="54.0" layoutY="41.0" opacity="0.7" prefHeight="44.0" prefWidth="296.0" style="-fx-background-color: #F2F1F0;" />
