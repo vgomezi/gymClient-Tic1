@@ -82,6 +82,7 @@ public class LoginController {
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
+            System.exit(0);
         }
     }
 
