@@ -1,5 +1,11 @@
 package gym.Client.Controllers.Admin.AdminCentro;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -49,7 +55,32 @@ public class RegistrarCentroController {
         String email = emailText.getText();
         String contrasena = contrasenaText.getText();
 
-        if (!nombre.isEmpty() && !email.isEmpty() && contrasena.isEmpty()) {
+        if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
+            try {
+                String json = "";
+
+                try {
+                    ObjectMapper mapper = new ObjectMapper();
+                    ObjectNode rest = mapper.createObjectNode();
+                    rest.put("nombre", nombre);
+                    rest.put("email", email);
+                    rest.put("contrasena", contrasena);
+                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rest);
+                } catch (Exception ignored) {
+                }
+                HttpResponse<JsonNode> apiResponse = null;
+                try {
+                    apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json).asJson();
+
+                } catch (UnirestException el) {
+                    throw new RuntimeException(el);
+                }
+            }catch (Exception e) {
+                System.out.println(e.toString());
+                System.out.println("Error");
+
+            }
+
 
         } else {
             Stage window = new Stage();
