@@ -1,6 +1,9 @@
 package gym.Client.Controllers.Centro;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
@@ -27,7 +30,12 @@ public class EliminarActividadController {
     protected void onEliminarButtonClick() {}
 
     @FXML
-    protected void onCancelarButtonClick() {}
+    protected void onCancelarButtonClick(ActionEvent event) {
+        idActividadText.clear();
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 
 
 }

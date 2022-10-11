@@ -35,7 +35,7 @@
           <Label fx:id="horaLabel" text="Hora Actividad:" GridPane.rowIndex="3" />
           <TextField fx:id="tipoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
           <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-          <TextField fx:id="nombretext" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+          <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
          <Label fx:id="descricpionLabel" text="Descripcion Actividad" GridPane.rowIndex="2" />
          <Label fx:id="diaLabel" text="Dia Actividad:" GridPane.rowIndex="4" />
          <TextField fx:id="descripcionText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
