@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="344.0" fitWidth="403.0" opacity="0.8">
          <image>
-            <Image url="/background.jpg" />
+            <Image url="@/login.jpg" />
          </image>
       </ImageView>
       <VBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="106.0" prefHeight="223.0" prefWidth="388.0" spacing="20.0" style="-fx-background-image: url(“/Users/valegomez/Desktop/background.jpg”);">
