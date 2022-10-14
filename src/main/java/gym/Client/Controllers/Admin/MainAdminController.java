@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
@@ -36,6 +37,7 @@ public class MainAdminController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Login Empresa");
+            stage.getIcons().add(new Image("GymIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -56,6 +58,7 @@ public class MainAdminController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Login Centro");
+            stage.getIcons().add(new Image("GymIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 

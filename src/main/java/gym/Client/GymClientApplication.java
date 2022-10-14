@@ -1,10 +1,12 @@
 package gym.Client;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -25,6 +27,12 @@ public class GymClientApplication extends Application {
 			stage.getIcons().add(new Image("GymIcon.png"));
 			stage.setScene(scene);
 			stage.show();
+			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent event) {
+					System.exit(0);
+				}
+			});
 		} catch (Exception ex) {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 		}
