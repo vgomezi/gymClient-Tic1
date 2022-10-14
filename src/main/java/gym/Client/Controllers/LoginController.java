@@ -15,7 +15,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
@@ -35,7 +37,7 @@ public class LoginController {
     private Label contrasenaLabel;
 
     @FXML
-    private TextField contrasenaText;
+    private PasswordField contrasenaText;
 
     @FXML
     private Button ingresarBoton;
@@ -45,7 +47,7 @@ public class LoginController {
 
 
     @FXML
-    protected void onIngresarButtonClick() {
+    protected void onIngresarButtonClick(ActionEvent event) {
         /*String correoElectronico = emailText.getText();
         String contrasena = contrasenaText.getText();*/
 /*
@@ -76,6 +78,9 @@ public class LoginController {
             contrasenaText.clear();
         }*/
 
+        Node source = (Node) event.getSource();
+        Stage stage1 = (Stage) source.getScene().getWindow();
+        stage1.close();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/MainAdminEmpresa.fxml"));
@@ -84,6 +89,7 @@ public class LoginController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Login Empresa");
+            stage.getIcons().add(new Image("GymIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -143,7 +149,10 @@ public class LoginController {
 
     @FXML
     protected void onCancelarButtonClick(ActionEvent event) {
-        if (emailText.getText() != null) {
+        if (contrasenaText.getText().isEmpty()) {
+            Node source = (Node) event.getSource();
+            Stage stage1 = (Stage) source.getScene().getWindow();
+            stage1.close();
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/MainAdminCentro.fxml"));
@@ -152,6 +161,7 @@ public class LoginController {
                 stage.initModality(Modality.APPLICATION_MODAL);
 
                 stage.setTitle("Login Centro");
+                stage.getIcons().add(new Image("GymIcon.png"));
                 stage.setScene(new Scene(root1));
                 stage.show();
 

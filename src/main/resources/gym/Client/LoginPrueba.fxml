@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.LoginController">
    <children>
       <ImageView fitHeight="344.0" fitWidth="403.0" opacity="0.8">
@@ -46,7 +47,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-                  <TextField fx:id="contrasenaText" alignment="TOP_RIGHT" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <PasswordField fx:id="contrasenaText" alignment="TOP_RIGHT" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <GridPane alignment="CENTER" prefHeight="52.0" prefWidth="307.0">

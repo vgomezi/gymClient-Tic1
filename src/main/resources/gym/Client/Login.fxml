@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.PasswordField?>
 <VBox prefHeight="211.0" prefWidth="293.0" spacing="20.0" style="-fx-background-image: url(“/Users/valegomez/Desktop/background.jpg”);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -29,7 +30,7 @@
       
           <Label fx:id="contrasenaLabel" text="Contraseña:" GridPane.rowIndex="1" />
           <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-          <TextField fx:id="contrasenaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <PasswordField fx:id="contrasenaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
    </GridPane>
    <GridPane alignment="CENTER" prefHeight="52.0" prefWidth="307.0">

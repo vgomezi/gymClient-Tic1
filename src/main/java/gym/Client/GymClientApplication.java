@@ -3,6 +3,7 @@ package gym.Client;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +22,7 @@ public class GymClientApplication extends Application {
 			fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 			Scene scene = new Scene(fxmlLoader.load(GymClientApplication.class.getResourceAsStream("LoginPrueba.fxml")), 400, 340);
 			stage.setTitle("Login");
+			stage.getIcons().add(new Image("GymIcon.png"));
 			stage.setScene(scene);
 			stage.show();
 		} catch (Exception ex) {
