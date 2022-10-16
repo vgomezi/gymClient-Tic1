@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.MainCentroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.MainCentroController">
    <children>
-      <ImageView fitHeight="255.0" fitWidth="297.0">
+      <ImageView fitHeight="255.0" fitWidth="268.0">
          <image>
             <Image url="@../../../../../../centro.jpg" />
          </image>
@@ -35,6 +35,6 @@
             <Button fx:id="eliminarActividadBoton" alignment="CENTER" onAction="#onEliminarActividadButtonClick" text="Eliminar Actividad" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Label layoutX="14.0" layoutY="14.0" text="Centro, eliga que acción desea realizar:" />
+      <Label layoutX="14.0" layoutY="14.0" style="-fx-background-color: #f4f4f4;" text=" Centro, eliga que acción desea realizar: " />
    </children>
 </AnchorPane>
