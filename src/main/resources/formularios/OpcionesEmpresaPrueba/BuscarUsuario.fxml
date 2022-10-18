@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.BuscarUsuarioController">
    <children>
       <ImageView fitHeight="166.0" fitWidth="283.0">
          <image>
