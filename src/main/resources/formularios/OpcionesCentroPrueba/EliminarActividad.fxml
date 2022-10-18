@@ -28,8 +28,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="idActividadLabel1" style="-fx-background-color: #f4f4f4;" text=" Id Actividad: " GridPane.rowIndex="1" />
+
             <TextField fx:id="idActividadText1" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label fx:id="idActividadLabel1" style="-fx-background-color: #f4f4f4;" text=" Id Actividad: " GridPane.rowIndex="1" />
+
          </children>
       </GridPane>
       <GridPane alignment="CENTER" layoutX="14.0" layoutY="120.0">
@@ -41,8 +44,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+
             <Button fx:id="eliminarBoton1" alignment="CENTER" onAction="#onEliminarButtonClick" text="Eliminar!" />
             <Button fx:id="cancelarBoton1" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
+
          </children>
       </GridPane>
    </children>

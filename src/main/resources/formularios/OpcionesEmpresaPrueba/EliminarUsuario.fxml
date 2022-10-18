@@ -47,7 +47,6 @@
          <children>
 
             <Button fx:id="eliminarBoton" alignment="CENTER" onAction="#onEliminarButtonClick" text="Eliminar!" />
-
             <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
 
          </children>
