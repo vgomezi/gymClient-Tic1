@@ -55,124 +55,135 @@ public class LoginController {
                 HttpResponse<String> apiResponse = null;
 
                 apiResponse = Unirest.get("http://localhost:8987/api/login/role/" + correoElectronico).asObject(String.class);
-                role = apiResponse.toString();
+                role = apiResponse.getBody().toString();
+                System.out.println(role);
                 System.out.println(apiResponse);
             }catch (Exception e) {
             }
-            if (role.equals("Admin")) {
-                
-                Node source = (Node) event.getSource();
-                Stage stage1 = (Stage) source.getScene().getWindow();
-                stage1.close();
-                
-                try {
-                    
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/MainAdmin.fxml"));
+            switch (role) {
+                case "Admin": {
 
-                    Stage stage = new Stage();
+                    Node source = (Node) event.getSource();
+                    Stage stage1 = (Stage) source.getScene().getWindow();
+                    stage1.close();
 
-                    stage.initModality(Modality.APPLICATION_MODAL);
+                    try {
 
-                    stage.setTitle("Login Admin");
-                    stage.getIcons().add(new Image("GymIcon.png"));
-                    stage.setScene(new Scene(root1));
-                    stage.show();
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/MainAdmin.fxml"));
 
-                } catch (Exception ex) {
-                    System.out.println(ex.toString());
-                    System.out.println("Error");
+                        Stage stage = new Stage();
+
+                        stage.initModality(Modality.APPLICATION_MODAL);
+
+                        stage.setTitle("Login Admin");
+                        stage.getIcons().add(new Image("GymIcon.png"));
+                        stage.setScene(new Scene(root1));
+                        stage.show();
+
+                    } catch (Exception ex) {
+                        System.out.println(ex.toString());
+                        System.out.println("Error");
+                    }
+                    break;
                 }
-            } else if (role.equals("Empresa")) {
-                Node source = (Node) event.getSource();
-                Stage stage1 = (Stage) source.getScene().getWindow();
-                stage1.close();
+                case "Empresa": {
+                    Node source = (Node) event.getSource();
+                    Stage stage1 = (Stage) source.getScene().getWindow();
+                    stage1.close();
 
-                try {
+                    try {
 
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/MainEmpresa.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/MainEmpresa.fxml"));
 
-                    Stage stage = new Stage();
+                        Stage stage = new Stage();
 
-                    stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initModality(Modality.APPLICATION_MODAL);
 
-                    stage.setTitle("Login Empresa");
-                    stage.getIcons().add(new Image("GymIcon.png"));
-                    stage.setScene(new Scene(root1));
-                    stage.show();
+                        stage.setTitle("Login Empresa");
+                        stage.getIcons().add(new Image("GymIcon.png"));
+                        stage.setScene(new Scene(root1));
+                        stage.show();
 
-                } catch (Exception ex) {
-                    System.out.println(ex.toString());
-                    System.out.println("Error");
+                    } catch (Exception ex) {
+                        System.out.println(ex.toString());
+                        System.out.println("Error");
+                    }
+
+                    break;
                 }
-                
-            } else if (role.equals("Centro Deportivo")) {
-                Node source = (Node) event.getSource();
-                Stage stage1 = (Stage) source.getScene().getWindow();
-                stage1.close();
+                case "Centro Deportivo": {
+                    Node source = (Node) event.getSource();
+                    Stage stage1 = (Stage) source.getScene().getWindow();
+                    stage1.close();
 
-                try {
+                    try {
 
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentroPrueba/MainCentro.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentroPrueba/MainCentro.fxml"));
 
-                    Stage stage = new Stage();
+                        Stage stage = new Stage();
 
-                    stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initModality(Modality.APPLICATION_MODAL);
 
-                    stage.setTitle("Login Centro Deportivo");
-                    stage.getIcons().add(new Image("GymIcon.png"));
-                    stage.setScene(new Scene(root1));
-                    stage.show();
+                        stage.setTitle("Login Centro Deportivo");
+                        stage.getIcons().add(new Image("GymIcon.png"));
+                        stage.setScene(new Scene(root1));
+                        stage.show();
 
-                } catch (Exception ex) {
-                    System.out.println(ex.toString());
-                    System.out.println("Error");
+                    } catch (Exception ex) {
+                        System.out.println(ex.toString());
+                        System.out.println("Error");
+                    }
+                    break;
                 }
-            } else if (role.equals("Usuario")) {
-                Node source = (Node) event.getSource();
-                Stage stage1 = (Stage) source.getScene().getWindow();
-                stage1.close();
+                case "Usuario": {
+                    Node source = (Node) event.getSource();
+                    Stage stage1 = (Stage) source.getScene().getWindow();
+                    stage1.close();
 
-                try {
+                    try {
 
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuarioPrueba/MainUsuario.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuarioPrueba/MainUsuario.fxml"));
 
-                    Stage stage = new Stage();
+                        Stage stage = new Stage();
 
-                    stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initModality(Modality.APPLICATION_MODAL);
 
-                    stage.setTitle("Login Centro Deportivo");
-                    stage.getIcons().add(new Image("GymIcon.png"));
-                    stage.setScene(new Scene(root1));
-                    stage.show();
+                        stage.setTitle("Login Centro Deportivo");
+                        stage.getIcons().add(new Image("GymIcon.png"));
+                        stage.setScene(new Scene(root1));
+                        stage.show();
 
-                } catch (Exception ex) {
-                    System.out.println(ex.toString());
-                    System.out.println("Error");
+                    } catch (Exception ex) {
+                        System.out.println(ex.toString());
+                        System.out.println("Error");
+                    }
+                    break;
                 }
-            } else {
-                try {
+                default:
+                    try {
 
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/gym/Client/Error.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/gym/Client/Error.fxml"));
 
-                    Stage stage = new Stage();
+                        Stage stage = new Stage();
 
-                    stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initModality(Modality.APPLICATION_MODAL);
 
-                    stage.setTitle("Error");
-                    stage.getIcons().add(new Image("GymIcon.png"));
-                    stage.setScene(new Scene(root1));
-                    stage.show();
+                        stage.setTitle("Error");
+                        stage.getIcons().add(new Image("GymIcon.png"));
+                        stage.setScene(new Scene(root1));
+                        stage.show();
 
-                } catch (Exception ex) {
-                    System.out.println(ex.toString());
-                    System.out.println("Error");
-                }
+                    } catch (Exception ex) {
+                        System.out.println(ex.toString());
+                        System.out.println("Error");
+                    }
 
+                    break;
             }
 
         } else {
