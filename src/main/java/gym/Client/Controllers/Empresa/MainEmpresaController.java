@@ -33,7 +33,7 @@ public class MainEmpresaController {
     protected void onCrearUsuarioButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/CrearUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/CrearUsuario.fxml"));
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -53,7 +53,7 @@ public class MainEmpresaController {
     protected void onBuscarUsuarioButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/BuscarUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/BuscarUsuario.fxml"));
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -73,7 +73,7 @@ public class MainEmpresaController {
     protected void onEliminarUsuarioButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/EliminarUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/EliminarUsuario.fxml"));
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -93,7 +93,7 @@ public class MainEmpresaController {
     protected void onActualizarUsuarioButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/ActualizarUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/ActualizarUsuario.fxml"));
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);

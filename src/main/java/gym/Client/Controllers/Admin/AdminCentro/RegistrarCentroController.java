@@ -69,8 +69,8 @@ public class RegistrarCentroController {
                     rest1.put("contrasena", contrasena);
                     rest1.put("mail", email);
                     rest1.put("tipoDeUsuario", "Centro Deportivo");
-                    rest2.put("mail", email);
                     rest2.put("nombre", nombre);
+                    rest2.put("mail", email);
                     json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest1);
                     json2 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest2);
                 } catch (Exception ignored) {
@@ -79,8 +79,10 @@ public class RegistrarCentroController {
                 HttpResponse<JsonNode> apiResponse2 = null;
                 try {
                     apiResponse1 = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json1).asJson();
+                    System.out.println("Hecho login");
+                    System.out.println(json2);
                     apiResponse2 = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json2).asJson();
-                    System.out.println("Hecho apiResponse");
+                    System.out.println("Hecho centro");
 
                 } catch (UnirestException el) {
                     throw new RuntimeException(el);

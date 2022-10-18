@@ -43,7 +43,6 @@
      </rowConstraints>
       <children>
             <Button fx:id="ingresarBoton" alignment="CENTER" onAction="#onIngresarButtonClick" text="Ingresar!" />
-            <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
       </children>
    </GridPane>
 
