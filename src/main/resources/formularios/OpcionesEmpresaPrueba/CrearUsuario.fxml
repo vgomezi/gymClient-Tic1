@@ -32,16 +32,20 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="nombreLabel" style="-fx-background-color: #f4f4f4;" text=" Nombre Usuario: " GridPane.rowIndex="1" />
-            <Label fx:id="telefonoLabel" prefHeight="17.0" prefWidth="104.0" style="-fx-background-color: #f4f4f4;" text=" Telefono Usuario:  " GridPane.rowIndex="3" />
-            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="telefonoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
             <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-            <Label fx:id="apellidoLabel" style="-fx-background-color: #f4f4f4;" text=" Apellido Usuario: " GridPane.rowIndex="2" />
-            <Label fx:id="contrasenaLabel" style="-fx-background-color: #f4f4f4;" text="  Contraseña:  " GridPane.rowIndex="4" />
+            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="apellidoText" alignment="TOP_RIGHT" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="telefonoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="contrasenaText" alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+
             <Label fx:id="emailLabel" style="-fx-background-color: #f4f4f4;" text=" Email Usuario: " />
+            <Label fx:id="nombreLabel" style="-fx-background-color: #f4f4f4;" text=" Nombre Usuario: " GridPane.rowIndex="1" />
+            <Label fx:id="apellidoLabel" style="-fx-background-color: #f4f4f4;" text=" Apellido Usuario: " GridPane.rowIndex="2" />
+            <Label fx:id="telefonoLabel" prefHeight="17.0" prefWidth="104.0" style="-fx-background-color: #f4f4f4;" text=" Telefono Usuario:  " GridPane.rowIndex="3" />
+            <Label fx:id="contrasenaLabel" style="-fx-background-color: #f4f4f4;" text="  Contraseña:  " GridPane.rowIndex="4" />
+
          </children>
       </GridPane>
       <GridPane alignment="CENTER" layoutX="10.0" layoutY="226.0" prefHeight="30.0" prefWidth="268.0">
@@ -53,8 +57,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+
             <Button fx:id="crearBoton" alignment="CENTER" onAction="#onCrearButtonClick" text="Crear!" />
+
             <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
+
          </children>
       </GridPane>
    </children>

@@ -22,8 +22,11 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button fx:id="administrarEmpresasBoton" alignment="CENTER" onAction="#onAdministrarEmpresasButtonClick" text="Administrar Empresas" />
-         <Button fx:id="administrarCentrosBoton" alignment="CENTER" onAction="#onAdministrarCentrosButtonClick" text="Administrar Centros Deportivos" GridPane.rowIndex="1" />
+
+          <Button fx:id="administrarEmpresasBoton" alignment="CENTER" onAction="#onAdministrarEmpresasButtonClick" text="Administrar Empresas" />
+
+          <Button fx:id="administrarCentrosBoton" alignment="CENTER" onAction="#onAdministrarCentrosButtonClick" text="Administrar Centros Deportivos" GridPane.rowIndex="1" />
+
       </children>
    </GridPane>
 

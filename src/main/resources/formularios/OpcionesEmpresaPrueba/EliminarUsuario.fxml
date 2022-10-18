@@ -29,8 +29,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="emailLabel" style="-fx-background-color: #f4f4f4;" text=" Email Usuario: " GridPane.rowIndex="1" />
+
             <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label fx:id="emailLabel" style="-fx-background-color: #f4f4f4;" text=" Email Usuario: " GridPane.rowIndex="1" />
+
          </children>
       </GridPane>
       <GridPane alignment="CENTER" layoutX="10.0" layoutY="122.0">
@@ -42,8 +45,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+
             <Button fx:id="eliminarBoton" alignment="CENTER" onAction="#onEliminarButtonClick" text="Eliminar!" />
+
             <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
+
          </children>
       </GridPane>
    </children>

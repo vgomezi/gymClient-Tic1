@@ -28,10 +28,13 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+
+
+            <Button fx:id="actualizarUsuarioBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarUsuarioButtonClick" text="Actualizar Usuario" GridPane.rowIndex="2" />
             <Button fx:id="crearUsuarioBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCrearUsuarioButtonClick" text="Crear Usuario" />
             <Button fx:id="buscarUsuarioBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onBuscarUsuarioButtonClick" text="Buscar Usuario" GridPane.rowIndex="1" />
             <Button fx:id="eliminarUsuarioBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onEliminarUsuarioButtonClick" text="Eliminar Usuario" GridPane.rowIndex="3" />
-            <Button fx:id="actualizarUsuarioBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarUsuarioButtonClick" text="Actualizar Usuario" GridPane.rowIndex="2" />
+
          </children>
       </GridPane>
    </children>
