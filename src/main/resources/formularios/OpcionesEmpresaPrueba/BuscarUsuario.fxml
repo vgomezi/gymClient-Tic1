@@ -30,9 +30,9 @@
          </rowConstraints>
          <children>
 
-            <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
             <Label fx:id="emailLabel" style="-fx-background-color: #f4f4f4;" text=" Email Usuario: " GridPane.rowIndex="1" />
+
+            <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
          </children>
       </GridPane>

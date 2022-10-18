@@ -29,7 +29,6 @@
          </rowConstraints>
          <children>
 
-
             <Button fx:id="actualizarUsuarioBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarUsuarioButtonClick" text="Actualizar Usuario" GridPane.rowIndex="2" />
             <Button fx:id="crearUsuarioBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCrearUsuarioButtonClick" text="Crear Usuario" />
             <Button fx:id="buscarUsuarioBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onBuscarUsuarioButtonClick" text="Buscar Usuario" GridPane.rowIndex="1" />

@@ -28,10 +28,13 @@
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label style="-fx-background-color: #f4f4f4;" text=" Email: " />
-            <Label style="-fx-background-color: #f4f4f4;" text=" Contraseña: " GridPane.rowIndex="1" />
+
+            <Label fx:id="emailLabel" style="-fx-background-color: #f4f4f4;" text=" Email: " />
+            <Label fx:id="contrasenaLabel" style="-fx-background-color: #f4f4f4;" text=" Contraseña: " GridPane.rowIndex="1" />
+
             <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
             <TextField fx:id="contrasenaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
          </children>
       </GridPane>
       <GridPane alignment="CENTER" layoutX="14.0" layoutY="129.0" prefHeight="42.0" prefWidth="276.0">
@@ -43,8 +46,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+
             <Button fx:id="bajaBoton" alignment="CENTER" onAction="#onBajaButtonClick" text="Baja!" />
             <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
+
          </children>
       </GridPane>
    </children>

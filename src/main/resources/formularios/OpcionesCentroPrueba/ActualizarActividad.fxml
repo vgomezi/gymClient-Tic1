@@ -34,20 +34,23 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="tipoLabel" style="-fx-background-color: #f4f4f4;" text=" Tipo Actividad: " GridPane.rowIndex="1" />
-            <Label fx:id="horaLabel" style="-fx-background-color: #f4f4f4;" text=" Hora Actividad: " GridPane.rowIndex="3" />
-            <TextField fx:id="tipoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-            <Label fx:id="descripcionLabel" style="-fx-background-color: #f4f4f4;" text=" Descripcion Actividad: " GridPane.rowIndex="2" />
-            <Label fx:id="diaLabel" style="-fx-background-color: #f4f4f4;" text=" Dia Actividad: " GridPane.rowIndex="4" />
-            <TextField fx:id="descripcionText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="diaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
             <Label fx:id="nombreLabel" style="-fx-background-color: #f4f4f4;" text=" Nombre Actividad: " />
+            <Label fx:id="tipoLabel" style="-fx-background-color: #f4f4f4;" text=" Tipo Actividad: " GridPane.rowIndex="1" />
+            <Label fx:id="descripcionLabel" style="-fx-background-color: #f4f4f4;" text=" Descripcion Actividad: " GridPane.rowIndex="2" />
+            <Label fx:id="horaLabel" style="-fx-background-color: #f4f4f4;" text=" Hora Actividad: " GridPane.rowIndex="3" />
+            <Label fx:id="diaLabel" style="-fx-background-color: #f4f4f4;" text=" Dia Actividad: " GridPane.rowIndex="4" />
             <Label fx:id="cuposLabel" style="-fx-background-color: #f4f4f4;" text=" Cupos Actividad: " GridPane.rowIndex="5" />
             <Label fx:id="reservableLabel" style="-fx-background-color: #f4f4f4;" text=" Reservable: " GridPane.rowIndex="6" />
+
+            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+            <TextField fx:id="tipoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="descripcionText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="diaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="reservableText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
          </children>
       </GridPane>
       <GridPane alignment="CENTER" layoutX="10.0" layoutY="276.0" prefHeight="30.0" prefWidth="287.0">
@@ -59,8 +62,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+
             <Button fx:id="actualizarBoton" alignment="CENTER" onAction="#onActualizarButtonClick" text="Actualizar!" />
             <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
+
          </children>
       </GridPane>
    </children>

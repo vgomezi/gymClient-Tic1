@@ -34,14 +34,6 @@
          </rowConstraints>
          <children>
 
-            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-            <TextField fx:id="tipoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="descripcionText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="diaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="reservableText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-
             <Label fx:id="nombreLabel" style="-fx-background-color: #f4f4f4;" text=" Nombre Actividad: " />
             <Label fx:id="tipoLabel" style="-fx-background-color: #f4f4f4;" text=" Tipo Actividad: " GridPane.rowIndex="1" />
             <Label fx:id="descricpionLabel" style="-fx-background-color: #f4f4f4;" text=" Descripcion Actividad: " GridPane.rowIndex="2" />
@@ -49,6 +41,14 @@
             <Label fx:id="diaLabel" style="-fx-background-color: #f4f4f4;" text=" Dia Actividad: " GridPane.rowIndex="4" />
             <Label fx:id="cuposLabel" style="-fx-background-color: #f4f4f4;" text=" Cupos Actividad: " GridPane.rowIndex="5" />
             <Label fx:id="reservableLabel" style="-fx-background-color: #f4f4f4;" text=" Reservable: " GridPane.rowIndex="6" />
+
+            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+            <TextField fx:id="tipoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="descripcionText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="diaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="reservableText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
          </children>
       </GridPane>

@@ -32,15 +32,15 @@
          </rowConstraints>
          <children>
 
-            <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="apellidoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="telefonoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
             <Label fx:id="emailLabel" style="-fx-background-color: #f4f4f4;" text=" Email Usuario: " />
             <Label fx:id="nombreLabel" style="-fx-background-color: #f4f4f4;" text=" Nombre Usuario: " GridPane.rowIndex="1" />
             <Label fx:id="apellidoLabel" style="-fx-background-color: #f4f4f4;" text="Apellido Usuario:" GridPane.rowIndex="2" />
             <Label fx:id="telefonoLabel" style="-fx-background-color: #f4f4f4;" text="Telefono Usuario:" GridPane.rowIndex="3" />
+
+            <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="apellidoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="telefonoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
          </children>
       </GridPane>

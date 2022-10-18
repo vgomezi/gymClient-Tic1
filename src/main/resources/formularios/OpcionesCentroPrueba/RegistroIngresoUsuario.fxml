@@ -29,10 +29,13 @@
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+
             <Label fx:id="emailLabel" style="-fx-background-color: #f4f4f4;" text=" Email Usuario: " />
             <Label fx:id="idActividadLabel" style="-fx-background-color: #f4f4f4;" text=" Id Actividad: " GridPane.rowIndex="1" />
+
             <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
             <TextField fx:id="idActividadText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
          </children>
       </GridPane>
       <GridPane alignment="CENTER" layoutX="10.0" layoutY="133.0" prefHeight="30.0" prefWidth="260.0">

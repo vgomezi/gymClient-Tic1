@@ -24,10 +24,12 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button fx:id="registrarEmpresaBoton" alignment="CENTER" onAction="#onRegistrarEmpresaButtonClick" text="Registrar Empresa" />
-            <Button fx:id="actualizarEmpresaBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarEmpresaButtonClick" text="Actualizar Empresa" GridPane.rowIndex="2" />
-         <Button fx:id="eliminarEmpresaBoton" alignment="CENTER" onAction="#onEliminarEmpresaButtonClick" text="Eliminar Empresa" GridPane.rowIndex="3" />
-         <Button fx:id="buscarEmpresaBoton" alignment="CENTER" onAction="#onBuscarEmpresaButtonClick" text="Buscar Empresa" GridPane.rowIndex="1" />
+
+          <Button fx:id="registrarEmpresaBoton" alignment="CENTER" onAction="#onRegistrarEmpresaButtonClick" text="Registrar Empresa" />
+          <Button fx:id="buscarEmpresaBoton" alignment="CENTER" onAction="#onBuscarEmpresaButtonClick" text="Buscar Empresa" GridPane.rowIndex="1" />
+          <Button fx:id="actualizarEmpresaBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onActualizarEmpresaButtonClick" text="Actualizar Empresa" GridPane.rowIndex="2" />
+          <Button fx:id="eliminarEmpresaBoton" alignment="CENTER" onAction="#onEliminarEmpresaButtonClick" text="Eliminar Empresa" GridPane.rowIndex="3" />
+
       </children>
    </GridPane>
 

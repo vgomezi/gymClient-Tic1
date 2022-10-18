@@ -21,10 +21,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+
             <Button fx:id="registrarCentroBoton" alignment="CENTER" onAction="#onRegistrarCentroButtonClick" text="Registrar Centro Deportivo" />
-            <Button fx:id="actualizarCentroBoton" alignment="CENTER" onAction="#onActualizarCentroButtonClick" text="Actualizar Centro Deportivo" GridPane.rowIndex="2" />
             <Button fx:id="buscarCentroBoton" alignment="CENTER" onAction="#onBuscarCentroButtonClick" text="Buscar Centro Deportivo" GridPane.rowIndex="1" />
+            <Button fx:id="actualizarCentroBoton" alignment="CENTER" onAction="#onActualizarCentroButtonClick" text="Actualizar Centro Deportivo" GridPane.rowIndex="2" />
             <Button fx:id="eliminarCentroBoton" alignment="CENTER" onAction="#onEliminarCentroButtonClick" prefHeight="27.0" prefWidth="163.0" text="Eliminar Centro Deportivo" GridPane.rowIndex="3" />
+
          </children>
       </GridPane>
    </children>

@@ -24,7 +24,6 @@
       <children>
 
           <Button fx:id="administrarEmpresasBoton" alignment="CENTER" onAction="#onAdministrarEmpresasButtonClick" text="Administrar Empresas" />
-
           <Button fx:id="administrarCentrosBoton" alignment="CENTER" onAction="#onAdministrarCentrosButtonClick" text="Administrar Centros Deportivos" GridPane.rowIndex="1" />
 
       </children>

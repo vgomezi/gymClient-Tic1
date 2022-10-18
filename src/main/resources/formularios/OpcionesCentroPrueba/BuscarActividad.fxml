@@ -29,9 +29,9 @@
          </rowConstraints>
          <children>
 
-            <TextField fx:id="actividadText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
             <Label fx:id="actividadLabel" style="-fx-background-color: #f4f4f4;" text=" Id Actividad: " GridPane.rowIndex="1" />
+
+            <TextField fx:id="actividadText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
          </children>
       </GridPane>

@@ -26,13 +26,15 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-      
+
           <Label fx:id="nombreLabel" text="Nombre Empresa:" />
+          <Label fx:id="emailLabel" text="Email Empresa:" GridPane.rowIndex="1" />
+          <Label fx:id="contrasenaLabel" text="Contraseña:" GridPane.rowIndex="2" />
+
           <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
           <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <Label fx:id="contrasenaLabel" text="Contraseña:" GridPane.rowIndex="2" />
-         <PasswordField fx:id="contrasenaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Label fx:id="emailLabel" text="Email Empresa:" GridPane.rowIndex="1" />
+          <PasswordField fx:id="contrasenaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
       </children>
    </GridPane>
    <GridPane alignment="CENTER">
