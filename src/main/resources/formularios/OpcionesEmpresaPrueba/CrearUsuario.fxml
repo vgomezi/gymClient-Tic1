@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="270.0" fitWidth="308.0">
          <image>
-            <Image url="@../../../../../../imges/empresa.jpeg" />
+            <Image url="@/empresa.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="10.0" layoutY="10.0" style="-fx-background-color: #f4f4f4;" text=" Ingrese los datos para crear un usuario: " />

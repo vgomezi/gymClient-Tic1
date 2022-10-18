@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="185.0" fitWidth="306.0">
          <image>
-            <Image url="@../../../../../../imges/centro.jpg" />
+            <Image url="@/centro.jpg" />
          </image>
       </ImageView>
       <Label layoutX="10.0" layoutY="14.0" style="-fx-background-color: #f4f4f4;" text=" Registrar usuario al ingreso actividad: " />

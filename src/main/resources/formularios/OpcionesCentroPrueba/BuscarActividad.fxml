@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="171.0" fitWidth="251.0">
          <image>
-            <Image url="@../../../../../../imges/centro.jpg" />
+            <Image url="@/centro.jpg" />
          </image>
       </ImageView>
       <Label layoutX="12.0" layoutY="20.0" style="-fx-background-color: #f4f4f4;" text=" Ingrese el id de la actividad para buscarla: " />

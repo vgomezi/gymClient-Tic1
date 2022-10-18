@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="322.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="322.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.ActualizarActividadController">
    <children>
       <ImageView fitHeight="335.0" fitWidth="322.0">
          <image>
-            <Image url="@../../../../../../imges/centro.jpg" />
+            <Image url="@/centro.jpg" />
          </image>
       </ImageView>
       <Label layoutX="10.0" layoutY="10.0" style="-fx-background-color: #f4f4f4;" text=" Sobreescriba sobre los datos a actualizar: " />

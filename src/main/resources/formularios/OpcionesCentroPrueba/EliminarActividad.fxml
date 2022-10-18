@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="197.0" fitWidth="282.0" layoutX="-4.0" layoutY="-3.0">
          <image>
-            <Image url="@../../../../../../imges/centro.jpg" />
+            <Image url="@/centro.jpg" />
          </image>
       </ImageView>
       <Label layoutX="14.0" layoutY="22.0" style="-fx-background-color: #f4f4f4;" text=" Ingrese el id de la actividad para eliminarla: " />

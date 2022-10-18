@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="212.0" fitWidth="290.0">
          <image>
-            <Image url="@../../../../../../imges/usuario.jpeg" />
+            <Image url="@/usuario.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="10.0" layoutY="27.0" style="-fx-background-color: #f4f4f4;" text="Bienvenido a su Login, ingrese su usuairo" />

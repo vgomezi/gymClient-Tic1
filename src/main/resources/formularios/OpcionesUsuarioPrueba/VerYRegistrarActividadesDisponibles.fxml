@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="307.0" fitWidth="343.0">
          <image>
-            <Image url="@../../../../../../imges/centro.jpg" />
+            <Image url="@/usuario.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="10.0" layoutY="10.0" style="-fx-background-color: #f4f4f4;" text=" Usuario utilice los filtros para encontrar actvidad deseada: " />

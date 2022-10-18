@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="166.0" fitWidth="283.0">
          <image>
-            <Image url="@../../../../../../imges/empresa.jpeg" />
+            <Image url="@/empresa.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="14.0" layoutY="25.0" style="-fx-background-color: #f4f4f4;" text=" Ingrese email del usuario para buscarlo: " />
