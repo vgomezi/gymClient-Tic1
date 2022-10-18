@@ -81,10 +81,11 @@ public class CrearUsuarioController {
                     rest1.put("contrasena", contrasena);
                     rest1.put("mail", mail);
                     rest1.put("tipoDeUsuario", "Usuario");
+                    rest2.put("apellido", apellido);
                     rest2.put("nombre", nombre);
                     rest2.put("mail", mail);
                     rest2.put("telefono", telefono);
-                    rest2.put("empresa", "b");
+                    //rest2.put("empresa", "b");
                     rest2.put("saldoDisponible", "500");
                     json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest1);
                     json2 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest2);

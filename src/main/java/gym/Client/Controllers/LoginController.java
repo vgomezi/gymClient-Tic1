@@ -1,5 +1,11 @@
 package gym.Client.Controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +20,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
+
+import java.net.http.HttpRequest;
 
 
 @Controller
@@ -38,9 +46,9 @@ public class LoginController {
 
     @FXML
     protected void onIngresarButtonClick(ActionEvent event) {
-        /*String correoElectronico = emailText.getText();
-        String contrasena = contrasenaText.getText();*/
-/*
+        String correoElectronico = emailText.getText();
+        String contrasena = contrasenaText.getText();
+
         if (!correoElectronico.isEmpty() && !contrasena.isEmpty()) {
             try {
                 String json = "";
@@ -51,14 +59,11 @@ public class LoginController {
 
                 } catch (Exception e) {
                 }
-                HttpResponse<JsonNode> apiResponse = null;
+                HttpResponse<String> apiResponse = null;
 
-                try {
-                    apiResponse = Unirest.get("http://localhost:8987/api/login").header("Content-Type", "application/json").asJson();
+                apiResponse = Unirest.get("http://localhost:8987/api/login/role/" + correoElectronico).asObject(String.class);
+                System.out.println(apiResponse.getBody().toString());
 
-                } catch (UnirestException el) {
-                    throw new RuntimeException(el);
-                }
             }catch (Exception e) {
 
             }
@@ -66,7 +71,7 @@ public class LoginController {
         } else {
             emailText.clear();
             contrasenaText.clear();
-        }*/
+        }
 
         Node source = (Node) event.getSource();
         Stage stage1 = (Stage) source.getScene().getWindow();
