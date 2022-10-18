@@ -35,9 +35,6 @@ public class LoginController {
     @FXML
     private Button ingresarBoton;
 
-    @FXML
-    private Button cancelarBoton;
-
 
     @FXML
     protected void onIngresarButtonClick(ActionEvent event) {
