@@ -43,8 +43,8 @@
          <Label fx:id="nombreLabel" text="Nombre Actividad:" />
          <Label fx:id="cuposLabel" text="Cupos Actividad:" GridPane.rowIndex="5" />
          <Label fx:id="reservableLabel" text="Reservable:" GridPane.rowIndex="6" />
-         <TextField fx:id="cupostext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-         <TextField fx:id="reservabletext" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         <TextField fx:id="reservableText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       </children>
    </GridPane>
    <GridPane alignment="CENTER">
@@ -56,7 +56,7 @@
        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Button fx:id="ActualizarBoton" alignment="CENTER" onAction="#onActualizarButtonClick" text="Actualizar!" />
+            <Button fx:id="actualizarBoton" alignment="CENTER" onAction="#onActualizarButtonClick" text="Actualizar!" />
             <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
       </children>
    </GridPane>
