@@ -15,51 +15,44 @@ public class ActualizarUsuarioController {
 
 
     @FXML
-    private Label Email;
+    private Label emailLabel;
 
     @FXML
-    private TextField emailtext;
+    private TextField emailText;
 
     @FXML
-    private Label Nombre;
+    private Label nombreLabel;
 
     @FXML
-    private TextField nombretext;
+    private TextField nombreText;
 
     @FXML
-    private Label Apellido;
+    private Label apellidoLabel;
 
     @FXML
-    private TextField apellidotext;
+    private TextField apellidoText;
 
     @FXML
-    private Label Telefono;
+    private Label telefonoLabel;
 
     @FXML
-    private TextField telefonotext;
+    private TextField telefonoText;
 
     @FXML
-    private Label Contraseña;
+    private Button actualizarBoton;
 
     @FXML
-    private TextField contrasenatext;
-
-    @FXML
-    private Button actualizarboton;
-
-    @FXML
-    private Button cancelarboton;
+    private Button cancelarBoton;
 
     @FXML
     protected void onActualizarButtonClick() {}
 
     @FXML
     protected void onCancelarButtonClick(ActionEvent event) {
-        emailtext.clear();
-        nombretext.clear();
-        apellidotext.clear();
-        telefonotext.clear();
-        contrasenatext.clear();
+        emailText.clear();
+        nombreText.clear();
+        apellidoText.clear();
+        telefonoText.clear();
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
