@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="330.0" fitWidth="322.0">
          <image>
-            <Image url="@../../../../../../centro.jpg" />
+            <Image url="@../../../../../../imges/centro.jpg" />
          </image>
       </ImageView>
       <Label layoutX="10.0" layoutY="10.0" style="-fx-background-color: #f4f4f4;" text=" Ingrese los datos para registrar una actividad: " />

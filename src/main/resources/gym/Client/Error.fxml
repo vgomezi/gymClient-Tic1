@@ -16,7 +16,7 @@
          <Label fx:id="whichErrorText1" layoutX="10.0" layoutY="10.0" />
          <ImageView fitHeight="217.0" fitWidth="307.0" layoutX="-22.0" layoutY="-22.0">
             <image>
-               <Image url="@/error.jpg" />
+               <Image url="@../../../../../../imges/error.jpg" />
             </image>
          </ImageView>
          <Label fx:id="errorText" text="Ooops, ha ocurrido un error!" />
