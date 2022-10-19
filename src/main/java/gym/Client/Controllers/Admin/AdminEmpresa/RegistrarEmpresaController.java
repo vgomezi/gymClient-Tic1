@@ -64,8 +64,8 @@ public class RegistrarEmpresaController {
                     rest1.put("contrasena", contrasena);
                     rest1.put("mail", email);
                     rest1.put("tipoDeUsuario", "Empresa");
-                    rest2.put("nombre", nombre);
                     rest2.put("mail", email);
+                    rest2.put("nombre", nombre);
                     json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest1);
                     json2 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest2);
                 } catch (Exception ignored) {
@@ -77,7 +77,7 @@ public class RegistrarEmpresaController {
                     System.out.println("Hecho login");
                     System.out.println(json2);
                     apiResponse2 = Unirest.post("http://localhost:8987/api/empresas").header("Content-Type", "application/json").body(json2).asJson();
-                    System.out.println("Hecho centro");
+                    System.out.println("Hecho Empresa");
 
                 } catch (UnirestException el) {
                     throw new RuntimeException(el);

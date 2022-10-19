@@ -1,5 +1,9 @@
 package gym.Client.Controllers.Admin.AdminEmpresa;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -27,7 +31,18 @@ public class BuscarEmpresaController {
 
     @FXML
     protected void onBuscarButtonClick() {
-        System.out.println("Se buscará la empresa");
+        String correo = emailText.getText();
+        String empresa  = "";
+        try {
+            HttpResponse<JsonNode> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correo).asJson();
+            empresa = apiResponse.getBody().toString();
+            System.out.println(empresa);
+
+        } catch (UnirestException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

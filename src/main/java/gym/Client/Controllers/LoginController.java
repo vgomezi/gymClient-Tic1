@@ -57,7 +57,6 @@ public class LoginController {
                 apiResponse = Unirest.get("http://localhost:8987/api/login/role/" + correoElectronico).asObject(String.class);
                 role = apiResponse.getBody().toString();
                 System.out.println(role);
-                System.out.println(apiResponse);
             }catch (Exception e) {
             }
             switch (role) {
