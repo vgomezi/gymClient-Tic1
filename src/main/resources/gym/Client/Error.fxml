@@ -6,24 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.ErrorController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.ErrorController">
    <children>
-      <ImageView fitHeight="222.0" fitWidth="325.0">
+      <ImageView fitHeight="406.0" fitWidth="600.0" layoutX="-1.0" layoutY="-1.0">
          <image>
             <Image url="@/error.jpg" />
          </image>
       </ImageView>
-
-      <Label fx:id="errorText" layoutX="10.0" layoutY="10.0" text="Ooops, ha ocurrido un error!">
-
+      <Label fx:id="errorLabel" layoutX="21.0" layoutY="25.0" text="OOOPS, HA OCURRIDO UN ERROR!">
          <font>
-            <Font size="15.0" />
-         </font></Label>
-
-      <Label fx:id="whichErrorText1" layoutX="10.0" layoutY="54.0" prefHeight="24.0" prefWidth="186.0">
-
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="whichErrorLabel" layoutX="22.0" layoutY="95.0" prefHeight="44.0" prefWidth="197.0">
          <font>
-            <Font size="15.0" />
-         </font></Label>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class TipoActividadController {
 
+    @FXML
+    private Button canchasBoton;
 
     @FXML
     private Button nauticasBoton;
@@ -17,16 +19,13 @@ public class TipoActividadController {
     private Button gimnasioSalaBoton;
 
     @FXML
-    private Button canchasBoton;
+    protected void onCanchasButtonClick() {}
 
     @FXML
     protected void onNauticasButtonClick() {}
 
     @FXML
     protected void onGimnasioSalaButtonClick() {}
-
-    @FXML
-    protected void onCanchasButtonClick() {}
 
 
 }

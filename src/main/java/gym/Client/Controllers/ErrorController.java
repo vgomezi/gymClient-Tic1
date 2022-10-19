@@ -18,9 +18,9 @@ public class ErrorController {
 
 
     @FXML
-    private Label errorText;
+    private Label errorLabel;
 
     @FXML
-    private Label whichErrorText;
+    private Label whichErrorLabel;
 
 }
