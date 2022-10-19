@@ -27,7 +27,7 @@ public class MainUsuarioController {
     protected void onBajarseActividadButtonClick() {}
 
     @FXML
-    protected void onVerYRegistrarseActividadesDisponiblesButtonClick() {}
+    protected void onTipoActividadButtonClick() {}
 
 
 }

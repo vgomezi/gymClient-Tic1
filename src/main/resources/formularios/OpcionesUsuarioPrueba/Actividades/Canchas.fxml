@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #86895d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.CanchasController">
    <children>
-      <Label fx:id="loginLabel" layoutX="217.0" layoutY="27.0" text="CANCHAS" textFill="WHITE">
+      <Label fx:id="canchasLabel" layoutX="217.0" layoutY="27.0" text="CANCHAS" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>

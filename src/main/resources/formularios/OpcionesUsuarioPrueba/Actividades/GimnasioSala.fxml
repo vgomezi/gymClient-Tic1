@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #eb636b#eb636b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.GimnasioSalaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #9349ab#9349ab;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.GimnasioSalaController">
    <children>
-      <Label fx:id="loginLabel" layoutX="161.0" layoutY="28.0" text="GIMNASIO / SALA" textFill="WHITE">
+      <Label fx:id="gimnasioSalaLabel" layoutX="161.0" layoutY="28.0" text="GIMNASIO / SALA" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
@@ -52,7 +52,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="reservar1Boton" mnemonicParsing="false" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#onreservar1ButtonClick">
+                  <Button fx:id="reservar1Boton" mnemonicParsing="false" onAction="#onreservar1ButtonClick" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -84,7 +84,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="reservar2Boton" mnemonicParsing="false" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#onreservar2ButtonClick">
+                  <Button fx:id="reservar2Boton" mnemonicParsing="false" onAction="#onreservar2ButtonClick" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -116,7 +116,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="reservar3Boton" mnemonicParsing="false" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#onreservar3ButtonClick">
+                  <Button fx:id="reservar3Boton" mnemonicParsing="false" onAction="#onreservar3ButtonClick" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>

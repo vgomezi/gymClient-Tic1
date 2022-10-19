@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 @Component
-public class BajaUsuarioController {
+public class DarseBajaUsuarioController {
 
 
     @FXML
