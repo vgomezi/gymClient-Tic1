@@ -1,12 +1,15 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
+import gym.Client.Classes.Canchas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class CanchasController {
-
 
     @FXML
     private Button reservar1Boton;
