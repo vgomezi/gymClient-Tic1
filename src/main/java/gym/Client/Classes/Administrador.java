@@ -6,12 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "Administrador")
-@Component
 public class Administrador {
 
-    private @Id String contrasena;
+    private String contrasena;
 
     public Administrador(String contrasena) {
         this.contrasena = contrasena;

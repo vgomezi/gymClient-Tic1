@@ -6,16 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "Usuarios")
-@Component
 public class Usuarios {
 
     private String nombre;
 
     private String apellido;
 
-    private @Id String mail;
+    private String mail;
 
     private String contrasena;
 

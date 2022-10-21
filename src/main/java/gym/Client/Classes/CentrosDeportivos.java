@@ -8,18 +8,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
-@Entity
-@Table(name = "Centros Deportivos")
-@Component
 public class CentrosDeportivos {
 
     private String nombre;
 
     private String contrasena;
 
-    private @Id String mail;
+    private String mail;
 
-    @OneToMany
     private List<Actividades> listaActividades;
 
     private List<Integer> listaSaldo;

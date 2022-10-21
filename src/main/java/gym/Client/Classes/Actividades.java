@@ -9,20 +9,17 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Entity
-@Table(name = "Actividades")
-@Component
 public class Actividades {
 
-    private @Id String nombre;
+    private String nombre;
 
     private String tipo;
 
     private String descripcion;
 
-    private @Id LocalTime hora;
+    private LocalTime hora;
 
-    private @Id LocalDate dia;
+    private LocalDate dia;
 
     private List<Usuarios> listaUsuariosInscriptos;
 
@@ -32,7 +29,7 @@ public class Actividades {
 
     private boolean reservable;
 
-    private @Id CentrosDeportivos centroDeportivo;
+    private CentrosDeportivos centroDeportivo;
 
     public Actividades() {
     }

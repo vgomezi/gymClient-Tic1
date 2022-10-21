@@ -7,16 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.List;
 
-@Entity
-@Table(name = "Empresas")
-@Component
 public class Empresas {
 
     private String nombre;
 
     private String contrasena;
 
-    private @Id String mail;
+    private String mail;
 
     private List<Usuarios> listaUsuarios;
 
