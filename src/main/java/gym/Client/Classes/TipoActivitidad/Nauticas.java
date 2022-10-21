@@ -8,8 +8,17 @@ public class Nauticas {
 
     private String nombre;
 
+    private String descripcion;
+
 
     public Nauticas() {
+    }
+
+    public Nauticas(Integer precio, Integer capacidad, String nombre, String descripcion) {
+        this.precio = precio;
+        this.capacidad = capacidad;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public Integer getPrecio() {
@@ -36,9 +45,11 @@ public class Nauticas {
         this.nombre = nombre;
     }
 
-    public Nauticas(Integer precio, Integer capacidad, String nombre) {
-        this.precio = precio;
-        this.capacidad = capacidad;
-        this.nombre = nombre;
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

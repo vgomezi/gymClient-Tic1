@@ -38,9 +38,9 @@ public class NauticasController implements Initializable {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                AnchorPane anchorPane = fxmlLoader.load(GimnasioSalaController.class.getResourceAsStream("ActivityPane.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load(GimnasioSalaController.class.getResourceAsStream("ActividadesPane.fxml"));
 
-                ActivityPaneController activityPane = fxmlLoader.getController();
+                ActividadesPaneController activityPane = fxmlLoader.getController();
 
                 activityPane.datosNautica(listaNauticas.get(i));
 

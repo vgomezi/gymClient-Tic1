@@ -39,9 +39,9 @@ public class CanchasController implements Initializable {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                AnchorPane anchorPane = fxmlLoader.load(CanchasController.class.getResourceAsStream("ActivityPane.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load(CanchasController.class.getResourceAsStream("ActividadesPane.fxml"));
 
-                ActivityPaneController activityPane = fxmlLoader.getController();
+                ActividadesPaneController activityPane = fxmlLoader.getController();
 
                 activityPane.datosCancha(listaCanchas.get(i));
 

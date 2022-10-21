@@ -8,8 +8,17 @@ public class GimnasioSala {
 
     private String nombre;
 
+    private String descripcion;
+
 
     public GimnasioSala() {
+    }
+
+    public GimnasioSala(Integer precio, Integer capacidad, String nombre, String descripcion) {
+        this.precio = precio;
+        this.capacidad = capacidad;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public Integer getPrecio() {
@@ -36,9 +45,11 @@ public class GimnasioSala {
         this.nombre = nombre;
     }
 
-    public GimnasioSala(Integer precio, Integer capacidad, String nombre) {
-        this.precio = precio;
-        this.capacidad = capacidad;
-        this.nombre = nombre;
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

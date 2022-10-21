@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class ActivityPaneController implements Initializable {
+public class ActividadesPaneController implements Initializable {
 
 
     @FXML
@@ -28,14 +28,16 @@ public class ActivityPaneController implements Initializable {
     private Label capacidadLabel;
 
     @FXML
-    private ImageView imageView;
+    private Label descripcionLabel;
 
+    @FXML
+    private ImageView imageView;
 
     @FXML
     private Button reservarBoton;
 
     @FXML
-    protected void onreservarButtonClick() {}
+    protected void onReservarButtonClick() {}
 
 
     @Override
@@ -55,6 +57,8 @@ public class ActivityPaneController implements Initializable {
 
         nombreLabel.setText(cancha.getNombre());
 
+        descripcionLabel.setText(cancha.getDescripcion());
+
         precioLabel.setText(cancha.getPrecio().toString());
 
         capacidadLabel.setText(cancha.getCapacidad().toString());
@@ -72,6 +76,8 @@ public class ActivityPaneController implements Initializable {
 
         nombreLabel.setText(nautica.getNombre());
 
+        descripcionLabel.setText(nautica.getDescripcion());
+
         precioLabel.setText(nautica.getPrecio().toString());
 
         capacidadLabel.setText(nautica.getCapacidad().toString());
@@ -88,6 +94,8 @@ public class ActivityPaneController implements Initializable {
         imageView.setImage(image);
 
         nombreLabel.setText(gimnasioSala.getNombre());
+
+        descripcionLabel.setText(gimnasioSala.getDescripcion());
 
         precioLabel.setText(gimnasioSala.getPrecio().toString());
 

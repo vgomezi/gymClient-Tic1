@@ -65,7 +65,7 @@ public class EliminarCentroController {
                 String nombreCentro = apiResponse.getBody();
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 System.out.println("Entro confirmar eliminar centro");
-                Parent root1 = (Parent) fxmlLoader.load(ConfirmarBorrarCentroController.class.getResourceAsStream("/gym/Client/ConfirmarBorrar.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load(ConfirmarBorrarCentroController.class.getResourceAsStream("/gym/Client/ConfirmarBorrarCentro.fxml"));
 
                 ConfirmarBorrarCentroController confirmarBorrarCentroController = fxmlLoader.getController();
                 confirmarBorrarCentroController.setUsuarioAdminConfirmar(this.usuarioAdminCentroEliminar);

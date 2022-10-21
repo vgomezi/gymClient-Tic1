@@ -17,8 +17,17 @@ public class Canchas {
 
     private String nombre;
 
+    private String descripcion;
+
 
     public Canchas() {
+    }
+
+    public Canchas(Integer precio, Integer capacidad, String nombre, String descripcion) {
+        this.precio = precio;
+        this.capacidad = capacidad;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public Integer getPrecio() {
@@ -45,9 +54,11 @@ public class Canchas {
         this.nombre = nombre;
     }
 
-    public Canchas(Integer precio, Integer capacidad, String nombre) {
-        this.precio = precio;
-        this.capacidad = capacidad;
-        this.nombre = nombre;
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
