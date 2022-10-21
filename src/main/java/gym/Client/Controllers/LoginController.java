@@ -50,18 +50,28 @@ public class LoginController {
             String role = "";
             try {
                 HttpResponse<String> apiResponse = null;
-                HttpResponse<Boolean> apiResponseP = null;
 
                 apiResponse = Unirest.get("http://localhost:8987/api/login/role/" + correoElectronico).asObject(String.class);
+                System.out.println(apiResponse.getBody());
 
                 if (apiResponse.getBody().isBlank()) {
                     errorLabel.setText("Correo no registrado");
                 } else {
-                    apiResponseP = Unirest.get("http://localhost:8987/api/login/password/" + correoElectronico + "/" + contrasena).asObject(Boolean.class);
-                    if (!apiResponseP.getBody()) {
+                    System.out.println("Entro else");
+                    String contrasenaCorrecta = "false";
+                    try {
+                        HttpResponse<String> apiResponseP = Unirest.get("http://localhost:8987/api/login/password/" + correoElectronico + "/" + contrasena).asString();
+                        contrasenaCorrecta = apiResponseP.getBody();
+                        System.out.println("Hice unirest get");
+                        System.out.println(apiResponseP.getBody().toString());
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        System.out.println("Error");
+                    }
+                    if (contrasenaCorrecta.equals("false")) {
                         errorLabel.setText("Contraseña incorrecta");
                     } else {
-                        role = apiResponse.getBody().toString();
+                        role = apiResponse.getBody();
                         switch (role) {
                             case "Admin": {
 
@@ -72,6 +82,7 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
+                                    System.out.println("Entro Admin Login");
                                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/MainAdmin.fxml"));
 
                                     Stage stage = new Stage();
