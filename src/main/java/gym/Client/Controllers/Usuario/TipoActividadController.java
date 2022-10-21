@@ -25,6 +25,9 @@ public class TipoActividadController {
     private Button gimnasioSalaBoton;
 
     @FXML
+    private Button volverBoton;
+
+    @FXML
     protected void onCanchasButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -72,6 +75,25 @@ public class TipoActividadController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("GimnasioSala");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
+    }
+
+    @FXML
+    protected void onVolverButtonClick() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuarioPrueba/MainUsuario.fxml"));
+            Stage stage = new Stage();
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.setTitle("Volver");
             stage.setScene(new Scene(root1));
             stage.show();
 

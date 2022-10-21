@@ -1,142 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #9349ab#9349ab;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.GimnasioSalaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #9349ab#9349ab #9349ab#9349ab;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.GimnasioSalaController">
    <children>
-      <Label fx:id="gimnasioSalaLabel" layoutX="161.0" layoutY="28.0" text="GIMNASIO / SALA" textFill="WHITE">
+      <Label fx:id="gimnasioSalaLabel" layoutX="161.0" layoutY="27.0" text="GIMNASIO / SALA" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <GridPane layoutX="30.0" layoutY="94.0" prefHeight="199.0" prefWidth="541.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <GridPane>
+      <ScrollPane layoutX="15.0" layoutY="110.0" prefHeight="232.0" prefWidth="571.0">
+         <content>
+            <GridPane fx:id="anchorPaneScroll" prefHeight="18.0" prefWidth="27.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label fx:id="nombre1Label" prefHeight="29.0" prefWidth="135.0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="duracion1Label" prefHeight="29.0" prefWidth="137.0" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="precio1Label" prefHeight="29.0" prefWidth="134.0" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="reservar1Boton" mnemonicParsing="false" onAction="#onreservar1ButtonClick" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
             </GridPane>
-            <GridPane GridPane.rowIndex="1">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label fx:id="nombre2Label" prefHeight="29.0" prefWidth="135.0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="duracion2Label" prefHeight="29.0" prefWidth="137.0" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="precio2Label" prefHeight="29.0" prefWidth="134.0" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="reservar2Boton" mnemonicParsing="false" onAction="#onreservar2ButtonClick" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </GridPane>
-            <GridPane GridPane.rowIndex="2">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label fx:id="nombre3Label" prefHeight="29.0" prefWidth="135.0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="duracion3Label" prefHeight="29.0" prefWidth="137.0" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="precio3Label" prefHeight="29.0" prefWidth="134.0" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="reservar3Boton" mnemonicParsing="false" onAction="#onreservar3ButtonClick" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </GridPane>
-            <ImageView fx:id="image1" fitHeight="69.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <ImageView fx:id="image2" fitHeight="69.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ImageView fx:id="image3" fitHeight="69.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         </children>
-      </GridPane>
-      <Button fx:id="anteriorBoton" alignment="CENTER" contentDisplay="TOP" layoutX="88.0" layoutY="321.0" onAction="#onAnteriorButtonClick" prefHeight="44.0" prefWidth="129.0" text="Anterior">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="siguienteBoton" alignment="CENTER" contentDisplay="TOP" layoutX="384.0" layoutY="321.0" onAction="#onSiguienteButtonClick" prefHeight="44.0" prefWidth="129.0" text="Siguiente">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
