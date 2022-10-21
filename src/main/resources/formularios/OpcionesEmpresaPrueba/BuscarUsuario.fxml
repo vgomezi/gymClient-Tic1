@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #965a06#965a06 #965a06#965a06;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.BuscarUsuarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #d47e06#d47e06 #d47e06#d47e06;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.BuscarUsuarioController">
    <children>
       <Label fx:id="buscarUsuarioLabel" layoutX="153.0" layoutY="24.0" text="BUSCAR USUARIO">
          <font>

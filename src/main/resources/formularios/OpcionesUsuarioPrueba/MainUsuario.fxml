@@ -7,22 +7,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.MainUsuarioController">
    <children>
-      <Label fx:id="mainUsuarioLabel" layoutX="174.0" layoutY="30.0" text="MAIN USUARIO:">
+      <Label fx:id="mainUsuarioLabel" layoutX="175.0" layoutY="30.0" text="MAIN USUARIO:">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="darseBajaBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="106.0" onAction="#onDarseBajaButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #f9e46e#f9e46e;" text="DARSE DE BAJA">
+      <Button fx:id="darseBajaBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="106.0" onAction="#onDarseBajaButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #ed74cb#ed74cb #ed74cb#ed74cb;" text="DARSE DE BAJA">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bajarseActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="153.0" layoutY="190.0" onAction="#onBajarseActividadButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #d47e06#d47e06;" text="BAJARSE DE ACTIVIDAD">
+      <Button fx:id="bajarseActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="153.0" layoutY="190.0" onAction="#onBajarseActividadButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #9d58b8#9d58b8#9d58b8#9d58b8;" text="BAJARSE DE ACTIVIDAD">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="tipoActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="276.0" onAction="#onTipoActividadButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #965a06#965a06;" text="TIPO ACTIVIDAD">
+      <Button fx:id="tipoActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="276.0" onAction="#onTipoActividadButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #dad7db#dad7db #dad7db#dad7db;" text="TIPO ACTIVIDAD">
          <font>
             <Font size="24.0" />
          </font>

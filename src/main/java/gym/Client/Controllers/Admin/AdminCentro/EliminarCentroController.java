@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

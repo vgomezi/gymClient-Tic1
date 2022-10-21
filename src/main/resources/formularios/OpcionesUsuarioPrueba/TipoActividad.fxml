@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.TipoActividadController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #dad7db#dad7db;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.TipoActividadController">
    <children>
       <Label fx:id="tipoActividadLabel" layoutX="165.0" layoutY="30.0" text="TIPO ACTIVIDAD:">
          <font>
@@ -23,7 +23,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="gimnasioSalaBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="277.0" onAction="#onGimnasioSalaButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #9349ab#9349ab;" text="GIMNASIO / SALA">
+      <Button fx:id="gimnasioSalaBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="277.0" onAction="#onGimnasioSalaButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #eb636b #eb636b;" text="GIMNASIO / SALA">
          <font>
             <Font size="24.0" />
          </font>

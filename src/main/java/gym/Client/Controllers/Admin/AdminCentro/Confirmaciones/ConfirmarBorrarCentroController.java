@@ -17,10 +17,13 @@ public class ConfirmarBorrarCentroController {
 
     public String usuarioAdminConfirmar;
     @FXML
-    public Button confirmarButton;
+    public Button confirmarBoton;
 
     @FXML
-    public Button cancelarButton;
+    public Button cancelarBoton;
+
+    @FXML
+    private Label contrasenaAdminLabel;
 
     @FXML
     public PasswordField contrasenaAdminText;

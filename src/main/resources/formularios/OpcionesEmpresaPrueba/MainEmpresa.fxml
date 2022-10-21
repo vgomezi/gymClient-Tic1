@@ -22,7 +22,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="eliminarUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="315.0" onAction="#onEliminarUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #965a06#965a06;" text="ELIMINAR USUARIO">
+      <Button fx:id="eliminarUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="315.0" onAction="#onEliminarUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #9e640d#9e640d;" text="ELIMINAR USUARIO">
          <font>
             <Font size="24.0" />
          </font>
