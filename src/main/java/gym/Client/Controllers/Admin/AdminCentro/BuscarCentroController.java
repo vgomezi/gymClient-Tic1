@@ -49,7 +49,7 @@ public class BuscarCentroController {
         }
     }
 
-        @FXML
+    @FXML
     protected void onCancelarButtonClick(ActionEvent event) {
         emailText.clear();
         Node source = (Node) event.getSource();
