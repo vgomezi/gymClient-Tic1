@@ -1,6 +1,12 @@
 package gym.Client.Controllers.Usuario;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
@@ -27,7 +33,21 @@ public class MainUsuarioController {
     protected void onBajarseActividadButtonClick() {}
 
     @FXML
-    protected void onTipoActividadButtonClick() {}
+    protected void onTipoActividadButtonClick(ActionEvent event) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/TipoActividad.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Tipo Actividad");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 
 }
