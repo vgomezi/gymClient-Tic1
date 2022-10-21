@@ -1,15 +1,6 @@
-package gym.Client.Classes;
+package gym.Client.Classes.TipoActivitidad;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-
-public class Canchas {
+public class GimnasioSala {
 
     private Integer precio;
 
@@ -18,7 +9,7 @@ public class Canchas {
     private String nombre;
 
 
-    public Canchas() {
+    public GimnasioSala() {
     }
 
     public Integer getPrecio() {
@@ -45,7 +36,7 @@ public class Canchas {
         this.nombre = nombre;
     }
 
-    public Canchas(Integer precio, Integer capacidad, String nombre) {
+    public GimnasioSala(Integer precio, Integer capacidad, String nombre) {
         this.precio = precio;
         this.capacidad = capacidad;
         this.nombre = nombre;

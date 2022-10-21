@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #86895d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.CanchasotraController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #006d92#006d92 #006d92#006d92;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.Nauticas2Controller">
    <children>
-      <Label fx:id="canchasLabel" layoutX="217.0" layoutY="27.0" text="CANCHAS" textFill="WHITE">
+      <Label fx:id="nauticasLabel" layoutX="214.0" layoutY="27.0" text="NAÚTICAS" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
       <ScrollPane layoutX="15.0" layoutY="110.0" prefHeight="232.0" prefWidth="571.0">
          <content>
-            <GridPane fx:id="anchorPaneScrolll" prefHeight="18.0" prefWidth="27.0">
+            <GridPane fx:id="anchorPaneScroll" prefHeight="18.0" prefWidth="27.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>

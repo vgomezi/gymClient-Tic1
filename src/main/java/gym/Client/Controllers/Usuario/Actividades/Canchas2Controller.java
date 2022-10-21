@@ -1,13 +1,9 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
-import gym.Client.Classes.Canchas;
-import gym.Client.GymClientApplication;
+import gym.Client.Classes.TipoActivitidad.Canchas;
 import gym.Client.Main;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.springframework.stereotype.Component;
@@ -18,12 +14,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
-public class CanchasotraController implements Initializable {
+public class Canchas2Controller implements Initializable {
 
 
     private List<Canchas> listaCanchas;
 
-    public GridPane anchorPaneScrolll;
+    public GridPane anchorPaneScroll;
 
     private List<Canchas> getDatos(){
         return null;
@@ -43,13 +39,13 @@ public class CanchasotraController implements Initializable {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                AnchorPane anchorPane = fxmlLoader.load(CanchasotraController.class.getResourceAsStream("activitypane.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load(Canchas2Controller.class.getResourceAsStream("ActivityPane.fxml"));
 
-                activitypaneController activityPane = fxmlLoader.getController();
+                ActivityPaneController activityPane = fxmlLoader.getController();
 
                 activityPane.datosCancha(listaCanchas.get(i));
 
-                anchorPaneScrolll.add(anchorPane, 0, row++);
+                anchorPaneScroll.add(anchorPane, 0, row++);
 
             }
         } catch (Exception e){

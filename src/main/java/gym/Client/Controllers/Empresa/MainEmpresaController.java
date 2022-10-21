@@ -20,14 +20,16 @@ public class MainEmpresaController {
     @FXML
     private Button crearUsuarioBoton;
 
+
     @FXML
     private Button buscarUsuarioBoton;
 
-    @FXML
-    private Button eliminarUsuarioBoton;
 
     @FXML
     private Button actualizarUsuarioBoton;
+
+    @FXML
+    private Button eliminarUsuarioBoton;
 
     @FXML
     protected void onCrearUsuarioButtonClick() {
@@ -49,6 +51,7 @@ public class MainEmpresaController {
         }
     }
 
+
     @FXML
     protected void onBuscarUsuarioButtonClick() {
         try {
@@ -69,25 +72,7 @@ public class MainEmpresaController {
         }
     }
 
-    @FXML
-    protected void onEliminarUsuarioButtonClick() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/EliminarUsuario.fxml"));
-            Stage stage = new Stage();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            stage.setTitle("Eliminar Usuario");
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-            System.out.println("Error");
-            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     @FXML
     protected void onActualizarUsuarioButtonClick() {
@@ -99,6 +84,26 @@ public class MainEmpresaController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Actualizar Usuario");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    protected void onEliminarUsuarioButtonClick() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/EliminarUsuario.fxml"));
+            Stage stage = new Stage();
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.setTitle("Eliminar Usuario");
             stage.setScene(new Scene(root1));
             stage.show();
 
