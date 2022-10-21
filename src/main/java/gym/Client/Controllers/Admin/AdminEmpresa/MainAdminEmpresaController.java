@@ -34,7 +34,7 @@ public class MainAdminEmpresaController {
             Parent root = FXMLLoader.load(getClass().getResource("/formularios/OpcionesAdministrador/AdminEmpresa/RegistrarEmpresa.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.setTitle("Login Empresa");
+            stage.setTitle("Registrar Empresa");
             stage.setScene(new Scene(root));
             stage.show();
 

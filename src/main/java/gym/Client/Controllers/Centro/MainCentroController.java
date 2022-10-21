@@ -1,8 +1,10 @@
 package gym.Client.Controllers.Centro;
 
 import gym.Client.Controllers.LoginController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
@@ -34,13 +36,10 @@ public class MainCentroController {
 
 
     @FXML
-    protected void onActualizarActividadButtonClick() {
+    protected void onActualizarActividadButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentro/ActualizarActividad.fxml"));
-            Stage stage = new Stage();
-
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/ActualizarActividad.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Actualizar Actividad");
             stage.setScene(new Scene(root1));
@@ -54,13 +53,10 @@ public class MainCentroController {
     }
 
     @FXML
-    protected void onRegistrarActividadButtonClick() {
+    protected void onRegistrarActividadButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentro/RegistrarActividad.fxml"));
-            Stage stage = new Stage();
-
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/RegistrarActividad.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Registrar Actividad");
             stage.setScene(new Scene(root1));
@@ -74,13 +70,10 @@ public class MainCentroController {
     }
 
     @FXML
-    protected void onBuscarActividadButtonClick() {
+    protected void onBuscarActividadButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentro/BuscarActividad.fxml"));
-            Stage stage = new Stage();
-
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/BuscarActividad.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Buscar Actividad");
             stage.setScene(new Scene(root1));
@@ -94,13 +87,10 @@ public class MainCentroController {
     }
 
     @FXML
-    protected void onEliminarActividadButtonClick() {
+    protected void onEliminarActividadButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentro/EliminarActividad.fxml"));
-            Stage stage = new Stage();
-
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/EliminarActividad.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Eliminar Actividad");
             stage.setScene(new Scene(root1));
@@ -114,13 +104,10 @@ public class MainCentroController {
     }
 
     @FXML
-    protected void onRegistrarIngresoUsuarioButtonClick() {
+    protected void onRegistrarIngresoUsuarioButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentro/RegistroIngresoUsuario.fxml"));
-            Stage stage = new Stage();
-
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/RegistroIngresoUsuario.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Registrar Ingreso de Usuario");
             stage.setScene(new Scene(root1));
