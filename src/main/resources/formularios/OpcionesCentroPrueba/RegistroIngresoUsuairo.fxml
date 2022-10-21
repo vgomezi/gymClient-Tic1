@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #965a06#965a06 #965a06#965a06;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.EliminarActividadController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #965a06#965a06 #965a06#965a06;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.RegistroIngresoUsuairoController">
    <children>
-      <Label fx:id="eiminarActividadLabel" layoutX="130.0" layoutY="25.0" text="ELIMINAR ACTIVIDAD">
+      <Label fx:id="registroIngresoUsuarioLabel" layoutX="35.0" layoutY="26.0" text="REGISTRO INGRESO DE USUARIO">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="eliminarBoton" alignment="CENTER" contentDisplay="TOP" layoutX="88.0" layoutY="321.0" onAction="#onEliminarButtonClick" prefHeight="44.0" prefWidth="129.0" text="Eliminar!">
+      <Button fx:id="registrarUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="88.0" layoutY="321.0" onAction="#onRegistrarUsuarioButtonClick" prefHeight="44.0" prefWidth="129.0" text="Registrar!">
          <font>
             <Font size="24.0" />
          </font>
@@ -27,7 +27,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <GridPane alignment="CENTER" layoutX="126.0" layoutY="148.0" prefHeight="105.0" prefWidth="349.0">
+      <GridPane alignment="CENTER" layoutX="123.0" layoutY="132.0" prefHeight="137.0" prefWidth="354.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="138.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="134.0" />
@@ -36,27 +36,33 @@
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="nombreLabel" text="Nombre:">
+            <Label fx:id="nombreLabel" text="Nombre:" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-            <Label fx:id="horaLabel" text="Hora:" GridPane.rowIndex="1">
+            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="horaLabel" text="Hora:" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <DatePicker fx:id="horaDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <DatePicker fx:id="diaDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="diaLabel" prefHeight="29.0" prefWidth="150.0" text="Día:" GridPane.rowIndex="2">
+            <DatePicker fx:id="horaDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="diaDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="diaLabel" prefHeight="29.0" prefWidth="150.0" text="Día:" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-
+            <Label fx:id="emailLabel" text="Email:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
 
          </children>
       </GridPane>
