@@ -1,8 +1,11 @@
 package gym.Client.Controllers.Centro;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +27,7 @@ public class RegistrarActividadController {
     private Label tipoLabel;
 
     @FXML
-    private TextField tipoText;
+    private ChoiceBox tipoChoiceBox;
 
     @FXML
     private Label descripcionLabel;
@@ -65,10 +68,18 @@ public class RegistrarActividadController {
     @FXML
     protected void onRegistrarButtonClick() {}
 
+    ObservableList<String> tipoChoiceBoxList = FXCollections.
+            observableArrayList("Canchas","Gimnasio/Sala", "Naúticas");
+
+    @FXML
+    private void initialize(){
+        tipoChoiceBox.setItems(tipoChoiceBoxList);
+        tipoChoiceBox.setValue("Categoria");
+    }
+
     @FXML
     protected void onCancelarButtonClick(ActionEvent event) {
         nombreText.clear();
-        tipoText.clear();
         descripcionText.clear();
         horaText.clear();
         diaText.clear();
