@@ -1,8 +1,10 @@
 package gym.Client.Controllers.Usuario;
 
 import gym.Client.Controllers.LoginController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -85,17 +87,19 @@ public class TipoActividadController {
     }
 
     @FXML
-    protected void onVolverButtonClick() {
+    protected void onVolverButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuarioPrueba/MainUsuario.fxml"));
-            Stage stage = new Stage();
-
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/MainUsuario.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Volver");
             stage.setScene(new Scene(root1));
             stage.show();
+
+            /*Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            //stage.hide();
+            //stage.close();*/
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
