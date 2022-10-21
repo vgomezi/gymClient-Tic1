@@ -1,8 +1,10 @@
 package gym.Client.Controllers.Admin.AdminEmpresa;
 
 import gym.Client.Controllers.LoginController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,16 +29,13 @@ public class MainAdminEmpresaController {
     private Button buscarEmpresaBoton;
 
     @FXML
-    protected void onRegistrarEmpresaButtonClick() {
+    protected void onRegistrarEmpresaButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/RegistrarEmpresa.fxml"));
-            Stage stage = new Stage();
-
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Parent root = FXMLLoader.load(getClass().getResource("/formularios/OpcionesAdministrador/AdminEmpresa/RegistrarEmpresa.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Login Empresa");
-            stage.setScene(new Scene(root1));
+            stage.setScene(new Scene(root));
             stage.show();
 
         } catch (Exception ex) {

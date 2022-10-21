@@ -17,11 +17,13 @@ import org.springframework.stereotype.Component;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.springframework.stereotype.Controller;
 
 
-@Component
+@Controller
 public class EliminarCentroController {
 
+    public String usuarioAdminCentroEliminar;
 
     @FXML
     private Label emailLabel;
@@ -34,6 +36,14 @@ public class EliminarCentroController {
 
     @FXML
     private Button cancelarBoton;
+
+    public String getUsuarioAdminCentroEliminar() {
+        return usuarioAdminCentroEliminar;
+    }
+
+    public void setUsuarioAdminCentroEliminar(String usuarioAdminCentroEliminar) {
+        this.usuarioAdminCentroEliminar = usuarioAdminCentroEliminar;
+    }
 
     @FXML
     protected void onEliminarButtonClick() {
@@ -53,12 +63,15 @@ public class EliminarCentroController {
                 System.out.println("Centro " + email + " no existe");
             } else {
 
+                String nombreCentro = apiResponse.getBody();
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 System.out.println("Entro confirmar eliminar centro");
                 Parent root1 = (Parent) fxmlLoader.load(ConfirmarBorrarCentroController.class.getResourceAsStream("/gym/Client/ConfirmarBorrar.fxml"));
 
                 ConfirmarBorrarCentroController confirmarBorrarCentroController = fxmlLoader.getController();
-                confirmarBorrarCentroController.displayNombreCentro(email);
+                confirmarBorrarCentroController.setUsuarioAdminConfirmar(this.usuarioAdminCentroEliminar);
+                confirmarBorrarCentroController.displayNombreCentro(nombreCentro);
+
                 Stage stage = new Stage();
 
                 stage.initModality(Modality.APPLICATION_MODAL);

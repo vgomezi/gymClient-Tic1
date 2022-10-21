@@ -1,5 +1,6 @@
 package gym.Client.Controllers.Admin;
 
+import gym.Client.Controllers.Admin.AdminCentro.MainAdminCentroController;
 import gym.Client.Controllers.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import javafx.scene.control.Button;
 @Controller
 public class MainAdminController {
 
+    public String usuarioAdminMain;
+
     //hola equipo
 
     @FXML
@@ -24,11 +27,20 @@ public class MainAdminController {
     @FXML
     private Button administrarCentrosBoton;
 
+    public String getUsuarioAdminMain() {
+        return usuarioAdminMain;
+    }
+
+    public void setUsuarioAdminMain(String usuarioAdminMain) {
+        this.usuarioAdminMain = usuarioAdminMain;
+    }
+
     @FXML
     protected void onAdministrarEmpresasButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/MainAdminEmpresa.fxml"));
+
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -50,6 +62,10 @@ public class MainAdminController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/MainAdminCentro.fxml"));
+
+            MainAdminCentroController mainAdminCentroController = fxmlLoader.getController();
+            mainAdminCentroController.setUsuarioAdminCentroMain(this.usuarioAdminMain);
+
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);

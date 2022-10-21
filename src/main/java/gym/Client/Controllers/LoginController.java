@@ -2,6 +2,7 @@ package gym.Client.Controllers;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import gym.Client.Controllers.Admin.MainAdminController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,7 +63,6 @@ public class LoginController {
                     try {
                         HttpResponse<String> apiResponseP = Unirest.get("http://localhost:8987/api/login/password/" + correoElectronico + "/" + contrasena).asString();
                         contrasenaCorrecta = apiResponseP.getBody();
-                        System.out.println("Hice unirest get");
                         System.out.println(apiResponseP.getBody().toString());
                     } catch (Exception e) {
                         System.out.println(e);
@@ -84,6 +84,9 @@ public class LoginController {
                                     FXMLLoader fxmlLoader = new FXMLLoader();
                                     System.out.println("Entro Admin Login");
                                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/MainAdmin.fxml"));
+
+                                    MainAdminController mainAdminController = fxmlLoader.getController();
+                                    mainAdminController.setUsuarioAdminMain(correoElectronico);
 
                                     Stage stage = new Stage();
 

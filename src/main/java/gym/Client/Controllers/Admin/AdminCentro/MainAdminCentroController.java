@@ -13,11 +13,12 @@ import org.springframework.stereotype.Component;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 public class MainAdminCentroController {
 
-
+    public String usuarioAdminCentroMain;
     @FXML
     private Button registrarCentroBoton;
 
@@ -29,6 +30,14 @@ public class MainAdminCentroController {
 
     @FXML
     private Button buscarCentroBoton;
+
+    public String getUsuarioAdminCentroMain() {
+        return usuarioAdminCentroMain;
+    }
+
+    public void setUsuarioAdminCentroMain(String usuarioAdminCentroMain) {
+        this.usuarioAdminCentroMain = usuarioAdminCentroMain;
+    }
 
     @FXML
     protected void onRegistrarCentroButtonClick() {
@@ -80,6 +89,10 @@ public class MainAdminCentroController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/EliminarCentro.fxml"));
+
+            EliminarCentroController eliminarCentroController = fxmlLoader.getController();
+            eliminarCentroController.setUsuarioAdminCentroEliminar(this.usuarioAdminCentroMain);
+
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);
