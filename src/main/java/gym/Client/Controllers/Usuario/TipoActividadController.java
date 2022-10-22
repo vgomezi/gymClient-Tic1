@@ -29,14 +29,13 @@ public class TipoActividadController {
     @FXML
     private Button volverBoton;
 
-    @FXML
-    protected void onCanchasButtonClick() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuarioPrueba/Actividades/Canchas.fxml"));
-            Stage stage = new Stage();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
+
+    @FXML
+    protected void onCanchasButtonClick(ActionEvent event) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/Actividades/Canchas.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Canchas");
             stage.setScene(new Scene(root1));
@@ -45,44 +44,41 @@ public class TipoActividadController {
         } catch (Exception ex) {
             System.out.println(ex.toString());
             System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    protected void onNauticasButtonClick() {
+    protected void onNauticasButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuarioPrueba/Actividades/Nauticas.fxml"));
-            Stage stage = new Stage();
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/Actividades/Naúticas.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            stage.setTitle("Nauticas");
+            stage.setTitle("Naúticas");
             stage.setScene(new Scene(root1));
             stage.show();
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
             System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    protected void onGimnasioSalaButtonClick() {
+    protected void onGimnasioSalaButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuarioPrueba/Actividades/GimnasioSala.fxml"));
-            Stage stage = new Stage();
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/Actividades/GimnasioSala.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            stage.setTitle("GimnasioSala");
+            stage.setTitle("Gimasio / Sala");
             stage.setScene(new Scene(root1));
             stage.show();
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
             System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

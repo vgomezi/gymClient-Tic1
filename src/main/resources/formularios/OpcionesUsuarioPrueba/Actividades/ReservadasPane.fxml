@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.ActividadesPaneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.ReservadasPaneController">
    <children>
       <GridPane layoutX="32.0" layoutY="43.0">
          <columnConstraints>
@@ -37,7 +37,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button fx:id="reservarBoton" mnemonicParsing="false" onAction="#onReservarButtonClick" prefHeight="34.0" prefWidth="139.0" text="Reservar" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="bajarReservaBoton" mnemonicParsing="false" onAction="#onBajarReservaButtonClick" prefHeight="34.0" prefWidth="139.0" text="Bajar Reserva" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font>

@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class ActividadesPaneController implements Initializable {
+public class ReservadasPaneController implements Initializable {
 
 
     @FXML
@@ -40,11 +40,11 @@ public class ActividadesPaneController implements Initializable {
     private ImageView imageView;
 
     @FXML
-    private Button reservarBoton;
+    private Button bajarReservaBoton;
 
     @FXML
-    protected void onReservarButtonClick() {
-        //hacer que reserve la actividad el usuairo
+    protected void onBajarReservaButtonClick() {
+        //hacer que se baje de la reserva del sistema
     }
 
 
@@ -71,9 +71,9 @@ public class ActividadesPaneController implements Initializable {
 
         descripcionLabel.setText(cancha.getDescripcion());
 
-        diaLabel.setText("Día de actividad: " + cancha.getDia());
+        diaLabel.setText("Día de reserva: " + cancha.getDia());
 
-        horaLabel.setText("Hora de actividad: " + cancha.getHora());
+        horaLabel.setText("Hora de reseva: " + cancha.getHora());
     }
 
     private Nauticas nauticaSeleccionada;
@@ -94,9 +94,9 @@ public class ActividadesPaneController implements Initializable {
 
         capacidadLabel.setText(nautica.getCapacidad().toString());
 
-        diaLabel.setText("Día de actividad: " + nautica.getDia());
+        diaLabel.setText("Día de reserva: " + nautica.getDia());
 
-        horaLabel.setText("Hora de actividad: " + nautica.getHora());
+        horaLabel.setText("Hora de reseva: " + nautica.getHora());
     }
 
     private GimnasioSala gimnasioSalaSeleccionada;
@@ -117,9 +117,9 @@ public class ActividadesPaneController implements Initializable {
 
         capacidadLabel.setText(gimnasioSala.getCapacidad().toString());
 
-        diaLabel.setText("Día de actividad: " + gimnasioSala.getDia());
+        diaLabel.setText("Día de reserva: " + gimnasioSala.getDia());
 
-        horaLabel.setText("Hora de actividad: " + gimnasioSala.getHora());
+        horaLabel.setText("Hora de reseva: " + gimnasioSala.getHora());
     }
 
 

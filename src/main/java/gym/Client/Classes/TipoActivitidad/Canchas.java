@@ -19,15 +19,21 @@ public class Canchas {
 
     private String descripcion;
 
+    private String dia;
+
+    private String hora;
+
 
     public Canchas() {
     }
 
-    public Canchas(Integer precio, Integer capacidad, String nombre, String descripcion) {
+    public Canchas(Integer precio, Integer capacidad, String nombre, String descripcion, String dia, String hora) {
         this.precio = precio;
         this.capacidad = capacidad;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.dia = dia;
+        this.hora = hora;
     }
 
     public Integer getPrecio() {
@@ -61,4 +67,12 @@ public class Canchas {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String getDia() { return dia; }
+
+    public void setDia(String dia) { this.dia = dia; }
+
+    public String getHora() { return hora; }
+
+    public void setHora(String hora) { this.hora = hora; }
 }

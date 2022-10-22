@@ -27,10 +27,38 @@ public class MainUsuarioController {
     private Button verRegistrarBoton;
 
     @FXML
-    protected void onDarseBajaButtonClick() {}
+    protected void onDarseBajaButtonClick(ActionEvent event) {
+        try {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/DarseBajaUsuario.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setTitle("Darse de Baja");
+        stage.setScene(new Scene(root1));
+        stage.show();
+
+    } catch (Exception ex) {
+        System.out.println(ex.toString());
+        System.out.println("Error");
+        //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
 
     @FXML
-    protected void onBajarseActividadButtonClick() {}
+    protected void onBajarseActividadButtonClick(ActionEvent event) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/BajarseUsuarioActividad.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Darse de Baja");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @FXML
     protected void onTipoActividadButtonClick(ActionEvent event) {
