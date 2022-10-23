@@ -1,10 +1,5 @@
 package gym.Client.Classes;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -21,7 +16,7 @@ public class Actividades {
 
     private LocalDate dia;
 
-    private List<Usuarios> listaUsuariosInscriptos;
+    private List<EmpleadoObject> listaEmpleadoObjectInscriptos;
 
     private boolean conCupos;
 
@@ -34,13 +29,13 @@ public class Actividades {
     public Actividades() {
     }
 
-    public Actividades(String nombre, String tipo, String descripcion, LocalTime hora, LocalDate dia, List<Usuarios> listaUsuariosInscriptos, boolean conCupos, int cupos, boolean reservable) {
+    public Actividades(String nombre, String tipo, String descripcion, LocalTime hora, LocalDate dia, List<EmpleadoObject> listaEmpleadoObjectInscriptos, boolean conCupos, int cupos, boolean reservable) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.hora = hora;
         this.dia = dia;
-        this.listaUsuariosInscriptos = listaUsuariosInscriptos;
+        this.listaEmpleadoObjectInscriptos = listaEmpleadoObjectInscriptos;
         this.conCupos = conCupos;
         this.cupos = cupos;
         this.reservable = reservable;
@@ -86,12 +81,12 @@ public class Actividades {
         this.dia = dia;
     }
 
-    public List<Usuarios> getListaUsuariosInscriptos() {
-        return listaUsuariosInscriptos;
+    public List<EmpleadoObject> getListaUsuariosInscriptos() {
+        return listaEmpleadoObjectInscriptos;
     }
 
-    public void setListaUsuariosInscriptos(List<Usuarios> listaUsuariosInscriptos) {
-        this.listaUsuariosInscriptos = listaUsuariosInscriptos;
+    public void setListaUsuariosInscriptos(List<EmpleadoObject> listaEmpleadoObjectInscriptos) {
+        this.listaEmpleadoObjectInscriptos = listaEmpleadoObjectInscriptos;
     }
 
     public boolean isConCupos() {
