@@ -13,9 +13,9 @@ public class EmpresaObject {
 
     private List<EmpleadoObject> listaEmpleados;
 
-    private List<Pago> pagos;
+    private List<PagoObject> pagos;
 
-    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String mail, List<EmpleadoObject> listaEmpleados, List<Pago> pagos) {
+    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String mail, List<EmpleadoObject> listaEmpleados, List<PagoObject> pagos) {
         this.userLoginReference = userLoginReference;
         this.nombre = nombre;
         this.mail = mail;
@@ -55,11 +55,11 @@ public class EmpresaObject {
         this.listaEmpleados = listaEmpleados;
     }
 
-    public List<Pago> getPagos() {
+    public List<PagoObject> getPagos() {
         return pagos;
     }
 
-    public void setPagos(List<Pago> pagos) {
+    public void setPagos(List<PagoObject> pagos) {
         this.pagos = pagos;
     }
 }

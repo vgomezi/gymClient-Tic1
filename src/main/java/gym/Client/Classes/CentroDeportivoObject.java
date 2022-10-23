@@ -12,7 +12,7 @@ public class CentroDeportivoObject {
     private String mail;
 
 
-    private List<Actividades> listaActividades;
+    private List<ActividadObject> listaActividades;
 
 
     private List<PagoObject> pagos;
@@ -20,7 +20,7 @@ public class CentroDeportivoObject {
     public CentroDeportivoObject() {
     }
 
-    public CentroDeportivoObject(String nombre, String mail, List<Actividades> listaActividades) {
+    public CentroDeportivoObject(String nombre, String mail, List<ActividadObject> listaActividades) {
         this.nombre = nombre;
         this.mail = mail;
         this.listaActividades = listaActividades;
@@ -50,11 +50,11 @@ public class CentroDeportivoObject {
         this.mail = mail;
     }
 
-    public List<Actividades> getListaActividades() {
+    public List<ActividadObject> getListaActividades() {
         return listaActividades;
     }
 
-    public void setListaActividades(List<Actividades> listaActividades) {
+    public void setListaActividades(List<ActividadObject> listaActividades) {
         this.listaActividades = listaActividades;
     }
 

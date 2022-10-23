@@ -4,19 +4,19 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class Actividades {
+public class ActividadObject {
 
     private String nombre;
-
-    private String tipo;
-
-    private String descripcion;
 
     private LocalTime hora;
 
     private LocalDate dia;
 
-    private List<EmpleadoObject> listaEmpleadoObjectInscriptos;
+    private String tipo;
+
+    private String descripcion;
+
+    private List<EmpleadoObject> listaEmpleadoInscriptos;
 
     private boolean conCupos;
 
@@ -26,19 +26,17 @@ public class Actividades {
 
     private CentrosDeportivos centroDeportivo;
 
-    public Actividades() {
-    }
-
-    public Actividades(String nombre, String tipo, String descripcion, LocalTime hora, LocalDate dia, List<EmpleadoObject> listaEmpleadoObjectInscriptos, boolean conCupos, int cupos, boolean reservable) {
+    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String tipo, String descripcion, List<EmpleadoObject> listaEmpleadoInscriptos, boolean conCupos, int cupos, boolean reservable, CentrosDeportivos centroDeportivo) {
         this.nombre = nombre;
-        this.tipo = tipo;
-        this.descripcion = descripcion;
         this.hora = hora;
         this.dia = dia;
-        this.listaEmpleadoObjectInscriptos = listaEmpleadoObjectInscriptos;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+        this.listaEmpleadoInscriptos = listaEmpleadoInscriptos;
         this.conCupos = conCupos;
         this.cupos = cupos;
         this.reservable = reservable;
+        this.centroDeportivo = centroDeportivo;
     }
 
     public String getNombre() {
@@ -47,22 +45,6 @@ public class Actividades {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public LocalTime getHora() {
@@ -81,12 +63,28 @@ public class Actividades {
         this.dia = dia;
     }
 
-    public List<EmpleadoObject> getListaUsuariosInscriptos() {
-        return listaEmpleadoObjectInscriptos;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setListaUsuariosInscriptos(List<EmpleadoObject> listaEmpleadoObjectInscriptos) {
-        this.listaEmpleadoObjectInscriptos = listaEmpleadoObjectInscriptos;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public List<EmpleadoObject> getListaEmpleadoInscriptos() {
+        return listaEmpleadoInscriptos;
+    }
+
+    public void setListaEmpleadoInscriptos(List<EmpleadoObject> listaEmpleadoInscriptos) {
+        this.listaEmpleadoInscriptos = listaEmpleadoInscriptos;
     }
 
     public boolean isConCupos() {
@@ -111,5 +109,13 @@ public class Actividades {
 
     public void setReservable(boolean reservable) {
         this.reservable = reservable;
+    }
+
+    public CentrosDeportivos getCentroDeportivo() {
+        return centroDeportivo;
+    }
+
+    public void setCentroDeportivo(CentrosDeportivos centroDeportivo) {
+        this.centroDeportivo = centroDeportivo;
     }
 }
