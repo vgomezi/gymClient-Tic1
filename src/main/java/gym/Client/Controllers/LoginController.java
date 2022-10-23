@@ -183,7 +183,7 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/gym/Client/Error.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/Error.fxml"));
 
                                     Stage stage = new Stage();
 
@@ -205,6 +205,24 @@ public class LoginController {
                 }
                 System.out.println(role);
             }catch (Exception e) {
+                try {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/Error.fxml"));
+
+                    Stage stage = new Stage();
+
+                    stage.initModality(Modality.APPLICATION_MODAL);
+
+                    stage.setTitle("Error");
+                    stage.getIcons().add(new Image("GymIcon.png"));
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+
+                } catch (Exception ex) {
+                    System.out.println(ex.toString());
+                    System.out.println("Error");
+                }
             }
 
         } else {
