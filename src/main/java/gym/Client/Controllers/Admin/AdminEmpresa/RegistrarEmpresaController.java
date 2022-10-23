@@ -6,6 +6,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import gym.Client.Classes.EmpresaObject;
+import gym.Client.Classes.UserLoginObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -59,23 +61,27 @@ public class RegistrarEmpresaController {
                 try {
                     ObjectMapper mapper1 = new ObjectMapper();
                     ObjectMapper mapper2 = new ObjectMapper();
+                    UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Empresa");
+                    EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, email);
                     ObjectNode rest1 = mapper1.createObjectNode();
                     ObjectNode rest2 = mapper2.createObjectNode();
-                    rest1.put("contrasena", contrasena);
-                    rest1.put("mail", email);
-                    rest1.put("tipoDeUsuario", "Empresa");
-                    rest2.put("mail", email);
-                    rest2.put("nombre", nombre);
-                    json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest1);
-                    json2 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest2);
+                    //rest1.put("contrasena", contrasena);
+                    //rest1.put("mail", email);
+                    //rest1.put("tipoDeUsuario", "Empresa");
+                    //rest2.put("mail", email);
+                    //rest2.put("nombre", nombre);
+                    json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
+                    json2 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(empresaObject);
+                    System.out.println(json1);
+                    System.out.println(json2);
                 } catch (Exception ignored) {
                 }
                 HttpResponse<JsonNode> apiResponse1 = null;
                 HttpResponse<JsonNode> apiResponse2 = null;
                 try {
                     apiResponse1 = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json1).asJson();
-                    System.out.println("Hecho login");
-                    System.out.println(json2);
+                    //System.out.println("Hecho login");
+                    //System.out.println(json2);
                     apiResponse2 = Unirest.post("http://localhost:8987/api/empresas").header("Content-Type", "application/json").body(json2).asJson();
                     System.out.println("Hecho Empresa");
 

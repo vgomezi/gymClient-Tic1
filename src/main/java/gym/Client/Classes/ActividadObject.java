@@ -24,9 +24,9 @@ public class ActividadObject {
 
     private boolean reservable;
 
-    private CentrosDeportivos centroDeportivo;
+    private CentroDeportivoObject centroDeportivo;
 
-    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String tipo, String descripcion, List<EmpleadoObject> listaEmpleadoInscriptos, boolean conCupos, int cupos, boolean reservable, CentrosDeportivos centroDeportivo) {
+    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String tipo, String descripcion, List<EmpleadoObject> listaEmpleadoInscriptos, boolean conCupos, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo) {
         this.nombre = nombre;
         this.hora = hora;
         this.dia = dia;
@@ -111,11 +111,11 @@ public class ActividadObject {
         this.reservable = reservable;
     }
 
-    public CentrosDeportivos getCentroDeportivo() {
+    public CentroDeportivoObject getCentroDeportivo() {
         return centroDeportivo;
     }
 
-    public void setCentroDeportivo(CentrosDeportivos centroDeportivo) {
+    public void setCentroDeportivo(CentroDeportivoObject centroDeportivo) {
         this.centroDeportivo = centroDeportivo;
     }
 }

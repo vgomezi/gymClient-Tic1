@@ -23,6 +23,12 @@ public class EmpresaObject {
         this.pagos = pagos;
     }
 
+    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String mail) {
+        this.userLoginReference = userLoginReference;
+        this.nombre = nombre;
+        this.mail = mail;
+    }
+
     public UserLoginObject getUserLoginReference() {
         return userLoginReference;
     }
