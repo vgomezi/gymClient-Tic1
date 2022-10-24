@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ad3636#ad3636 #ad3636#ad3636;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.ActualizarUsuarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7dced1#7dced1 #7dced1#7dced1;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.ActualizarUsuarioController">
    <children>
-      <Label fx:id="actualizarUsuarioLabel" layoutX="116.0" layoutY="25.0" text="ACTUALIZAR USUARIO">
+      <Label fx:id="actualizarUsuarioLabel" layoutX="116.0" layoutY="25.0" text="ACTUALIZAR USUARIO" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
@@ -38,7 +38,7 @@
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="emailLabel" text="Email:">
+            <Label fx:id="emailLabel" text="Email:" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -49,17 +49,17 @@
             <TextField fx:id="apellidoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="telefonoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-            <Label fx:id="nombreLabel" text="Nombre:" GridPane.rowIndex="1">
+            <Label fx:id="nombreLabel" text="Nombre:" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="apellidoLabel" text="Apellido:" GridPane.rowIndex="2">
+            <Label fx:id="apellidoLabel" text="Apellido:" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="telefonoLabel" text="Teléfono:" GridPane.rowIndex="3">
+            <Label fx:id="telefonoLabel" text="Teléfono:" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>

@@ -12,17 +12,22 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="darseBajaBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="106.0" onAction="#onDarseBajaButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #ed74cb#ed74cb #ed74cb#ed74cb;" text="DARSE DE BAJA">
+      <Button fx:id="darseBajaBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="112.0" onAction="#onDarseBajaButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #ff7ae1#ff7ae1 #ff7ae1#ff7ae1 #ff7ae1#ff7ae1 #ff7ae1#ff7ae1;" text="DARSE DE BAJA">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bajarseActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="153.0" layoutY="190.0" onAction="#onBajarseActividadButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #9d58b8#9d58b8#9d58b8#9d58b8;" text="BAJARSE DE ACTIVIDAD">
+      <Button fx:id="bajarseActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="178.0" onAction="#onBajarseActividadButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #9d58b8#9d58b8#9d58b8#9d58b8;" text="BAJARSE DE ACTIVIDAD">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="tipoActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="276.0" onAction="#onTipoActividadButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #dad7db#dad7db #dad7db#dad7db;" text="TIPO ACTIVIDAD">
+      <Button fx:id="tipoActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="309.0" onAction="#onTipoActividadButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #dad7db#dad7db #dad7db#dad7db;" text="TIPO ACTIVIDAD">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="verSaldoDisponibleBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="244.0" onAction="#onVerSaldoDisponibleClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #eb68f2#eb68f2;" text="VER SALDO DISPONIBLE">
          <font>
             <Font size="24.0" />
          </font>

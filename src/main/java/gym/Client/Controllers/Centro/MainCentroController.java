@@ -106,7 +106,7 @@ public class MainCentroController {
     @FXML
     protected void onRegistrarIngresoUsuarioButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/RegistroIngresoUsuario.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/RegistrarIngresoUsuario.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Registrar Ingreso de Usuario");

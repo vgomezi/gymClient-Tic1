@@ -12,22 +12,27 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="crearUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="110.0" onAction="#onCrearUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #f9e46e#f9e46e;" text="CREAR USUARIO">
+      <Button fx:id="crearUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="92.0" onAction="#onCrearUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #5adb86#5adb86;" text="CREAR USUARIO" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="actualizarUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="247.0" onAction="#onActualizarUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #ad3636#ad3636;" text="ACTUALIZAR USUAIRO">
+      <Button fx:id="actualizarUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="219.0" onAction="#onActualizarUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #7dced1#7dced1;" text="ACTUALIZAR USUARIO" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="eliminarUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="315.0" onAction="#onEliminarUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #9e640d#9e640d;" text="ELIMINAR USUARIO">
+      <Button fx:id="eliminarUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="341.0" onAction="#onEliminarUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #2d2994#2d2994;" text="ELIMINAR USUARIO" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="buscarUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="178.0" onAction="#onActualizarUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #d47e06#d47e06;" text="BUSCAR USUAIRO">
+      <Button fx:id="buscarUsuarioBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="155.0" onAction="#onBuscarUsuarioButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #268045#268045;" text="BUSCAR USUAIRO" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="verSaldosBoton" alignment="CENTER" contentDisplay="TOP" layoutX="152.0" layoutY="282.0" onAction="#onVerSaldosButtonClick" prefHeight="45.0" prefWidth="296.0" style="-fx-background-color: #6b75ff#6b75ff;" text="VER SALDOS" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

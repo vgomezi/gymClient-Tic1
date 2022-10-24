@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #965a06#965a06 #965a06#965a06;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.RegistroIngresoUsuairoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #965a06#965a06 #965a06#965a06;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.RegistrarIngresoUsuairoController">
    <children>
-      <Label fx:id="registroIngresoUsuarioLabel" layoutX="35.0" layoutY="26.0" text="REGISTRO INGRESO DE USUARIO">
+      <Label fx:id="registroIngresoUsuarioLabel" layoutX="52.0" layoutY="26.0" text="REGISTRAR INGRESO USUARIO">
          <font>
             <Font size="36.0" />
          </font>

@@ -23,13 +23,14 @@ public class MainEmpresaController {
     @FXML
     private Button crearUsuarioBoton;
 
-
     @FXML
     private Button buscarUsuarioBoton;
 
-
     @FXML
     private Button actualizarUsuarioBoton;
+
+    @FXML
+    private Button verSaldosBoton;
 
     @FXML
     private Button eliminarUsuarioBoton;
@@ -42,17 +43,17 @@ public class MainEmpresaController {
         this.usuarioEmpresaMain = usuarioEmpresaMain;
     }
 
+
     @FXML
     protected void onCrearUsuarioButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/CrearUsuario.fxml"));
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
             CrearUsuarioController crearUsuarioController = fxmlLoader.getController();
             crearUsuarioController.setUsuarioEmpresaCrearUsuario(usuarioEmpresaMain);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Crear Usuario");
             stage.setScene(new Scene(root1));
@@ -108,6 +109,25 @@ public class MainEmpresaController {
     }
 
     @FXML
+    protected void onVerSaldosButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/VerSaldos.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Ver Saldos");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
     protected void onEliminarUsuarioButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -125,6 +145,7 @@ public class MainEmpresaController {
             //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
 
 }

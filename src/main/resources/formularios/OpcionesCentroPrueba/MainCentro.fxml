@@ -22,7 +22,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="eliminarActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="121.0" layoutY="278.0" onAction="#onEliminarActividadButtonClick" prefHeight="45.0" prefWidth="365.0" style="-fx-background-color: #965a06#965a06;" text="ELIMINAR ACTIVIDAD">
+      <Button fx:id="eliminarActividadBoton" alignment="CENTER" contentDisplay="TOP" layoutX="121.0" layoutY="278.0" onAction="#onEliminarActividadButtonClick" prefHeight="45.0" prefWidth="365.0" style="-fx-background-color: #f05c1d#f05c1d;" text="ELIMINAR ACTIVIDAD">
          <font>
             <Font size="24.0" />
          </font>
@@ -32,7 +32,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="registrarIngresoUsuairo" alignment="CENTER" contentDisplay="TOP" layoutX="121.0" layoutY="338.0" onAction="#onRegistrarIngresoUsuarioButtonClick" prefHeight="45.0" prefWidth="365.0" style="-fx-background-color: #f9e46e#f9e46e;" text="REGISTRAR INGRESO USUARIO">
+      <Button fx:id="registrarIngresoUsuairo" alignment="CENTER" contentDisplay="TOP" layoutX="121.0" layoutY="341.0" onAction="#onRegistrarIngresoUsuarioButtonClick" prefHeight="45.0" prefWidth="365.0" style="-fx-background-color: #965a06#965a06 #965a06#965a06;" text="REGISTRAR INGRESO USUARIO">
          <font>
             <Font size="24.0" />
          </font>

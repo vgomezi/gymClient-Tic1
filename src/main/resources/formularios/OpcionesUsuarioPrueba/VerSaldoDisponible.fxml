@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #eb68f2#eb68f2 #eb68f2#eb68f2;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.VerSaldoDisponibleController">
+   <children>
+      <Label fx:id="verSaldoDisponibleLabel" layoutX="106.0" layoutY="25.0" text="VER SALDO DISPONIBLE">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="volverBoton" alignment="CENTER" contentDisplay="TOP" layoutX="236.0" layoutY="317.0" onAction="#onVolverButtonClick" prefHeight="44.0" prefWidth="129.0" text="Volver!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Label fx:id="saldoDisponibleLabel" layoutX="184.0" layoutY="186.0" prefHeight="29.0" prefWidth="233.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
