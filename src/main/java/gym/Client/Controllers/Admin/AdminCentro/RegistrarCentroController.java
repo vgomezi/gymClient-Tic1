@@ -70,7 +70,7 @@ public class RegistrarCentroController {
                     UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Centro Deportivo");
                     CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email);
                     json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
-                    json2 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(centroDeportivoObject);
+                    json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(centroDeportivoObject);
                     System.out.println(json);
                 } catch (Exception ignored) {
                 }

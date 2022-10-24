@@ -9,27 +9,27 @@ public class EmpresaObject {
 
     private String nombre;
 
-    private String mail;
-
     private String bono;
+
+    private String mail;
 
     private List<EmpleadoObject> listaEmpleados;
 
     private List<PagoObject> pagos;
 
-    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String mail, String bono, List<EmpleadoObject> listaEmpleados, List<PagoObject> pagos) {
+    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String bono, String mail, List<EmpleadoObject> listaEmpleados, List<PagoObject> pagos) {
         this.userLoginReference = userLoginReference;
         this.nombre = nombre;
-        this.mail = mail;
         this.bono = bono;
+        this.mail = mail;
         this.listaEmpleados = listaEmpleados;
         this.pagos = pagos;
-
     }
 
-    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String mail) {
+    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String bono, String mail) {
         this.userLoginReference = userLoginReference;
         this.nombre = nombre;
+        this.bono = bono;
         this.mail = mail;
     }
 
@@ -49,6 +49,10 @@ public class EmpresaObject {
         this.nombre = nombre;
     }
 
+    public String getBono() {return bono;}
+
+    public void setBono(String bono) {this.bono = bono;}
+
     public String getMail() {
         return mail;
     }
@@ -56,10 +60,6 @@ public class EmpresaObject {
     public void setMail(String mail) {
         this.mail = mail;
     }
-
-    public String getBono() {return bono;}
-
-    public void setBono(String bono) {this.bono = bono;}
 
     public List<EmpleadoObject> getListaEmpleados() {
         return listaEmpleados;

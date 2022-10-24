@@ -45,6 +45,10 @@ public class MainEmpresaController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/CrearUsuario.fxml"));
+
+            CrearUsuarioController crearUsuarioController = fxmlLoader.getController();
+            crearUsuarioController.setUsuarioEmpresaCrearUsuario(usuarioEmpresaMain);
+
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);

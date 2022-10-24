@@ -6,6 +6,9 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import gym.Client.Classes.EmpleadoObject;
+import gym.Client.Classes.EmpresaObject;
+import gym.Client.Classes.UserLoginObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -23,6 +26,7 @@ import javafx.scene.control.TextField;
 @Component
 public class CrearUsuarioController {
 
+    private String usuarioEmpresaCrearUsuario;
 
     @FXML
     private Label emailLabel;
@@ -60,15 +64,62 @@ public class CrearUsuarioController {
     @FXML
     private Button cancelarBoton;
 
+    public String getUsuarioEmpresaCrearUsuario() {
+        return usuarioEmpresaCrearUsuario;
+    }
+
+    public void setUsuarioEmpresaCrearUsuario(String usuarioEmpresaCrearUsuario) {
+        this.usuarioEmpresaCrearUsuario = usuarioEmpresaCrearUsuario;
+    }
+
     @FXML
-    protected void onCrearButtonClick() {
+    protected void onCrearButtonClick(ActionEvent event) {
+        System.out.println(usuarioEmpresaCrearUsuario);
         String nombre = nombreText.getText();
         String apellido = apellidoText.getText();
-        String mail = emailText.getText();
+        String email = emailText.getText();
         String telefono = telefonoText.getText();
         String contrasena = contrasenaText.getText();
 
-        if (!nombre.isEmpty() && !mail.isEmpty() && !contrasena.isEmpty()) {
+        if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
+
+            try {
+                String json = "";
+                String json2 = "";
+
+                try {
+                    ObjectMapper mapper = new ObjectMapper();
+                    ObjectMapper mapper2 = new ObjectMapper();
+                    UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Usuario");
+                    //Cambiar definiciones obteniendo la empresa y sus datos
+                    EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, null,0,0 , 0);
+                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
+                    json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empleadoObject);
+                    System.out.println(json);
+                } catch (Exception ignored) {
+                }
+                HttpResponse<JsonNode> apiResponse = null;
+                apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
+                apiResponse = Unirest.post("http://localhost:8987/api/empresas").header("Content-Type", "application/json").body(json2).asJson();
+                System.out.println("Hecho Empresa");
+
+                System.out.println("Hecho");
+                nombreText.clear();
+                apellidoText.clear();
+                emailText.clear();
+                telefonoText.clear();
+                contrasenaText.clear();
+                Node source = (Node) event.getSource();
+                Stage stage = (Stage) source.getScene().getWindow();
+                stage.close();
+
+            } catch (Exception e) {
+                System.out.println(e.toString());
+                System.out.println("Error");
+
+            }
+
+            /*
             try {
                 String json1 = "";
                 String json2 = "";
@@ -108,7 +159,7 @@ public class CrearUsuarioController {
                 System.out.println(e.toString());
                 System.out.println("Error");
 
-            }
+            }*/
 
 
         } else {
