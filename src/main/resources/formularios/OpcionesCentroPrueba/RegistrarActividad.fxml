@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -55,7 +56,8 @@
             <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <DatePicker fx:id="diaDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="reservableText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <CheckBox fx:id="reservableCheckBox" mnemonicParsing="false" prefHeight="23.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
 
 
             <Label fx:id="nombreLabel" text="Nombre:">
@@ -89,7 +91,6 @@
                   <Font size="24.0" />
                </font>
             </Label>
-
 
          </children>
       </GridPane>
