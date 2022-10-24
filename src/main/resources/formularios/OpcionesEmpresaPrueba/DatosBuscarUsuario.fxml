@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.DatosBuscarUsuarioController">
+   <children>
+      <Label fx:id="datosUsuarioLabel" layoutX="163.0" layoutY="25.0" text="DATOS USUARIO">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="volverBoton" alignment="CENTER" contentDisplay="TOP" layoutX="236.0" layoutY="321.0" onAction="#onVolverButtonClick" prefHeight="44.0" prefWidth="129.0" text="Volver">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <GridPane alignment="CENTER" layoutX="144.0" layoutY="108.0" prefHeight="185.0" prefWidth="312.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="138.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="134.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label fx:id="emailLabel" text="Email:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+
+            <Label fx:id="nombreLabel" text="Nombre:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="apellidoLabel" text="Apellido:" GridPane.rowIndex="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="telefonoLabel" text="Teléfono:" GridPane.rowIndex="3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="emailDatoLabel" prefHeight="29.0" prefWidth="160.0" GridPane.columnIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="telefonoDatoLabel" prefHeight="29.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="nombreDatoLabel" prefHeight="29.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="apellidoDatoLabel" prefHeight="29.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

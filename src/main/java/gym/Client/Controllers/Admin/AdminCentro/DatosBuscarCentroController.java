@@ -1,4 +1,4 @@
-package gym.Client.Controllers.Empresa;
+package gym.Client.Controllers.Admin.AdminCentro;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,53 +8,45 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BuscarUsuarioController {
-
+public class DatosBuscarCentroController {
 
     @FXML
     private Label emailLabel;
 
     @FXML
-    private TextField emailText;
+    private Label emailDatoLabel;
 
     @FXML
-    private Button buscarBoton;
+    private Label nombreLabel;
 
     @FXML
-    private Button cancelarBoton;
+    private Label nombreDatoLabel;
+
 
     @FXML
-    protected void onBuscarButtonClick(ActionEvent event) {
+    private Button volverBoton;
+
+    @FXML
+    protected void onVolverButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/DatosBuscarUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(DatosBuscarCentroController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/BuscarCentro.fxml"));
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.setTitle("Datos Buscar Usuario");
+            stage.setTitle("Buscar Centro");
             stage.setScene(new Scene(root1));
             stage.show();
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
             System.out.println("Error");
-
         }
     }
-
-    @FXML
-    protected void onCancelarButtonClick(ActionEvent event) {
-        emailText.clear();
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
 
 
 }

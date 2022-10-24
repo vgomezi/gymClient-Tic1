@@ -1,5 +1,6 @@
-package gym.Client.Controllers.Empresa;
+package gym.Client.Controllers.Admin.AdminEmpresa;
 
+import gym.Client.Controllers.Empresa.MainEmpresaController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,53 +9,50 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BuscarUsuarioController {
-
+public class DatosBuscarEmpresaController {
 
     @FXML
     private Label emailLabel;
 
     @FXML
-    private TextField emailText;
+    private Label emailDatoLabel;
 
     @FXML
-    private Button buscarBoton;
+    private Label nombreLabel;
 
     @FXML
-    private Button cancelarBoton;
+    private Label nombreDatoLabel;
 
     @FXML
-    protected void onBuscarButtonClick(ActionEvent event) {
+    private Label bonoLabel;
+
+    @FXML
+    private Label bonoDatoLabel;
+
+    @FXML
+    private Button volverBoton;
+
+    @FXML
+    protected void onVolverButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/DatosBuscarUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(DatosBuscarEmpresaController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/BuscarEmpresa.fxml"));
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.setTitle("Datos Buscar Usuario");
+            stage.setTitle("Buscar Empresa");
             stage.setScene(new Scene(root1));
             stage.show();
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
             System.out.println("Error");
-
         }
     }
-
-    @FXML
-    protected void onCancelarButtonClick(ActionEvent event) {
-        emailText.clear();
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
 
 
 }
