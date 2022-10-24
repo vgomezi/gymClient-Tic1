@@ -53,7 +53,7 @@ public class RegistrarActividadController {
     private Label diaLabel;
 
     @FXML
-    private DatePicker diaText;
+    private TextField diaText;
 
     @FXML
     private Label reservableLabel;
@@ -79,9 +79,8 @@ public class RegistrarActividadController {
         String tipo = tipoChoiceBox.toString();
         String descripcion = descripcionText.getText();
         String hora = horaText.getText();
-
-        //Arreglar porque no toma el dia
-        String dia = diaText.toString();
+        String dia = diaText.getText();
+        //ver lo de datepicker
         String cupos = cuposText.getText();
         Boolean reservable = reservableCheckBox.isSelected();
 
@@ -149,6 +148,7 @@ public class RegistrarActividadController {
         nombreText.clear();
         descripcionText.clear();
         horaText.clear();
+        diaText.clear();
         //borrar dia seleccionado
         //borrar seleccion checkbox
         cuposText.clear();
