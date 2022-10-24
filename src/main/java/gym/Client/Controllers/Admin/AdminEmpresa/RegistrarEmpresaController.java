@@ -39,6 +39,12 @@ public class RegistrarEmpresaController {
     private TextField emailText;
 
     @FXML
+    private Label bonoLabel;
+
+    @FXML
+    private TextField bonoText;
+
+    @FXML
     private Label contrasenaLabel;
 
     @FXML
@@ -54,6 +60,7 @@ public class RegistrarEmpresaController {
     protected void onCrearButtonClick(ActionEvent event) {
         String nombre = nombreText.getText();
         String email = emailText.getText();
+        String bono = bonoText.getText();
         String contrasena = contrasenaText.getText();
 
         if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
@@ -80,6 +87,7 @@ public class RegistrarEmpresaController {
 
                 nombreText.clear();
                 emailText.clear();
+                bonoText.clear();
                 contrasenaText.clear();
                 Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
@@ -100,6 +108,7 @@ public class RegistrarEmpresaController {
     protected void onCancelarButtonClick(ActionEvent event) {
         nombreText.clear();
         emailText.clear();
+        bonoText.clear();
         contrasenaText.clear();
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
