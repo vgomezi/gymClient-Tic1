@@ -6,6 +6,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import gym.Client.Classes.CentroDeportivoObject;
+import gym.Client.Classes.UserLoginObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -52,50 +54,45 @@ public class RegistrarCentroController {
     private Button cancelarBoton;
 
     @FXML
-    protected void onCrearButtonClick() {
+    protected void onCrearButtonClick(ActionEvent event) {
         String nombre = nombreText.getText();
         String email = emailText.getText();
         String contrasena = contrasenaText.getText();
 
         if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
             try {
-                String json1 = "";
+                String json = "";
                 String json2 = "";
 
                 try {
-                    ObjectMapper mapper1 = new ObjectMapper();
+                    ObjectMapper mapper = new ObjectMapper();
                     ObjectMapper mapper2 = new ObjectMapper();
-                    ObjectNode rest1 = mapper1.createObjectNode();
-                    ObjectNode rest2 = mapper2.createObjectNode();
-                    rest1.put("contrasena", contrasena);
-                    rest1.put("mail", email);
-                    rest1.put("tipoDeUsuario", "Centro Deportivo");
-                    rest2.put("nombre", nombre);
-                    rest2.put("mail", email);
-                    json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest1);
-                    json2 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(rest2);
+                    UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Centro Deportivo");
+                    CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email);
+                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
+                    json2 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(centroDeportivoObject);
+                    System.out.println(json);
                 } catch (Exception ignored) {
                 }
-                HttpResponse<JsonNode> apiResponse1 = null;
-                HttpResponse<JsonNode> apiResponse2 = null;
-                try {
-                    apiResponse1 = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json1).asJson();
-                    System.out.println("Hecho login");
-                    System.out.println(json2);
-                    apiResponse2 = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json2).asJson();
-                    System.out.println("Hecho centro");
+                HttpResponse<JsonNode> apiResponse = null;
+                apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
+                apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json2).asJson();
+                System.out.println("Hecho Centro Deportivo");
 
-                } catch (UnirestException el) {
-                    throw new RuntimeException(el);
-                }
                 System.out.println("Hecho");
-            }catch (Exception e) {
+
+                nombreText.clear();
+                emailText.clear();
+                contrasenaText.clear();
+                Node source = (Node) event.getSource();
+                Stage stage = (Stage) source.getScene().getWindow();
+                stage.close();
+
+            } catch (Exception e) {
                 System.out.println(e.toString());
                 System.out.println("Error");
 
             }
-
-
         } else {
             Stage window = new Stage();
 

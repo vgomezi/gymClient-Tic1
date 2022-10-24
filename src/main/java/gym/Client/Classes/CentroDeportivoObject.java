@@ -20,10 +20,18 @@ public class CentroDeportivoObject {
     public CentroDeportivoObject() {
     }
 
-    public CentroDeportivoObject(String nombre, String mail, List<ActividadObject> listaActividades) {
+    public CentroDeportivoObject(UserLoginObject userLogin, String nombre, String mail) {
+        this.userLogin = userLogin;
+        this.nombre = nombre;
+        this.mail = mail;
+    }
+
+    public CentroDeportivoObject(UserLoginObject userLogin, String nombre, String mail, List<ActividadObject> listaActividades, List<PagoObject> pagos) {
+        this.userLogin = userLogin;
         this.nombre = nombre;
         this.mail = mail;
         this.listaActividades = listaActividades;
+        this.pagos = pagos;
     }
 
     public UserLoginObject getUserLogin() {
