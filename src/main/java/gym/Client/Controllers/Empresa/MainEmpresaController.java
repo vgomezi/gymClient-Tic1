@@ -48,17 +48,11 @@ public class MainEmpresaController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/CrearUsuario.fxml"));
 
-
-//            Parent root1 = fxmlLoader.load(getClass().getResource("/formularios/OpcionesEmpresaPrueba/CrearUsuario.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 
             CrearUsuarioController crearUsuarioController = fxmlLoader.getController();
             crearUsuarioController.setUsuarioEmpresaCrearUsuario(usuarioEmpresaMain);
-
-            //Stage stage = new Stage();
-
-            //stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Crear Usuario");
             stage.setScene(new Scene(root1));
@@ -73,13 +67,12 @@ public class MainEmpresaController {
 
 
     @FXML
-    protected void onBuscarUsuarioButtonClick() {
+    protected void onBuscarUsuarioButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/BuscarUsuario.fxml"));
-            Stage stage = new Stage();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Buscar Usuario");
             stage.setScene(new Scene(root1));
@@ -99,9 +92,9 @@ public class MainEmpresaController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/ActualizarUsuario.fxml"));
-            Stage stage = new Stage();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Actualizar Usuario");
             stage.setScene(new Scene(root1));
@@ -119,9 +112,8 @@ public class MainEmpresaController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/EliminarUsuario.fxml"));
-            Stage stage = new Stage();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Eliminar Usuario");
             stage.setScene(new Scene(root1));
