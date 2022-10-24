@@ -53,7 +53,7 @@ public class RegistrarActividadController {
     private Label diaLabel;
 
     @FXML
-    private TextField diaText;
+    private DatePicker diaTextPicker;
 
     @FXML
     private Label reservableLabel;
@@ -79,15 +79,16 @@ public class RegistrarActividadController {
         String tipo = tipoChoiceBox.toString();
         String descripcion = descripcionText.getText();
         String hora = horaText.getText();
-        String dia = diaText.getText();
-        //ver lo de datepicker
+
+        //Arreglar porque no toma el dia
+        String dia = diaTextPicker.getValue().toString();
         String cupos = cuposText.getText();
         Boolean reservable = reservableCheckBox.isSelected();
 
         if (!nombre.isEmpty() && !tipo.isEmpty() && !descripcion.isEmpty() && !hora.isEmpty() && !dia.isEmpty() && !cupos.isEmpty()) {
             try {
                 LocalTime timeLT = LocalTime.parse(hora);
-                LocalDate diaLD = LocalDate.parse(dia);
+                LocalDate dateDT = LocalDate.parse(dia);
                 Integer cuposInt = Integer.parseInt(cupos);
 
 
@@ -105,13 +106,15 @@ public class RegistrarActividadController {
                     if (!jsonCentro.isBlank()) {
                         ObjectMapper mapper = new ObjectMapper();
                         centroDeportivo = mapper.readValue(apiResponse.getBody(), CentroDeportivoObject.class);
+                        System.out.println("centro mapper Hecho ");
                     }
 
                     ObjectMapper mapper = new ObjectMapper();
-                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, diaLD, tipo, descripcion, cuposInt, reservable, centroDeportivo);
-                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(actividadObject);
+                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, tipo, descripcion, cuposInt, reservable, centroDeportivo);
+                    json = mapper.writeValueAsString(actividadObject);
                     System.out.println(json);
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    System.out.println("Error " + e);
                 }
                 HttpResponse<JsonNode> apiResponse = null;
                 apiResponse = Unirest.post("http://localhost:8987/api/actividades").header("Content-Type", "application/json").body(json).asJson();
@@ -148,7 +151,6 @@ public class RegistrarActividadController {
         nombreText.clear();
         descripcionText.clear();
         horaText.clear();
-        diaText.clear();
         //borrar dia seleccionado
         //borrar seleccion checkbox
         cuposText.clear();
