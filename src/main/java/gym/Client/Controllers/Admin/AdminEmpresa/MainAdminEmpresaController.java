@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MainAdminEmpresaController {
 
+    public String usuarioAdminEmpresaMain;
+
     @FXML
     private Button registrarEmpresaBoton;
 
@@ -28,9 +30,18 @@ public class MainAdminEmpresaController {
     @FXML
     private Button buscarEmpresaBoton;
 
+    public String getUsuarioAdminEmpresaMain() {
+        return usuarioAdminEmpresaMain;
+    }
+
+    public void setUsuarioAdminEmpresaMain(String usuarioAdminEmpresaMain) {
+        this.usuarioAdminEmpresaMain = usuarioAdminEmpresaMain;
+    }
+
     @FXML
     protected void onRegistrarEmpresaButtonClick(ActionEvent event) {
         try {
+            System.out.println(usuarioAdminEmpresaMain);
             Parent root = FXMLLoader.load(getClass().getResource("/formularios/OpcionesAdministrador/AdminEmpresa/RegistrarEmpresa.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

@@ -3,6 +3,7 @@ package gym.Client.Controllers;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Controllers.Admin.MainAdminController;
+import gym.Client.Controllers.Empresa.MainEmpresaController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -121,6 +122,9 @@ public class LoginController {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
                                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/MainEmpresa.fxml"));
+
+                                    MainEmpresaController mainEmpresaController = fxmlLoader.getController();
+                                    mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);
 
                                     Stage stage = new Stage();
 
@@ -259,26 +263,6 @@ public class LoginController {
             emailText.clear();
             contrasenaText.clear();
             errorLabel.setText("Datos ingresados incorrectamente");
-
-            /*try {
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/Error.fxml"));
-
-                Stage stage = new Stage();
-
-                stage.initModality(Modality.APPLICATION_MODAL);
-
-                stage.setTitle("Error");
-                stage.getIcons().add(new Image("GymIcon.png"));
-                stage.setScene(new Scene(root1));
-                stage.show();
-
-            } catch (Exception ex) {
-                System.out.println(ex.toString());
-                System.out.println("Error formulario");
-            }*/
-
         }
     }
 

@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 @Controller
 public class MainEmpresaController {
 
+    public String usuarioEmpresaMain;
 
     @FXML
     private Button crearUsuarioBoton;
@@ -30,6 +31,14 @@ public class MainEmpresaController {
 
     @FXML
     private Button eliminarUsuarioBoton;
+
+    public String getUsuarioEmpresaMain() {
+        return usuarioEmpresaMain;
+    }
+
+    public void setUsuarioEmpresaMain(String usuarioEmpresaMain) {
+        this.usuarioEmpresaMain = usuarioEmpresaMain;
+    }
 
     @FXML
     protected void onCrearUsuarioButtonClick() {
