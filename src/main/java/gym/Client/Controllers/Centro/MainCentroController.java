@@ -1,5 +1,6 @@
 package gym.Client.Controllers.Centro;
 
+import gym.Client.Controllers.Empresa.MainEmpresaController;
 import gym.Client.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.control.TextField;
 @Component
 public class MainCentroController {
 
+    private String usuarioMainCentro;
 
     @FXML
     private Button registrarIngresoUsuarioBoton;
@@ -55,7 +57,12 @@ public class MainCentroController {
     @FXML
     protected void onRegistrarActividadButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/RegistrarActividad.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesCentroPrueba/RegistrarActividad.fxml"));
+
+            RegistrarActividadController registrarActividadController = fxmlLoader.getController();
+            registrarActividadController.setUsuarioCentroRegistrarActividad(usuarioMainCentro);
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Registrar Actividad");
@@ -120,5 +127,11 @@ public class MainCentroController {
         }
     }
 
+    public String getUsuarioMainCentro() {
+        return usuarioMainCentro;
+    }
 
+    public void setUsuarioMainCentro(String usuarioMainCentro) {
+        this.usuarioMainCentro = usuarioMainCentro;
+    }
 }

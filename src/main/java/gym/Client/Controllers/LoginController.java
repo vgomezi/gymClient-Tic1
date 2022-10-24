@@ -3,6 +3,7 @@ package gym.Client.Controllers;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Controllers.Admin.MainAdminController;
+import gym.Client.Controllers.Centro.MainCentroController;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -158,6 +159,9 @@ public class LoginController {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
                                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentroPrueba/MainCentro.fxml"));
+
+                                    MainCentroController mainCentroController = fxmlLoader.getController();
+                                    mainCentroController.setUsuarioMainCentro(correoElectronico);
 
                                     Stage stage = new Stage();
 
