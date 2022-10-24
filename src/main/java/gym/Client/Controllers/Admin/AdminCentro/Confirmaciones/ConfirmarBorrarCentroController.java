@@ -1,6 +1,7 @@
 package gym.Client.Controllers.Admin.AdminCentro.Confirmaciones;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +16,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ConfirmarBorrarCentroController {
 
-    public String usuarioAdminConfirmar;
+    public String usuarioAdminConfirmarBorrar;
+
+    public String correoCentro;
+
     @FXML
     public Button confirmarBoton;
 
@@ -39,9 +43,9 @@ public class ConfirmarBorrarCentroController {
     protected void onConfirmarButtonClick() {
         String contrasenaAdmin = contrasenaAdminText.getText();
         String contrasenaCorrecta = "false";
-        System.out.println(usuarioAdminConfirmar);
+        System.out.println(usuarioAdminConfirmarBorrar);
         try {
-            HttpResponse<String> apiResponseP = Unirest.get("http://localhost:8987/api/login/password/" + usuarioAdminConfirmar + "/" + contrasenaAdmin).asString();
+            HttpResponse<String> apiResponseP = Unirest.get("http://localhost:8987/api/login/password/" + usuarioAdminConfirmarBorrar + "/" + contrasenaAdmin).asString();
             contrasenaCorrecta = apiResponseP.getBody();
             System.out.println(contrasenaCorrecta);
             System.out.println("Contraseña admin confirmarbuttonclick");;
@@ -54,6 +58,24 @@ public class ConfirmarBorrarCentroController {
             errorLabel.setText("Contraseña incorrecta");
         } else {
             if (contrasenaCorrecta.equals("true")) {
+                try {
+                    HttpResponse<JsonNode> apiResponse = null;
+
+                    apiResponse = Unirest.delete("http://localhost:8987/api/centroDeportivo//delete/" + correoCentro).asJson();
+                    //centro = apiResponse.getBody().toString();
+
+                    System.out.println("Centro borrado");
+                } catch (Exception e) {
+                    System.out.println("Error borrar Centro Deportivo");
+
+                }
+
+
+
+
+
+
+
                 System.out.println("Se borrará el centro");
             } else {
                 System.out.println("Error contraseña admin");
@@ -69,16 +91,21 @@ public class ConfirmarBorrarCentroController {
         stage.close();
     }
 
-    public String getUsuarioAdminConfirmar() {
-        return usuarioAdminConfirmar;
+    public String getUsuarioAdminConfirmarBorrar() {
+        return usuarioAdminConfirmarBorrar;
     }
 
-    public void setUsuarioAdminConfirmar(String usuarioAdminConfirmar) {
-        this.usuarioAdminConfirmar = usuarioAdminConfirmar;
+    public void setUsuarioAdminConfirmarBorrar(String usuarioAdminConfirmarBorrar) {
+        this.usuarioAdminConfirmarBorrar = usuarioAdminConfirmarBorrar;
     }
 
+    public String getCorreoCentro() {
+        return correoCentro;
+    }
 
-
+    public void setCorreoCentro(String correoCentro) {
+        this.correoCentro = correoCentro;
+    }
 }
 
 

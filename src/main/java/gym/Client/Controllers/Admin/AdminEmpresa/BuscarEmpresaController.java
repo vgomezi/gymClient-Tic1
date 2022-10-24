@@ -1,9 +1,12 @@
 package gym.Client.Controllers.Admin.AdminEmpresa;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import gym.Client.Classes.CentroDeportivoObject;
+import gym.Client.Classes.EmpresaObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -34,14 +37,29 @@ public class BuscarEmpresaController {
         String correo = emailText.getText();
         String empresa  = "";
         try {
-            HttpResponse<JsonNode> apiResponse = null;
+            HttpResponse<String> apiResponse = null;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correo).asJson();
-            empresa = apiResponse.getBody().toString();
+            apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correo).asObject(String.class);
+            empresa = apiResponse.getBody();
             System.out.println(empresa);
 
-        } catch (UnirestException e) {
-            throw new RuntimeException(e);
+            if (!empresa.isBlank()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if");
+
+                System.out.println("Json hecho");
+
+                EmpresaObject empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
+
+                //System.out.println(centroDeportivo.toString());
+                System.out.println(empresaObject.getNombre());
+                System.out.println(empresaObject.getBono());
+            } else {
+                System.out.println("centro " + correo + " no existe");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error " + e);
         }
     }
 

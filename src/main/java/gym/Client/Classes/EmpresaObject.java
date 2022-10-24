@@ -17,6 +17,9 @@ public class EmpresaObject {
 
     private List<PagoObject> pagos;
 
+    public EmpresaObject() {
+    }
+
     public EmpresaObject(UserLoginObject userLoginReference, String nombre, String bono, String mail, List<EmpleadoObject> listaEmpleados, List<PagoObject> pagos) {
         this.userLoginReference = userLoginReference;
         this.nombre = nombre;

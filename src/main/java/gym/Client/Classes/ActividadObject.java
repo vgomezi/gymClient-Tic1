@@ -26,6 +26,9 @@ public class ActividadObject {
 
     private CentroDeportivoObject centroDeportivo;
 
+    public ActividadObject() {
+    }
+
     public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String tipo, String descripcion, List<EmpleadoObject> listaEmpleadoInscriptos, boolean conCupos, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo) {
         this.nombre = nombre;
         this.hora = hora;

@@ -73,4 +73,15 @@ public class CentroDeportivoObject {
     public void setPagos(List<PagoObject> pagos) {
         this.pagos = pagos;
     }
+
+    @Override
+    public String toString() {
+        return "CentroDeportivoObject{" +
+                "userLogin=" + userLogin +
+                ", nombre='" + nombre + '\'' +
+                ", mail='" + mail + '\'' +
+                ", listaActividades=" + listaActividades +
+                ", pagos=" + pagos +
+                '}';
+    }
 }

@@ -68,7 +68,8 @@ public class EliminarCentroController {
                 Parent root1 = (Parent) fxmlLoader.load(ConfirmarBorrarCentroController.class.getResourceAsStream("/gym/Client/ConfirmarBorrarCentro.fxml"));
 
                 ConfirmarBorrarCentroController confirmarBorrarCentroController = fxmlLoader.getController();
-                confirmarBorrarCentroController.setUsuarioAdminConfirmar(this.usuarioAdminCentroEliminar);
+                confirmarBorrarCentroController.setUsuarioAdminConfirmarBorrar(this.usuarioAdminCentroEliminar);
+                confirmarBorrarCentroController.setCorreoCentro(email);
                 confirmarBorrarCentroController.displayNombreCentro(nombreCentro);
 
                 Stage stage = new Stage();
