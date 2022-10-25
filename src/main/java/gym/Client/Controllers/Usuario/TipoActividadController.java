@@ -37,9 +37,6 @@ public class TipoActividadController {
             //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
             Parent root1 = (Parent) fxmlLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/Canchas.fxml"));
 
-            CanchasController canchasController = fxmlLoader.getController();
-            //canchasController.initialize();
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Canchas");

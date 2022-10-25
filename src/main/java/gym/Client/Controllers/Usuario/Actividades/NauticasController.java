@@ -1,5 +1,11 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.TipoActivitidad.Nauticas;
 import gym.Client.Main;
@@ -27,11 +33,32 @@ public class NauticasController implements Initializable {
 
     private List<ActividadObject> listaNauticas;
 
+    @FXML
     public GridPane anchorPaneScroll;
 
     private List<ActividadObject> getDatos() {
-        return null;
-        //crear objeto falsos?
+        List<ActividadObject> listaActividades = new ArrayList<>();
+        ActividadObject actividadObject;
+
+        for(int i = 0; i<20; i++) {
+
+        }
+        String actividad = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/allActividades/").asObject(String.class);
+            String json = apiResponse.getBody().toString();
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+
+            System.out.println(actividad);
+            System.out.println("Lista actividades CanchasController " + listaActividades);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaActividades;
     }
 
     @FXML
@@ -48,8 +75,9 @@ public class NauticasController implements Initializable {
             for (int i = 0; i < listaNauticas.size(); i++) {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                AnchorPane anchorPane = fxmlLoader.load(GimnasioSalaController.class.getResourceAsStream("/formularios/OpcionesUsuario/Actividades/ActividadesPane.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadesPane.fxml"));
+
+                AnchorPane anchorPane = fxmlLoader.load();
 
                 ActividadesPaneController activityPane = fxmlLoader.getController();
 

@@ -68,7 +68,6 @@ public class CanchasController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //listaActividades = new ArrayList<>();
         listaActividades.addAll(getDatos());
         System.out.println("entro initialize canchas");
 

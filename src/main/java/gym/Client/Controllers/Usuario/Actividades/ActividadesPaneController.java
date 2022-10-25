@@ -96,7 +96,7 @@ public class ActividadesPaneController {
 
     private ActividadObject gimnasioSalaSeleccionada;
 
-    public void datosGimnaisioSala(ActividadObject actividadObject){
+    public void datosGimnasioSala(ActividadObject actividadObject){
         this.gimnasioSalaSeleccionada = actividadObject;
 
         Image image = new Image("@/centro.jpg");
