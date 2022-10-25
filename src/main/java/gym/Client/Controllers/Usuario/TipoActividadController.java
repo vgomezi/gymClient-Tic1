@@ -34,8 +34,8 @@ public class TipoActividadController {
     protected void onCanchasButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-            Parent root1 = (Parent) fxmlLoader.load(TipoActividadController.class.getResourceAsStream("/formularios/OpcionesUsuario/Actividades/Canchas.fxml"));
+            //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+            Parent root1 = (Parent) fxmlLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/Canchas.fxml"));
 
             CanchasController canchasController = fxmlLoader.getController();
             //canchasController.initialize();

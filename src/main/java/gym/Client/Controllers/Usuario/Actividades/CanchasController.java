@@ -56,11 +56,11 @@ public class CanchasController implements Initializable {
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
             System.out.println(actividad);
-            System.out.println(listaActividades);
+            System.out.println("Lista actividades CanchasController " + listaActividades);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        return null;
+        return listaActividades;
 
     }
 
@@ -68,21 +68,25 @@ public class CanchasController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listaActividades = new ArrayList<>();
+        //listaActividades = new ArrayList<>();
         listaActividades.addAll(getDatos());
         System.out.println("entro initialize canchas");
 
         int row = 0;
         try{
             for (int i =0; i <listaActividades.size(); i++){
-
+                System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                AnchorPane anchorPane = fxmlLoader.load(CanchasController.class.getResourceAsStream("/formularios/OpcionesUsuario/Actividades/ActividadesPane.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadesPane.fxml"));
+                System.out.println("Carga FXMLLoader");
 
+                AnchorPane anchorPane = fxmlLoader.load();
+                System.out.println("Anchor pane ");
                 ActividadesPaneController activityPane = fxmlLoader.getController();
+                System.out.println("Activity pane controller");
 
                 activityPane.datosCancha(listaActividades.get(i));
+                System.out.println("Datos cancha activitypane");
 
                 anchorPaneScroll.add(anchorPane, 0, row++);
 

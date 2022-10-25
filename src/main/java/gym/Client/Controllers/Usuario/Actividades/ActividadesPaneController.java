@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class ActividadesPaneController implements Initializable {
+public class ActividadesPaneController {
 
 
     @FXML
@@ -48,18 +48,12 @@ public class ActividadesPaneController implements Initializable {
         //hacer que reserve la actividad el usuairo
     }
 
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
     private ActividadObject actividad;
 
     public void datosCancha(ActividadObject actividadObject){
-        actividad = actividadObject;
+        this.actividad = actividadObject;
 
-        Image image = new Image("@/centro.jpg");
+        Image image = new Image("/centro.jpg");
         //como converitr imagen y pasarlo desde base de datos
 
         imageView.setImage(image);
@@ -77,50 +71,50 @@ public class ActividadesPaneController implements Initializable {
         horaLabel.setText("Hora de actividad: " + actividad.getHora().toString());
     }
 
-    private Nauticas nauticaSeleccionada;
+    private ActividadObject nauticaSeleccionada;
 
-    public void datosNautica(Nauticas nautica){
-        nauticaSeleccionada = nautica;
+    public void datosNautica(ActividadObject actividadObject){
+        this.nauticaSeleccionada = actividadObject;
 
         Image image = new Image("@/centro.jpg");
         //como converitr imagen y pasarlo desde base de datos
 
         imageView.setImage(image);
 
-        nombreLabel.setText(nautica.getNombre());
+        nombreLabel.setText(actividadObject.getNombre());
 
-        descripcionLabel.setText(nautica.getDescripcion());
+        descripcionLabel.setText(actividadObject.getDescripcion());
 
-        precioLabel.setText(nautica.getPrecio().toString());
+        precioLabel.setText(String.valueOf(actividadObject.getCosto()));
 
-        capacidadLabel.setText(nautica.getCapacidad().toString());
+        capacidadLabel.setText(String.valueOf(actividadObject.getCupos()));
 
-        diaLabel.setText("Día de actividad: " + nautica.getDia());
+        diaLabel.setText("Día de actividad: " + actividadObject.getDia().toString());
 
-        horaLabel.setText("Hora de actividad: " + nautica.getHora());
+        horaLabel.setText("Hora de actividad: " + actividadObject.getHora().toString());
     }
 
-    private GimnasioSala gimnasioSalaSeleccionada;
+    private ActividadObject gimnasioSalaSeleccionada;
 
-    public void datosGimnaisioSala(GimnasioSala gimnasioSala){
-        gimnasioSalaSeleccionada = gimnasioSala;
+    public void datosGimnaisioSala(ActividadObject actividadObject){
+        this.gimnasioSalaSeleccionada = actividadObject;
 
         Image image = new Image("@/centro.jpg");
         //como converitr imagen y pasarlo desde base de datos
 
         imageView.setImage(image);
 
-        nombreLabel.setText(gimnasioSala.getNombre());
+        nombreLabel.setText(actividadObject.getNombre());
 
-        descripcionLabel.setText(gimnasioSala.getDescripcion());
+        descripcionLabel.setText(actividadObject.getDescripcion());
 
-        precioLabel.setText(gimnasioSala.getPrecio().toString());
+        precioLabel.setText(String.valueOf(actividadObject.getCosto()));
 
-        capacidadLabel.setText(gimnasioSala.getCapacidad().toString());
+        capacidadLabel.setText(String.valueOf(actividadObject.getCupos()));
 
-        diaLabel.setText("Día de actividad: " + gimnasioSala.getDia());
+        diaLabel.setText("Día de actividad: " + actividadObject.getDia());
 
-        horaLabel.setText("Hora de actividad: " + gimnasioSala.getHora());
+        horaLabel.setText("Hora de actividad: " + actividadObject.getHora());
     }
 
 

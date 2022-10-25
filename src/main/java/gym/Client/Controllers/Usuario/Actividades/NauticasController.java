@@ -1,5 +1,6 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
+import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.TipoActivitidad.Nauticas;
 import gym.Client.Main;
 import javafx.event.ActionEvent;
@@ -24,11 +25,11 @@ import java.util.ResourceBundle;
 public class NauticasController implements Initializable {
 
 
-    private List<Nauticas> listaNauticas;
+    private List<ActividadObject> listaNauticas;
 
     public GridPane anchorPaneScroll;
 
-    private List<Nauticas> getDatos() {
+    private List<ActividadObject> getDatos() {
         return null;
         //crear objeto falsos?
     }
