@@ -26,7 +26,6 @@ public class DatosBuscarCentroController {
     @FXML
     private Label nombreDatoLabel;
 
-
     @FXML
     private Button volverBoton;
 
@@ -48,5 +47,19 @@ public class DatosBuscarCentroController {
         }
     }
 
+    public Label getEmailDatoLabel() {
+        return emailDatoLabel;
+    }
 
+    public void setEmailDatoLabel(Label emailDatoLabel) {
+        this.emailDatoLabel = emailDatoLabel;
+    }
+
+    public Label getNombreDatoLabel() {
+        return nombreDatoLabel;
+    }
+
+    public void setNombreDatoLabel(Label nombreDatoLabel) {
+        this.nombreDatoLabel = nombreDatoLabel;
+    }
 }

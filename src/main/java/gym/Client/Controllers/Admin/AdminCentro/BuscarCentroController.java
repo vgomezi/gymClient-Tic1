@@ -8,9 +8,14 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.HttpRequest;
 import gym.Client.Classes.CentroDeportivoObject;
+import gym.Client.Controllers.Centro.RegistrarActividadController;
+import gym.Client.Controllers.Empresa.MainEmpresaController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -38,7 +43,7 @@ public class BuscarCentroController {
     private Button cancelarBoton;
 
     @FXML
-    protected void onBuscarButtonClick() throws IOException, InterruptedException {
+    protected void onBuscarButtonClick(ActionEvent event) throws IOException, InterruptedException {
 
         //Revisar que pasa si el centro no existe
 
@@ -57,11 +62,35 @@ public class BuscarCentroController {
 
                 System.out.println("Json hecho");
 
-                CentroDeportivoObject centroDeportivo = mapper.readValue(apiResponse.getBody(), CentroDeportivoObject.class);
+                CentroDeportivoObject centroDeportivoBuscado = mapper.readValue(apiResponse.getBody(), CentroDeportivoObject.class);
+                System.out.println(centroDeportivoBuscado);
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                Parent root1 = (Parent) fxmlLoader.load(BuscarCentroController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/DatosBuscarCentro.fxml"));
+
+                System.out.println("Voy a pasar datos");
+                DatosBuscarCentroController datosBuscarCentroController = fxmlLoader.getController();
+                System.out.println("Pase controller");
+                datosBuscarCentroController.getEmailDatoLabel().setText(centroDeportivoBuscado.getMail());
+                datosBuscarCentroController.getNombreDatoLabel().setText(centroDeportivoBuscado.getNombre());
+                System.out.println("Pase datos");
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                stage.setTitle("Registrar Actividad");
+                stage.setScene(new Scene(root1));
+                stage.show();
+
+
+
+
+
+
+
 
                 //System.out.println(centroDeportivo.toString());
-                System.out.println(centroDeportivo.getNombre());
-                System.out.println(centroDeportivo.getMail());
+                System.out.println(centroDeportivoBuscado.getNombre());
+                System.out.println(centroDeportivoBuscado.getMail());
             } else {
                 System.out.println("centro " + correo + " no existe");
             }
