@@ -70,6 +70,12 @@ public class RegistrarActividadController {
     private TextField cuposText;
 
     @FXML
+    private Label costoLabel;
+
+    @FXML
+    private TextField costoText;
+
+    @FXML
     private Button registrarBoton;
 
     @FXML
@@ -81,17 +87,18 @@ public class RegistrarActividadController {
         String tipo = tipoChoiceBox.toString();
         String descripcion = descripcionText.getText();
         String hora = horaText.getText();
-
-        //Arreglar porque no toma el dia
         String dia = diaTextPicker.getValue().toString();
         String cupos = cuposText.getText();
+        String costo = costoText.getText();
         Boolean reservable = reservableCheckBox.isSelected();
+        System.out.println(reservable);
 
-        if (!nombre.isEmpty() && !tipo.isEmpty() && !descripcion.isEmpty() && !hora.isEmpty() && !dia.isEmpty()) {
+        if (!nombre.isEmpty() && !tipo.isEmpty() && !descripcion.isEmpty() && !hora.isEmpty() && !dia.isEmpty() && !costo.isEmpty()) {
             try {
                 LocalTime timeLT = LocalTime.parse(hora);
                 LocalDate dateDT = LocalDate.parse(dia);
                 Integer cuposInt = Integer.parseInt(cupos);
+                Integer costoInt = Integer.parseInt(costo);
 
 
                 String json = "";
@@ -111,7 +118,7 @@ public class RegistrarActividadController {
                     }
 
                     ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, tipo, descripcion, cuposInt, reservable, centroDeportivo);
+                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipo, descripcion, costoInt, cuposInt, reservable, centroDeportivo);
                     json = mapper.writeValueAsString(actividadObject);
                     System.out.println(json);
                 } catch (Exception e) {

@@ -12,13 +12,13 @@ public class ActividadObject {
 
     private LocalDate dia;
 
+    private String centroMail;
+
     private String tipo;
 
     private String descripcion;
 
-    private List<EmpleadoObject> listaEmpleadoInscriptos;
-
-    private boolean conCupos;
+    private int costo;
 
     private int cupos;
 
@@ -26,28 +26,17 @@ public class ActividadObject {
 
     private CentroDeportivoObject centroDeportivo;
 
-    public ActividadObject(String nombre, LocalTime timeLT, LocalDate diaLD, String tipo, String descripcion, Integer cuposInt, Boolean reservable) {
+    public ActividadObject() {
     }
 
-    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String tipo, String descripcion, List<EmpleadoObject> listaEmpleadoInscriptos, boolean conCupos, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo) {
+    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, String tipo, String descripcion, int costo, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo) {
         this.nombre = nombre;
         this.hora = hora;
         this.dia = dia;
+        this.centroMail = centroMail;
         this.tipo = tipo;
         this.descripcion = descripcion;
-        this.listaEmpleadoInscriptos = listaEmpleadoInscriptos;
-        this.conCupos = conCupos;
-        this.cupos = cupos;
-        this.reservable = reservable;
-        this.centroDeportivo = centroDeportivo;
-    }
-
-    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String tipo, String descripcion, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo) {
-        this.nombre = nombre;
-        this.hora = hora;
-        this.dia = dia;
-        this.tipo = tipo;
-        this.descripcion = descripcion;
+        this.costo = costo;
         this.cupos = cupos;
         this.reservable = reservable;
         this.centroDeportivo = centroDeportivo;
@@ -93,20 +82,12 @@ public class ActividadObject {
         this.descripcion = descripcion;
     }
 
-    public List<EmpleadoObject> getListaEmpleadoInscriptos() {
-        return listaEmpleadoInscriptos;
+    public int getCosto() {
+        return costo;
     }
 
-    public void setListaEmpleadoInscriptos(List<EmpleadoObject> listaEmpleadoInscriptos) {
-        this.listaEmpleadoInscriptos = listaEmpleadoInscriptos;
-    }
-
-    public boolean isConCupos() {
-        return conCupos;
-    }
-
-    public void setConCupos(boolean conCupos) {
-        this.conCupos = conCupos;
+    public void setCosto(int costo) {
+        this.costo = costo;
     }
 
     public int getCupos() {
@@ -131,5 +112,29 @@ public class ActividadObject {
 
     public void setCentroDeportivo(CentroDeportivoObject centroDeportivo) {
         this.centroDeportivo = centroDeportivo;
+    }
+
+    public String getCentroMail() {
+        return centroMail;
+    }
+
+    public void setCentroMail(String centroMail) {
+        this.centroMail = centroMail;
+    }
+
+    @Override
+    public String toString() {
+        return "ActividadObject{" +
+                "nombre='" + nombre + '\'' +
+                ", hora=" + hora +
+                ", dia=" + dia +
+                ", centroMail='" + centroMail + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", costo=" + costo +
+                ", cupos=" + cupos +
+                ", reservable=" + reservable +
+                ", centroDeportivo=" + centroDeportivo +
+                '}';
     }
 }

@@ -1,5 +1,7 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.TipoActivitidad.Canchas;
 import gym.Client.Main;
 import javafx.fxml.FXMLLoader;
@@ -22,8 +24,18 @@ public class CanchasController implements Initializable {
     public GridPane anchorPaneScroll;
 
     private List<Canchas> getDatos(){
+        String actividad = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/allActividades/").asObject(String.class);
+            actividad = apiResponse.getBody().toString();
+            System.out.println(actividad);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
         return null;
-        //crear objeto falsos?
+
     }
 
 
@@ -32,6 +44,7 @@ public class CanchasController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         listaCanchas = new ArrayList<>();
         listaCanchas.addAll(getDatos());
+        System.out.println("entro initialize canchas");
 
         int row = 0;
         try{
