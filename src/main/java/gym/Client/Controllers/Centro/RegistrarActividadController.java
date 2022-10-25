@@ -87,7 +87,7 @@ public class RegistrarActividadController {
         String cupos = cuposText.getText();
         Boolean reservable = reservableCheckBox.isSelected();
 
-        if (!nombre.isEmpty() && !tipo.isEmpty() && !descripcion.isEmpty() && !hora.isEmpty() && !dia.isEmpty() && !cupos.isEmpty()) {
+        if (!nombre.isEmpty() && !tipo.isEmpty() && !descripcion.isEmpty() && !hora.isEmpty() && !dia.isEmpty()) {
             try {
                 LocalTime timeLT = LocalTime.parse(hora);
                 LocalDate dateDT = LocalDate.parse(dia);
