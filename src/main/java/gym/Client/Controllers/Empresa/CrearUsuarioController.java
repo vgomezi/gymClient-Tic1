@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -56,7 +57,7 @@ public class CrearUsuarioController {
     private Label contrasenaLabel;
 
     @FXML
-    private TextField contrasenaText;
+    private PasswordField contrasenaText;
 
     @FXML
     private Button crearBoton;

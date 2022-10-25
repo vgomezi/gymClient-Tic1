@@ -1,6 +1,5 @@
 package gym.Client.Controllers.Admin.AdminCentro;
 
-import gym.Client.Controllers.Admin.AdminEmpresa.MainAdminEmpresaController;
 import gym.Client.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,11 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import org.springframework.stereotype.Controller;
 
 @Controller

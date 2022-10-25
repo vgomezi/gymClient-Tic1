@@ -1,6 +1,7 @@
 package gym.Client.Controllers.Usuario;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
@@ -21,7 +22,7 @@ public class DarseBajaUsuarioController {
     private Label contrasenaLabel;
 
     @FXML
-    private TextField contrasenaText;
+    private PasswordField contrasenaText;
 
     @FXML
     private Button bajaBoton;

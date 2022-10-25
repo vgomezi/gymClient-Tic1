@@ -54,7 +54,7 @@ public class RegistrarCentroController {
     private Button cancelarBoton;
 
     @FXML
-    protected void onCrearButtonClick(ActionEvent event) {
+    protected void onRegistrarButtonClick(ActionEvent event) {
         String nombre = nombreText.getText();
         String email = emailText.getText();
         String contrasena = contrasenaText.getText();
