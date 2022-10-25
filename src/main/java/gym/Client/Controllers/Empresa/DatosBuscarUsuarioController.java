@@ -69,5 +69,37 @@ public class DatosBuscarUsuarioController {
         }
     }
 
+    public Label getEmailDatoLabel() {
+        return emailDatoLabel;
+    }
+
+    public void setEmailDatoLabel(Label emailDatoLabel) {
+        this.emailDatoLabel = emailDatoLabel;
+    }
+
+    public Label getNombreDatoLabel() {
+        return nombreDatoLabel;
+    }
+
+    public void setNombreDatoLabel(Label nombreDatoLabel) {
+        this.nombreDatoLabel = nombreDatoLabel;
+    }
+
+    public Label getApellidoDatoLabel() {
+        return apellidoDatoLabel;
+    }
+
+    public void setApellidoDatoLabel(Label apellidoDatoLabel) {
+        this.apellidoDatoLabel = apellidoDatoLabel;
+    }
+
+    public Label getTelefonoDatoLabel() {
+        return telefonoDatoLabel;
+    }
+
+    public void setTelefonoDatoLabel(Label telefonoDatoLabel) {
+        this.telefonoDatoLabel = telefonoDatoLabel;
+    }
+
 
 }
