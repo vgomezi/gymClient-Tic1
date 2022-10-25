@@ -63,13 +63,31 @@ public class MainAdminCentroController {
     }
 
     @FXML
-    protected void onActualizarCentroButtonClick() {}
+    protected void onActualizarCentroButtonClick() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminCentroController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/ActualizarCentro.fxml"));
+            Stage stage = new Stage();
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.setTitle("Actualizar Centro Deportivo");
+            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @FXML
     protected void onBuscarCentroButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/BuscarCentro.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminCentroController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/BuscarCentro.fxml"));
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);

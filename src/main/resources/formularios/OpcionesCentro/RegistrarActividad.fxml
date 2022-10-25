@@ -57,6 +57,7 @@
             <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <DatePicker fx:id="diaTextPicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="costoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <CheckBox fx:id="reservableCheckBox" mnemonicParsing="false" prefHeight="23.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
 
@@ -97,7 +98,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="costoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
 
 
          </children>
