@@ -1,19 +1,15 @@
 package gym.Client.Controllers.Empresa;
 
-import gym.Client.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 @Controller
 public class MainEmpresaController {
@@ -48,7 +44,7 @@ public class MainEmpresaController {
     protected void onCrearUsuarioButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/CrearUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresa/CrearUsuario.fxml"));
 
             CrearUsuarioController crearUsuarioController = fxmlLoader.getController();
             crearUsuarioController.setUsuarioEmpresaCrearUsuario(usuarioEmpresaMain);
@@ -71,7 +67,7 @@ public class MainEmpresaController {
     protected void onBuscarUsuarioButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/BuscarUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresa/BuscarUsuario.fxml"));
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -92,7 +88,7 @@ public class MainEmpresaController {
     protected void onActualizarUsuarioButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/ActualizarUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresa/ActualizarUsuario.fxml"));
 
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -112,7 +108,7 @@ public class MainEmpresaController {
     protected void onVerSaldosButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/VerSaldos.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresa/VerSaldos.fxml"));
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -131,7 +127,7 @@ public class MainEmpresaController {
     protected void onEliminarUsuarioButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/EliminarUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresa/EliminarUsuario.fxml"));
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

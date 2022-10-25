@@ -1,6 +1,5 @@
 package gym.Client.Controllers.Usuario;
 
-import gym.Client.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,9 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +30,7 @@ public class TipoActividadController {
     @FXML
     protected void onCanchasButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/Actividades/Canchas.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/Canchas.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Canchas");
@@ -51,7 +47,7 @@ public class TipoActividadController {
     @FXML
     protected void onNauticasButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/Actividades/Naúticas.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/Naúticas.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Naúticas");
@@ -68,7 +64,7 @@ public class TipoActividadController {
     @FXML
     protected void onGimnasioSalaButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/Actividades/GimnasioSala.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/GimnasioSala.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Gimasio / Sala");
@@ -85,7 +81,7 @@ public class TipoActividadController {
     @FXML
     protected void onVolverButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/MainUsuario.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/MainUsuario.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Volver");

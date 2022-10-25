@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 @Component
 public class MainUsuarioController {
@@ -34,7 +32,7 @@ public class MainUsuarioController {
     @FXML
     protected void onDarseBajaButtonClick(ActionEvent event) {
         try {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/DarseBajaUsuario.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/DarseBajaUsuario.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         stage.setTitle("Darse de Baja");
@@ -51,7 +49,7 @@ public class MainUsuarioController {
     @FXML
     protected void onBajarseActividadButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/BajarseUsuarioActividad.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/BajarseUsuarioActividad.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Darse de Baja");
@@ -68,7 +66,7 @@ public class MainUsuarioController {
     @FXML
     protected void onTipoActividadButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuarioPrueba/TipoActividad.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/TipoActividad.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Tipo Actividad");
@@ -86,7 +84,7 @@ public class MainUsuarioController {
     protected void onVerSaldoDisponibleClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesUsuarioPrueba/VerSaldoDisponible.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesUsuario/VerSaldoDisponible.fxml"));
 
             Integer verSaldoDispo = 90;
 

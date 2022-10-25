@@ -121,7 +121,7 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/MainEmpresa.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
 
                                     MainEmpresaController mainEmpresaController = fxmlLoader.getController();
                                     mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);
@@ -157,7 +157,7 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentroPrueba/MainCentro.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentro/MainCentro.fxml"));
 
                                     MainCentroController mainCentroController = fxmlLoader.getController();
                                     mainCentroController.setUsuarioMainCentro(correoElectronico);
@@ -192,7 +192,7 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuarioPrueba/MainUsuario.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuario/MainUsuario.fxml"));
 
                                     Stage stage = new Stage();
 

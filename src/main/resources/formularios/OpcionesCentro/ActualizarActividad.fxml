@@ -1,64 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="350.0" prefWidth="361.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.ActualizarActividadController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-   <Label text="Sobreescriba sobre los datos a actualizar:" />
-   <GridPane prefHeight="226.0" prefWidth="287.0">
-     <columnConstraints>
-       <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="158.0" />
-       <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="114.0" />
-     </columnConstraints>
-     <rowConstraints>
-         <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-       <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-         <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-       <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-     </rowConstraints>
-      <children>
-      
-          <Label fx:id="tipoLabel" text="Tipo Actividad:" GridPane.rowIndex="1" />
-      
-          <Label fx:id="horaLabel" text="Hora Actividad:" GridPane.rowIndex="3" />
-          <TextField fx:id="tipoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-          <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-          <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
-         <Label fx:id="descripcionLabel" text="Descripcion Actividad:" GridPane.rowIndex="2" />
-         <Label fx:id="diaLabel" text="Dia Actividad:" GridPane.rowIndex="4" />
-         <TextField fx:id="descripcionText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <TextField fx:id="diaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         <Label fx:id="nombreLabel" text="Nombre Actividad:" />
-         <Label fx:id="cuposLabel" text="Cupos Actividad:" GridPane.rowIndex="5" />
-         <Label fx:id="reservableLabel" text="Reservable:" GridPane.rowIndex="6" />
-         <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-         <TextField fx:id="reservableText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      </children>
-   </GridPane>
-   <GridPane alignment="CENTER">
-     <columnConstraints>
-       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
-       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
-     </columnConstraints>
-     <rowConstraints>
-       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-     </rowConstraints>
-      <children>
-            <Button fx:id="actualizarBoton" alignment="CENTER" onAction="#onActualizarButtonClick" text="Actualizar!" />
-            <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
-      </children>
-   </GridPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ad3636#ad3636 #ad3636#ad3636;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.ActualizarActividadController">
+   <children>
+      <Label fx:id="actualizarActividadLabel" layoutX="115.0" layoutY="24.0" text="ACTUALIZAR ACTIVIDAD">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="actualizarBoton" alignment="CENTER" contentDisplay="TOP" layoutX="88.0" layoutY="321.0" onAction="#onActualizarButtonClick" prefHeight="45.0" prefWidth="144.0" text="Actualizar!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="TOP" layoutX="384.0" layoutY="321.0" onAction="#onCancelarButtonClick" prefHeight="44.0" prefWidth="129.0" text="Cancelar!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <GridPane alignment="CENTER" layoutX="135.0" layoutY="83.0" prefHeight="235.0" prefWidth="331.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="138.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="134.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label fx:id="diaLabel" prefHeight="29.0" prefWidth="150.0" text="Día:" GridPane.rowIndex="4">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
 
-</VBox>
+            <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+            <TextField fx:id="tipoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="descripcionText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="diaDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="reservableText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+
+            <Label fx:id="nombreLabel" text="Nombre:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="descripcionLabel" text="Descripción:" GridPane.rowIndex="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="horaLabel" text="Hora:" GridPane.rowIndex="3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="tipoLabel" text="Tipo:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+
+            <Label fx:id="cuposLabel" prefHeight="29.0" prefWidth="150.0" text="Cupos:" GridPane.rowIndex="5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="reservableLabel" prefHeight="29.0" prefWidth="150.0" text="Reservable:" GridPane.rowIndex="6">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+
+
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

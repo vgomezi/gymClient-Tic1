@@ -1,20 +1,16 @@
 package gym.Client.Controllers.Centro;
 
 import gym.Client.Controllers.Empresa.MainEmpresaController;
-import gym.Client.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 @Component
 public class MainCentroController {
@@ -40,7 +36,7 @@ public class MainCentroController {
     @FXML
     protected void onActualizarActividadButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/ActualizarActividad.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentro/ActualizarActividad.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Actualizar Actividad");
@@ -58,7 +54,7 @@ public class MainCentroController {
     protected void onRegistrarActividadButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesCentroPrueba/RegistrarActividad.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesCentro/RegistrarActividad.fxml"));
 
             RegistrarActividadController registrarActividadController = fxmlLoader.getController();
             registrarActividadController.setUsuarioCentroRegistrarActividad(usuarioMainCentro);
@@ -79,7 +75,7 @@ public class MainCentroController {
     @FXML
     protected void onBuscarActividadButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/BuscarActividad.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentro/BuscarActividad.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Buscar Actividad");
@@ -96,7 +92,7 @@ public class MainCentroController {
     @FXML
     protected void onEliminarActividadButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/EliminarActividad.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentro/EliminarActividad.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Eliminar Actividad");
@@ -113,7 +109,7 @@ public class MainCentroController {
     @FXML
     protected void onRegistrarIngresoUsuarioButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentroPrueba/RegistrarIngresoUsuario.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesCentro/RegistrarIngresoUsuario.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Registrar Ingreso de Usuario");
