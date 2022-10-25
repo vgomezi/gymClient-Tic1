@@ -77,7 +77,7 @@ public class BuscarCentroController {
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                stage.setTitle("Registrar Actividad");
+                stage.setTitle("Centro " + centroDeportivoBuscado.getNombre());
                 stage.setScene(new Scene(root1));
                 stage.show();
 
