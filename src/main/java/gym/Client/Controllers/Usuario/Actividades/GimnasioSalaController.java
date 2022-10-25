@@ -30,7 +30,7 @@ public class GimnasioSalaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listaGimnasioSalas = new ArrayList<>();
+        /*listaGimnasioSalas = new ArrayList<>();
         listaGimnasioSalas.addAll(getDatos());
 
         int row = 0;
@@ -50,7 +50,7 @@ public class GimnasioSalaController implements Initializable {
             }
         } catch (Exception e){
 
-        }
+        }*/
 
 
     }

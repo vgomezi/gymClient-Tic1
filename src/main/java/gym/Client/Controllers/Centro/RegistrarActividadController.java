@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 @Component
 public class RegistrarActividadController {
@@ -84,7 +85,7 @@ public class RegistrarActividadController {
     @FXML
     protected void onRegistrarButtonClick(ActionEvent event) {
         String nombre = nombreText.getText();
-        String tipo = tipoChoiceBox.toString();
+        String tipo = tipoChoiceBox.getValue().toString();
         String descripcion = descripcionText.getText();
         String hora = horaText.getText();
         String dia = diaTextPicker.getValue().toString();
@@ -92,6 +93,7 @@ public class RegistrarActividadController {
         String costo = costoText.getText();
         Boolean reservable = reservableCheckBox.isSelected();
         System.out.println(reservable);
+        System.out.println(tipo);
 
         if (!nombre.isEmpty() && !tipo.isEmpty() && !descripcion.isEmpty() && !hora.isEmpty() && !dia.isEmpty() && !costo.isEmpty()) {
             try {
@@ -110,15 +112,16 @@ public class RegistrarActividadController {
                     jsonCentro = apiResponse.getBody();
                     System.out.println(jsonCentro);
                     CentroDeportivoObject centroDeportivo = null;
+                    System.out.println(jsonCentro);
 
                     if (!jsonCentro.isBlank()) {
                         ObjectMapper mapper = new ObjectMapper();
-                        centroDeportivo = mapper.readValue(apiResponse.getBody(), CentroDeportivoObject.class);
+                        centroDeportivo = mapper.readValue(jsonCentro, CentroDeportivoObject.class);
                         System.out.println("centro mapper Hecho ");
                     }
 
                     ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipo, descripcion, costoInt, cuposInt, reservable, centroDeportivo);
+                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipo, descripcion, costoInt, cuposInt, reservable, centroDeportivo, new ArrayList<>());
                     json = mapper.writeValueAsString(actividadObject);
                     System.out.println(json);
                 } catch (Exception e) {

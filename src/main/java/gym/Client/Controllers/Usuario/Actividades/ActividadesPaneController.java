@@ -1,5 +1,6 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
+import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.TipoActivitidad.Canchas;
 import gym.Client.Classes.TipoActivitidad.GimnasioSala;
 import gym.Client.Classes.TipoActivitidad.Nauticas;
@@ -53,27 +54,27 @@ public class ActividadesPaneController implements Initializable {
 
     }
 
-    private Canchas canchaSeleccionada;
+    private ActividadObject actividad;
 
-    public void datosCancha(Canchas cancha){
-        canchaSeleccionada = cancha;
+    public void datosCancha(ActividadObject actividadObject){
+        actividad = actividadObject;
 
         Image image = new Image("@/centro.jpg");
         //como converitr imagen y pasarlo desde base de datos
 
         imageView.setImage(image);
 
-        nombreLabel.setText(cancha.getNombre());
+        nombreLabel.setText(actividad.getNombre());
 
-        precioLabel.setText(cancha.getPrecio().toString());
+        precioLabel.setText(String.valueOf(actividad.getCosto()));
 
-        capacidadLabel.setText(cancha.getCapacidad().toString());
+        capacidadLabel.setText(String.valueOf(actividad.getCupos()));
 
-        descripcionLabel.setText(cancha.getDescripcion());
+        descripcionLabel.setText(actividad.getDescripcion());
 
-        diaLabel.setText("Día de actividad: " + cancha.getDia());
+        diaLabel.setText("Día de actividad: " + actividad.getDia().toString());
 
-        horaLabel.setText("Hora de actividad: " + cancha.getHora());
+        horaLabel.setText("Hora de actividad: " + actividad.getHora().toString());
     }
 
     private Nauticas nauticaSeleccionada;

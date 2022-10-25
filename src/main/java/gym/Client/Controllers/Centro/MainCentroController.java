@@ -54,10 +54,11 @@ public class MainCentroController {
     protected void onRegistrarActividadButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesCentro/RegistrarActividad.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainCentroController.class.getResourceAsStream("/formularios/OpcionesCentro/RegistrarActividad.fxml"));
 
             RegistrarActividadController registrarActividadController = fxmlLoader.getController();
             registrarActividadController.setUsuarioCentroRegistrarActividad(usuarioMainCentro);
+            System.out.println(usuarioMainCentro);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

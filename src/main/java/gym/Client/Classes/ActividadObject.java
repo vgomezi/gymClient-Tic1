@@ -1,9 +1,12 @@
 package gym.Client.Classes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ActividadObject {
 
     private String nombre;
@@ -26,10 +29,12 @@ public class ActividadObject {
 
     private CentroDeportivoObject centroDeportivo;
 
+    private List<InscripcionesActividadesObject> actividadesInscripto;
+
     public ActividadObject() {
     }
 
-    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, String tipo, String descripcion, int costo, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo) {
+    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, String tipo, String descripcion, int costo, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo, List<InscripcionesActividadesObject> actividadesInscripto) {
         this.nombre = nombre;
         this.hora = hora;
         this.dia = dia;
@@ -40,6 +45,7 @@ public class ActividadObject {
         this.cupos = cupos;
         this.reservable = reservable;
         this.centroDeportivo = centroDeportivo;
+        this.actividadesInscripto = actividadesInscripto;
     }
 
     public String getNombre() {

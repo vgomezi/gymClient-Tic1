@@ -1,5 +1,6 @@
 package gym.Client.Controllers.Usuario;
 
+import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.TipoActivitidad.Canchas;
 import gym.Client.Controllers.Usuario.Actividades.ActividadesPaneController;
 import gym.Client.Main;
@@ -18,13 +19,13 @@ import java.util.ResourceBundle;
 public class BajarseUsuarioActividadController implements Initializable {
 
 
-    private List<Canchas> listaCanchas;
+    private List<ActividadObject> listaActividades;
 
     //cambiar a lista de actividades reservadas
 
     public GridPane anchorPaneScroll;
 
-    private List<Canchas> getDatos(){
+    private List<ActividadObject> getDatos(){
         return null;
         //crear objeto falsos?
     }
@@ -33,12 +34,12 @@ public class BajarseUsuarioActividadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listaCanchas = new ArrayList<>();
-        listaCanchas.addAll(getDatos());
+        listaActividades = new ArrayList<>();
+        listaActividades.addAll(getDatos());
 
         int row = 0;
         try{
-            for (int i =0; i <listaCanchas.size(); i++){
+            for (int i =0; i <listaActividades.size(); i++){
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
@@ -46,7 +47,7 @@ public class BajarseUsuarioActividadController implements Initializable {
 
                 ActividadesPaneController activityPane = fxmlLoader.getController();
 
-                activityPane.datosCancha(listaCanchas.get(i));
+                activityPane.datosCancha(listaActividades.get(i));
 
                 anchorPaneScroll.add(anchorPane, 0, row++);
 

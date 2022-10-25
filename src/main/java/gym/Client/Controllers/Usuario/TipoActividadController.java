@@ -1,5 +1,8 @@
 package gym.Client.Controllers.Usuario;
 
+import gym.Client.Controllers.Empresa.MainEmpresaController;
+import gym.Client.Controllers.Usuario.Actividades.CanchasController;
+import gym.Client.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +33,13 @@ public class TipoActividadController {
     @FXML
     protected void onCanchasButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/Canchas.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+            Parent root1 = (Parent) fxmlLoader.load(TipoActividadController.class.getResourceAsStream("/formularios/OpcionesUsuario/Actividades/Canchas.fxml"));
+
+            CanchasController canchasController = fxmlLoader.getController();
+            //canchasController.initialize();
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Canchas");
@@ -64,7 +73,8 @@ public class TipoActividadController {
     @FXML
     protected void onGimnasioSalaButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/GimnasioSala.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(TipoActividadController.class.getResourceAsStream("/formularios/OpcionesUsuario/Actividades/GimnasioSala.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Gimasio / Sala");
