@@ -14,17 +14,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f9e46e#f9e46e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Centro.RegistrarActividadController">
    <children>
-      <Label fx:id="registrarActividadLabel" layoutX="115.0" layoutY="24.0" text="REGISTRAR ACTIVIDAD">
+      <Label fx:id="registrarActividadLabel" layoutX="116.0" layoutY="20.0" text="REGISTRAR ACTIVIDAD">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="registrarBoton" alignment="CENTER" contentDisplay="TOP" layoutX="88.0" layoutY="321.0" onAction="#onRegistrarButtonClick" prefHeight="44.0" prefWidth="129.0" text="Registrar!">
+      <Button fx:id="registrarBoton" alignment="CENTER" contentDisplay="TOP" layoutX="89.0" layoutY="341.0" onAction="#onRegistrarButtonClick" prefHeight="44.0" prefWidth="129.0" text="Registrar!">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="TOP" layoutX="384.0" layoutY="321.0" onAction="#onCancelarButtonClick" prefHeight="44.0" prefWidth="129.0" text="Cancelar!">
+      <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="TOP" layoutX="384.0" layoutY="341.0" onAction="#onCancelarButtonClick" prefHeight="44.0" prefWidth="129.0" text="Cancelar!">
          <font>
             <Font size="24.0" />
          </font>
@@ -42,6 +42,7 @@
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label fx:id="diaLabel" prefHeight="29.0" prefWidth="150.0" text="Día:" GridPane.rowIndex="4">
@@ -56,7 +57,7 @@
             <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <DatePicker fx:id="diaTextPicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <CheckBox fx:id="reservableCheckBox" mnemonicParsing="false" prefHeight="23.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <CheckBox fx:id="reservableCheckBox" mnemonicParsing="false" prefHeight="23.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
 
 
@@ -86,11 +87,17 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="reservableLabel" prefHeight="29.0" prefWidth="150.0" text="Reservable:" GridPane.rowIndex="6">
+            <Label fx:id="reservableLabel" prefHeight="29.0" prefWidth="150.0" text="Reservable:" GridPane.rowIndex="7">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
+            <Label fx:id="costoLabel" prefHeight="29.0" prefWidth="150.0" text="Costo:" GridPane.rowIndex="6">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="costoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
 
          </children>
