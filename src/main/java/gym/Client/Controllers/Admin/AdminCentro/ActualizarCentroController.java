@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class ActualizarCentroController {
@@ -34,8 +35,8 @@ public class ActualizarCentroController {
     public void onActualizarButtonClick(ActionEvent event) {
         String nombre = nombreText.getText();
 
-
     }
+
 
     public void onCancelarButtonClick(ActionEvent event) {
         nombreText.clear();

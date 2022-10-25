@@ -96,7 +96,7 @@ public class LoginController {
                                     stage.initModality(Modality.APPLICATION_MODAL);
 
                                     stage.setTitle("Login Admin");
-                                    stage.getIcons().add(new Image("GymIcon.png"));
+                                    stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();
 
@@ -131,7 +131,7 @@ public class LoginController {
                                     stage.initModality(Modality.APPLICATION_MODAL);
 
                                     stage.setTitle("Login Empresa");
-                                    stage.getIcons().add(new Image("GymIcon.png"));
+                                    stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();
 
@@ -167,7 +167,7 @@ public class LoginController {
                                     stage.initModality(Modality.APPLICATION_MODAL);
 
                                     stage.setTitle("Login Centro Deportivo");
-                                    stage.getIcons().add(new Image("GymIcon.png"));
+                                    stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();
 
@@ -199,7 +199,7 @@ public class LoginController {
                                     stage.initModality(Modality.APPLICATION_MODAL);
 
                                     stage.setTitle("Login Centro Deportivo");
-                                    stage.getIcons().add(new Image("GymIcon.png"));
+                                    stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();
 

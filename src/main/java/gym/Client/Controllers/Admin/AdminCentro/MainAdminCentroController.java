@@ -51,7 +51,7 @@ public class MainAdminCentroController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Registrar Centro Deportivo");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            //stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 

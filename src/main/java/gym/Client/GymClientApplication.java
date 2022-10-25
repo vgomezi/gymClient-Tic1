@@ -27,7 +27,7 @@ public class GymClientApplication extends Application {
 			//Scene scene = new Scene(fxmlLoader.load(GymClientApplication.class.getResourceAsStream("Login.fxml")), 600, 400);
 			Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 			stage.setTitle("Login");
-			stage.getIcons().add(new Image("GymIcon.png"));
+			stage.getIcons().add(new Image("FitnessIcon.png"));
 			stage.setScene(new Scene(root, 600, 400));
 			stage.show();
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

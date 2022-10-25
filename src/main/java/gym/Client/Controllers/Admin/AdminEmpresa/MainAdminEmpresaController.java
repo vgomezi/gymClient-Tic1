@@ -95,7 +95,7 @@ public class MainAdminEmpresaController {
             eliminarEmpresaController.setUsuarioAdminEmpresaEliminar(this.usuarioAdminEmpresaMain);
 
             stage.setTitle("Eliminar Empresa");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            //stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
