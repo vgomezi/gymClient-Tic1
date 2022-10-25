@@ -55,7 +55,7 @@ public class DatosBuscarUsuarioController {
     protected void onVolverButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/BuscarUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(DatosBuscarUsuarioController.class.getResourceAsStream("/formularios/OpcionesEmpresaPrueba/BuscarUsuario.fxml"));
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

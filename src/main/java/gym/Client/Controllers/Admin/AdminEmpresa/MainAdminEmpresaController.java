@@ -1,5 +1,6 @@
 package gym.Client.Controllers.Admin.AdminEmpresa;
 
+import gym.Client.Controllers.Empresa.MainEmpresaController;
 import gym.Client.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +31,9 @@ public class MainAdminEmpresaController {
 
     @FXML
     private Button buscarEmpresaBoton;
+
+    @FXML
+    private Button volverBoton;
 
     public String getUsuarioAdminEmpresaMain() {
         return usuarioAdminEmpresaMain;
@@ -102,6 +106,24 @@ public class MainAdminEmpresaController {
             System.out.println(ex.toString());
             System.out.println("Error");
             //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    protected void onVolverButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminEmpresaController.class.getResourceAsStream("/formularios/OpcionesAdministrador/MainAdmin.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Main Administrador");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
         }
     }
 }
