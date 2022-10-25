@@ -1,6 +1,8 @@
 package gym.Client.Controllers.Centro;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -108,7 +110,7 @@ public class RegistrarActividadController {
                         System.out.println("centro mapper Hecho ");
                     }
 
-                    ObjectMapper mapper = new ObjectMapper();
+                    ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
                     ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, tipo, descripcion, cuposInt, reservable, centroDeportivo);
                     json = mapper.writeValueAsString(actividadObject);
                     System.out.println(json);
