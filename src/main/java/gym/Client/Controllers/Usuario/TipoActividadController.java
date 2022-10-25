@@ -53,7 +53,7 @@ public class TipoActividadController {
     @FXML
     protected void onNauticasButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/Naúticas.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/Nauticas.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Naúticas");
@@ -70,8 +70,7 @@ public class TipoActividadController {
     @FXML
     protected void onGimnasioSalaButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(TipoActividadController.class.getResourceAsStream("/formularios/OpcionesUsuario/Actividades/GimnasioSala.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/Actividades/GimnasioSala.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Gimasio / Sala");

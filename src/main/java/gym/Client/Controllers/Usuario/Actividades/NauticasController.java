@@ -30,11 +30,12 @@ import java.util.ResourceBundle;
 @Component
 public class NauticasController implements Initializable {
 
-
-    private List<ActividadObject> listaNauticas;
-
     @FXML
     public GridPane anchorPaneScroll;
+    private List<ActividadObject> listaNauticas = new ArrayList<>();
+
+    @FXML
+    private Button volverBoton;
 
     private List<ActividadObject> getDatos() {
         List<ActividadObject> listaActividades = new ArrayList<>();
@@ -54,20 +55,15 @@ public class NauticasController implements Initializable {
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
             System.out.println(actividad);
-            System.out.println("Lista actividades CanchasController " + listaActividades);
+            System.out.println("Lista actividades NauticaController " + listaActividades);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
         return listaActividades;
     }
 
-    @FXML
-    private Button volverBoton;
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listaNauticas = new ArrayList<>();
         listaNauticas.addAll(getDatos());
 
         int row = 0;
@@ -94,10 +90,10 @@ public class NauticasController implements Initializable {
     @FXML
     protected void onVolverButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/TipoActividades.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/TipoActividad.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.setTitle("Volver");
+            stage.setTitle("Tipo actividad");
             stage.setScene(new Scene(root1));
             stage.show();
 

@@ -76,7 +76,7 @@ public class ActividadesPaneController {
     public void datosNautica(ActividadObject actividadObject){
         this.nauticaSeleccionada = actividadObject;
 
-        Image image = new Image("@/centro.jpg");
+        Image image = new Image("/centro.jpg");
         //como converitr imagen y pasarlo desde base de datos
 
         imageView.setImage(image);
@@ -99,7 +99,7 @@ public class ActividadesPaneController {
     public void datosGimnasioSala(ActividadObject actividadObject){
         this.gimnasioSalaSeleccionada = actividadObject;
 
-        Image image = new Image("@/centro.jpg");
+        Image image = new Image("/centro.jpg");
         //como converitr imagen y pasarlo desde base de datos
 
         imageView.setImage(image);

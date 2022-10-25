@@ -30,11 +30,13 @@ import java.util.ResourceBundle;
 @Component
 public class GimnasioSalaController implements Initializable {
 
-
-    private List<ActividadObject> listaGimnasioSalas;
-
     @FXML
     public GridPane anchorPaneScroll;
+
+    private List<ActividadObject> listaGimnasioSalas = new ArrayList<>();
+
+    @FXML
+    private Button volverBoton;
 
     private List<ActividadObject> getDatos(){
         List<ActividadObject> listaActividades = new ArrayList<>();
@@ -60,11 +62,6 @@ public class GimnasioSalaController implements Initializable {
         }
         return listaActividades;
     }
-
-    @FXML
-    private Button volverBoton;
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -95,7 +92,7 @@ public class GimnasioSalaController implements Initializable {
     @FXML
     protected void onVolverButtonClick(ActionEvent event) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/TipoActividades.fxml"));
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/TipoActividad.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Volver");
