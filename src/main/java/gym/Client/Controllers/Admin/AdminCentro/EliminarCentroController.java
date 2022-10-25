@@ -2,7 +2,6 @@ package gym.Client.Controllers.Admin.AdminCentro;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import gym.Client.Controllers.Admin.AdminCentro.Confirmaciones.ConfirmarBorrarCentroController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +44,7 @@ public class EliminarCentroController {
     }
 
     @FXML
-    protected void onEliminarButtonClick() {
+    protected void onEliminarButtonClick(ActionEvent event) {
         //Verificar que se borren en todas las tablas
 
         String email = emailText.getText();

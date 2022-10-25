@@ -1,4 +1,4 @@
-package gym.Client.Controllers.Admin.AdminCentro.Confirmaciones;
+package gym.Client.Controllers.Admin.AdminCentro;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -33,10 +33,10 @@ public class ConfirmarBorrarCentroController {
     public PasswordField contrasenaAdminText;
 
     @FXML
-    private Label errorLabel;
+    private Label nombreCentroLabel;
 
     public void displayNombreCentro(String nombreCentro) {
-        errorLabel.setText("Confirme que desea eliminar el centro " + nombreCentro);
+        nombreCentroLabel.setText("Confirme que desea eliminar el centro " + nombreCentro);
     }
 
     @FXML
@@ -55,26 +55,18 @@ public class ConfirmarBorrarCentroController {
         }
         System.out.println(contrasenaCorrecta);
         if (contrasenaCorrecta.equals("false")) {
-            errorLabel.setText("Contraseña incorrecta");
+            //nombreCentroLabel.setText("Contraseña incorrecta");
         } else {
             if (contrasenaCorrecta.equals("true")) {
                 try {
                     HttpResponse<JsonNode> apiResponse = null;
 
                     apiResponse = Unirest.delete("http://localhost:8987/api/centroDeportivo//delete/" + correoCentro).asJson();
-                    //centro = apiResponse.getBody().toString();
-
                     System.out.println("Centro borrado");
                 } catch (Exception e) {
                     System.out.println("Error borrar Centro Deportivo");
 
                 }
-
-
-
-
-
-
 
                 System.out.println("Se borrará el centro");
             } else {

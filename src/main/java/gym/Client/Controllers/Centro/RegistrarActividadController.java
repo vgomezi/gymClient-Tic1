@@ -97,7 +97,6 @@ public class RegistrarActividadController {
 
                 try {
                     HttpResponse<String> apiResponse = null;
-
                     apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/centrosMail/" + usuarioCentroRegistrarActividad).asObject(String.class);
                     jsonCentro = apiResponse.getBody();
                     System.out.println(jsonCentro);
@@ -116,6 +115,7 @@ public class RegistrarActividadController {
                 } catch (Exception e) {
                     System.out.println("Error " + e);
                 }
+                System.out.println("Http respones luego de catch");
                 HttpResponse<JsonNode> apiResponse = null;
                 apiResponse = Unirest.post("http://localhost:8987/api/actividades").header("Content-Type", "application/json").body(json).asJson();
                 System.out.println("Hecho Actividad");

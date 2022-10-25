@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Admin.AdminCentro.Confirmaciones.ConfirmarBorrarCentroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Admin.AdminCentro.ConfirmarBorrarCentroController">
    <children>
       <GridPane alignment="CENTER" layoutX="25.0" layoutY="162.0">
          <columnConstraints>
@@ -20,9 +20,9 @@
             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="contrasenaAdminLabel" prefHeight="36.0" prefWidth="416.0" text="Administrador, re ingrese su contraseña:">
+            <Label fx:id="contrasenaAdminLabel" prefHeight="36.0" prefWidth="398.0" text="Administrador, re ingrese su contraseña:">
                <font>
-                  <Font size="24.0" />
+                  <Font size="22.0" />
                </font>
             </Label>
             <PasswordField fx:id="contrasenaAdminText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
@@ -33,7 +33,10 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Label fx:id="errorLabel" layoutX="300.0" layoutY="257.0" prefHeight="18.0" prefWidth="146.0" textFill="WHITE" underline="true" />
+      <Label fx:id="nombreCentroLabel" layoutX="25.0" layoutY="31.0" prefHeight="36.0" prefWidth="550.0" underline="true">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
       <Button fx:id="cancelarBoton" alignment="CENTER" layoutX="382.0" layoutY="298.0" onAction="#onCancelarButtonClick" prefHeight="44.0" prefWidth="129.0" text="Cancelar!">
          <font>
             <Font size="24.0" />

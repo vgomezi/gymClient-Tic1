@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
@@ -41,34 +42,13 @@ public class MainAdminEmpresaController {
     @FXML
     protected void onRegistrarEmpresaButtonClick(ActionEvent event) {
         try {
-            System.out.println(usuarioAdminEmpresaMain);
-            Parent root = FXMLLoader.load(getClass().getResource("/formularios/OpcionesAdministrador/AdminEmpresa/RegistrarEmpresa.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminEmpresaController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/RegistrarEmpresa.fxml"));
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Registrar Empresa");
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-            System.out.println("Error");
-            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    protected void onActualizarEmpresaButtonClick() {}
-
-    @FXML
-    protected void onEliminarEmpresaButtonClick() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/EliminarEmpresa.fxml"));
-            Stage stage = new Stage();
-
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            stage.setTitle("Login Empresa");
+            stage.getIcons().add(new Image("GymIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -80,15 +60,41 @@ public class MainAdminEmpresaController {
     }
 
     @FXML
-    protected void onBuscarEmpresaButtonClick() {
+    protected void onActualizarEmpresaButtonClick(ActionEvent event) {}
+
+    @FXML
+    protected void onEliminarEmpresaButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/BuscarEmpresa.fxml"));
-            Stage stage = new Stage();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminEmpresaController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/EliminarEmpresa.fxml"));
 
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.setTitle("Login Empresa");
+            EliminarEmpresaController eliminarEmpresaController = fxmlLoader.getController();
+            eliminarEmpresaController.setUsuarioAdminEmpresaEliminar(this.usuarioAdminEmpresaMain);
+
+            stage.setTitle("Eliminar Empresa");
+            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    protected void onBuscarEmpresaButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminEmpresaController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/BuscarEmpresa.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Buscar Empresa");
+            stage.getIcons().add(new Image("GymIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 

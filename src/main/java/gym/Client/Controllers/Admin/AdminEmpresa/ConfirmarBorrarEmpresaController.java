@@ -1,6 +1,7 @@
-package gym.Client.Controllers.Admin.AdminCentro.Confirmaciones;
+package gym.Client.Controllers.Admin.AdminEmpresa;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ConfirmarBorrarEmpresaController {
 
-    public String usuarioAdminConfirmar;
+    private String usuarioAdminConfirmar;
+
+    private String correoEmpresa;
     @FXML
     public Button confirmarBoton;
 
@@ -28,10 +31,10 @@ public class ConfirmarBorrarEmpresaController {
     public PasswordField contrasenaAdminText;
 
     @FXML
-    private Label errorLabel;
+    private Label nombreEmpresaLabel;
 
     public void displayNombreEmpresa(String nombreEmpresa) {
-        errorLabel.setText("Confirme que desea eliminar la empresa " + nombreEmpresa);
+        nombreEmpresaLabel.setText("Confirme que desea eliminar la empresa " + nombreEmpresa);
     }
 
     @FXML
@@ -50,10 +53,20 @@ public class ConfirmarBorrarEmpresaController {
         }
         System.out.println(contrasenaCorrecta);
         if (contrasenaCorrecta.equals("false")) {
-            errorLabel.setText("Contraseña incorrecta");
+            nombreEmpresaLabel.setText("Contraseña incorrecta");
         } else {
             if (contrasenaCorrecta.equals("true")) {
-                System.out.println("Se borrará la empresa");
+                try {
+
+                    HttpResponse<JsonNode> apiResponse = null;
+
+                    apiResponse = Unirest.delete("http://localhost:8987/api/empresas/delete/" + correoEmpresa).asJson();
+                    System.out.println("Empresa borrada");
+
+                    System.out.println("Se borrará la empresa");
+                } catch (Exception e) {
+                    System.out.println("Error borrando empresa: " + e);
+                }
             } else {
                 System.out.println("Error contraseña admin");
             }
@@ -76,8 +89,13 @@ public class ConfirmarBorrarEmpresaController {
         this.usuarioAdminConfirmar = usuarioAdminConfirmar;
     }
 
+    public String getCorreoEmpresa() {
+        return correoEmpresa;
+    }
 
-
+    public void setCorreoEmpresa(String correoEmpresa) {
+        this.correoEmpresa = correoEmpresa;
+    }
 }
 
 
