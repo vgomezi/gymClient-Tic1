@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="175.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Admin.AdminEmpresa.BuscarEmpresaController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-   <Label text="Ingrese email de la empresa para buscarla:" />
-   <GridPane>
-     <columnConstraints>
-       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-     </columnConstraints>
-     <rowConstraints>
-         <RowConstraints />
-         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-     </rowConstraints>
-      <children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Admin.AdminEmpresa.BuscarEmpresaController">
+   <children>
+      <Label fx:id="buscarEmpresaLabel" layoutX="150.0" layoutY="25.0" text="BUSCAR EMPRESA">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="buscarBoton" alignment="CENTER" contentDisplay="TOP" layoutX="89.0" layoutY="332.0" onAction="#onBuscarButtonClick" prefHeight="45.0" prefWidth="144.0" text="Buscar!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="TOP" layoutX="384.0" layoutY="332.0" onAction="#onCancelarButtonClick" prefHeight="44.0" prefWidth="129.0" text="Cancelar!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <GridPane alignment="CENTER" layoutX="164.0" layoutY="182.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="138.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="134.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
 
-         <Label fx:id="emailLabel" text="Email Empresa:" GridPane.rowIndex="1" />
+            <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
+            <Label fx:id="emailLabel" text="Email Empr:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
 
-         <TextField fx:id="emailText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-      </children>
-   </GridPane>
-   <GridPane alignment="CENTER">
-     <columnConstraints>
-       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-     </columnConstraints>
-     <rowConstraints>
-       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-     </rowConstraints>
-      <children>
-            <Button fx:id="buscarBoton" alignment="CENTER" onAction="#onBuscarButtonClick" text="Buscar!" />
-            <Button fx:id="cancelarBoton" alignment="CENTER" contentDisplay="CENTER" onAction="#onCancelarButtonClick" text="Cancelar!" GridPane.columnIndex="1" />
-      </children>
-   </GridPane>
-
-</VBox>
+         </children>
+      </GridPane>
+      <Button fx:id="volverBoton" alignment="CENTER" contentDisplay="TOP" layoutX="26.0" layoutY="25.0" onAction="#onVolverButtonClick" prefHeight="33.0" prefWidth="63.0" style="-fx-background-color: #d9d0d0#d9d0d0;">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Line endX="-94.33369445800781" endY="6.248443603515625" layoutX="145.0" layoutY="47.0" startX="-100.0" strokeWidth="1.5" />
+      <Line endX="-94.54953002929688" endY="-5.83868408203125" layoutX="145.0" layoutY="47.0" startX="-100.0" strokeWidth="1.5" />
+      <Line endX="-75.69999694824219" endY="-1.399993896484375" layoutX="148.0" layoutY="48.0" startX="-102.30000305175781" startY="-1.399993896484375" strokeWidth="1.5" />
+   </children>
+</AnchorPane>

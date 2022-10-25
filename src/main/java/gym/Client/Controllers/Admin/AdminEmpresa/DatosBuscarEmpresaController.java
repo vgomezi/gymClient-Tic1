@@ -1,6 +1,5 @@
 package gym.Client.Controllers.Admin.AdminEmpresa;
 
-import gym.Client.Controllers.Empresa.MainEmpresaController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -47,6 +47,9 @@ public class BuscarCentroController {
     private Button cancelarBoton;
 
     @FXML
+    private Button volverBoton;
+
+    @FXML
     protected void onBuscarButtonClick(ActionEvent event) throws IOException, InterruptedException {
 
         String correo = emailText.getText();
@@ -121,6 +124,24 @@ public class BuscarCentroController {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    protected void onVolverButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(BuscarCentroController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/MainAdminCentro.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Main Administrador Centro");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
 

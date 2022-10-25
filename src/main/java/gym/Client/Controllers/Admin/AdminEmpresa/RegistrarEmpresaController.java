@@ -9,9 +9,13 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.HttpRequestWithBody;
 import gym.Client.Classes.EmpresaObject;
 import gym.Client.Classes.UserLoginObject;
+import gym.Client.Controllers.Admin.AdminCentro.BuscarCentroController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -57,7 +61,10 @@ public class RegistrarEmpresaController {
     private Button cancelarBoton;
 
     @FXML
-    protected void onCrearButtonClick(ActionEvent event) {
+    private Button volverBoton;
+
+    @FXML
+    protected void onRegistrarButtonClick(ActionEvent event) {
         String nombre = nombreText.getText();
         String email = emailText.getText();
         String bono = bonoText.getText();
@@ -113,5 +120,23 @@ public class RegistrarEmpresaController {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    protected void onVolverButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(RegistrarEmpresaController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/MainAdminEmpresa.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Main Administrador Empresa");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 }

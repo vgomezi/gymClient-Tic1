@@ -10,8 +10,10 @@ import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Classes.UserLoginObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
@@ -52,6 +54,9 @@ public class RegistrarCentroController {
 
     @FXML
     private Button cancelarBoton;
+
+    @FXML
+    private Button volverBoton;
 
     @FXML
     protected void onRegistrarButtonClick(ActionEvent event) {
@@ -170,5 +175,23 @@ public class RegistrarCentroController {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    protected void onVolverButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(RegistrarCentroController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/MainAdminCentro.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Main Administrador Centro");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 }

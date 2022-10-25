@@ -35,6 +35,9 @@ public class EliminarCentroController {
     @FXML
     private Button cancelarBoton;
 
+    @FXML
+    private Button volverBoton;
+
     public String getUsuarioAdminCentroEliminar() {
         return usuarioAdminCentroEliminar;
     }
@@ -100,6 +103,24 @@ public class EliminarCentroController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
 
+    }
+
+    @FXML
+    protected void onVolverButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(EliminarCentroController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminCentro/MainAdminCentro.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Main Administrador Centro");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
     public TextField getEmailText() {

@@ -1,7 +1,5 @@
 package gym.Client.Controllers.Admin.AdminEmpresa;
 
-import gym.Client.Controllers.Empresa.MainEmpresaController;
-import gym.Client.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
@@ -64,7 +61,27 @@ public class MainAdminEmpresaController {
     }
 
     @FXML
-    protected void onActualizarEmpresaButtonClick(ActionEvent event) {}
+    protected void onActualizarEmpresaButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminEmpresaController.class.getResourceAsStream("/formularios/OpcionesAdministrador/AdminEmpresa/ActualizarEmpresa.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            EliminarEmpresaController eliminarEmpresaController = fxmlLoader.getController();
+            eliminarEmpresaController.setUsuarioAdminEmpresaEliminar(this.usuarioAdminEmpresaMain);
+
+            stage.setTitle("Actualizar Empresa");
+            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @FXML
     protected void onEliminarEmpresaButtonClick(ActionEvent event) {

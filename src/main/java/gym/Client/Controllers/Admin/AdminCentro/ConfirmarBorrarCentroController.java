@@ -35,6 +35,7 @@ public class ConfirmarBorrarCentroController {
     @FXML
     private Label nombreCentroLabel;
 
+
     public void displayNombreCentro(String nombreCentro) {
         nombreCentroLabel.setText("Confirme que desea eliminar el centro " + nombreCentro);
     }
@@ -82,6 +83,8 @@ public class ConfirmarBorrarCentroController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
+
+
 
     public String getUsuarioAdminConfirmarBorrar() {
         return usuarioAdminConfirmarBorrar;

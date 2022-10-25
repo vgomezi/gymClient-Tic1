@@ -33,6 +33,8 @@ public class ConfirmarBorrarEmpresaController {
     @FXML
     private Label nombreEmpresaLabel;
 
+
+
     public void displayNombreEmpresa(String nombreEmpresa) {
         nombreEmpresaLabel.setText("Confirme que desea eliminar la empresa " + nombreEmpresa);
     }
@@ -80,6 +82,8 @@ public class ConfirmarBorrarEmpresaController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
+
+
 
     public String getUsuarioAdminConfirmar() {
         return usuarioAdminConfirmar;
