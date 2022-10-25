@@ -10,6 +10,8 @@ import com.mashape.unirest.request.HttpRequest;
 import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Controllers.Centro.RegistrarActividadController;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
+import gym.Client.Controllers.ErrorController;
+import gym.Client.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import org.springframework.boot.json.JsonParser;
@@ -44,8 +48,6 @@ public class BuscarCentroController {
 
     @FXML
     protected void onBuscarButtonClick(ActionEvent event) throws IOException, InterruptedException {
-
-        //Revisar que pasa si el centro no existe
 
         String correo = emailText.getText();
         String centro  = "";
@@ -81,17 +83,30 @@ public class BuscarCentroController {
                 stage.setScene(new Scene(root1));
                 stage.show();
 
-
-
-
-
-
-
-
-                //System.out.println(centroDeportivo.toString());
-                System.out.println(centroDeportivoBuscado.getNombre());
-                System.out.println(centroDeportivoBuscado.getMail());
             } else {
+
+                try {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    Parent root1 = (Parent) fxmlLoader.load(BuscarCentroController.class.getResourceAsStream("/gym/Client/Error.fxml"));
+
+                    ErrorController errorController = fxmlLoader.getController();
+                    errorController.getErrorLabel().setText("Centro " + correo + " no existe");
+
+                    Stage stage = new Stage();
+
+                    stage.initModality(Modality.APPLICATION_MODAL);
+
+                    stage.setTitle("Error");
+                    stage.getIcons().add(new Image("ErrorIcon.png"));
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+
+                } catch (Exception ex) {
+                    System.out.println(ex.toString());
+                    System.out.println("Error");
+                }
+
                 System.out.println("centro " + correo + " no existe");
             }
 

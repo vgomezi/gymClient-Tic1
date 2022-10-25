@@ -54,5 +54,27 @@ public class DatosBuscarEmpresaController {
         }
     }
 
+    public Label getEmailDatoLabel() {
+        return emailDatoLabel;
+    }
 
+    public void setEmailDatoLabel(Label emailDatoLabel) {
+        this.emailDatoLabel = emailDatoLabel;
+    }
+
+    public Label getNombreDatoLabel() {
+        return nombreDatoLabel;
+    }
+
+    public void setNombreDatoLabel(Label nombreDatoLabel) {
+        this.nombreDatoLabel = nombreDatoLabel;
+    }
+
+    public Label getBonoDatoLabel() {
+        return bonoDatoLabel;
+    }
+
+    public void setBonoDatoLabel(Label bonoDatoLabel) {
+        this.bonoDatoLabel = bonoDatoLabel;
+    }
 }

@@ -228,7 +228,7 @@ public class LoginController {
                                     stage.initModality(Modality.APPLICATION_MODAL);
 
                                     stage.setTitle("Error");
-                                    stage.getIcons().add(new Image("GymIcon.png"));
+                                    stage.getIcons().add(new Image("ErrorIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();
 
@@ -248,12 +248,15 @@ public class LoginController {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/Error.fxml"));
 
+                    ErrorController errorController = fxmlLoader.getController();
+                    errorController.getErrorLabel().setText("Server no responde");
+
                     Stage stage = new Stage();
 
                     stage.initModality(Modality.APPLICATION_MODAL);
 
                     stage.setTitle("Error");
-                    stage.getIcons().add(new Image("GymIcon.png"));
+                    stage.getIcons().add(new Image("ErrorIcon.png"));
                     stage.setScene(new Scene(root1));
                     stage.show();
 

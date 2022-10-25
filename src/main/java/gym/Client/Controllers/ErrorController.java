@@ -16,11 +16,14 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ErrorController {
 
-
     @FXML
     private Label errorLabel;
 
-    @FXML
-    private Label whichErrorLabel;
+    public Label getErrorLabel() {
+        return errorLabel;
+    }
 
+    public void setErrorLabel(Label errorLabel) {
+        this.errorLabel = errorLabel;
+    }
 }

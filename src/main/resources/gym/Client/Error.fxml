@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.ErrorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.ErrorController">
    <children>
-      <ImageView fitHeight="406.0" fitWidth="600.0" layoutX="-1.0" layoutY="-1.0">
-         <image>
-            <Image url="@/error.jpg" />
-         </image>
-      </ImageView>
-      <Label fx:id="errorLabel" layoutX="21.0" layoutY="25.0" text="OOOPS, HA OCURRIDO UN ERROR!">
+      <Label fx:id="errorLabel" layoutX="23.0" layoutY="43.0" prefHeight="54.0" prefWidth="551.0" text="OOOPS, HA OCURRIDO UN ERROR!">
          <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="whichErrorLabel" layoutX="22.0" layoutY="95.0" prefHeight="44.0" prefWidth="197.0">
-         <font>
-            <Font size="36.0" />
+            <Font size="24.0" />
          </font>
       </Label>
    </children>
