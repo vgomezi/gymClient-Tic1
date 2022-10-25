@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #86895d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.CanchasController">
@@ -23,5 +25,13 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <Button fx:id="volverBoton" alignment="CENTER" contentDisplay="TOP" layoutX="20.0" layoutY="19.0" onAction="#onVolverButtonClick" prefHeight="33.0" prefWidth="63.0" style="-fx-background-color: #d9d0d0#d9d0d0;">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Line endX="-94.33369445800781" endY="6.248443603515625" layoutX="139.0" layoutY="41.0" startX="-100.0" strokeWidth="1.5" />
+      <Line endX="-94.54953002929688" endY="-5.83868408203125" layoutX="139.0" layoutY="41.0" startX="-100.0" strokeWidth="1.5" />
+      <Line endX="-75.69999694824219" endY="-1.399993896484375" layoutX="142.0" layoutY="42.0" startX="-102.30000305175781" startY="-1.399993896484375" strokeWidth="1.5" />
    </children>
 </AnchorPane>

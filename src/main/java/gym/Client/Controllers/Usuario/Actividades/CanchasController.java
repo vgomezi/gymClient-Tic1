@@ -10,11 +10,17 @@ import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.TipoActivitidad.Canchas;
 import gym.Client.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -28,6 +34,9 @@ public class CanchasController implements Initializable {
     @FXML
     public GridPane anchorPaneScroll;
     private List<ActividadObject> listaActividades = new ArrayList<>();
+
+    @FXML
+    private Button volverBoton;
 
     private List<ActividadObject> getDatos(){
         List<ActividadObject> listaActividades = new ArrayList<>();
@@ -69,7 +78,7 @@ public class CanchasController implements Initializable {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                AnchorPane anchorPane = fxmlLoader.load(CanchasController.class.getResourceAsStream("ActividadesPane.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load(CanchasController.class.getResourceAsStream("/formularios/OpcionesUsuario/Actividades/ActividadesPane.fxml"));
 
                 ActividadesPaneController activityPane = fxmlLoader.getController();
 
@@ -82,7 +91,28 @@ public class CanchasController implements Initializable {
             System.out.println("Error creando panel " + e);
 
         }
-
-
     }
+
+    @FXML
+    protected void onVolverButtonClick(ActionEvent event) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/TipoActividades.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Volver");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+            /*Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            //stage.hide();
+            //stage.close();*/
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
+    }
+
+
 }

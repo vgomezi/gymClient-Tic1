@@ -80,6 +80,7 @@ public class MainEmpresaController {
             System.out.println("Error");
             //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
 

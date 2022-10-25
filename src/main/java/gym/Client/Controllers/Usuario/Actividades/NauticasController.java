@@ -2,10 +2,17 @@ package gym.Client.Controllers.Usuario.Actividades;
 
 import gym.Client.Classes.TipoActivitidad.Nauticas;
 import gym.Client.Main;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -25,6 +32,9 @@ public class NauticasController implements Initializable {
         return null;
         //crear objeto falsos?
     }
+
+    @FXML
+    private Button volverBoton;
 
 
     @Override
@@ -49,6 +59,27 @@ public class NauticasController implements Initializable {
             }
         } catch (Exception e) {
 
+        }
+    }
+
+    @FXML
+    protected void onVolverButtonClick(ActionEvent event) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesUsuario/TipoActividades.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setTitle("Volver");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+            /*Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            //stage.hide();
+            //stage.close();*/
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
         }
     }
 }
