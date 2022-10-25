@@ -45,7 +45,6 @@ public class LoginController {
     @FXML
     private Label errorLabel;
 
-
     @FXML
     protected void onIngresarButtonClick(ActionEvent event) {
         String correoElectronico = emailText.getText();
@@ -273,4 +272,11 @@ public class LoginController {
         }
     }
 
+    public TextField getEmailText() {
+        return emailText;
+    }
+
+    public void setEmailText(TextField emailText) {
+        this.emailText = emailText;
+    }
 }

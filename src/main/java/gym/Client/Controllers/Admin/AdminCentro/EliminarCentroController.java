@@ -102,5 +102,11 @@ public class EliminarCentroController {
 
     }
 
+    public TextField getEmailText() {
+        return emailText;
+    }
 
+    public void setEmailText(TextField emailText) {
+        this.emailText = emailText;
+    }
 }

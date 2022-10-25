@@ -1,5 +1,6 @@
 package gym.Client;
 
+import gym.Client.Controllers.LoginController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
