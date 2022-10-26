@@ -29,7 +29,7 @@ public class TipoActividadController {
     private Button volverBoton;
 
 
-
+/*
     @FXML
     protected void onCanchasButtonClick(ActionEvent event) {
         try {
@@ -97,13 +97,13 @@ public class TipoActividadController {
             /*Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             //stage.hide();
-            //stage.close();*/
+            //stage.close();/
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
             System.out.println("Error");
         }
-    }
+    }*/
 
 
 }

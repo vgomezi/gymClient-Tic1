@@ -1,17 +1,27 @@
 package gym.Client.Controllers.Usuario;
 
+import gym.Client.Classes.ActividadObject;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadesPaneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
+
+import java.io.Serializable;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 @Component
 public class MainUsuarioController {

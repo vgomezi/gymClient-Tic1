@@ -6,16 +6,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.Image?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.MainUsuarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.MainUsuarioController">
    <children>
+      <FlowPane layoutX="703.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="703.0" />
       <Label fx:id="mainUsuarioLabel" layoutX="201.0" layoutY="14.0" text="SENSE FIT">
          <font>
             <Font name="Didot" size="36.0" />
@@ -36,7 +38,7 @@
                 <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="imageView" fitHeight="82.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true" >
+                  <ImageView fx:id="imageView" fitHeight="82.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@/login.jpg" />
                   </ImageView>
                   <Label fx:id="nombreLabel" prefHeight="29.0" prefWidth="242.0" GridPane.rowIndex="1">

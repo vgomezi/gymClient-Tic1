@@ -17,7 +17,7 @@ public class ActividadObject {
 
     private String centroMail;
 
-    private String tipo;
+    private TipoActividadObject tipo;
 
     private String descripcion;
 
@@ -34,7 +34,7 @@ public class ActividadObject {
     public ActividadObject() {
     }
 
-    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, String tipo, String descripcion, int costo, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo, List<InscripcionesActividadesObject> actividadesInscripto) {
+    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, TipoActividadObject tipo, String descripcion, int costo, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo, List<InscripcionesActividadesObject> actividadesInscripto) {
         this.nombre = nombre;
         this.hora = hora;
         this.dia = dia;
@@ -72,12 +72,20 @@ public class ActividadObject {
         this.dia = dia;
     }
 
-    public String getTipo() {
+    public TipoActividadObject getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoActividadObject tipo) {
         this.tipo = tipo;
+    }
+
+    public List<InscripcionesActividadesObject> getActividadesInscripto() {
+        return actividadesInscripto;
+    }
+
+    public void setActividadesInscripto(List<InscripcionesActividadesObject> actividadesInscripto) {
+        this.actividadesInscripto = actividadesInscripto;
     }
 
     public String getDescripcion() {

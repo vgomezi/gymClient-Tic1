@@ -6,10 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-import gym.Client.Classes.ActividadObject;
-import gym.Client.Classes.CentroDeportivoObject;
-import gym.Client.Classes.EmpresaObject;
-import gym.Client.Classes.UserLoginObject;
+import gym.Client.Classes.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -119,9 +116,10 @@ public class RegistrarActividadController {
                         centroDeportivo = mapper.readValue(jsonCentro, CentroDeportivoObject.class);
                         System.out.println("centro mapper Hecho ");
                     }
+                    TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
 
                     ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipo, descripcion, costoInt, cuposInt, reservable, centroDeportivo, new ArrayList<>());
+                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipoActividadObject, descripcion, costoInt, cuposInt, reservable, centroDeportivo, new ArrayList<>());
                     json = mapper.writeValueAsString(actividadObject);
                     System.out.println(json);
                 } catch (Exception e) {
