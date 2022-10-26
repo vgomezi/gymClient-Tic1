@@ -23,20 +23,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ActividadRecienteScrollController implements Initializable {
+
+    @FXML
+    private BorderPane pantallaMainUsuario;
 
     @FXML
     private HBox actividadesRecienteLayout;
@@ -205,12 +206,15 @@ public class ActividadRecienteScrollController implements Initializable {
         costoActividadDisplay.setText(String.valueOf(actividadObject.getCosto()));
         horaActividadDisplay.setText(actividadObject.getHora().toString());
         diaActividadDisplay.setText(actividadObject.getDia().toString());
+        nombreActividadDisplay.setText(actividadObject.getNombre());
         descripcionActividadDisplay.setText(actividadObject.getDescripcion());
-        actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;");
+        actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;" +
+                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         //centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
     }
 
-    public void onMisActividadesLabelClick(MouseEvent mouseEvent) {
+    public void onMisActividadesLabelClick(MouseEvent mouseEvent) throws IOException {
+        pantallaMainUsuario.setRight(null);
     }
 
     public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {

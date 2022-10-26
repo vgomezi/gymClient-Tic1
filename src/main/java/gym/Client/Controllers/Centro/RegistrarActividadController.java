@@ -112,15 +112,20 @@ public class RegistrarActividadController {
                     System.out.println(jsonCentro);
 
                     if (!jsonCentro.isBlank()) {
-                        ObjectMapper mapper = new ObjectMapper();
+                        System.out.println("Entro if");
+                        ObjectMapper mapper = new JsonMapper().builder()
+                                .findAndAddModules()
+                                .build();
                         centroDeportivo = mapper.readValue(jsonCentro, CentroDeportivoObject.class);
                         System.out.println("centro mapper Hecho ");
                     }
                     TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
-
-                    ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+                    ObjectMapper mapperActividad = new JsonMapper().builder()
+                            .findAndAddModules()
+                            .build();
+                    mapperActividad.registerModule(new JavaTimeModule());
                     ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipoActividadObject, descripcion, costoInt, cuposInt, reservable, centroDeportivo, new ArrayList<>());
-                    json = mapper.writeValueAsString(actividadObject);
+                    json = mapperActividad.writeValueAsString(actividadObject);
                     System.out.println(json);
                 } catch (Exception e) {
                     System.out.println("Error " + e);
