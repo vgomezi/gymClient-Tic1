@@ -95,7 +95,7 @@ public class ActividadRecienteScrollController implements Initializable {
         try {
             HttpResponse<String> apiResponse = null;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/actividades/allActividades/").asObject(String.class);
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/nuevasActividades/").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
             System.out.println(json);
