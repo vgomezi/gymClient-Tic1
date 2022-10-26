@@ -18,7 +18,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -39,9 +41,47 @@ public class ActividadRecienteScrollController implements Initializable {
     @FXML
     private HBox actividadesRecienteLayout;
 
+    @FXML
+    private Label centroActividadDisplay;
+
+    @FXML
+    private Label costoActividadDisplay;
+
+    @FXML
+    private Label cuposActividadDisplay;
+
+    @FXML
+    private Label descripcionActividadDisplay;
+
+    @FXML
+    private Label diaActividadDisplay;
+
+    @FXML
+    private Label duracionActividadDisplay;
+
+    @FXML
+    private Label horaActividadDisplay;
+
+    @FXML
+    private ImageView imagenActividadDisplay;
+
+    @FXML
+    private Label logOutLabel;
+
+    @FXML
+    private Label misActividadesLabel;
+
+    @FXML
+    private Label nombreActividadDisplay;
+
 
     @FXML
     private GridPane todasLasActividadesGridPane;
+
+    @FXML
+    private VBox actividadSeleccionadaVBox;
+
+    private MyListener myListener;
 
     private List<ActividadObject> anadidosRecienteLista = new ArrayList<>();
     private List<ActividadObject> todasLasActividades = new ArrayList<>();
@@ -103,6 +143,17 @@ public class ActividadRecienteScrollController implements Initializable {
         System.out.println(anadidosRecientemente());
         anadidosRecienteLista.addAll(anadidosRecientemente());
         todasLasActividades.addAll(todasLasActividades());
+
+        if(todasLasActividades.size() > 0) {
+            desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
+            this.myListener = new MyListener() {
+                @Override
+                public void onClickActividad(ActividadObject actividadObject) {
+                    desplegarInfoActividadSeleccionada(actividadObject);
+                }
+            };
+        }
+
         System.out.println(anadidosRecienteLista + "anadidos reciente lista");
         System.out.println("entro initialize actividadRecienteScrollController");
 
@@ -119,7 +170,7 @@ public class ActividadRecienteScrollController implements Initializable {
                 HBox anadidaRecienteBox = fxmlLoader.load();
                 ActividadRecienteController actividadRecienteController = fxmlLoader.getController();
 
-                actividadRecienteController.obtenerDatos(anadidosRecienteLista.get(i));
+                actividadRecienteController.obtenerDatos(anadidosRecienteLista.get(i), myListener);
 
                 this.actividadesRecienteLayout.getChildren().add(anadidaRecienteBox);
             }
@@ -132,7 +183,7 @@ public class ActividadRecienteScrollController implements Initializable {
                 VBox todaActividadbox = fxmlLoader.load();
                 ActividadTodaController actividadTodaController = fxmlLoader.getController();
 
-                actividadTodaController.setearDatos(actividad);
+                actividadTodaController.setearDatos(actividad, myListener);
 
                 if (column == 2) {
                     column = 0;
@@ -149,11 +200,37 @@ public class ActividadRecienteScrollController implements Initializable {
         }
     }
 
-    public void onMouseClickedMisActividades(MouseEvent mouseEvent) {
+    public void desplegarInfoActividadSeleccionada(ActividadObject actividadObject) {
+        cuposActividadDisplay.setText(String.valueOf(actividadObject.getCupos()));
+        costoActividadDisplay.setText(String.valueOf(actividadObject.getCosto()));
+        horaActividadDisplay.setText(actividadObject.getHora().toString());
+        diaActividadDisplay.setText(actividadObject.getDia().toString());
+        descripcionActividadDisplay.setText(actividadObject.getDescripcion());
+        actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;");
+        //centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
     }
 
-    public void onMouseClickedAdministrarUsuario(MouseEvent mouseEvent) {
+    public void onMisActividadesLabelClick(MouseEvent mouseEvent) {
+    }
 
+    public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {
+
+    }
+
+    public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
+
+    }
+
+    private void setActividadSeleccionada(ActividadObject actividad) {
+        //centroActividadDisplay.setText(actividad.getCentroDeportivo().getNombre());
+        costoActividadDisplay.setText(String.valueOf(actividad.getCosto()));
+        cuposActividadDisplay.setText(String.valueOf(actividad.getCupos()));
+        descripcionActividadDisplay.setText(actividad.getDescripcion());
+        diaActividadDisplay.setText(actividad.getDia().toString());
+        horaActividadDisplay.setText(actividad.getHora().toString());
+        nombreActividadDisplay.setText(actividad.getNombre());
+        Image image = new Image("/centro.jpg");
+        imagenActividadDisplay.setImage(image);
     }
 
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
@@ -193,5 +270,93 @@ public class ActividadRecienteScrollController implements Initializable {
         //Desplegar pantalla con los resultados encontrados
 
         //Si no se encuentra ninguno desplegar "No se encontraron actividades relacionadas con esa busqueda"
+    }
+
+    public Label getCentroActividadDisplay() {
+        return centroActividadDisplay;
+    }
+
+    public void setCentroActividadDisplay(Label centroActividadDisplay) {
+        this.centroActividadDisplay = centroActividadDisplay;
+    }
+
+    public Label getCostoActividadDisplay() {
+        return costoActividadDisplay;
+    }
+
+    public void setCostoActividadDisplay(Label costoActividadDisplay) {
+        this.costoActividadDisplay = costoActividadDisplay;
+    }
+
+    public Label getCuposActividadDisplay() {
+        return cuposActividadDisplay;
+    }
+
+    public void setCuposActividadDisplay(Label cuposActividadDisplay) {
+        this.cuposActividadDisplay = cuposActividadDisplay;
+    }
+
+    public Label getDescripcionActividadDisplay() {
+        return descripcionActividadDisplay;
+    }
+
+    public void setDescripcionActividadDisplay(Label descripcionActividadDisplay) {
+        this.descripcionActividadDisplay = descripcionActividadDisplay;
+    }
+
+    public Label getDiaActividadDisplay() {
+        return diaActividadDisplay;
+    }
+
+    public void setDiaActividadDisplay(Label diaActividadDisplay) {
+        this.diaActividadDisplay = diaActividadDisplay;
+    }
+
+    public Label getDuracionActividadDisplay() {
+        return duracionActividadDisplay;
+    }
+
+    public void setDuracionActividadDisplay(Label duracionActividadDisplay) {
+        this.duracionActividadDisplay = duracionActividadDisplay;
+    }
+
+    public Label getHoraActividadDisplay() {
+        return horaActividadDisplay;
+    }
+
+    public void setHoraActividadDisplay(Label horaActividadDisplay) {
+        this.horaActividadDisplay = horaActividadDisplay;
+    }
+
+    public ImageView getImagenActividadDisplay() {
+        return imagenActividadDisplay;
+    }
+
+    public void setImagenActividadDisplay(ImageView imagenActividadDisplay) {
+        this.imagenActividadDisplay = imagenActividadDisplay;
+    }
+
+    public Label getLogOutLabel() {
+        return logOutLabel;
+    }
+
+    public void setLogOutLabel(Label logOutLabel) {
+        this.logOutLabel = logOutLabel;
+    }
+
+    public Label getMisActividadesLabel() {
+        return misActividadesLabel;
+    }
+
+    public void setMisActividadesLabel(Label misActividadesLabel) {
+        this.misActividadesLabel = misActividadesLabel;
+    }
+
+    public Label getNombreActividadDisplay() {
+        return nombreActividadDisplay;
+    }
+
+    public void setNombreActividadDisplay(Label nombreActividadDisplay) {
+        this.nombreActividadDisplay = nombreActividadDisplay;
     }
 }

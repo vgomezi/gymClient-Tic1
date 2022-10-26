@@ -19,3 +19,8 @@
 .shadow {
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 10);
 }
+
+.chosen-activity-card {
+    -fx-background-color: #B9E5FF;
+    -fx-background-radius: 30;
+}

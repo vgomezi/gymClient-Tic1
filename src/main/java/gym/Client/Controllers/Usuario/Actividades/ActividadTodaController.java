@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class ActividadTodaController {
 
@@ -32,7 +33,14 @@ public class ActividadTodaController {
     @FXML
     private Label tipoActividadTodaLabel;
 
-    public void setearDatos(ActividadObject actividadObject) {
+    private ActividadObject actividad;
+
+    private MyListener myListener;
+
+    public void setearDatos(ActividadObject actividadObject, MyListener myListener) {
+        this.myListener = myListener;
+        this.actividad = actividadObject;
+
         Image imageView = new Image("/centro.jpg");
         imagenActividadTodaImage.setImage(imageView);
 
@@ -47,5 +55,9 @@ public class ActividadTodaController {
             reservableActividadTodaLabel.setText("SIN RESERVA");
         }
         //tipoActividadTodaLabel.setText(actividadObject.getTipo().getTipo());
+    }
+
+    public void onActividadTodaPanelClick(MouseEvent mouseEvent) {
+        myListener.onClickActividad(actividad);
     }
 }
