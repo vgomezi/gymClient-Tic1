@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Component
 public class RegistrarActividadController {
@@ -124,7 +125,7 @@ public class RegistrarActividadController {
                             .findAndAddModules()
                             .build();
                     mapperActividad.registerModule(new JavaTimeModule());
-                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipoActividadObject, descripcion, costoInt, cuposInt, reservable, centroDeportivo, new ArrayList<>());
+                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipoActividadObject, descripcion, costoInt, cuposInt, reservable, new Date(), centroDeportivo);
                     json = mapperActividad.writeValueAsString(actividadObject);
                     System.out.println(json);
                 } catch (Exception e) {

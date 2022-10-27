@@ -3,10 +3,12 @@ package gym.Client.Controllers.Usuario.Actividades;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Controllers.LoginController;
@@ -95,12 +97,14 @@ public class ActividadRecienteScrollController implements Initializable {
         try {
             HttpResponse<String> apiResponse = null;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/actividades/nuevasActividades/").asObject(String.class);
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/nuevasActividades").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
             System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            System.out.println("Hago object mapper");
+            //mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividadesNuevas = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 

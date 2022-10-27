@@ -1,9 +1,12 @@
 package gym.Client.Classes;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -27,6 +30,8 @@ public class ActividadObject {
 
     private boolean reservable;
 
+    private Date dateCreada;
+
     private CentroDeportivoObject centroDeportivo;
 
     private List<InscripcionesActividadesObject> actividadesInscripto;
@@ -34,7 +39,7 @@ public class ActividadObject {
     public ActividadObject() {
     }
 
-    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, TipoActividadObject tipo, String descripcion, int costo, int cupos, boolean reservable, CentroDeportivoObject centroDeportivo, List<InscripcionesActividadesObject> actividadesInscripto) {
+    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, TipoActividadObject tipo, String descripcion, int costo, int cupos, boolean reservable, Date dateCreada, CentroDeportivoObject centroDeportivo) {
         this.nombre = nombre;
         this.hora = hora;
         this.dia = dia;
@@ -44,8 +49,9 @@ public class ActividadObject {
         this.costo = costo;
         this.cupos = cupos;
         this.reservable = reservable;
+        this.dateCreada = dateCreada;
         this.centroDeportivo = centroDeportivo;
-        this.actividadesInscripto = actividadesInscripto;
+        this.actividadesInscripto = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -136,6 +142,14 @@ public class ActividadObject {
         this.centroMail = centroMail;
     }
 
+    public Date getDateCreada() {
+        return dateCreada;
+    }
+
+    public void setDateCreada(Date dateCreada) {
+        this.dateCreada = dateCreada;
+    }
+
     @Override
     public String toString() {
         return "ActividadObject{" +
@@ -143,12 +157,14 @@ public class ActividadObject {
                 ", hora=" + hora +
                 ", dia=" + dia +
                 ", centroMail='" + centroMail + '\'' +
-                ", tipo='" + tipo + '\'' +
+                ", tipo=" + tipo +
                 ", descripcion='" + descripcion + '\'' +
                 ", costo=" + costo +
                 ", cupos=" + cupos +
                 ", reservable=" + reservable +
+                ", dateCreada=" + dateCreada +
                 ", centroDeportivo=" + centroDeportivo +
+                ", actividadesInscripto=" + actividadesInscripto +
                 '}';
     }
 }
