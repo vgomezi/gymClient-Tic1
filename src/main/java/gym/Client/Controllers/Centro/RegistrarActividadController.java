@@ -138,9 +138,9 @@ public class RegistrarActividadController {
 
                 System.out.println("Hecho");
 
-                Node source = (Node) event.getSource();
+                /*Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
+                stage.close();*/
 
             } catch (Exception e) {
                 System.out.println(e.toString());
@@ -154,7 +154,7 @@ public class RegistrarActividadController {
     }
 
     ObservableList<String> tipoChoiceBoxList = FXCollections.
-            observableArrayList("Canchas","Gimnasio/Sala", "Naúticas");
+            observableArrayList("Canchas","Gimnasio/Sala", "Náuticas");
 
     @FXML
     private void initialize(){

@@ -49,7 +49,7 @@ public class MainAdminEmpresaController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Registrar Empresa");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -72,7 +72,7 @@ public class MainAdminEmpresaController {
             eliminarEmpresaController.setUsuarioAdminEmpresaEliminar(this.usuarioAdminEmpresaMain);
 
             stage.setTitle("Actualizar Empresa");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -95,7 +95,7 @@ public class MainAdminEmpresaController {
             eliminarEmpresaController.setUsuarioAdminEmpresaEliminar(this.usuarioAdminEmpresaMain);
 
             stage.setTitle("Eliminar Empresa");
-            //stage.getIcons().add(new Image("FitnessIcon.png"));
+            stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -115,7 +115,7 @@ public class MainAdminEmpresaController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setTitle("Buscar Empresa");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 

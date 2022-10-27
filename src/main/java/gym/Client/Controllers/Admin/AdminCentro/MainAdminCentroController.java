@@ -72,7 +72,7 @@ public class MainAdminCentroController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Actualizar Centro Deportivo");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -93,7 +93,7 @@ public class MainAdminCentroController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Buscar Centro Deportivo");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -118,7 +118,7 @@ public class MainAdminCentroController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Eliminar Centro Deportivo");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 

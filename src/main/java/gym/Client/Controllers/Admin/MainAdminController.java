@@ -48,7 +48,7 @@ public class MainAdminController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Administrar Empresa");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 
@@ -73,7 +73,7 @@ public class MainAdminController {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Administrar Centro");
-            stage.getIcons().add(new Image("GymIcon.png"));
+            stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
 

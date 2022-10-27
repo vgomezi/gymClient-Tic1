@@ -37,7 +37,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ActividadRecienteScrollController implements Initializable {
-
     @FXML
     private BorderPane pantallaMainUsuario;
 
@@ -58,6 +57,9 @@ public class ActividadRecienteScrollController implements Initializable {
 
     @FXML
     private Label diaActividadDisplay;
+
+    @FXML
+    public Label tipoActividadDisplay;
 
     @FXML
     private Label duracionActividadDisplay;
@@ -97,7 +99,7 @@ public class ActividadRecienteScrollController implements Initializable {
         try {
             HttpResponse<String> apiResponse = null;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/actividades/nuevasActividades").asObject(String.class);
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/nuevasActividades").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
             System.out.println(json);
@@ -124,7 +126,7 @@ public class ActividadRecienteScrollController implements Initializable {
         try {
             HttpResponse<String> apiResponse = null;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/actividades/allActividades/").asObject(String.class);
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/allActividades/").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
             System.out.println(json);
@@ -210,6 +212,7 @@ public class ActividadRecienteScrollController implements Initializable {
         costoActividadDisplay.setText(String.valueOf(actividadObject.getCosto()));
         horaActividadDisplay.setText(actividadObject.getHora().toString());
         diaActividadDisplay.setText(actividadObject.getDia().toString());
+
         nombreActividadDisplay.setText(actividadObject.getNombre());
         descripcionActividadDisplay.setText(actividadObject.getDescripcion());
         actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;" +
@@ -233,6 +236,7 @@ public class ActividadRecienteScrollController implements Initializable {
         //centroActividadDisplay.setText(actividad.getCentroDeportivo().getNombre());
         costoActividadDisplay.setText(String.valueOf(actividad.getCosto()));
         cuposActividadDisplay.setText(String.valueOf(actividad.getCupos()));
+        tipoActividadDisplay.setText(actividad.getTipo().getTipo());
         descripcionActividadDisplay.setText(actividad.getDescripcion());
         diaActividadDisplay.setText(actividad.getDia().toString());
         horaActividadDisplay.setText(actividad.getHora().toString());

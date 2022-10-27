@@ -54,7 +54,7 @@ public class ActividadTodaController {
         } else {
             reservableActividadTodaLabel.setText("SIN RESERVA");
         }
-        //tipoActividadTodaLabel.setText(actividadObject.getTipo().getTipo());
+        tipoActividadTodaLabel.setText(actividadObject.getTipo().getTipo());
     }
 
     public void onActividadTodaPanelClick(MouseEvent mouseEvent) {
