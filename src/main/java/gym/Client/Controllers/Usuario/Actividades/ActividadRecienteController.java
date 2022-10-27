@@ -51,7 +51,7 @@ public class ActividadRecienteController {
         Image image = new Image(/*getClass().getResourceAsStream(actividadObject.getNombre()*/"/centro.jpg");
         imagenActividadReciente.setImage(image);
 
-        centroActividadReciente.setText(actividadObject.getCentroMail());
+        centroActividadReciente.setText(actividadObject.getCentroDeportivo().getNombre());
         costoActividadReciente.setText("$" + String.valueOf(actividadObject.getCosto()));
         diaActividadReciente.setText(actividadObject.getDia().toString());
         horaActividadReciente.setText(actividadObject.getHora().toString());

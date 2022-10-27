@@ -212,12 +212,12 @@ public class ActividadRecienteScrollController implements Initializable {
         costoActividadDisplay.setText(String.valueOf(actividadObject.getCosto()));
         horaActividadDisplay.setText(actividadObject.getHora().toString());
         diaActividadDisplay.setText(actividadObject.getDia().toString());
-
+        tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
         nombreActividadDisplay.setText(actividadObject.getNombre());
         descripcionActividadDisplay.setText(actividadObject.getDescripcion());
         actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-        //centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
+        centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
     }
 
     public void onMisActividadesLabelClick(MouseEvent mouseEvent) throws IOException {
