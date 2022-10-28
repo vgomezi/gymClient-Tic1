@@ -41,7 +41,7 @@
                 </HBox>
                 <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ChoiceBox layoutX="14.0" layoutY="17.0" prefWidth="150.0" style="-fx-background-radius: 15;" stylesheets="@../../../css/style.css" />
+                  <ChoiceBox layoutX="14.0" layoutY="17.0" prefWidth="150.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
                </children></Pane>
                 <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="273.0" spacing="20.0">
                     <children>
@@ -100,7 +100,7 @@
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="@../../../css/style.css">
+            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
                       <Label fx:id="nombreActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="NOMBRE ACTIVIDAD" textAlignment="CENTER" textOverrun="CLIP">
                           <font>
@@ -159,7 +159,7 @@
                           </children>
                       </HBox>
                   <TextField fx:id="mailUsuarioDisplay" alignment="CENTER" promptText="MAIL USUARIO" />
-                      <Button fx:id="registrarIngresoUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="REGISTRAR" textFill="WHITE">
+                      <Button fx:id="registrarIngresoUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
                           <font>
                               <Font size="18.0" />
                           </font>
@@ -195,7 +195,7 @@
                   <ScrollBar orientation="VERTICAL" />
                </children>
             </HBox>
-            <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="@../../../css/style.css" VBox.vgrow="ALWAYS">
+            <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
                <content>
                   <GridPane fx:id="todasLasActividadesGridPane" prefHeight="0.0" prefWidth="0.0">
                     <rowConstraints>
