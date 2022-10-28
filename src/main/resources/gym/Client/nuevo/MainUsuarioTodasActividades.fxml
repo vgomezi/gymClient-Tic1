@@ -202,7 +202,7 @@
     <center>
         <VBox prefHeight="599.0" prefWidth="708.0" spacing="20.0" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="anadidasRecientementeLabel" prefHeight="35.0" prefWidth="418.0" text="AÑADIDAS RECIENTEMENTE">
+                <Label fx:id="anadidasRecientementeTitleLabel" prefHeight="35.0" prefWidth="418.0" text="AÑADIDAS RECIENTEMENTE">
                     <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                     </font>
@@ -213,7 +213,7 @@
                     </content>
                 </ScrollPane>
                 <Separator prefWidth="200.0" />
-                <Label fx:id="todasLasActividadesLabel" prefHeight="35.0" prefWidth="418.0" text="TODAS LAS ACTIVIDADES">
+                <Label fx:id="todasLasActividadesTitleLabel" prefHeight="35.0" prefWidth="418.0" text="TODAS LAS ACTIVIDADES">
                     <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                     </font>

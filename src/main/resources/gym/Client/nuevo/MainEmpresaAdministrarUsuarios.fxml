@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ScrollPane?>
@@ -39,10 +38,7 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <ChoiceBox layoutX="14.0" layoutY="17.0" prefWidth="150.0" style="-fx-background-radius: 15;" stylesheets="@../../../css/style.css" />
-               </children></Pane>
+                <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                 <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="273.0" spacing="20.0">
                     <children>
                         <Label fx:id="logOutLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" onMouseClicked="#onMouseClickedLogOut" prefHeight="46.0" prefWidth="96.0" text="LOG OUT" textAlignment="RIGHT" textOverrun="CLIP">
@@ -80,12 +76,12 @@
                 </VBox>
                 <VBox alignment="TOP_CENTER" prefHeight="283.0" prefWidth="206.0">
                     <children>
-                        <Label fx:id="todasLasActividadesLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasActividadesLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODAS LAS ACTIVIDADES" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                        <Label fx:id="todasLosUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasActividadesLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS LOS USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                             <font>
                                 <Font name="Baskerville Old Face" size="18.0" />
                             </font>
                         </Label>
-                  <Label fx:id="registrarIngresoUsuarioLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasActividadesLabelClick" prefHeight="58.0" prefWidth="206.0" text="REGISTRAR INGRESO USUARIO" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                  <Label fx:id="administrarUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasActividadesLabelClick" prefHeight="58.0" prefWidth="206.0" text="ADMINISTRAR  USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
@@ -95,7 +91,7 @@
                 <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0" />
             <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0">
                <children>
-                  <Button fx:id="administrarCentroBoton" mnemonicParsing="false" prefHeight="34.0" prefWidth="185.0" style="-fx-background-radius: 15;" text="ADMNISITRAR CENTRO">
+                  <Button fx:id="administrarEmpresaBoton" mnemonicParsing="false" prefHeight="34.0" prefWidth="185.0" style="-fx-background-radius: 15;" text="ADMNISITRAR EMPRESA">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -107,93 +103,83 @@
     </left>
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
-            <children>
-            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="@../../../css/style.css">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="@../../../css/style.css">
                <children>
-                      <Label fx:id="nombreActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="NOMBRE ACTIVIDAD" textAlignment="CENTER" textOverrun="CLIP">
-                          <font>
+                  <Label fx:id="nombreUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="NOMBRE USUARIO" textAlignment="CENTER" textOverrun="CLIP">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="tipoActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="EMAIL" textAlignment="CENTER" textOverrun="CLIP">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
+                     <children>
+                        <Label fx:id="diaActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="NOMBRE" textAlignment="CENTER" textOverrun="CLIP">
+                           <font>
                               <Font name="Baskerville Old Face" size="18.0" />
-                          </font>
-                      </Label>
-                      <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
-                      <Label fx:id="tipoActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="TIPO" textAlignment="CENTER" textOverrun="CLIP">
-                          <font>
+                           </font>
+                        </Label>
+                        <Label fx:id="horaActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="APELLIDO" textAlignment="CENTER" textOverrun="CLIP">
+                           <font>
                               <Font name="Baskerville Old Face" size="18.0" />
-                          </font>
-                      </Label>
-                      <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
-                          <children>
-                              <Label fx:id="diaActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="DIA" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="horaActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="HORA" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
-                                  </font>
-                              </Label>
-                          </children>
-                      </HBox>
-                      <Label fx:id="descripcionActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="163.0" prefWidth="286.0" text="DESCRIPCION" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
-                          <font>
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0">
+                     <children>
+                        <Label fx:id="costoActividadDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="286.0" text="TELEFONO" textAlignment="CENTER" textOverrun="CLIP">
+                           <font>
                               <Font name="Baskerville Old Face" size="18.0" />
-                          </font>
-                      </Label>
-                      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0">
-                          <children>
-                              <Label fx:id="cuposActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="CUPOS" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="duracionActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="DURACION" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
-                                  </font>
-                              </Label>
-                          </children>
-                      </HBox>
-                      <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0">
-                          <children>
-                              <Label fx:id="costoActividadDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="286.0" text="COSTO" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
-                                  </font>
-                                  <HBox.margin>
-                                      <Insets top="5.0" />
-                                  </HBox.margin>
-                              </Label>
-                          </children>
-                      </HBox>
-                  <TextField fx:id="mailUsuarioText" alignment="CENTER" promptText="MAIL USUARIO" />
-                      <Button fx:id="registrarIngresoUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="REGISTRAR" textFill="WHITE">
-                          <font>
-                              <Font size="18.0" />
-                          </font>
-                          <opaqueInsets>
-                              <Insets />
-                          </opaqueInsets>
-                      </Button>
+                           </font>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label fx:id="centroActividadDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="CONTRASEÑA" textAlignment="CENTER" textOverrun="CLIP">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="actualizarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="ACTUALIZAR" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="eliminarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="ELIMINAR" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
                </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
-               </VBox.margin>
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </VBox>
-            </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
+         </children>
         </VBox>
     </right>
     <center>
         <VBox prefHeight="599.0" prefWidth="708.0" spacing="20.0" BorderPane.alignment="CENTER">
             <children>
                 <Separator prefWidth="200.0" />
-                <Label fx:id="todasLasActividadesTitleLabel" prefHeight="35.0" prefWidth="418.0" text="TODAS LAS ACTIVIDADES">
+                <Label fx:id="todosLosUsuariosTiltleLabel" prefHeight="35.0" prefWidth="418.0" text="TODOS LOS USUARIOS">
                     <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                     </font>
