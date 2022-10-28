@@ -88,7 +88,7 @@ public class UsuarioMisActividadesContrller implements Initializable {
 
     private List<ActividadObject> todasLasActividades = new ArrayList<>();
 
-    private List<ActividadObject> todasLasActividades() {
+    private List<ActividadObject> todasMisActividades() {
         List<ActividadObject> listaActividadesNuevas = new ArrayList<>();
         ActividadObject actividadObject;
 
@@ -117,7 +117,7 @@ public class UsuarioMisActividadesContrller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Entro initialize");
-        todasLasActividades.addAll(todasLasActividades());
+        todasLasActividades.addAll(todasMisActividades());
 
         if(todasLasActividades.size() > 0) {
             desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
@@ -129,7 +129,7 @@ public class UsuarioMisActividadesContrller implements Initializable {
             };
         }
 
-        System.out.println("entro initialize actividadRecienteScrollController");
+        System.out.println("entro initialize UsuarioMisActividadesController");
 
         int column = 0;
         int row = 1;
@@ -167,6 +167,8 @@ public class UsuarioMisActividadesContrller implements Initializable {
         tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
         nombreActividadDisplay.setText(actividadObject.getNombre());
         descripcionActividadDisplay.setText(actividadObject.getDescripcion());
+        Image image = new Image("/centro.jpg");
+        imagenActividadDisplay.setImage(image);
         actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
