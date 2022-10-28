@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ActividadObject {
@@ -32,6 +30,8 @@ public class ActividadObject {
 
     private Date dateCreada;
 
+    private String imagenActividad;
+
     private CentroDeportivoObject centroDeportivo;
 
     private List<InscripcionesActividadesObject> actividadesInscripto;
@@ -39,7 +39,7 @@ public class ActividadObject {
     public ActividadObject() {
     }
 
-    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, TipoActividadObject tipo, String descripcion, int costo, int cupos, boolean reservable, Date dateCreada, CentroDeportivoObject centroDeportivo) {
+    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, TipoActividadObject tipo, String descripcion, int costo, int cupos, boolean reservable, Date dateCreada, String imagenActividad, CentroDeportivoObject centroDeportivo) {
         this.nombre = nombre;
         this.hora = hora;
         this.dia = dia;
@@ -50,6 +50,7 @@ public class ActividadObject {
         this.cupos = cupos;
         this.reservable = reservable;
         this.dateCreada = dateCreada;
+        this.imagenActividad = imagenActividad;
         this.centroDeportivo = centroDeportivo;
         this.actividadesInscripto = new ArrayList<>();
     }
@@ -150,6 +151,22 @@ public class ActividadObject {
         this.dateCreada = dateCreada;
     }
 
+    public String getImagenActividad() {
+        return imagenActividad;
+    }
+
+    public void setImagenActividad(String imagenActividad) {
+        this.imagenActividad = imagenActividad;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ActividadObject that = (ActividadObject) o;
+        return costo == that.costo && cupos == that.cupos && reservable == that.reservable && Objects.equals(nombre, that.nombre) && Objects.equals(hora, that.hora) && Objects.equals(dia, that.dia) && Objects.equals(centroMail, that.centroMail) && Objects.equals(tipo, that.tipo) && Objects.equals(descripcion, that.descripcion) && Objects.equals(dateCreada, that.dateCreada) && Objects.equals(imagenActividad, that.imagenActividad) && Objects.equals(centroDeportivo, that.centroDeportivo) && Objects.equals(actividadesInscripto, that.actividadesInscripto);
+    }
+
     @Override
     public String toString() {
         return "ActividadObject{" +
@@ -163,6 +180,7 @@ public class ActividadObject {
                 ", cupos=" + cupos +
                 ", reservable=" + reservable +
                 ", dateCreada=" + dateCreada +
+                ", imagenActividad=" + imagenActividad +
                 ", centroDeportivo=" + centroDeportivo +
                 ", actividadesInscripto=" + actividadesInscripto +
                 '}';

@@ -1,11 +1,18 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
 import gym.Client.Classes.ActividadObject;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.Base64;
 
 public class ActividadTodaController {
 
@@ -41,8 +48,22 @@ public class ActividadTodaController {
         this.myListener = myListener;
         this.actividad = actividadObject;
 
-        Image imageView = new Image("/centro.jpg");
-        imagenActividadTodaImage.setImage(imageView);
+        if(actividadObject.getImagenActividad() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagenActividad());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenActividadTodaImage.setImage(toAdd);
+        } else {
+            Image imageView = new Image("/centro.jpg");
+            imagenActividadTodaImage.setImage(imageView);
+        }
 
         costoActividadTodaLabel.setText(String.valueOf(actividadObject.getCosto()));
         cuposActividadTodaLabel.setText(String.valueOf(actividadObject.getCupos()));

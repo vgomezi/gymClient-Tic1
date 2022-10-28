@@ -103,5 +103,6 @@
 
          </children>
       </GridPane>
+      <Button fx:id="registrarActividadFoto" layoutX="501.0" layoutY="175.0" mnemonicParsing="false" onAction="#registrarActividadAction" text="Button" />
    </children>
 </AnchorPane>

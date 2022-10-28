@@ -8,6 +8,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
+import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
+import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaNuevoController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
@@ -175,7 +177,7 @@ public class MainEmpresaTodosUsuarios implements Initializable {
         }
 
         System.out.println(anadidosRecienteUsuarioLista + "anadidos reciente lista");
-        System.out.println("entro initialize actividadRecienteScrollController");
+        System.out.println("entro initialize mainEmpresaTodosUsuarios");
 
         int column = 0;
         int row = 1;
@@ -184,26 +186,26 @@ public class MainEmpresaTodosUsuarios implements Initializable {
                 System.out.println("tamaño i = " + anadidosRecienteUsuarioLista.size());
                 System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadReciente.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresaNuevo.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 HBox anadidaRecienteBox = fxmlLoader.load();
-                ActividadRecienteController actividadRecienteController = fxmlLoader.getController();
+                UsuarioEmpresaNuevoController usuarioEmpresaNuevoController = fxmlLoader.getController();
 
-                //actividadRecienteController.obtenerDatos(anadidosRecienteUsuarioLista.get(i), myListener);
+                usuarioEmpresaNuevoController.obtenerDatos(anadidosRecienteUsuarioLista.get(i), myListener);
 
                 this.actividadesRecienteLayout.getChildren().add(anadidaRecienteBox);
             }
 
             for(EmpleadoObject empleado : todosLosUsuarios) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 VBox todaActividadbox = fxmlLoader.load();
-                ActividadTodaController actividadTodaController = fxmlLoader.getController();
+                UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
 
-                //actividadTodaController.setearDatos(empleado, myListener);
+                usuarioEmpresaController.setearDatos(empleado, myListener);
 
                 if (column == 2) {
                     column = 0;
@@ -233,5 +235,12 @@ public class MainEmpresaTodosUsuarios implements Initializable {
     @FXML
     void onTodasLasActividadesLabelClick(MouseEvent event) {
 
+    }
+
+    public void onTodosLosUsuariosLabelClick(MouseEvent mouseEvent) {
+    }
+
+
+    public void onAdministrarUsuariosLabelClick(MouseEvent mouseEvent) {
     }
 }

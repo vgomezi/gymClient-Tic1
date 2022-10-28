@@ -13,12 +13,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 
 @Component
@@ -75,10 +80,15 @@ public class RegistrarActividadController {
     private TextField costoText;
 
     @FXML
+    private Button registrarActividadFoto;
+
+    @FXML
     private Button registrarBoton;
 
     @FXML
     private Button cancelarBoton;
+
+    public Image imagen;
 
     @FXML
     protected void onRegistrarButtonClick(ActionEvent event) {
@@ -89,6 +99,9 @@ public class RegistrarActividadController {
         String dia = diaTextPicker.getValue().toString();
         String cupos = cuposText.getText();
         String costo = costoText.getText();
+        //byte[] imagen = registrarActividadAction(event);
+        String imagen = registrarActividadAction(event);
+        //System.out.println(imagen);
         Boolean reservable = reservableCheckBox.isSelected();
         System.out.println(reservable);
         System.out.println(tipo);
@@ -125,7 +138,9 @@ public class RegistrarActividadController {
                             .findAndAddModules()
                             .build();
                     mapperActividad.registerModule(new JavaTimeModule());
-                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipoActividadObject, descripcion, costoInt, cuposInt, reservable, new Date(), centroDeportivo);
+                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipoActividadObject, descripcion, costoInt, cuposInt, reservable, new Date(), imagen, centroDeportivo);
+                    System.out.println("Imagen actividad");
+                    System.out.println(actividadObject.getImagenActividad());
                     json = mapperActividad.writeValueAsString(actividadObject);
                     System.out.println(json);
                 } catch (Exception e) {
@@ -134,6 +149,7 @@ public class RegistrarActividadController {
                 System.out.println("Http respones luego de catch");
                 HttpResponse<JsonNode> apiResponse = null;
                 apiResponse = Unirest.post("http://localhost:8987/api/actividades").header("Content-Type", "application/json").body(json).asJson();
+
                 System.out.println("Hecho Actividad");
 
                 System.out.println("Hecho");
@@ -181,5 +197,60 @@ public class RegistrarActividadController {
 
     public void setUsuarioCentroRegistrarActividad(String usuarioCentroRegistrarActividad) {
         this.usuarioCentroRegistrarActividad = usuarioCentroRegistrarActividad;
+    }
+
+    public String registrarActividadAction(ActionEvent event) {
+        String base64String = null;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir imagen actividad");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+        try {
+            //FileInputStream fileInputStream = new FileInputStream(file);
+            System.out.println(file);
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            System.out.println(bytes);
+            base64String = Base64.getEncoder().encodeToString(bytes);
+            System.out.println(base64String);
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return base64String;
+    }
+
+    /*public byte[] registrarActividadAction(ActionEvent event) {
+        byte[] bytes = null;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir imagen actividad");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+        try {
+            //FileInputStream fileInputStream = new FileInputStream(file);
+            System.out.println(file);
+            bytes = Files.readAllBytes(file.toPath());
+            System.out.println(bytes);
+            //base64String = Base64.getEncoder().encodeToString(bytes);
+            //System.out.println(base64String);
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return bytes;
+        //return base64String;
+    }*/
+
+    public Image getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Image imagen) {
+        this.imagen = imagen;
     }
 }

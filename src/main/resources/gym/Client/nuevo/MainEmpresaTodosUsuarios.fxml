@@ -29,7 +29,7 @@
                 <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" />
                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="328.0" spacing="10.0" styleClass="round-layout" stylesheets="/css/style.css">
                     <children>
-                        <TextField onKeyPressed="#onEnterPressed" prefHeight="26.0" prefWidth="267.0" promptText="Barra de bÚsqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
+                        <TextField onKeyPressed="#onEnterPressed" prefHeight="26.0" prefWidth="267.0" promptText="Barra de búsqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@/Lupa.png" />
@@ -102,7 +102,7 @@
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox fx:id="usuarioSeleccionadoVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
+            <VBox fx:id="usuarioSeleccionadoVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="@../../../css/style.css">
                <children>
                   <ImageView fx:id="imagenActividadDisplay1" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="nombreUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="NOMBRE" textAlignment="CENTER" textOverrun="CLIP">
@@ -149,6 +149,9 @@
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
+               </VBox.margin>
             </VBox>
             </children>
          <BorderPane.margin>
