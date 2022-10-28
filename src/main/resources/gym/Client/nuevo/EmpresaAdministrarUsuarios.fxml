@@ -76,12 +76,12 @@
                 </VBox>
                 <VBox alignment="TOP_CENTER" prefHeight="283.0" prefWidth="206.0">
                     <children>
-                        <Label fx:id="todasLosUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasActividadesLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS LOS USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                        <Label fx:id="todasLosUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodosLosUsuariosLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS LOS USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                             <font>
                                 <Font name="Baskerville Old Face" size="18.0" />
                             </font>
                         </Label>
-                  <Label fx:id="administrarUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasActividadesLabelClick" prefHeight="58.0" prefWidth="206.0" text="ADMINISTRAR  USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                  <Label fx:id="administrarUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarUsuariosLabelClick" prefHeight="58.0" prefWidth="206.0" text="ADMINISTRAR  USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
@@ -99,7 +99,7 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="@../../../css/style.css">
+            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
                      <children>
@@ -152,7 +152,7 @@
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="actualizarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="ACTUALIZAR" textFill="WHITE">
+                  <Button fx:id="actualizarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ACTUALIZAR" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -160,7 +160,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="eliminarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="ELIMINAR" textFill="WHITE">
+                  <Button fx:id="eliminarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ELIMINAR" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -190,7 +190,7 @@
                   <ScrollBar orientation="VERTICAL" />
                </children>
             </HBox>
-            <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="@../../../css/style.css" VBox.vgrow="ALWAYS">
+            <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
                <content>
                   <GridPane fx:id="todasLasActividadesGridPane" prefHeight="0.0" prefWidth="0.0">
                     <rowConstraints>
