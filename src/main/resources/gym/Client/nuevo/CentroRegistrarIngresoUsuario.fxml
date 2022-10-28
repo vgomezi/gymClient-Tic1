@@ -166,7 +166,7 @@
                               </Label>
                           </children>
                       </HBox>
-                  <TextField fx:id="mailUsuarioText" alignment="CENTER" promptText="MAIL USUARIO" />
+                  <TextField fx:id="mailUsuarioDisplay" alignment="CENTER" promptText="MAIL USUARIO" />
                       <Button fx:id="registrarIngresoUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="REGISTRAR" textFill="WHITE">
                           <font>
                               <Font size="18.0" />
