@@ -22,7 +22,7 @@ public class GymClientApplication extends Application {
 			//FXMLLoader fxmlLoader = new FXMLLoader();
 			//fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 			//Scene scene = new Scene(fxmlLoader.load(GymClientApplication.class.getResourceAsStream("Login.fxml")), 600, 400);
-			Parent root = FXMLLoader.load(getClass().getResource("/gym/Client/MainUsuarioNuevoGerman.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/gym/Client/nuevo/MainUsuarioNuevoGerman.fxml"));
 			//Parent root = FXMLLoader.load(getClass().getResource("/gym/Client/Login.fxml"));
 			stage.setTitle("Login");
 			stage.getIcons().add(new Image("FitnessIcon.png"));
