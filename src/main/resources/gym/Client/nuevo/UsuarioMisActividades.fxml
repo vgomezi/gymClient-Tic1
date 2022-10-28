@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.ActividadRecienteScrollController">
+<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.UsuarioMisActividadesContrller">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
@@ -201,20 +200,14 @@
         </VBox>
     </right>
     <center>
-        <VBox prefHeight="599.0" prefWidth="708.0" spacing="20.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="599.0" prefWidth="708.0" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
-                <Separator prefWidth="200.0" />
-                <Label fx:id="misActividadesLabel" prefHeight="35.0" prefWidth="418.0" text="MIS ACTIVIDADES">
+                <Label fx:id="misActividadesTitleLabel" prefHeight="35.0" prefWidth="418.0" text="MIS ACTIVIDADES">
                     <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                     </font>
                 </Label>
-                  <HBox fx:id="actividadesRecienteLayout" alignment="TOP_RIGHT" prefHeight="1100.0" prefWidth="689.0" spacing="20.0">
-               <children>
-                  <ScrollBar orientation="VERTICAL" />
-               </children>
-            </HBox>
-            <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="@../../../css/style.css" VBox.vgrow="ALWAYS">
+            <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
                <content>
                   <GridPane fx:id="todasLasActividadesGridPane" prefHeight="0.0" prefWidth="0.0">
                     <rowConstraints>

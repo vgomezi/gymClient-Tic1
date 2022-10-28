@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <HBox fx:id="hboxActividadReciente" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onActividadRecientePanelClick" prefHeight="125.0" prefWidth="400.0" spacing="20.0" style="-fx-background-radius: 15;" styleClass="shadow" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController">
    <children>
@@ -13,15 +14,30 @@
             <Insets left="10.0" />
          </HBox.margin>
       </ImageView>
-      <VBox alignment="CENTER" prefHeight="126.0" prefWidth="250.0">
+      <VBox alignment="CENTER" prefHeight="109.0" prefWidth="219.0" spacing="4.0">
          <children>
-            <Label fx:id="nombreActividadReciente" alignment="CENTER" prefHeight="34.0" prefWidth="157.0" text="NOMBRE" />
-            <Label fx:id="centroActividadReciente" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="157.0" text="CENTRO" />
-            <Label fx:id="costoActividadReciente" alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="34.0" prefWidth="157.0" text="COSTO" />
+            <Label fx:id="nombreActividadReciente" alignment="CENTER" prefHeight="34.0" prefWidth="157.0" text="NOMBRE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="centroActividadReciente" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="157.0" text="CENTRO">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="costoActividadReciente" alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="34.0" prefWidth="157.0" text="COSTO">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
             <HBox prefHeight="33.0" prefWidth="230.0">
                <children>
-                  <Label fx:id="diaActividadReciente" alignment="CENTER" prefHeight="34.0" prefWidth="157.0" text="DIA" />
-                  <Label fx:id="horaActividadReciente" alignment="CENTER" prefHeight="34.0" prefWidth="157.0" text="HORA" />
+                  <Label fx:id="diaActividadReciente" alignment="CENTER" prefHeight="34.0" prefWidth="157.0" text="DIA">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <Label fx:id="horaActividadReciente" alignment="CENTER" prefHeight="34.0" prefWidth="157.0" text="HORA">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
                </children>
             </HBox>
          </children>

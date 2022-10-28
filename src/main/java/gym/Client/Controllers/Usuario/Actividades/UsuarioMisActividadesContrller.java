@@ -1,14 +1,10 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
@@ -26,23 +22,24 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ActividadRecienteScrollController implements Initializable {
+public class UsuarioMisActividadesContrller implements Initializable {
+
     @FXML
     private BorderPane pantallaMainUsuario;
 
-    @FXML
-    private HBox actividadesRecienteLayout;
 
     @FXML
     private Label centroActividadDisplay;
@@ -89,35 +86,7 @@ public class ActividadRecienteScrollController implements Initializable {
 
     private MyListener myListener;
 
-    private List<ActividadObject> anadidosRecienteLista = new ArrayList<>();
     private List<ActividadObject> todasLasActividades = new ArrayList<>();
-
-    private List<ActividadObject> anadidosRecientemente() {
-        List<ActividadObject> listaActividadesNuevas = new ArrayList<>();
-        ActividadObject actividadObject;
-
-        String actividad = "";
-        try {
-            HttpResponse<String> apiResponse = null;
-
-            apiResponse = Unirest.get("http://localhost:8987/api/actividades/nuevasActividades").header("Content-Type", "application/json").asObject(String.class);
-            String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            System.out.println(json);
-
-            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            System.out.println("Hago object mapper");
-            //mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-            listaActividadesNuevas = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
-
-            System.out.println(actividad);
-            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE " + listaActividadesNuevas);
-        } catch (Exception e) {
-            System.out.println("Error: " + e);
-        }
-        return listaActividadesNuevas;
-    }
 
     private List<ActividadObject> todasLasActividades() {
         List<ActividadObject> listaActividadesNuevas = new ArrayList<>();
@@ -148,8 +117,6 @@ public class ActividadRecienteScrollController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Entro initialize");
-        System.out.println(anadidosRecientemente());
-        anadidosRecienteLista.addAll(anadidosRecientemente());
         todasLasActividades.addAll(todasLasActividades());
 
         if(todasLasActividades.size() > 0) {
@@ -162,27 +129,11 @@ public class ActividadRecienteScrollController implements Initializable {
             };
         }
 
-        System.out.println(anadidosRecienteLista + "anadidos reciente lista");
         System.out.println("entro initialize actividadRecienteScrollController");
 
         int column = 0;
         int row = 1;
         try{
-            for (int i = 0; i < anadidosRecienteLista.size(); i++) {
-                System.out.println("tamaño i = " + anadidosRecienteLista.size());
-                System.out.println("Entro try");
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadReciente.fxml"));
-                System.out.println("Carga FXMLLoader");
-
-                HBox anadidaRecienteBox = fxmlLoader.load();
-                ActividadRecienteController actividadRecienteController = fxmlLoader.getController();
-
-                actividadRecienteController.obtenerDatos(anadidosRecienteLista.get(i), myListener);
-
-                this.actividadesRecienteLayout.getChildren().add(anadidaRecienteBox);
-            }
-
             for(ActividadObject actividad : todasLasActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
@@ -222,9 +173,17 @@ public class ActividadRecienteScrollController implements Initializable {
     }
 
     public void onMisActividadesLabelClick(MouseEvent mouseEvent) {
+
+    }
+
+    public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {
+
+    }
+
+    public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/UsuarioMisActividades.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/MainUsuarioTodasActividades.fxml"));
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
@@ -237,14 +196,6 @@ public class ActividadRecienteScrollController implements Initializable {
             System.out.println("Error");
             //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {
-
-    }
-
-    public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
-
     }
 
     private void setActividadSeleccionada(ActividadObject actividad) {

@@ -6,21 +6,49 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onActividadTodaPanelClick" prefHeight="400.0" prefWidth="300.0" spacing="5.0" style="-fx-background-radius: 15;" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.ActividadTodaController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onActividadTodaPanelClick" prefHeight="400.0" prefWidth="300.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.ActividadTodaController">
    <children>
       <ImageView fx:id="imagenActividadTodaImage" fitHeight="125.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nombreActividadTodaLabel" prefHeight="31.0" prefWidth="295.0" text="NOMBRE" />
-      <Label fx:id="tipoActividadTodaLabel" prefHeight="31.0" prefWidth="295.0" text="TIPO" />
+      <Label fx:id="nombreActividadTodaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="295.0" text="NOMBRE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="280.0">
          <children>
-            <Label fx:id="diaActividadTodaLabel" prefHeight="31.0" prefWidth="215.0" text="DIA" />
-            <Label fx:id="horaActividadTodaLabel" prefHeight="31.0" prefWidth="197.0" text="HORA" />
+            <Label fx:id="diaActividadTodaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="215.0" text="DIA">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="horaActividadTodaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="197.0" text="HORA">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
          </children>
       </HBox>
-      <Label fx:id="reservableActividadTodaLabel" prefHeight="31.0" prefWidth="295.0" text="RESERVABLE" />
-      <Label fx:id="cuposActividadTodaLabel" prefHeight="31.0" prefWidth="295.0" text="CUPOS" />
-      <Label fx:id="costoActividadTodaLabel" prefHeight="31.0" prefWidth="295.0" text="COSTO" />
+      <Label fx:id="tipoActividadTodaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="295.0" text="TIPO">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <HBox alignment="CENTER" prefHeight="37.0" prefWidth="280.0">
+         <children>
+            <Label fx:id="reservableActividadTodaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="140.0" text="RESERVABLE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="cuposActividadTodaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="140.0" text="CUPOS">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label fx:id="costoActividadTodaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="295.0" text="COSTO">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
