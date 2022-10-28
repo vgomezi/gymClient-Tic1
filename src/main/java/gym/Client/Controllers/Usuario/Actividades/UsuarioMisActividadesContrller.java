@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
+import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
 import gym.Client.Controllers.LoginController;
 import javafx.event.EventHandler;
@@ -122,9 +123,16 @@ public class UsuarioMisActividadesContrller implements Initializable {
         if(todasLasActividades.size() > 0) {
             desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
             this.myListener = new MyListener() {
+
+
                 @Override
                 public void onClickActividad(ActividadObject actividadObject) {
                     desplegarInfoActividadSeleccionada(actividadObject);
+                }
+
+                @Override
+                public void onClickUsuario(EmpleadoObject empleadoObject) {
+
                 }
             };
         }

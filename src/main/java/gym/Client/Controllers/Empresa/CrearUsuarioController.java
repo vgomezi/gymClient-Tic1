@@ -131,9 +131,9 @@ public class CrearUsuarioController {
                 emailText.clear();
                 telefonoText.clear();
                 contrasenaText.clear();
-                Node source = (Node) event.getSource();
+                /*Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
+                stage.close();*/
 
             } catch (Exception e) {
                 System.out.println(e.toString());

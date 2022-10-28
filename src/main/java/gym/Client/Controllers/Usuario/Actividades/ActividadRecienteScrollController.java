@@ -11,6 +11,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
+import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
 import gym.Client.Controllers.LoginController;
 import javafx.event.EventHandler;
@@ -120,7 +121,7 @@ public class ActividadRecienteScrollController implements Initializable {
     }
 
     private List<ActividadObject> todasLasActividades() {
-        List<ActividadObject> listaActividadesNuevas = new ArrayList<>();
+        List<ActividadObject> listaActividades = new ArrayList<>();
         ActividadObject actividadObject;
 
         String actividad = "";
@@ -134,14 +135,14 @@ public class ActividadRecienteScrollController implements Initializable {
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-            listaActividadesNuevas = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+            listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
             System.out.println(actividad);
-            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE " + listaActividadesNuevas);
+            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE " + listaActividades);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        return listaActividadesNuevas;
+        return listaActividades;
     }
 
 
@@ -158,6 +159,11 @@ public class ActividadRecienteScrollController implements Initializable {
                 @Override
                 public void onClickActividad(ActividadObject actividadObject) {
                     desplegarInfoActividadSeleccionada(actividadObject);
+                }
+
+                @Override
+                public void onClickUsuario(EmpleadoObject empleadoObject) {
+
                 }
             };
         }

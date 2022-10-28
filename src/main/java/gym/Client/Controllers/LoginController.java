@@ -121,16 +121,17 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
+                                    //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
+                                    Parent root1 = FXMLLoader.load(getClass().getResource("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
 
-                                    MainEmpresaController mainEmpresaController = fxmlLoader.getController();
-                                    mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);
+                                    /*MainEmpresaController mainEmpresaController = fxmlLoader.getController();
+                                    mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);*/
 
                                     Stage stage = new Stage();
 
                                     stage.initModality(Modality.APPLICATION_MODAL);
 
-                                    stage.setTitle("Login Empresa");
+                                    stage.setTitle("SENSE FIT");
                                     stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();
@@ -192,7 +193,7 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesUsuario/MainUsuario.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
 
                                     Stage stage = new Stage();
 

@@ -8,24 +8,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onActividadTodaPanelClick" prefHeight="300.0" prefWidth="300.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.ActividadTodaController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onUsuarioEmpresaPaneClick" prefHeight="300.0" prefWidth="300.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController">
    <children>
       <ImageView fx:id="imagenActividadTodaImage" fitHeight="125.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true" />
       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="280.0">
          <children>
-            <Label fx:id="nombreActividadTodaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="126.0" text="NOMBRE">
+            <Label fx:id="nombreUsuarioLabel" alignment="CENTER" prefHeight="31.0" prefWidth="126.0" text="NOMBRE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="diaActividadTodaLabel1" alignment="CENTER" prefHeight="31.0" prefWidth="186.0" text="APELLIDO">
+            <Label fx:id="apellidoUsuarioLabel" alignment="CENTER" prefHeight="31.0" prefWidth="186.0" text="APELLIDO">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <Label fx:id="tipoActividadTodaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="295.0" text="EMAIL">
+      <Label fx:id="emailUsuarioLabel" alignment="CENTER" prefHeight="31.0" prefWidth="295.0" text="EMAIL">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>

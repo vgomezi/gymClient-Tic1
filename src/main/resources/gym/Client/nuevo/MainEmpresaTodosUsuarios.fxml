@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Usuario.Actividades.ActividadRecienteScrollController">
+<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.MainEmpresaTodosUsuarios">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
@@ -102,7 +102,7 @@
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox fx:id="actividadSeleccionadaVBox1" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
+            <VBox fx:id="usuarioSeleccionadoVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
                   <ImageView fx:id="imagenActividadDisplay1" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="nombreUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="NOMBRE" textAlignment="CENTER" textOverrun="CLIP">
