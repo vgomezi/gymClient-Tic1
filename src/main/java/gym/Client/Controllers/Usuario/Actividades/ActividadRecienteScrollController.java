@@ -15,6 +15,7 @@ import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
 import gym.Client.Controllers.LoginController;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -333,6 +334,10 @@ public class ActividadRecienteScrollController implements Initializable {
 
     }
 
+    public void onReservarActividadClick(ActionEvent event) {
+
+    }
+
     /*public void onEnterPressed(KeyEvent keyEvent) {
         //Desplegar pantalla con los resultados encontrados
 
@@ -432,4 +437,6 @@ public class ActividadRecienteScrollController implements Initializable {
     public void setNombreActividadDisplay(Label nombreActividadDisplay) {
         this.nombreActividadDisplay = nombreActividadDisplay;
     }
+
+
 }
