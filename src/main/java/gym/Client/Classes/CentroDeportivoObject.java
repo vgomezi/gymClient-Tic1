@@ -11,27 +11,22 @@ public class CentroDeportivoObject {
 
     private String mail;
 
+    private String imagen;
 
-    private List<ActividadObject> listaActividades;
+
+    //private List<ActividadObject> listaActividades;
 
 
-    private List<PagoObject> pagos;
+    //private List<PagoObject> pagos;
 
     public CentroDeportivoObject() {
     }
 
-    public CentroDeportivoObject(UserLoginObject userLogin, String nombre, String mail) {
+    public CentroDeportivoObject(UserLoginObject userLogin, String nombre, String mail, String imagen) {
         this.userLogin = userLogin;
         this.nombre = nombre;
         this.mail = mail;
-    }
-
-    public CentroDeportivoObject(UserLoginObject userLogin, String nombre, String mail, List<ActividadObject> listaActividades, List<PagoObject> pagos) {
-        this.userLogin = userLogin;
-        this.nombre = nombre;
-        this.mail = mail;
-        this.listaActividades = listaActividades;
-        this.pagos = pagos;
+        this.imagen = imagen;
     }
 
     public UserLoginObject getUserLogin() {
@@ -58,7 +53,7 @@ public class CentroDeportivoObject {
         this.mail = mail;
     }
 
-    public List<ActividadObject> getListaActividades() {
+    /*public List<ActividadObject> getListaActividades() {
         return listaActividades;
     }
 
@@ -72,7 +67,7 @@ public class CentroDeportivoObject {
 
     public void setPagos(List<PagoObject> pagos) {
         this.pagos = pagos;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -80,8 +75,7 @@ public class CentroDeportivoObject {
                 "userLogin=" + userLogin +
                 ", nombre='" + nombre + '\'' +
                 ", mail='" + mail + '\'' +
-                ", listaActividades=" + listaActividades +
-                ", pagos=" + pagos +
+                ", imagen='" + imagen + '\'' +
                 '}';
     }
 }

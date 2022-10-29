@@ -73,5 +73,6 @@
       <Line endX="-94.33369445800781" endY="6.248443603515625" layoutX="149.0" layoutY="51.0" startX="-100.0" strokeWidth="1.5" />
       <Line endX="-94.54953002929688" endY="-5.83868408203125" layoutX="149.0" layoutY="51.0" startX="-100.0" strokeWidth="1.5" />
       <Line endX="-75.69999694824219" endY="-1.399993896484375" layoutX="152.0" layoutY="52.0" startX="-102.30000305175781" startY="-1.399993896484375" strokeWidth="1.5" />
+      <TextField fx:id="TipoActividadField" layoutX="300.0" layoutY="264.0" promptText="tipo" />
    </children>
 </AnchorPane>

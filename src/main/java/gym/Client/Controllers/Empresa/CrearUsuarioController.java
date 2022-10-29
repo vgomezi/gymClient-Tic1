@@ -109,7 +109,8 @@ public class CrearUsuarioController {
                             ObjectMapper mapper1 = new ObjectMapper();
                             EmpresaObject empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
 
-                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresaObject, Integer.parseInt(empresaObject.getBono()), Integer.parseInt(empresaObject.getBono()), 0);
+                            //Corregir imagen al fondo
+                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresaObject, Integer.parseInt(empresaObject.getBono()), Integer.parseInt(empresaObject.getBono()), 0, null);
                             json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                             json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empleadoObject);
                             System.out.println(json);

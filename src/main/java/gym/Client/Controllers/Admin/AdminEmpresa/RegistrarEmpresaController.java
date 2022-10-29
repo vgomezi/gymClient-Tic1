@@ -79,7 +79,7 @@ public class RegistrarEmpresaController {
                     ObjectMapper mapper = new ObjectMapper();
                     ObjectMapper mapper2 = new ObjectMapper();
                     UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Empresa");
-                    EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, bono, email);
+                    EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, bono, email, null);
                     json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                     json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empresaObject);
                     System.out.println(json);

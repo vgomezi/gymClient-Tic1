@@ -7,6 +7,7 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import gym.Client.Classes.CentroDeportivoObject;
+import gym.Client.Classes.TipoActividadObject;
 import gym.Client.Classes.UserLoginObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,6 +51,9 @@ public class RegistrarCentroController {
     private PasswordField contrasenaText;
 
     @FXML
+    private TextField TipoActividadField;
+
+    @FXML
     private Button crearBoton;
 
     @FXML
@@ -63,25 +67,32 @@ public class RegistrarCentroController {
         String nombre = nombreText.getText();
         String email = emailText.getText();
         String contrasena = contrasenaText.getText();
+        String tipo = TipoActividadField.getText();
 
         if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
             try {
                 String json = "";
                 String json2 = "";
+                String json3 = "";
 
                 try {
                     ObjectMapper mapper = new ObjectMapper();
                     ObjectMapper mapper2 = new ObjectMapper();
+                    ObjectMapper mapper3 = new ObjectMapper();
                     UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Centro Deportivo");
-                    CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email);
+                    CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email, null);
+                    TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
                     json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                     json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(centroDeportivoObject);
+                    json3 = mapper3.writerWithDefaultPrettyPrinter().writeValueAsString(tipoActividadObject);
                     System.out.println(json);
+                    System.out.println(json3);
                 } catch (Exception ignored) {
                 }
                 HttpResponse<JsonNode> apiResponse = null;
                 apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
                 apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json2).asJson();
+                apiResponse = Unirest.post("http://localhost:8987/api/tipoactividad").header("Content-Type", "application/json").body(json3).asJson();
                 System.out.println("Hecho Centro Deportivo");
 
                 System.out.println("Hecho");

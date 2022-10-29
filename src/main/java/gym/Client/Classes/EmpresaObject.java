@@ -13,27 +13,21 @@ public class EmpresaObject {
 
     private String mail;
 
-    private List<EmpleadoObject> listaEmpleados;
+    private String imagen;
 
-    private List<PagoObject> pagos;
+    /*private List<EmpleadoObject> listaEmpleados;
+
+    private List<PagoObject> pagos;*/
 
     public EmpresaObject() {
     }
 
-    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String bono, String mail, List<EmpleadoObject> listaEmpleados, List<PagoObject> pagos) {
+    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String bono, String mail, String imagen) {
         this.userLoginReference = userLoginReference;
         this.nombre = nombre;
         this.bono = bono;
         this.mail = mail;
-        this.listaEmpleados = listaEmpleados;
-        this.pagos = pagos;
-    }
-
-    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String bono, String mail) {
-        this.userLoginReference = userLoginReference;
-        this.nombre = nombre;
-        this.bono = bono;
-        this.mail = mail;
+        this.imagen = imagen;
     }
 
     public UserLoginObject getUserLoginReference() {
@@ -64,7 +58,15 @@ public class EmpresaObject {
         this.mail = mail;
     }
 
-    public List<EmpleadoObject> getListaEmpleados() {
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    /*public List<EmpleadoObject> getListaEmpleados() {
         return listaEmpleados;
     }
 
@@ -78,5 +80,16 @@ public class EmpresaObject {
 
     public void setPagos(List<PagoObject> pagos) {
         this.pagos = pagos;
+    }*/
+
+    @Override
+    public String toString() {
+        return "EmpresaObject{" +
+                "userLoginReference=" + userLoginReference +
+                ", nombre='" + nombre + '\'' +
+                ", bono='" + bono + '\'' +
+                ", mail='" + mail + '\'' +
+                ", imagen='" + imagen + '\'' +
+                '}';
     }
 }

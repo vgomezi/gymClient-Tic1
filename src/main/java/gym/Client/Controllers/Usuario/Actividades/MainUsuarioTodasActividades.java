@@ -1,14 +1,10 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
@@ -32,7 +28,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.Modality;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -46,7 +43,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ActividadRecienteScrollController implements Initializable {
+public class MainUsuarioTodasActividades implements Initializable {
 
     @FXML
     public Button reservarActividadBoton;
@@ -101,6 +98,17 @@ public class ActividadRecienteScrollController implements Initializable {
 
     @FXML
     private VBox actividadSeleccionadaVBox;
+
+    @FXML
+    private Circle imagenUsuarioCirculo;
+
+    @FXML
+    private Label nombreUsuarioLabel;
+
+    @FXML
+    private Label apellidoUsuarioLabel;
+
+    public String mailUsuarioIngreso;
 
     private MyListener myListener;
 
@@ -159,10 +167,60 @@ public class ActividadRecienteScrollController implements Initializable {
         return listaActividades;
     }
 
+    public void datosUsuario(EmpleadoObject empleadoObject) {
+
+        if(empleadoObject.getImagen() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(empleadoObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenUsuarioCirculo.setFill(new ImagePattern(toAdd));
+        } else {
+            Image imageView = new Image("/imagen/usuariodefault.png");
+            imagenUsuarioCirculo.setFill(new ImagePattern(imageView));
+        }
+
+        nombreUsuarioLabel.setText(empleadoObject.getNombre());
+        apellidoUsuarioLabel.setText(empleadoObject.getApellido());
+
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Entro initialize");
+        //Obtener usuario
+        try {
+            System.out.println("try obtener usuario");
+            System.out.println(mailUsuarioIngreso);
+            String correoUsuario = mailUsuarioIngreso;
+            String empleado = "";
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadoMail/" + correoUsuario).asObject(String.class);
+            empleado = apiResponse.getBody();
+            System.out.println("Imprimo empleado");
+            System.out.println(empleado);
+
+            if (!empleado.isBlank()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if usuario");
+
+                EmpleadoObject empleadoObject = mapper.readValue(apiResponse.getBody(), EmpleadoObject.class);
+                System.out.println(empleadoObject);
+                datosUsuario(empleadoObject);
+            }
+            System.out.println("Try obtener usuario hecho");
+        } catch (Exception e) {
+            System.out.println("Try obtener usuario error");
+        }
+
         System.out.println(anadidosRecientemente());
         anadidosRecienteLista.addAll(anadidosRecientemente());
         todasLasActividades.addAll(todasLasActividades());
@@ -438,5 +496,11 @@ public class ActividadRecienteScrollController implements Initializable {
         this.nombreActividadDisplay = nombreActividadDisplay;
     }
 
+    public String getMailUsuarioIngreso() {
+        return mailUsuarioIngreso;
+    }
 
+    public void setMailUsuarioIngreso(String mailUsuarioIngreso) {
+        this.mailUsuarioIngreso = mailUsuarioIngreso;
+    }
 }

@@ -102,7 +102,7 @@
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox fx:id="usuarioSeleccionadoVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="@../../../css/style.css">
+            <VBox fx:id="usuarioSeleccionadoVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
                   <ImageView fx:id="imagenActividadDisplay1" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="nombreUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="NOMBRE" textAlignment="CENTER" textOverrun="CLIP">

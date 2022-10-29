@@ -5,6 +5,7 @@ import com.mashape.unirest.http.Unirest;
 import gym.Client.Controllers.Admin.MainAdminController;
 import gym.Client.Controllers.Centro.MainCentroController;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
+import gym.Client.Controllers.Usuario.Actividades.MainUsuarioTodasActividades;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -121,11 +122,12 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
-                                    Parent root1 = FXMLLoader.load(getClass().getResource("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
+                                    //Parent root1 = FXMLLoader.load(getClass().getResource("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
+                                    //Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
 
-                                    /*MainEmpresaController mainEmpresaController = fxmlLoader.getController();
-                                    mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);*/
+                                    MainEmpresaController mainEmpresaController = fxmlLoader.getController();
+                                    mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);
 
                                     Stage stage = new Stage();
 
@@ -195,13 +197,19 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
+
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainUsuarioTodasActividades.fxml"));
+
+                                    MainUsuarioTodasActividades mainUsuarioTodasActividades = fxmlLoader.getController();
+                                    System.out.println(emailText.getText());
+                                    mainUsuarioTodasActividades.
+                                            setMailUsuarioIngreso(emailText.getText());
 
                                     Stage stage = new Stage();
 
-                                    stage.initModality(Modality.APPLICATION_MODAL);
-
-                                    stage.setTitle("Login Centro Deportivo");
+                                    stage.setTitle("Login USUARIO");
+                                    stage.setIconified(false);
+                                    //stage.setResizable(false);
                                     stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();

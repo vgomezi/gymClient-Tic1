@@ -20,7 +20,9 @@ public class EmpleadoObject {
 
     private int deuda;
 
-    public EmpleadoObject(UserLoginObject userLoginReference, String nombre, String apellido, String mail, String telefono, EmpresaObject empresa, int saldoDisponible, int saldoOriginal, int deuda) {
+    private String imagen;
+
+    public EmpleadoObject(UserLoginObject userLoginReference, String nombre, String apellido, String mail, String telefono, EmpresaObject empresa, int saldoDisponible, int saldoOriginal, int deuda, String imagen) {
         this.userLoginReference = userLoginReference;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -30,6 +32,7 @@ public class EmpleadoObject {
         this.saldoDisponible = saldoDisponible;
         this.saldoOriginal = saldoOriginal;
         this.deuda = deuda;
+        this.imagen = imagen;
     }
 
     public EmpleadoObject() {
@@ -105,5 +108,29 @@ public class EmpleadoObject {
 
     public void setDeuda(int deuda) {
         this.deuda = deuda;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    @Override
+    public String toString() {
+        return "EmpleadoObject{" +
+                "userLoginReference=" + userLoginReference +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", mail='" + mail + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", empresa=" + empresa +
+                ", saldoDisponible=" + saldoDisponible +
+                ", saldoOriginal=" + saldoOriginal +
+                ", deuda=" + deuda +
+                ", imagen='" + imagen + '\'' +
+                '}';
     }
 }
