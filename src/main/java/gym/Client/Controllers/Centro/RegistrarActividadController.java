@@ -166,6 +166,7 @@ public class RegistrarActividadController {
 
                 System.out.println("Hecho Actividad");
 
+
                 System.out.println("Hecho");
 
                 /*Node source = (Node) event.getSource();
