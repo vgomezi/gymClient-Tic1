@@ -230,7 +230,7 @@ public class UsuarioMisActividadesController implements Initializable {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenActividadDisplay.setImage(toAdd);
         } else {
-            Image imageView = new Image("/centro.jpg");
+            Image imageView = new Image("/imagen/actividaddefault.png");
             imagenActividadDisplay.setImage(imageView);
         }
 
