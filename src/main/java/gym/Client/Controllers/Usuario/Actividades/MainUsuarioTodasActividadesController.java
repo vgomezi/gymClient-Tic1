@@ -8,8 +8,9 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Controllers.Empresa.MainEmpresaController;
 import gym.Client.Controllers.LoginController;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,29 +19,41 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
+import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class UsuarioMisActividadesContrller implements Initializable {
+public class MainUsuarioTodasActividadesController implements Initializable {
 
+    @FXML
+    public Button reservarActividadBoton;
+
+    @FXML
+    public TextField busquedaTextField;
     @FXML
     private BorderPane pantallaMainUsuario;
 
+    @FXML
+    private HBox actividadesRecienteLayout;
 
     @FXML
     private Label centroActividadDisplay;
@@ -85,12 +98,51 @@ public class UsuarioMisActividadesContrller implements Initializable {
     @FXML
     private VBox actividadSeleccionadaVBox;
 
+    @FXML
+    private Circle imagenUsuarioCirculo;
+
+    @FXML
+    private Label nombreUsuarioLabel;
+
+    @FXML
+    private Label apellidoUsuarioLabel;
+
+    public String mailUsuarioIngreso;
+
     private MyListener myListener;
 
+    private List<ActividadObject> anadidosRecienteLista = new ArrayList<>();
     private List<ActividadObject> todasLasActividades = new ArrayList<>();
 
-    private List<ActividadObject> todasMisActividades() {
+    private List<ActividadObject> anadidosRecientemente() {
         List<ActividadObject> listaActividadesNuevas = new ArrayList<>();
+        ActividadObject actividadObject;
+
+        String actividad = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/nuevasActividades").header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+            System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            System.out.println("Hago object mapper");
+            //mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaActividadesNuevas = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+
+            System.out.println(actividad);
+            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE " + listaActividadesNuevas);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaActividadesNuevas;
+    }
+
+    private List<ActividadObject> todasLasActividades() {
+        List<ActividadObject> listaActividades = new ArrayList<>();
         ActividadObject actividadObject;
 
         String actividad = "";
@@ -104,27 +156,75 @@ public class UsuarioMisActividadesContrller implements Initializable {
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-            listaActividadesNuevas = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+            listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
             System.out.println(actividad);
-            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE " + listaActividadesNuevas);
+            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE " + listaActividades);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        return listaActividadesNuevas;
+        return listaActividades;
+    }
+
+    public EmpleadoObject empleado;
+
+    public void datosUsuario(String correoElectronico) {
+        EmpleadoObject empleadoObject = null;
+        try {
+            System.out.println("try obtener usuario");
+            String empleado = "";
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadoMail/" + correoElectronico).asObject(String.class);
+            empleado = apiResponse.getBody();
+            System.out.println("Imprimo empleado");
+            System.out.println(empleado);
+
+
+            if (!empleado.isBlank()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if usuario");
+                empleadoObject = mapper.readValue(apiResponse.getBody(), EmpleadoObject.class);
+                this.empleado = empleadoObject;
+                System.out.println(empleadoObject);
+            }
+            System.out.println("Try obtener usuario hecho");
+        } catch (Exception e) {
+            System.out.println("Try obtener usuario error");
+        }
+
+        if(empleadoObject.getImagen() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(empleadoObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenUsuarioCirculo.setFill(new ImagePattern(toAdd));
+        } else {
+            Image imageView = new Image("/imagen/usuariodefault.png");
+            imagenUsuarioCirculo.setFill(new ImagePattern(imageView));
+        }
+
+        nombreUsuarioLabel.setText(empleadoObject.getNombre());
+        apellidoUsuarioLabel.setText(empleadoObject.getApellido());
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Entro initialize");
-        todasLasActividades.addAll(todasMisActividades());
+        System.out.println(anadidosRecientemente());
+        anadidosRecienteLista.addAll(anadidosRecientemente());
+        todasLasActividades.addAll(todasLasActividades());
 
         if(todasLasActividades.size() > 0) {
             desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
             this.myListener = new MyListener() {
-
-
                 @Override
                 public void onClickActividad(ActividadObject actividadObject) {
                     desplegarInfoActividadSeleccionada(actividadObject);
@@ -137,11 +237,27 @@ public class UsuarioMisActividadesContrller implements Initializable {
             };
         }
 
-        System.out.println("entro initialize UsuarioMisActividadesController");
+        System.out.println(anadidosRecienteLista + "anadidos reciente lista");
+        System.out.println("entro initialize actividadRecienteScrollController");
 
         int column = 0;
         int row = 1;
         try{
+            for (int i = 0; i < anadidosRecienteLista.size(); i++) {
+                System.out.println("tamaño i = " + anadidosRecienteLista.size());
+                System.out.println("Entro try");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadReciente.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                HBox anadidaRecienteBox = fxmlLoader.load();
+                ActividadRecienteController actividadRecienteController = fxmlLoader.getController();
+
+                actividadRecienteController.obtenerDatos(anadidosRecienteLista.get(i), myListener);
+
+                this.actividadesRecienteLayout.getChildren().add(anadidaRecienteBox);
+            }
+
             for(ActividadObject actividad : todasLasActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
@@ -169,31 +285,44 @@ public class UsuarioMisActividadesContrller implements Initializable {
 
     public void desplegarInfoActividadSeleccionada(ActividadObject actividadObject) {
         cuposActividadDisplay.setText(String.valueOf(actividadObject.getCupos()));
-        costoActividadDisplay.setText(String.valueOf(actividadObject.getCosto()));
+        costoActividadDisplay.setText("$ " + String.valueOf(actividadObject.getCosto()));
         horaActividadDisplay.setText(actividadObject.getHora().toString());
         diaActividadDisplay.setText(actividadObject.getDia().toString());
         tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
-        nombreActividadDisplay.setText(actividadObject.getNombre());
+        nombreActividadDisplay.setText(actividadObject.getNombre().toUpperCase());
         descripcionActividadDisplay.setText(actividadObject.getDescripcion());
-        Image image = new Image("/centro.jpg");
-        imagenActividadDisplay.setImage(image);
+        duracionActividadDisplay.setText(String.valueOf(actividadObject.getDuracion()) + " min");
+
+        if(actividadObject.getImagen() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenActividadDisplay.setImage(toAdd);
+        } else {
+            Image imageView = new Image("/centro.jpg");
+            imagenActividadDisplay.setImage(imageView);
+        }
+
         actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
     }
 
     public void onMisActividadesLabelClick(MouseEvent mouseEvent) {
-
-    }
-
-    public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {
-
-    }
-
-    public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/MainUsuarioTodasActividades.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainUsuarioTodasActividadesController.class.getResourceAsStream("/gym/Client/nuevo/UsuarioMisActividades.fxml"));
+
+            UsuarioMisActividadesController usuarioMisActividadesController = fxmlLoader.getController();
+            System.out.println(empleado.getMail());
+            usuarioMisActividadesController.datosUsuario(empleado.getMail());
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
@@ -208,7 +337,15 @@ public class UsuarioMisActividadesContrller implements Initializable {
         }
     }
 
-    private void setActividadSeleccionada(ActividadObject actividad) {
+    public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {
+
+    }
+
+    public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
+
+    }
+
+    /*private void setActividadSeleccionada(ActividadObject actividad) {
         //centroActividadDisplay.setText(actividad.getCentroDeportivo().getNombre());
         costoActividadDisplay.setText(String.valueOf(actividad.getCosto()));
         cuposActividadDisplay.setText(String.valueOf(actividad.getCupos()));
@@ -219,7 +356,7 @@ public class UsuarioMisActividadesContrller implements Initializable {
         nombreActividadDisplay.setText(actividad.getNombre());
         Image image = new Image("/centro.jpg");
         imagenActividadDisplay.setImage(image);
-    }
+    }*/
 
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
         Node source = (Node) mouseEvent.getSource();
@@ -233,9 +370,11 @@ public class UsuarioMisActividadesContrller implements Initializable {
 
             Stage stage = new Stage();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
+            //stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Login");
+            stage.setIconified(false);
+            stage.setResizable(false);
             stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
@@ -254,10 +393,20 @@ public class UsuarioMisActividadesContrller implements Initializable {
 
     }
 
-    public void onEnterPressed(KeyEvent keyEvent) {
+    public void onReservarActividadClick(ActionEvent event) {
+
+    }
+
+    /*public void onEnterPressed(KeyEvent keyEvent) {
         //Desplegar pantalla con los resultados encontrados
 
         //Si no se encuentra ninguno desplegar "No se encontraron actividades relacionadas con esa busqueda"
+    }*/
+
+    public void onBusquedaKeyReleased(KeyEvent keyEvent) {
+        if (busquedaTextField.getText().isEmpty()) {
+
+        }
     }
 
     public Label getCentroActividadDisplay() {
@@ -346,5 +495,13 @@ public class UsuarioMisActividadesContrller implements Initializable {
 
     public void setNombreActividadDisplay(Label nombreActividadDisplay) {
         this.nombreActividadDisplay = nombreActividadDisplay;
+    }
+
+    public String getMailUsuarioIngreso() {
+        return mailUsuarioIngreso;
+    }
+
+    public void setMailUsuarioIngreso(String mailUsuarioIngreso) {
+        this.mailUsuarioIngreso = mailUsuarioIngreso;
     }
 }

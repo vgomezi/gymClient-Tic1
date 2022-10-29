@@ -5,7 +5,7 @@ import com.mashape.unirest.http.Unirest;
 import gym.Client.Controllers.Admin.MainAdminController;
 import gym.Client.Controllers.Centro.MainCentroController;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
-import gym.Client.Controllers.Usuario.Actividades.MainUsuarioTodasActividades;
+import gym.Client.Controllers.Usuario.Actividades.MainUsuarioTodasActividadesController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -200,9 +200,9 @@ public class LoginController {
 
                                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainUsuarioTodasActividades.fxml"));
 
-                                    MainUsuarioTodasActividades mainUsuarioTodasActividades = fxmlLoader.getController();
+                                    MainUsuarioTodasActividadesController mainUsuarioTodasActividadesController = fxmlLoader.getController();
                                     System.out.println(emailText.getText());
-                                    mainUsuarioTodasActividades.datosUsuario(correoElectronico);
+                                    mainUsuarioTodasActividadesController.datosUsuario(correoElectronico);
 
                                     Stage stage = new Stage();
 
