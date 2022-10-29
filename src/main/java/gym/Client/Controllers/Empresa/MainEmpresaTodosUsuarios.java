@@ -10,15 +10,21 @@ import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaNuevoController;
+import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -26,6 +32,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -229,12 +238,38 @@ public class MainEmpresaTodosUsuarios implements Initializable {
 
     @FXML
     void onMouseClickedLogOut(MouseEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage1 = (Stage) source.getScene().getWindow();
+        stage1.close();
 
-    }
+        try {
 
-    @FXML
-    void onTodasLasActividadesLabelClick(MouseEvent event) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream());
+            Parent root = FXMLLoader.load(getClass().getResource("/gym/Client/Login.fxml"));
 
+            Stage stage = new Stage();
+
+            //stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.setTitle("Login");
+            stage.setIconified(false);
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("FitnessIcon.png"));
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    System.exit(0);
+                }
+            });
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
     public void onTodosLosUsuariosLabelClick(MouseEvent mouseEvent) {

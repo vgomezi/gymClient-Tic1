@@ -129,9 +129,11 @@ public class LoginController {
 
                                     Stage stage = new Stage();
 
-                                    stage.initModality(Modality.APPLICATION_MODAL);
+                                    //stage.initModality(Modality.APPLICATION_MODAL);
 
                                     stage.setTitle("SENSE FIT");
+                                    stage.setIconified(false);
+                                    stage.setResizable(false);
                                     stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();

@@ -3,11 +3,11 @@ package gym.Client.Classes;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ActividadObject {
 
     private String nombre;
@@ -22,6 +22,16 @@ public class ActividadObject {
 
     private String descripcion;
 
+    private int duracion;
+
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "empleado_actividad", joinColumns = {@JoinColumn(name = "nombre_actividad", referencedColumnName = "nombreActividad"),
+//            @JoinColumn(name = "hora_actividad", referencedColumnName = "horaActividad"),
+//            @JoinColumn(name = "dia_actividad", referencedColumnName = "diaActividad"),
+//            @JoinColumn(name = "centro_actividad", referencedColumnName = "centro_mail")},
+//            inverseJoinColumns = @JoinColumn(name = "mail_empleado", referencedColumnName = "mailEmpleado"))
+//    private List<Empleado> listaEmpleadoInscriptos;
+
     private int costo;
 
     private int cupos;
@@ -30,29 +40,33 @@ public class ActividadObject {
 
     private Date dateCreada;
 
-    private String imagenActividad;
+    private String imagen;
 
+    //@ManyToOne()
+    //@JoinColumn(name = "centro", referencedColumnName = "mailCentro")
+    //@JsonBackReference
     private CentroDeportivoObject centroDeportivo;
 
-    private List<InscripcionesActividadesObject> actividadesInscripto;
+    /*@OneToMany(fetch = FetchType.EAGER, mappedBy = "actividad")
+    private List<InscripcionesActividades> actividadesInscripto = new ArrayList<>();*/
 
     public ActividadObject() {
     }
 
-    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, TipoActividadObject tipo, String descripcion, int costo, int cupos, boolean reservable, Date dateCreada, String imagenActividad, CentroDeportivoObject centroDeportivo) {
+    public ActividadObject(String nombre, LocalTime hora, LocalDate dia, String centroMail, TipoActividadObject tipo, String descripcion, int duracion, int costo, int cupos, boolean reservable, Date dateCreada, String imagen, CentroDeportivoObject centroDeportivo) {
         this.nombre = nombre;
         this.hora = hora;
         this.dia = dia;
         this.centroMail = centroMail;
         this.tipo = tipo;
         this.descripcion = descripcion;
+        this.duracion = duracion;
         this.costo = costo;
         this.cupos = cupos;
         this.reservable = reservable;
         this.dateCreada = dateCreada;
-        this.imagenActividad = imagenActividad;
+        this.imagen = imagen;
         this.centroDeportivo = centroDeportivo;
-        this.actividadesInscripto = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -79,6 +93,14 @@ public class ActividadObject {
         this.dia = dia;
     }
 
+    public String getCentroMail() {
+        return centroMail;
+    }
+
+    public void setCentroMail(String centroMail) {
+        this.centroMail = centroMail;
+    }
+
     public TipoActividadObject getTipo() {
         return tipo;
     }
@@ -87,20 +109,20 @@ public class ActividadObject {
         this.tipo = tipo;
     }
 
-    public List<InscripcionesActividadesObject> getActividadesInscripto() {
-        return actividadesInscripto;
-    }
-
-    public void setActividadesInscripto(List<InscripcionesActividadesObject> actividadesInscripto) {
-        this.actividadesInscripto = actividadesInscripto;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
     public int getCosto() {
@@ -127,22 +149,6 @@ public class ActividadObject {
         this.reservable = reservable;
     }
 
-    public CentroDeportivoObject getCentroDeportivo() {
-        return centroDeportivo;
-    }
-
-    public void setCentroDeportivo(CentroDeportivoObject centroDeportivo) {
-        this.centroDeportivo = centroDeportivo;
-    }
-
-    public String getCentroMail() {
-        return centroMail;
-    }
-
-    public void setCentroMail(String centroMail) {
-        this.centroMail = centroMail;
-    }
-
     public Date getDateCreada() {
         return dateCreada;
     }
@@ -151,20 +157,20 @@ public class ActividadObject {
         this.dateCreada = dateCreada;
     }
 
-    public String getImagenActividad() {
-        return imagenActividad;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setImagenActividad(String imagenActividad) {
-        this.imagenActividad = imagenActividad;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ActividadObject that = (ActividadObject) o;
-        return costo == that.costo && cupos == that.cupos && reservable == that.reservable && Objects.equals(nombre, that.nombre) && Objects.equals(hora, that.hora) && Objects.equals(dia, that.dia) && Objects.equals(centroMail, that.centroMail) && Objects.equals(tipo, that.tipo) && Objects.equals(descripcion, that.descripcion) && Objects.equals(dateCreada, that.dateCreada) && Objects.equals(imagenActividad, that.imagenActividad) && Objects.equals(centroDeportivo, that.centroDeportivo) && Objects.equals(actividadesInscripto, that.actividadesInscripto);
+    public CentroDeportivoObject getCentroDeportivo() {
+        return centroDeportivo;
+    }
+
+    public void setCentroDeportivo(CentroDeportivoObject centroDeportivo) {
+        this.centroDeportivo = centroDeportivo;
     }
 
     @Override
@@ -176,13 +182,13 @@ public class ActividadObject {
                 ", centroMail='" + centroMail + '\'' +
                 ", tipo=" + tipo +
                 ", descripcion='" + descripcion + '\'' +
+                ", duracion=" + duracion +
                 ", costo=" + costo +
                 ", cupos=" + cupos +
                 ", reservable=" + reservable +
                 ", dateCreada=" + dateCreada +
-                ", imagenActividad=" + imagenActividad +
+                ", imagen='" + imagen + '\'' +
                 ", centroDeportivo=" + centroDeportivo +
-                ", actividadesInscripto=" + actividadesInscripto +
                 '}';
     }
 }

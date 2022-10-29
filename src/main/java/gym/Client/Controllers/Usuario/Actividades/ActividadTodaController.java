@@ -48,8 +48,8 @@ public class ActividadTodaController {
         this.myListener = myListener;
         this.actividad = actividadObject;
 
-        if(actividadObject.getImagenActividad() != null) {
-            byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagenActividad());
+        if(actividadObject.getImagen() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
             ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
             BufferedImage bImage = null;
             try {

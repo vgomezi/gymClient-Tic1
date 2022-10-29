@@ -2,6 +2,7 @@ package gym.Client.Controllers.Centro;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -16,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -23,7 +25,6 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
 
 @Component
@@ -136,12 +137,25 @@ public class RegistrarActividadController {
                     TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
                     ObjectMapper mapperActividad = new JsonMapper().builder()
                             .findAndAddModules()
-                            .build();
+                            .build();;
                     mapperActividad.registerModule(new JavaTimeModule());
-                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipoActividadObject, descripcion, costoInt, cuposInt, reservable, new Date(), imagen, centroDeportivo);
+                    /*ObjectNode rest = mapperActividad.createObjectNode();
+                    rest.put("nombre", nombre);
+                    rest.put("hora", String.valueOf(timeLT));
+                    rest.put("dia", String.valueOf(dateDT));
+                    rest.put("centroMail", centroDeportivo.getMail());
+                    rest.put("tipo", tipoActividadObject.getTipo());
+                    rest.put("descripcion", descripcion);
+                    rest.put("costo", costo);
+                    rest.put("cupos", cupos);
+                    rest.put("reservable", reservable);
+                    rest.put("dateCreada", String.valueOf(new Date()));
+                    rest.put("imagen", imagen);*/
+                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipoActividadObject, descripcion, 40, costoInt, cuposInt, reservable, new Date(), imagen, centroDeportivo);
                     System.out.println("Imagen actividad");
-                    System.out.println(actividadObject.getImagenActividad());
+                    System.out.println(actividadObject.getImagen());
                     json = mapperActividad.writeValueAsString(actividadObject);
+                    //json = mapperActividad.writeValueAsString(rest);
                     System.out.println(json);
                 } catch (Exception e) {
                     System.out.println("Error " + e);
@@ -214,7 +228,7 @@ public class RegistrarActividadController {
             System.out.println(file);
             byte[] bytes = Files.readAllBytes(file.toPath());
             System.out.println(bytes);
-            base64String = Base64.getEncoder().encodeToString(bytes);
+            base64String = Base64.encodeBase64String(bytes);
             System.out.println(base64String);
         } catch (Exception e) {
             System.out.println("Error " + e.getMessage());
@@ -244,7 +258,7 @@ public class RegistrarActividadController {
         }
         return bytes;
         //return base64String;
-    }*/
+    }
 
     public Image getImagen() {
         return imagen;
@@ -252,5 +266,5 @@ public class RegistrarActividadController {
 
     public void setImagen(Image imagen) {
         this.imagen = imagen;
-    }
+    }*/
 }

@@ -76,7 +76,7 @@
                 </VBox>
                 <VBox alignment="TOP_CENTER" prefHeight="283.0" prefWidth="206.0">
                     <children>
-                        <Label fx:id="todasLosUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodosLosUsuariosLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS LOS USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                        <Label fx:id="todasLosUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodosLosUsuariosLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS  LOS  USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                             <font>
                                 <Font name="Baskerville Old Face" size="18.0" />
                             </font>

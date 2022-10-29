@@ -278,9 +278,11 @@ public class ActividadRecienteScrollController implements Initializable {
 
             Stage stage = new Stage();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
+            //stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Login");
+            stage.setIconified(false);
+            stage.setResizable(false);
             stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
