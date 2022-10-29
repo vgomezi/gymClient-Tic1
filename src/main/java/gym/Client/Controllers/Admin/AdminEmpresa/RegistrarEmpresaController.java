@@ -73,6 +73,7 @@ public class RegistrarEmpresaController {
         String email = emailText.getText();
         String bono = bonoText.getText();
         String contrasena = contrasenaText.getText();
+        String imagen = registrarEmpresaAction(event);
 
         if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
             try {
@@ -83,7 +84,7 @@ public class RegistrarEmpresaController {
                     ObjectMapper mapper = new ObjectMapper();
                     ObjectMapper mapper2 = new ObjectMapper();
                     UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Empresa");
-                    EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, bono, email, null);
+                    EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, bono, email, imagen);
                     json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                     json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empresaObject);
                     System.out.println(json);
@@ -144,7 +145,7 @@ public class RegistrarEmpresaController {
         }
     }
 
-    public String registrarCentroAction(ActionEvent event) {
+    public String registrarEmpresaAction(ActionEvent event) {
         String base64String = null;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Elegir imagen centro");

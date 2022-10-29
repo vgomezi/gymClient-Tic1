@@ -20,13 +20,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.io.File;
+import java.nio.file.Files;
 
 @Component
 public class CrearUsuarioController {
@@ -85,6 +90,7 @@ public class CrearUsuarioController {
         String email = emailText.getText();
         String telefono = telefonoText.getText();
         String contrasena = contrasenaText.getText();
+        String imagen = registrarEmpleadoAction(event);
 
         if (!nombre.isEmpty() && !apellido.isEmpty() && !email.isEmpty() && !telefono.isEmpty() && !contrasena.isEmpty()) {
 
@@ -110,7 +116,7 @@ public class CrearUsuarioController {
                             EmpresaObject empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
 
                             //Corregir imagen al fondo
-                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresaObject, Integer.parseInt(empresaObject.getBono()), Integer.parseInt(empresaObject.getBono()), 0, null);
+                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresaObject, Integer.parseInt(empresaObject.getBono()), Integer.parseInt(empresaObject.getBono()), 0, imagen);
                             json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                             json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empleadoObject);
                             System.out.println(json);
@@ -264,6 +270,29 @@ public class CrearUsuarioController {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    public String registrarEmpleadoAction(ActionEvent event) {
+        String base64String = null;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir imagen centro");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+        try {
+            //FileInputStream fileInputStream = new FileInputStream(file);
+            System.out.println(file);
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            //System.out.println(bytes);
+            base64String = Base64.encodeBase64String(bytes);
+            //System.out.println(base64String);
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return base64String;
     }
 
 
