@@ -14,6 +14,7 @@ import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
 import gym.Client.Controllers.LoginController;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -32,13 +35,23 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ActividadRecienteScrollController implements Initializable {
+
+    @FXML
+    public Button reservarActividadBoton;
+
+    @FXML
+    public TextField busquedaTextField;
     @FXML
     private BorderPane pantallaMainUsuario;
 
@@ -216,12 +229,31 @@ public class ActividadRecienteScrollController implements Initializable {
 
     public void desplegarInfoActividadSeleccionada(ActividadObject actividadObject) {
         cuposActividadDisplay.setText(String.valueOf(actividadObject.getCupos()));
-        costoActividadDisplay.setText(String.valueOf(actividadObject.getCosto()));
+        costoActividadDisplay.setText("$ " + String.valueOf(actividadObject.getCosto()));
         horaActividadDisplay.setText(actividadObject.getHora().toString());
         diaActividadDisplay.setText(actividadObject.getDia().toString());
         tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
-        nombreActividadDisplay.setText(actividadObject.getNombre());
+        nombreActividadDisplay.setText(actividadObject.getNombre().toUpperCase());
         descripcionActividadDisplay.setText(actividadObject.getDescripcion());
+        duracionActividadDisplay.setText(String.valueOf(actividadObject.getDuracion()) + " min");
+
+        if(actividadObject.getImagen() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenActividadDisplay.setImage(toAdd);
+        } else {
+            Image imageView = new Image("/centro.jpg");
+            imagenActividadDisplay.setImage(imageView);
+        }
+
         actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
@@ -253,7 +285,7 @@ public class ActividadRecienteScrollController implements Initializable {
 
     }
 
-    private void setActividadSeleccionada(ActividadObject actividad) {
+    /*private void setActividadSeleccionada(ActividadObject actividad) {
         //centroActividadDisplay.setText(actividad.getCentroDeportivo().getNombre());
         costoActividadDisplay.setText(String.valueOf(actividad.getCosto()));
         cuposActividadDisplay.setText(String.valueOf(actividad.getCupos()));
@@ -264,7 +296,7 @@ public class ActividadRecienteScrollController implements Initializable {
         nombreActividadDisplay.setText(actividad.getNombre());
         Image image = new Image("/centro.jpg");
         imagenActividadDisplay.setImage(image);
-    }
+    }*/
 
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
         Node source = (Node) mouseEvent.getSource();
@@ -301,10 +333,16 @@ public class ActividadRecienteScrollController implements Initializable {
 
     }
 
-    public void onEnterPressed(KeyEvent keyEvent) {
+    /*public void onEnterPressed(KeyEvent keyEvent) {
         //Desplegar pantalla con los resultados encontrados
 
         //Si no se encuentra ninguno desplegar "No se encontraron actividades relacionadas con esa busqueda"
+    }*/
+
+    public void onBusquedaKeyReleased(KeyEvent keyEvent) {
+        if (busquedaTextField.getText().isEmpty()) {
+
+        }
     }
 
     public Label getCentroActividadDisplay() {

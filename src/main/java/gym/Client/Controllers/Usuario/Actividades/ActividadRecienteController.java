@@ -1,6 +1,7 @@
 package gym.Client.Controllers.Usuario.Actividades;
 
 import gym.Client.Classes.ActividadObject;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +13,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.ResourceBundle;
 
 public class ActividadRecienteController {
@@ -48,9 +54,23 @@ public class ActividadRecienteController {
         this.myListener = myListener;
         this.actividad = actividadObject;
         //Cambiar
-        Image image = new Image(/*getClass().getResourceAsStream(actividadObject.getNombre()*/"/centro.jpg");
-        imagenActividadReciente.setImage(image);
 
+        if(actividadObject.getImagen() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenActividadReciente.setImage(toAdd);
+        } else {
+            Image imageView = new Image("/centro.jpg");
+            imagenActividadReciente.setImage(imageView);
+        }
         centroActividadReciente.setText(actividadObject.getCentroDeportivo().getNombre());
         costoActividadReciente.setText("$" + String.valueOf(actividadObject.getCosto()));
         diaActividadReciente.setText(actividadObject.getDia().toString());

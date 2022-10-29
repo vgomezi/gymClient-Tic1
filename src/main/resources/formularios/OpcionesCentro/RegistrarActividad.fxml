@@ -54,7 +54,7 @@
             <TextField fx:id="nombreText" alignment="TOP_RIGHT" GridPane.columnIndex="1" />
             <ChoiceBox fx:id="tipoChoiceBox" prefHeight="26.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="descripcionText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="horaText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="horaText" alignment="TOP_RIGHT" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <DatePicker fx:id="diaTextPicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="cuposText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="costoText" alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6" />

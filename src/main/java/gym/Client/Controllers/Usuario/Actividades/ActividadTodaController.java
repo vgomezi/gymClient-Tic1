@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -15,6 +16,9 @@ import java.io.IOException;
 import java.util.Base64;
 
 public class ActividadTodaController {
+
+    @FXML
+    private VBox actividadTodaVBox;
 
     @FXML
     private Label costoActividadTodaLabel;
@@ -76,6 +80,8 @@ public class ActividadTodaController {
             reservableActividadTodaLabel.setText("SIN RESERVA");
         }
         tipoActividadTodaLabel.setText(actividadObject.getTipo().getTipo());
+        actividadTodaVBox.setStyle("-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+
     }
 
     public void onActividadTodaPanelClick(MouseEvent mouseEvent) {
