@@ -310,7 +310,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             imagenActividadDisplay.setImage(imageView);
         }
 
-        actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;" +
+        actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
     }

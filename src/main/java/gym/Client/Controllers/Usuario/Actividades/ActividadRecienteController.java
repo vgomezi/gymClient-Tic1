@@ -48,7 +48,7 @@ public class ActividadRecienteController {
 
     private ActividadObject actividad;
 
-    private String [] colores = {"B9E5FF", "BDB2FE", "FB9AA8", "FF5056"};
+    private String [] colores = {"D96FE3", "B7E67E", "8AE3D4", "0DFF72", "B9E5FF", "BDB2FE", "FB9AA8", "FF5056"};
 
     public void obtenerDatos(ActividadObject actividadObject, MyListener myListener){
         this.myListener = myListener;

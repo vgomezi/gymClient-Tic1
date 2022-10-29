@@ -216,9 +216,25 @@ public class UsuarioMisActividadesController implements Initializable {
         tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
         nombreActividadDisplay.setText(actividadObject.getNombre());
         descripcionActividadDisplay.setText(actividadObject.getDescripcion());
-        Image image = new Image("/centro.jpg");
-        imagenActividadDisplay.setImage(image);
-        actividadSeleccionadaVBox.setStyle("-fx-background-color : #dbae1a;" +
+
+        if(actividadObject.getImagen() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenActividadDisplay.setImage(toAdd);
+        } else {
+            Image imageView = new Image("/centro.jpg");
+            imagenActividadDisplay.setImage(imageView);
+        }
+
+        actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
     }
