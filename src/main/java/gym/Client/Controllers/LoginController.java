@@ -202,8 +202,7 @@ public class LoginController {
 
                                     MainUsuarioTodasActividades mainUsuarioTodasActividades = fxmlLoader.getController();
                                     System.out.println(emailText.getText());
-                                    mainUsuarioTodasActividades.
-                                            setMailUsuarioIngreso(emailText.getText());
+                                    mainUsuarioTodasActividades.datosUsuario(correoElectronico);
 
                                     Stage stage = new Stage();
 

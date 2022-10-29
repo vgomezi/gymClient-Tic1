@@ -20,10 +20,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.net.http.HttpRequest;
+import java.nio.file.Files;
 
 
 @Component
@@ -138,5 +142,28 @@ public class RegistrarEmpresaController {
             System.out.println(ex.toString());
             System.out.println("Error");
         }
+    }
+
+    public String registrarCentroAction(ActionEvent event) {
+        String base64String = null;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir imagen centro");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+        try {
+            //FileInputStream fileInputStream = new FileInputStream(file);
+            System.out.println(file);
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            //System.out.println(bytes);
+            base64String = Base64.encodeBase64String(bytes);
+            //System.out.println(base64String);
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return base64String;
     }
 }

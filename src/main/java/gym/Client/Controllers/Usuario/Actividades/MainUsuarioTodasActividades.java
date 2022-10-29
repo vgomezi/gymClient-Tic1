@@ -167,7 +167,29 @@ public class MainUsuarioTodasActividades implements Initializable {
         return listaActividades;
     }
 
-    public void datosUsuario(EmpleadoObject empleadoObject) {
+    public void datosUsuario(String correoElectronico) {
+        EmpleadoObject empleadoObject = null;
+        try {
+            System.out.println("try obtener usuario");
+            String empleado = "";
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadoMail/" + correoElectronico).asObject(String.class);
+            empleado = apiResponse.getBody();
+            System.out.println("Imprimo empleado");
+            System.out.println(empleado);
+
+
+            if (!empleado.isBlank()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if usuario");
+                empleadoObject = mapper.readValue(apiResponse.getBody(), EmpleadoObject.class);
+                System.out.println(empleadoObject);
+            }
+            System.out.println("Try obtener usuario hecho");
+        } catch (Exception e) {
+            System.out.println("Try obtener usuario error");
+        }
 
         if(empleadoObject.getImagen() != null) {
             byte[] imageDecoded = Base64.getDecoder().decode(empleadoObject.getImagen());
@@ -188,39 +210,12 @@ public class MainUsuarioTodasActividades implements Initializable {
 
         nombreUsuarioLabel.setText(empleadoObject.getNombre());
         apellidoUsuarioLabel.setText(empleadoObject.getApellido());
-
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Entro initialize");
-        //Obtener usuario
-        try {
-            System.out.println("try obtener usuario");
-            System.out.println(mailUsuarioIngreso);
-            String correoUsuario = mailUsuarioIngreso;
-            String empleado = "";
-            HttpResponse<String> apiResponse = null;
-
-            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadoMail/" + correoUsuario).asObject(String.class);
-            empleado = apiResponse.getBody();
-            System.out.println("Imprimo empleado");
-            System.out.println(empleado);
-
-            if (!empleado.isBlank()) {
-                ObjectMapper mapper = new ObjectMapper();
-                System.out.println("Entro if usuario");
-
-                EmpleadoObject empleadoObject = mapper.readValue(apiResponse.getBody(), EmpleadoObject.class);
-                System.out.println(empleadoObject);
-                datosUsuario(empleadoObject);
-            }
-            System.out.println("Try obtener usuario hecho");
-        } catch (Exception e) {
-            System.out.println("Try obtener usuario error");
-        }
-
         System.out.println(anadidosRecientemente());
         anadidosRecienteLista.addAll(anadidosRecientemente());
         todasLasActividades.addAll(todasLasActividades());

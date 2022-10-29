@@ -53,6 +53,14 @@ public class CentroDeportivoObject {
         this.mail = mail;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     /*public List<ActividadObject> getListaActividades() {
         return listaActividades;
     }

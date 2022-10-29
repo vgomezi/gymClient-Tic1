@@ -18,14 +18,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Component;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.springframework.stereotype.Controller;
+
+import java.io.File;
+import java.nio.file.Files;
 
 
 @Controller
@@ -68,6 +73,7 @@ public class RegistrarCentroController {
         String email = emailText.getText();
         String contrasena = contrasenaText.getText();
         String tipo = TipoActividadField.getText();
+        String imagen = registrarCentroAction(event);
 
         if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
             try {
@@ -80,7 +86,7 @@ public class RegistrarCentroController {
                     ObjectMapper mapper2 = new ObjectMapper();
                     ObjectMapper mapper3 = new ObjectMapper();
                     UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Centro Deportivo");
-                    CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email, null);
+                    CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email, imagen);
                     TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
                     json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                     json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(centroDeportivoObject);
@@ -177,6 +183,31 @@ public class RegistrarCentroController {
             welcomeText.setText("Error en la entrada de datos");
         }*/
     }
+
+    public String registrarCentroAction(ActionEvent event) {
+        String base64String = null;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir imagen centro");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+        try {
+            //FileInputStream fileInputStream = new FileInputStream(file);
+            System.out.println(file);
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            //System.out.println(bytes);
+            base64String = Base64.encodeBase64String(bytes);
+            //System.out.println(base64String);
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return base64String;
+    }
+
+
 
     @FXML
     protected void onCancelarButtonClick(ActionEvent event) {
