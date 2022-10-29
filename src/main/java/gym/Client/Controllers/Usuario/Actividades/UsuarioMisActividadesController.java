@@ -105,30 +105,10 @@ public class UsuarioMisActividadesController implements Initializable {
 
     private List<ActividadObject> todasLasActividades = new ArrayList<>();
 
-    public void datosUsuario(String correoElectronico) {
-        EmpleadoObject empleadoObject = null;
-        try {
-            System.out.println("try obtener usuario");
-            String empleado = "";
-            HttpResponse<String> apiResponse = null;
+    EmpleadoObject empleado;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadoMail/" + correoElectronico).asObject(String.class);
-            empleado = apiResponse.getBody();
-            System.out.println("Imprimo empleado");
-            System.out.println(empleado);
-
-
-            if (!empleado.isBlank()) {
-                ObjectMapper mapper = new ObjectMapper();
-                System.out.println("Entro if usuario");
-                empleadoObject = mapper.readValue(apiResponse.getBody(), EmpleadoObject.class);
-                System.out.println(empleadoObject);
-            }
-            System.out.println("Try obtener usuario hecho");
-        } catch (Exception e) {
-            System.out.println("Try obtener usuario error");
-        }
-
+    public void datosUsuario(EmpleadoObject empleadoObject) {
+        this.empleado = empleadoObject;
         if(empleadoObject.getImagen() != null) {
             byte[] imageDecoded = Base64.getDecoder().decode(empleadoObject.getImagen());
             ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
@@ -254,8 +234,10 @@ public class UsuarioMisActividadesController implements Initializable {
     public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/MainUsuarioTodasActividades.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(UsuarioMisActividadesController.class.getResourceAsStream("/gym/Client/nuevo/MainUsuarioTodasActividades.fxml"));
 
+            MainUsuarioTodasActividadesController mainUsuarioTodasActividadesController = fxmlLoader.getController();
+            mainUsuarioTodasActividadesController.datosUsuario(empleado.getMail());
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
             //stage.setTitle("SENSE FIT");
@@ -269,7 +251,7 @@ public class UsuarioMisActividadesController implements Initializable {
         }
     }
 
-    private void setActividadSeleccionada(ActividadObject actividad) {
+    /*private void setActividadSeleccionada(ActividadObject actividad) {
         //centroActividadDisplay.setText(actividad.getCentroDeportivo().getNombre());
         costoActividadDisplay.setText(String.valueOf(actividad.getCosto()));
         cuposActividadDisplay.setText(String.valueOf(actividad.getCupos()));
@@ -280,7 +262,7 @@ public class UsuarioMisActividadesController implements Initializable {
         nombreActividadDisplay.setText(actividad.getNombre());
         Image image = new Image("/centro.jpg");
         imagenActividadDisplay.setImage(image);
-    }
+    }*/
 
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
         Node source = (Node) mouseEvent.getSource();
@@ -294,9 +276,11 @@ public class UsuarioMisActividadesController implements Initializable {
 
             Stage stage = new Stage();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
+            //stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Login");
+            stage.setIconified(false);
+            stage.setResizable(false);
             stage.getIcons().add(new Image("FitnessIcon.png"));
             stage.setScene(new Scene(root1));
             stage.show();
