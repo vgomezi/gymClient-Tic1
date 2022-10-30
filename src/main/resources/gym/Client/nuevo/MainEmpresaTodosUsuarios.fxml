@@ -110,24 +110,27 @@
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="nombreRegistroEmpleado" onKeyPressed="#onEnterPressed" prefHeight="34.0" prefWidth="258.0" promptText="NOMBRE" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
                   <Label fx:id="apellidoUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="APELLIDO" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="apellidoRegistroEmpleado" onKeyPressed="#onEnterPressed" prefHeight="34.0" prefWidth="258.0" promptText="APELLIDO" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
                   <Label fx:id="emailUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="EMAIL" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="emailRegistroEmpleado" onKeyPressed="#onEnterPressed" prefHeight="34.0" prefWidth="258.0" promptText="EMAIL" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
                   <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0">
                      <children>
-                        <Label fx:id="telefonoUsuarioDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="286.0" text="TELEFONO" textAlignment="CENTER" textOverrun="CLIP">
+                        <Label fx:id="telefonoUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="TELEFONO" textAlignment="CENTER" textOverrun="CLIP">
                            <font>
                               <Font name="Baskerville Old Face" size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets top="5.0" />
+                              <Insets />
                            </HBox.margin>
                         </Label>
                      </children>
