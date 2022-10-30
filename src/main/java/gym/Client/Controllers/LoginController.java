@@ -126,8 +126,8 @@ public class LoginController {
                                     //Parent root1 = FXMLLoader.load(getClass().getResource("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
                                     //Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
 
-                                    MainEmpresaController mainEmpresaController = fxmlLoader.getController();
-                                    mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);
+                                    //MainEmpresaController mainEmpresaController = fxmlLoader.getController();
+                                    //mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);
 
                                     Stage stage = new Stage();
 

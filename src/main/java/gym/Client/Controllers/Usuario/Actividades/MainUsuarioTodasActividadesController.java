@@ -8,7 +8,12 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
+import gym.Client.Classes.TipoActividadObject;
 import gym.Client.Controllers.LoginController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +24,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -112,6 +118,9 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     @FXML
     private ScrollPane todasLasActividadesScroll;
 
+    @FXML
+    private ChoiceBox<String> tiposPantallaPrincipalChoiceBox;
+
     public String mailUsuarioIngreso;
 
     private MyListener myListener;
@@ -131,8 +140,8 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/nuevasActividades").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            System.out.println(json);
+            System.out.println("Logro get");
+            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             System.out.println("Hago object mapper");
@@ -140,8 +149,8 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividadesNuevas = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            System.out.println(actividad);
-            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE " + listaActividadesNuevas);
+            //System.out.println(actividad);
+            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE");
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -158,15 +167,15 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/allActividades/").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            System.out.println(json);
+            System.out.println("Logro json");
+            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            System.out.println(actividad);
-            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE " + listaActividades);
+            //System.out.println(actividad);
+            System.out.println("Lista actividades Todas Actividades " /*+ listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -183,15 +192,15 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/similarActividad/" + similar).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            System.out.println(json);
+            //System.out.println("Imprimo json");
+            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            System.out.println(actividad);
-            System.out.println("Lista actividades similares " + listaActividades);
+            //System.out.println(actividad);
+            System.out.println("Lista actividades similares "/* + listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -252,9 +261,14 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Entro initialize");
-        System.out.println(anadidosRecientemente());
-        anadidosRecienteLista.addAll(anadidosRecientemente());
-        todasLasActividades.addAll(todasLasActividades());
+        //System.out.println(anadidosRecientemente());
+        if (anadidosRecienteLista.isEmpty()) {
+            System.out.println("entro anadidosreciente if");
+            anadidosRecienteLista.addAll(anadidosRecientemente());
+        }
+        if (todasLasActividades.isEmpty()) {
+            todasLasActividades.addAll(todasLasActividades());
+        }
 
         if(todasLasActividades.size() > 0) {
             desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
@@ -271,14 +285,14 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             };
         }
 
-        System.out.println(anadidosRecienteLista + "anadidos reciente lista");
+        //System.out.println(anadidosRecienteLista + "anadidos reciente lista");
         System.out.println("entro initialize actividadRecienteScrollController");
 
         int column = 0;
         int row = 1;
         try{
             for (int i = 0; i < anadidosRecienteLista.size(); i++) {
-                System.out.println("tamaño i = " + anadidosRecienteLista.size());
+                //System.out.println("tamaño i = " + anadidosRecienteLista.size());
                 System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadReciente.fxml"));
@@ -311,9 +325,39 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 GridPane.setMargin(todaActividadbox, new Insets(10));
 
             }
+        inicializoChoiceBox();
         } catch (Exception e){
             System.out.println("Error creando panel " + e);
 
+        }
+
+    }
+
+    public void inicializoChoiceBox() {
+        try {
+            HttpResponse<String> apiResponse = null;
+            apiResponse = Unirest.get("http://localhost:8987/api/tipoactividad/allTipoActividad").asObject(String.class);
+            System.out.println("Logre get tipos actividades");
+
+            if (!apiResponse.getBody().isEmpty()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if inicializoChoiceBox");
+                List<TipoActividadObject> listaTipos = mapper.readValue(apiResponse.getBody(), new TypeReference<List<TipoActividadObject>>() {});
+                ObservableList<String> listaItems = FXCollections.observableArrayList();
+                for (TipoActividadObject tipoActividad: listaTipos) {
+                    listaItems.add(tipoActividad.getTipo());
+                }
+                tiposPantallaPrincipalChoiceBox.setItems(listaItems);
+
+                tiposPantallaPrincipalChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                    }
+                });
+            }
+        } catch (Exception e) {
+            System.out.println("Error cargando choicebox :" + e);
         }
     }
 
@@ -436,6 +480,8 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
         //Si no se encuentra ninguno desplegar "No se encontraron actividades relacionadas con esa busqueda"
     }*/
+
+    public void filtrarPorTipo() {}
 
     public void onBusquedaKeyReleased(KeyEvent keyEvent) {
         this.myListener = new MyListener() {
