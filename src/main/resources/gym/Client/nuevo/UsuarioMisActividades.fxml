@@ -118,44 +118,44 @@
                <children>
                       <Label fx:id="nombreActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="NOMBRE ACTIVIDAD" textAlignment="CENTER" textOverrun="CLIP">
                           <font>
-                              <Font name="Baskerville Old Face" size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                           </font>
                       </Label>
                       <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                       <Label fx:id="tipoActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="TIPO" textAlignment="CENTER" textOverrun="CLIP">
                           <font>
-                              <Font name="Baskerville Old Face" size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                           </font>
                       </Label>
                       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
                           <children>
                               <Label fx:id="diaActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="DIA" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
-                                  </font>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
                               </Label>
                               <Label fx:id="horaActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="HORA" textAlignment="CENTER" textOverrun="CLIP">
                                   <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
+                                      <Font name="System Bold" size="18.0" />
                                   </font>
                               </Label>
                           </children>
                       </HBox>
                       <Label fx:id="descripcionActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="163.0" prefWidth="286.0" text="DESCRIPCION" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                           <font>
-                              <Font name="Baskerville Old Face" size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                           </font>
                       </Label>
                       <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0">
                           <children>
                               <Label fx:id="cuposActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="CUPOS" textAlignment="CENTER" textOverrun="CLIP">
                                   <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
+                                      <Font name="System Bold" size="18.0" />
                                   </font>
                               </Label>
                               <Label fx:id="duracionActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="DURACION" textAlignment="CENTER" textOverrun="CLIP">
                                   <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
+                                      <Font name="System Bold" size="18.0" />
                                   </font>
                               </Label>
                           </children>
@@ -164,7 +164,7 @@
                           <children>
                               <Label fx:id="costoActividadDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="286.0" text="COSTO" textAlignment="CENTER" textOverrun="CLIP">
                                   <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
+                                      <Font name="System Bold" size="18.0" />
                                   </font>
                                   <HBox.margin>
                                       <Insets top="5.0" />
@@ -174,12 +174,12 @@
                       </HBox>
                       <Label fx:id="centroActividadDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="CENTRO" textAlignment="CENTER" textOverrun="CLIP">
                           <font>
-                              <Font name="Baskerville Old Face" size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                           </font>
                       </Label>
                       <Button fx:id="cancelarActividadBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="CANCELAR" textFill="WHITE">
                           <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                           </font>
                           <opaqueInsets>
                               <Insets />

@@ -209,13 +209,14 @@ public class UsuarioMisActividadesController implements Initializable {
     }
 
     public void desplegarInfoActividadSeleccionada(ActividadObject actividadObject) {
-        cuposActividadDisplay.setText(String.valueOf(actividadObject.getCupos()));
-        costoActividadDisplay.setText(String.valueOf(actividadObject.getCosto()));
+        cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
+        costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
         horaActividadDisplay.setText(actividadObject.getHora().toString());
         diaActividadDisplay.setText(actividadObject.getDia().toString());
         tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
-        nombreActividadDisplay.setText(actividadObject.getNombre());
+        nombreActividadDisplay.setText(actividadObject.getNombre().toUpperCase());
         descripcionActividadDisplay.setText(actividadObject.getDescripcion());
+        duracionActividadDisplay.setText(String.valueOf(actividadObject.getDuracion()) + " min");
 
         if(actividadObject.getImagen() != null) {
             byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());

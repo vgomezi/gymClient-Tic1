@@ -284,8 +284,8 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     }
 
     public void desplegarInfoActividadSeleccionada(ActividadObject actividadObject) {
-        cuposActividadDisplay.setText(String.valueOf(actividadObject.getCupos()));
-        costoActividadDisplay.setText("$ " + String.valueOf(actividadObject.getCosto()));
+        cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
+        costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
         horaActividadDisplay.setText(actividadObject.getHora().toString());
         diaActividadDisplay.setText(actividadObject.getDia().toString());
         tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
