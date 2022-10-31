@@ -115,16 +115,16 @@
                       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
                           <children>
                         <DatePicker fx:id="diaDatePickerRegistro" prefHeight="39.0" prefWidth="134.0" />
-                        <DatePicker fx:id="horaTimePickerRegistro" prefHeight="39.0" prefWidth="134.0" showWeekNumbers="true" />
+                        <TextField fx:id="horaActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="133.0" promptText="HORA (hh:mm)" />
                           </children>
                       </HBox>
                   <TextField fx:id="descripcionActividadRegistro" alignment="CENTER" prefHeight="133.0" prefWidth="266.0" promptText="DESCRIPCIÓN" />
                       <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0">
-                          <children>
-                        <TextField fx:id="cuposActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CUPOS" />
-                        <TextField fx:id="duracionActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="DURACIÓN" />
-                          </children>
+                     <children>
+                        <TextField fx:id="cuposActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="271.0" promptText="CUPOS" />
+                     </children>
                       </HBox>
+                  <TextField fx:id="duracionActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="DURACIÓN (mm)" />
                       <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0">
                      <children>
                         <TextField fx:id="costoActividadRegistro" alignment="CENTER" prefHeight="52.0" prefWidth="266.0" promptText="COSTO" />
