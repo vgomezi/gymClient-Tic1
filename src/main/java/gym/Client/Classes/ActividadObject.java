@@ -173,6 +173,8 @@ public class ActividadObject {
         this.centroDeportivo = centroDeportivo;
     }
 
+
+
     @Override
     public String toString() {
         return "ActividadObject{" +

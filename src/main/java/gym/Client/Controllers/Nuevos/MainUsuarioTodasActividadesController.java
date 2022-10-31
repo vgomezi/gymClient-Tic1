@@ -515,7 +515,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     public void onReservarActividadClick(ActionEvent event) {
         if (reservarActividadBoton.getText().equals("RESERVAR")) {
-            //InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), )
+            InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "RESERVAR");
 
             System.out.println("Reservar actividad");
         } else if (reservarActividadBoton.getText().equals("GUARDAR")) {
