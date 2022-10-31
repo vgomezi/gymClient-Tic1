@@ -130,6 +130,8 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     private List<ActividadObject> similarActividades = new ArrayList<>();
 
+    private List<ActividadObject> tipoActividades = new ArrayList<>();
+
     private List<ActividadObject> anadidosRecientemente() {
         List<ActividadObject> listaActividadesNuevas = new ArrayList<>();
         ActividadObject actividadObject;
@@ -358,9 +360,8 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 List<TipoActividadObject> listaTipos = mapper.readValue(apiResponse.getBody(), new TypeReference<List<TipoActividadObject>>() {});
                 ObservableList<String> listaItems = FXCollections.observableArrayList();
                 for (TipoActividadObject tipoActividad: listaTipos) {
-                    listaItems.add(tipoActividad.getTipo().toUpperCase());
+                    listaItems.add(tipoActividad.getTipo()); /*.toUpperCase()*/
                 }
-                //Anado null o TODAS
                 listaItems.add("TODAS");
                 tiposPantallaPrincipalChoiceBox.setItems(listaItems);
                 tiposPantallaPrincipalChoiceBox.setValue("TODAS");
@@ -519,11 +520,110 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         //busquedaTextField.deleteText(0, busquedaTextField.getText().length());
         busquedaTextField.clear();
         System.out.println(tipo);
+
+        this.myListener = new MyListener() {
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {
+                desplegarInfoActividadSeleccionada(actividadObject);
+            }
+
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
+
+            }
+        };
+        //System.out.println(busquedaTextField.getText());
         if (tipo.equals("TODAS")) {
-            //get todas
+            todasLasActividadesGridPane = new GridPane();
+            todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
+            int column = 0;
+            int row = 1;
+            try{
+                for(ActividadObject actividad : todasLasActividades) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox todaActividadbox = fxmlLoader.load();
+                    ActividadTodaController actividadTodaController = fxmlLoader.getController();
+
+                    actividadTodaController.setearDatos(actividad, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasActividadesGridPane.add(todaActividadbox, column++, row);
+                    GridPane.setMargin(todaActividadbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel PARA FILTRO TODAS " + e);
+
+            }
         } else {
-            //get by tipo
+            todasLasActividadesGridPane = new GridPane();
+            todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
+            tipoActividades = tipoDeActividades(tipo);
+            System.out.println("Tamaño lista actividades = " + tipoActividades.size());
+            System.out.println("Tipos de actividad");
+            int column = 0;
+            int row = 1;
+            try{
+                for(ActividadObject actividad : tipoActividades) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox todaActividadbox = fxmlLoader.load();
+                    ActividadTodaController actividadTodaController = fxmlLoader.getController();
+
+                    actividadTodaController.setearDatos(actividad, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasActividadesGridPane.add(todaActividadbox, column++, row);
+                    //System.out.println(similarActividades.size());
+                    System.out.println(tipoActividades.size());
+                    GridPane.setMargin(todaActividadbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+
         }
+    }
+
+    private List<ActividadObject> tipoDeActividades(String tipo) {
+
+        List<ActividadObject> listaActividades = new ArrayList<>();
+        ActividadObject actividadObject;
+
+        String actividad = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/actividadTipo/" + tipo).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            //System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+
+            //System.out.println(actividad);
+            System.out.println("Lista actividades tipo "/* + listaActividades*/);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaActividades;
     }
 
     public void onBusquedaKeyReleased(KeyEvent keyEvent) {
