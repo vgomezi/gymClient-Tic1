@@ -169,7 +169,7 @@
                               <Font name="System Bold" size="18.0" />
                           </font>
                       </Label>
-                      <Button fx:id="reservarActividadBoton" mnemonicParsing="false" mouseTransparent="true" onAction="#onReservarActividadClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="RESERVAR" textFill="WHITE">
+                      <Button fx:id="reservarActividadBoton" mnemonicParsing="false" mouseTransparent="false" onAction="#onReservarActividadClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="RESERVAR" textFill="WHITE" textOverrun="CLIP">
                           <font>
                               <Font name="System Bold" size="18.0" />
                           </font>

@@ -38,6 +38,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.springframework.lang.Nullable;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -283,6 +284,19 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
                 }
             };
+        } else {
+            desplegarInfoActividadSeleccionada(null);
+            this.myListener = new MyListener() {
+                @Override
+                public void onClickActividad(ActividadObject actividadObject) {
+                    desplegarInfoActividadSeleccionada(actividadObject);
+                }
+
+                @Override
+                public void onClickUsuario(EmpleadoObject empleadoObject) {
+
+                }
+            };
         }
 
         //System.out.println(anadidosRecienteLista + "anadidos reciente lista");
@@ -361,36 +375,56 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         }
     }
 
-    public void desplegarInfoActividadSeleccionada(ActividadObject actividadObject) {
-        cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
-        costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
-        horaActividadDisplay.setText(actividadObject.getHora().toString());
-        diaActividadDisplay.setText(actividadObject.getDia().toString());
-        tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
-        nombreActividadDisplay.setText(actividadObject.getNombre().toUpperCase());
-        descripcionActividadDisplay.setText(actividadObject.getDescripcion());
-        duracionActividadDisplay.setText(String.valueOf(actividadObject.getDuracion()) + " min");
-
-        if(actividadObject.getImagen() != null) {
-            byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
-            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
-            BufferedImage bImage = null;
-            try {
-                bImage = ImageIO.read(bis);
-            } catch (IOException e) {
-                e.printStackTrace();
+    public void desplegarInfoActividadSeleccionada(@Nullable ActividadObject actividadObject) {
+        if (!actividadObject.equals(null)) {
+            cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
+            costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
+            horaActividadDisplay.setText(actividadObject.getHora().toString());
+            diaActividadDisplay.setText(actividadObject.getDia().toString());
+            tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
+            nombreActividadDisplay.setText(actividadObject.getNombre().toUpperCase());
+            descripcionActividadDisplay.setText(actividadObject.getDescripcion());
+            duracionActividadDisplay.setText(String.valueOf(actividadObject.getDuracion()) + " min");
+            centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
+            reservarActividadBoton.setVisible(true);
+            if (actividadObject.isReservable()) {
+                reservarActividadBoton.setText("RESERVAR");
+            } else {
+                reservarActividadBoton.setText("GUARDAR");
             }
 
-            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
-            imagenActividadDisplay.setImage(toAdd);
+            if (actividadObject.getImagen() != null) {
+                byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+                BufferedImage bImage = null;
+                try {
+                    bImage = ImageIO.read(bis);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+                imagenActividadDisplay.setImage(toAdd);
+            } else {
+                Image imageView = new Image("/imagen/actividaddefault.png");
+                imagenActividadDisplay.setImage(imageView);
+            }
         } else {
-            Image imageView = new Image("/imagen/actividaddefault.png");
-            imagenActividadDisplay.setImage(imageView);
+            cuposActividadDisplay.setText("");
+            costoActividadDisplay.setText("");
+            horaActividadDisplay.setText("");
+            diaActividadDisplay.setText("");
+            tipoActividadDisplay.setText("");
+            nombreActividadDisplay.setText("");
+            descripcionActividadDisplay.setText("");
+            duracionActividadDisplay.setText("");
+            imagenActividadDisplay.setImage(null);
+            centroActividadDisplay.setText("");
+            reservarActividadBoton.setVisible(false);
         }
 
         actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-        centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
     }
 
     public void onMisActividadesLabelClick(MouseEvent mouseEvent) {
@@ -472,7 +506,13 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     }
 
     public void onReservarActividadClick(ActionEvent event) {
-
+        if (reservarActividadBoton.getText().equals("RESERVAR")) {
+            System.out.println("Reservar actividad");
+        } else if (reservarActividadBoton.getText().equals("GUARDAR")) {
+            System.out.println("Guardar actividad");
+        } else {
+            System.out.println("ERROR");
+        }
     }
 
     /*public void onEnterPressed(KeyEvent keyEvent) {
@@ -548,7 +588,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                     }
 
                     todasLasActividadesGridPane.add(todaActividadbox, column++, row);
-                    System.out.println(similarActividades);
+                    System.out.println(similarActividades.size());
                     GridPane.setMargin(todaActividadbox, new Insets(10));
 
                 }
