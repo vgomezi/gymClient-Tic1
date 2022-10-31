@@ -358,9 +358,12 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 List<TipoActividadObject> listaTipos = mapper.readValue(apiResponse.getBody(), new TypeReference<List<TipoActividadObject>>() {});
                 ObservableList<String> listaItems = FXCollections.observableArrayList();
                 for (TipoActividadObject tipoActividad: listaTipos) {
-                    listaItems.add(tipoActividad.getTipo());
+                    listaItems.add(tipoActividad.getTipo().toUpperCase());
                 }
+                //Anado null o TODAS
+                listaItems.add("TODAS");
                 tiposPantallaPrincipalChoiceBox.setItems(listaItems);
+                tiposPantallaPrincipalChoiceBox.setValue("TODAS");
 
                 tiposPantallaPrincipalChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
                     @Override
