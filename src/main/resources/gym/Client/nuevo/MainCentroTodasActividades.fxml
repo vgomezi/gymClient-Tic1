@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -114,23 +115,11 @@
                           </font>
                       </Label>
                       <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
-                      <Label fx:id="tipoActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="TIPO" textAlignment="CENTER" textOverrun="CLIP">
-                          <font>
-                              <Font name="Baskerville Old Face" size="18.0" />
-                          </font>
-                      </Label>
+                  <ChoiceBox fx:id="tipoActividadChoiceBox" prefWidth="150.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
                       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
                           <children>
-                              <Label fx:id="diaActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="DIA" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
-                                  </font>
-                              </Label>
-                              <Label fx:id="horaActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="HORA" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="Baskerville Old Face" size="18.0" />
-                                  </font>
-                              </Label>
+                        <DatePicker fx:id="diaDatePicker" prefHeight="26.0" prefWidth="115.0" />
+                        <DatePicker fx:id="horaTimePicker" layoutX="86.0" layoutY="14.0" prefHeight="26.0" prefWidth="115.0" showWeekNumbers="true" />
                           </children>
                       </HBox>
                       <Label fx:id="descripcionActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="163.0" prefWidth="286.0" text="DESCRIPCION" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
