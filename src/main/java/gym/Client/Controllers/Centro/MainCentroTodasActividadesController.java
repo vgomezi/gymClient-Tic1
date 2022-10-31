@@ -112,8 +112,11 @@ public class MainCentroTodasActividadesController {
 
     private MyListener myListener;
 
-    private List<ActividadObject> anadidosRecienteLista = new ArrayList<>();
     private List<ActividadObject> todasLasActividades = new ArrayList<>();
+
+    //Poner en lugar de anadidas recientemente las proximas actividades que estan por ocurrir, de forma que sea más
+    //fácil encontrarlas
+    private List<ActividadObject> proximasActividades = new ArrayList<>();
 
     private List<ActividadObject> similarActividades = new ArrayList<>();
 
