@@ -627,6 +627,14 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     }
 
     public void onBusquedaKeyReleased(KeyEvent keyEvent) {
+
+        if (!tiposPantallaPrincipalChoiceBox.getValue().equals("TODAS")) {
+            String caracter = busquedaTextField.getText();
+            tiposPantallaPrincipalChoiceBox.setValue("TODAS");
+            busquedaTextField.setText(caracter);
+            busquedaTextField.forward();
+        }
+
         this.myListener = new MyListener() {
             @Override
             public void onClickActividad(ActividadObject actividadObject) {
