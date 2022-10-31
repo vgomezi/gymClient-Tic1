@@ -26,7 +26,21 @@ public class InscripcionesActividadesObject {
 
     private ActividadObject actividad;
 
+    private String tipoReserva;
+
     public InscripcionesActividadesObject() {
+    }
+
+    public InscripcionesActividadesObject(String empleadoMailInscripcion, String actividadNombreInscripcion, LocalDate actividadDiaInscripcion, LocalTime actividadHoraInscripcion, String actividadCentroInscripcion, boolean asistencia, EmpleadoObject empleado, ActividadObject actividad, String tipoReserva) {
+        this.empleadoMailInscripcion = empleadoMailInscripcion;
+        this.actividadNombreInscripcion = actividadNombreInscripcion;
+        this.actividadDiaInscripcion = actividadDiaInscripcion;
+        this.actividadHoraInscripcion = actividadHoraInscripcion;
+        this.actividadCentroInscripcion = actividadCentroInscripcion;
+        this.asistencia = asistencia;
+        this.empleado = empleado;
+        this.actividad = actividad;
+        this.tipoReserva = tipoReserva;
     }
 
     public InscripcionesActividadesObject(String empleadoMailInscripciones, String actividadNombreInscripcion, LocalDate actividadDiaInscripcion, LocalTime actividadHoraInscripcion, boolean asistencia, EmpleadoObject empleado, ActividadObject actividad) {

@@ -1,4 +1,4 @@
-package gym.Client.Controllers.Usuario.Actividades;
+package gym.Client.Controllers.Nuevos;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +11,9 @@ import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.InscripcionesActividadesObject;
 import gym.Client.Classes.TipoActividadObject;
 import gym.Client.Controllers.LoginController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
+import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -811,5 +814,8 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     public void setMailUsuarioIngreso(String mailUsuarioIngreso) {
         this.mailUsuarioIngreso = mailUsuarioIngreso;
+    }
+
+    public void onEnterPressed(KeyEvent keyEvent) {
     }
 }
