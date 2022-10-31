@@ -8,6 +8,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
+import gym.Client.Classes.InscripcionesActividadesObject;
 import gym.Client.Classes.TipoActividadObject;
 import gym.Client.Controllers.LoginController;
 import javafx.beans.value.ChangeListener;
@@ -378,7 +379,10 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         }
     }
 
+    public ActividadObject actividadEnDisplay;
+
     public void desplegarInfoActividadSeleccionada(@Nullable ActividadObject actividadObject) {
+        actividadEnDisplay = actividadObject;
         if (!actividadObject.equals(null)) {
             cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
             costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
@@ -508,6 +512,8 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     public void onReservarActividadClick(ActionEvent event) {
         if (reservarActividadBoton.getText().equals("RESERVAR")) {
+            //InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), )
+
             System.out.println("Reservar actividad");
         } else if (reservarActividadBoton.getText().equals("GUARDAR")) {
             System.out.println("Guardar actividad");
