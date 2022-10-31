@@ -41,7 +41,6 @@ import javafx.stage.WindowEvent;
 import org.springframework.lang.Nullable;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -482,8 +481,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
             Stage stage = new Stage();
 
-            //stage.initModality(Modality.APPLICATION_MODAL);
-
             stage.setTitle("Login");
             stage.setIconified(false);
             stage.setResizable(false);
@@ -515,12 +512,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         }
     }
 
-    /*public void onEnterPressed(KeyEvent keyEvent) {
-        //Desplegar pantalla con los resultados encontrados
-
-        //Si no se encuentra ninguno desplegar "No se encontraron actividades relacionadas con esa busqueda"
-    }*/
-
     public void filtrarPorTipo() {}
 
     public void onBusquedaKeyReleased(KeyEvent keyEvent) {
@@ -535,7 +526,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
             }
         };
-        System.out.println(busquedaTextField.getText());
+        //System.out.println(busquedaTextField.getText());
         if (busquedaTextField.getText().isEmpty()) {
             todasLasActividadesGridPane = new GridPane();
             todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
