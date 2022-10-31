@@ -368,7 +368,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 tiposPantallaPrincipalChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
+                        filtrarPorTipo(observable.getValue());
                     }
                 });
             }
@@ -515,7 +515,16 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         }
     }
 
-    public void filtrarPorTipo() {}
+    public void filtrarPorTipo(String tipo) {
+        //busquedaTextField.deleteText(0, busquedaTextField.getText().length());
+        busquedaTextField.clear();
+        System.out.println(tipo);
+        if (tipo.equals("TODAS")) {
+            //get todas
+        } else {
+            //get by tipo
+        }
+    }
 
     public void onBusquedaKeyReleased(KeyEvent keyEvent) {
         this.myListener = new MyListener() {
