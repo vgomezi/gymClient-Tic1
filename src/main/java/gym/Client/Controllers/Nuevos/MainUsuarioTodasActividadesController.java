@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
@@ -515,8 +516,26 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     public void onReservarActividadClick(ActionEvent event) {
         if (reservarActividadBoton.getText().equals("RESERVAR")) {
-            InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "RESERVAR");
+            try {
+                String json = "";
 
+                try {
+                    ObjectMapper mapper = new JsonMapper().builder().findAndAddModules().build();
+                    mapper.registerModule(new JavaTimeModule());
+                    InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "RESERVAR");
+                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
+                    System.out.println("json hecho");
+
+                    HttpResponse<JsonNode> apiResponse = null;
+                    apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json).asJson();
+                    System.out.println("Inscripciones actividades reserva hecho");
+                } catch (Exception e) {
+                    System.out.println("Error ingresando reserva");
+                    System.out.println(e.getMessage());
+                }
+            } catch (Exception e) {
+                System.out.println("Error fatal");
+            }
             System.out.println("Reservar actividad");
         } else if (reservarActividadBoton.getText().equals("GUARDAR")) {
             System.out.println("Guardar actividad");
@@ -524,6 +543,71 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             System.out.println("ERROR");
         }
     }
+
+    /*System.out.println(usuarioEmpresaCrearUsuario);
+        String nombre = nombreText.getText();
+        String apellido = apellidoText.getText();
+        String email = emailText.getText();
+        String telefono = telefonoText.getText();
+        String contrasena = contrasenaText.getText();
+        String imagen = registrarEmpleadoAction(event);
+
+        if (!nombre.isEmpty() && !apellido.isEmpty() && !email.isEmpty() && !telefono.isEmpty() && !contrasena.isEmpty()) {
+
+            try {
+                String json = "";
+                String json2 = "";
+
+                try {
+                    ObjectMapper mapper = new ObjectMapper();
+                    ObjectMapper mapper2 = new ObjectMapper();
+                    UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Usuario");
+
+                    String empresa  = "";
+                    try {
+                        HttpResponse<String> apiResponse = null;
+
+                        apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + usuarioEmpresaCrearUsuario).asObject(String.class);
+                        empresa = apiResponse.getBody();
+                        System.out.println(empresa);
+
+                        if (!empresa.isBlank()) {
+                            ObjectMapper mapper1 = new ObjectMapper();
+                            EmpresaObject empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
+
+                            //Corregir imagen al fondo
+                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresaObject, Integer.parseInt(empresaObject.getBono()), Integer.parseInt(empresaObject.getBono()), 0, imagen);
+                            json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
+                            json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empleadoObject);
+                            System.out.println(json);
+                        }
+                    } catch (Exception e) {
+
+                    }
+                    //Cambiar definiciones obteniendo la empresa y sus datos
+                } catch (Exception ignored) {
+                }
+                HttpResponse<JsonNode> apiResponse = null;
+                apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
+                apiResponse = Unirest.post("http://localhost:8987/api/usuarios").header("Content-Type", "application/json").body(json2).asJson();
+                System.out.println("Hecho Usuario");
+
+                System.out.println("Hecho");
+                nombreText.clear();
+                apellidoText.clear();
+                emailText.clear();
+                telefonoText.clear();
+                contrasenaText.clear();
+                /*Node source = (Node) event.getSource();
+                Stage stage = (Stage) source.getScene().getWindow();
+                stage.close();
+
+} catch (Exception e) {
+        System.out.println(e.toString());
+        System.out.println("Error");
+
+        }
+    * */
 
     public void filtrarPorTipo(String tipo) {
         //busquedaTextField.deleteText(0, busquedaTextField.getText().length());
