@@ -174,7 +174,12 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
         String email = emailRegistroEmpleado.getText();
         String telefono = telefonoRegistroEmpleado.getText();
         String contrasena = contrasenaRegistroEmpleado.getText();
-        String imagen = codificarImagenRegistroUsuario(fileImagen);
+        String imagen = null;
+        try {
+            imagen = codificarImagenRegistroUsuario(fileImagen);
+        } catch (Exception ignored) {
+
+        }
 
         if (!nombre.isEmpty() && !apellido.isEmpty() && !email.isEmpty() && !telefono.isEmpty() && !contrasena.isEmpty()) {
             try {
