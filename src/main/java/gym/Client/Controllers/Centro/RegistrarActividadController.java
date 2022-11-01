@@ -1,5 +1,6 @@
 package gym.Client.Controllers.Centro;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -8,6 +9,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +29,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class RegistrarActividadController {
@@ -183,14 +187,32 @@ public class RegistrarActividadController {
             System.out.println("Pantalla error datos incorrectos");
         }
     }
-
-    ObservableList<String> tipoChoiceBoxList = FXCollections.
-            observableArrayList("Canchas","Gimnasio/Sala", "Náuticas");
-
     @FXML
     private void initialize(){
-        tipoChoiceBox.setItems(tipoChoiceBoxList);
-        tipoChoiceBox.setValue("Categoria");
+        inicializoChoiceBox();
+    }
+
+    public void inicializoChoiceBox() {
+        try {
+            HttpResponse<String> apiResponse = null;
+            apiResponse = Unirest.get("http://localhost:8987/api/tipoactividad/allTipoActividad").asObject(String.class);
+            System.out.println("Logre get tipos actividades");
+
+            if (!apiResponse.getBody().isEmpty()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if inicializoChoiceBox");
+                List<TipoActividadObject> listaTipos = mapper.readValue(apiResponse.getBody(), new TypeReference<List<TipoActividadObject>>() {});
+                ObservableList<String> listaItems = FXCollections.observableArrayList();
+                for (TipoActividadObject tipoActividad: listaTipos) {
+                    listaItems.add(tipoActividad.getTipo()); /*.toUpperCase()*/
+                }
+                listaItems.add("TODAS");
+                tipoChoiceBox.setItems(listaItems);
+                tipoChoiceBox.setValue("TODAS");
+            }
+        } catch (Exception e) {
+            System.out.println("Error cargando choicebox :" + e);
+        }
     }
 
     @FXML
