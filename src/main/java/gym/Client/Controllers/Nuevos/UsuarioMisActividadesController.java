@@ -257,14 +257,12 @@ public class UsuarioMisActividadesController implements Initializable {
             mainUsuarioTodasActividadesController.datosUsuario(empleado.getMail());
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
-            //stage.setTitle("SENSE FIT");
             stage.setScene(new Scene(root1));
             stage.show();
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
             System.out.println("Error");
-            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

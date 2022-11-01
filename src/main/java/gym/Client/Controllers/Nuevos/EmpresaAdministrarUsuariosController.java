@@ -1,6 +1,7 @@
 package gym.Client.Controllers.Nuevos;
 
 import gym.Client.Classes.ActividadObject;
+import gym.Client.Classes.EmpresaObject;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.collections.FXCollections;
@@ -76,8 +77,12 @@ public class EmpresaAdministrarUsuariosController {
     @FXML
     public Button eliminarUsuarioBoton;
 
+    public EmpresaObject empresa;
 
+    public void datosEmpresa(String correoElectronico) {
+        //fijarse main usuarios todas actividades
 
+    }
 
 
     public void onEnterPressed(KeyEvent keyEvent) {
@@ -117,7 +122,23 @@ public class EmpresaAdministrarUsuariosController {
     }
 
     public void onTodosLosUsuariosLabelClick(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(EmpresaAdministrarUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
 
+            MainEmpresaTodosUsuariosController mainEmpresaTodosUsuariosController = fxmlLoader.getController();
+            System.out.println(empresa.getMail());
+            mainEmpresaTodosUsuariosController.datosEmpresa(empresa.getMail());
+
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
     public void onAdministrarUsuariosLabelClick(MouseEvent mouseEvent) {

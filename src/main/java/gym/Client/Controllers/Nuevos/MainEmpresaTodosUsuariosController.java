@@ -118,8 +118,37 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
     private File fileImagen;
 
+    public EmpresaObject empresa;
+
+    public void datosEmpresa(String correoElectronico) {
+        //fijarse main usuarios todas actividades
+
+    }
+
     @FXML
-    void onAdministrarUsuariosLabelClick(MouseEvent event) {
+    void onAdministrarUsuariosLabelClick(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaTodosUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/EmpresaAdministrarUsuarios.fxml"));
+
+            EmpresaAdministrarUsuariosController empresaAdministrarUsuariosController = fxmlLoader.getController();
+            System.out.println(empresa.getMail());
+            empresaAdministrarUsuariosController.datosEmpresa(empresa.getMail());
+
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
+
+    }
+
+    @FXML
+    void onTodosLosUsuariosLabelClick(MouseEvent mouseEvent) {
 
     }
 
@@ -161,10 +190,6 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
         }
     }
 
-    @FXML
-    void onTodosLosUsuariosLabelClick(MouseEvent event) {
-
-    }
 
     @FXML
     void onRegistrarUsuarioBotonClick(ActionEvent event) {
