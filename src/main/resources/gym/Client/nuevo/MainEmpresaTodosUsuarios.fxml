@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.MainEmpresaTodosUsuarios">
+<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.MainEmpresaTodosUsuariosController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
@@ -29,7 +29,7 @@
                 <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" />
                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="328.0" spacing="10.0" styleClass="round-layout" stylesheets="/css/style.css">
                     <children>
-                        <TextField onKeyPressed="#onEnterPressed" prefHeight="26.0" prefWidth="267.0" promptText="Barra de búsqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
+                        <TextField onKeyReleased="#onBusquedaEmpleadoKeyReleased" prefHeight="26.0" prefWidth="267.0" promptText="Barra de búsqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@/Lupa.png" />
@@ -110,31 +110,31 @@
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="nombreRegistroEmpleado" maxWidth="-Infinity" onKeyPressed="#onEnterPressed" prefHeight="34.0" prefWidth="250.0" promptText="NOMBRE" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
+                  <TextField fx:id="nombreRegistroEmpleado" maxWidth="-Infinity" prefHeight="34.0" prefWidth="250.0" promptText="NOMBRE" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
                   <Label fx:id="apellidoUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="34.0" prefWidth="266.0" text="APELLIDO" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="apellidoRegistroEmpleado" maxWidth="-Infinity" onKeyPressed="#onEnterPressed" prefHeight="34.0" prefWidth="250.0" promptText="APELLIDO" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
+                  <TextField fx:id="apellidoRegistroEmpleado" maxWidth="-Infinity" prefHeight="34.0" prefWidth="250.0" promptText="APELLIDO" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
                   <Label fx:id="emailUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="266.0" text="EMAIL" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="emailRegistroEmpleado" maxWidth="-Infinity" onKeyPressed="#onEnterPressed" prefHeight="34.0" prefWidth="250.0" promptText="EMAIL" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
+                  <TextField fx:id="emailRegistroEmpleado" maxWidth="-Infinity" prefHeight="34.0" prefWidth="250.0" promptText="EMAIL" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
                   <Label fx:id="telefonoUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="266.0" text="TELEFONO" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="telefonoRegistroEmpleado" maxWidth="-Infinity" onKeyPressed="#onEnterPressed" prefHeight="34.0" prefWidth="250.0" promptText="TELEFONO" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
+                  <TextField fx:id="telefonoRegistroEmpleado" maxWidth="-Infinity" prefHeight="34.0" prefWidth="250.0" promptText="TELEFONO" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
                   <Label fx:id="contraseñaUsuarioDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="266.0" text="CONTRASEÑA" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="contrasenaRegistroEmpleado1" maxWidth="-Infinity" onKeyPressed="#onEnterPressed" prefHeight="34.0" prefWidth="250.0" promptText="CONTRASEÑA" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
+                  <TextField fx:id="contrasenaRegistroEmpleado1" maxWidth="-Infinity" prefHeight="34.0" prefWidth="250.0" promptText="CONTRASEÑA" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
                   <Pane prefHeight="44.0" prefWidth="266.0" />
                   <Button fx:id="registrarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
                      <font>
