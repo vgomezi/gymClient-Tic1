@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.AdministrarEmpresaDeudaController">
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="184.0" text="SENSE FIT" textAlignment="CENTER">
+                    <font>
+                        <Font name="Modern No. 20" size="30.0" />
+                    </font>
+                </Label>
+                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" />
+                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="328.0" spacing="10.0" styleClass="round-layout" stylesheets="/css/style.css">
+                    <children>
+                        <TextField onKeyReleased="#onBusquedaEmpleadoKeyReleased" prefHeight="26.0" prefWidth="267.0" promptText="Barra de búsqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/Lupa.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="273.0" spacing="20.0">
+                    <children>
+                        <Label fx:id="logOutLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" onMouseClicked="#onMouseClickedLogOut" prefHeight="46.0" prefWidth="96.0" text="LOG OUT" textAlignment="RIGHT" textOverrun="CLIP">
+                            <font>
+                                <Font name="Baskerville Old Face" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="5.0" right="20.0" top="5.0" />
+                    </HBox.margin>
+                </HBox>
+            </children>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefHeight="560.0" prefWidth="205.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Circle radius="74.0" stroke="BLACK" strokeType="INSIDE" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="120.0" prefWidth="206.0">
+                    <children>
+                        <Label fx:id="nombreLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="200.0" text="NOMBRE" textAlignment="RIGHT" textOverrun="CLIP">
+                            <font>
+                                <Font name="Baskerville Old Face" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox alignment="TOP_CENTER" prefHeight="283.0" prefWidth="206.0">
+                    <children>
+                        <Label fx:id="todosLosUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodosLosUsuariosLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS  LOS  USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                            <font>
+                                <Font name="Baskerville Old Face" size="18.0" />
+                            </font>
+                        </Label>
+                  <Label fx:id="administrarUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarUsuariosLabelClick" prefHeight="58.0" prefWidth="206.0" text="ADMINISTRAR  USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox prefHeight="599.0" prefWidth="708.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+                <Separator prefWidth="200.0" />
+                <Label fx:id="liquidacionTitleLabel" prefHeight="35.0" prefWidth="418.0" text="LIQUIDACIÓN">
+                    <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                    </font>
+                </Label>
+            <ScrollPane maxHeight="-Infinity" prefHeight="710.0" prefWidth="975.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
+               <content>
+                  <GridPane fx:id="todasLasActividadesGridPane" prefHeight="0.0" prefWidth="0.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>

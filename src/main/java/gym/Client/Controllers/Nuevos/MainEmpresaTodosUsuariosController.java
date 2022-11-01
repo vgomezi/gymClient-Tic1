@@ -153,7 +153,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     }
 
     @FXML
-    void onBusquedaEmpleadoKeyReleased(KeyEvent event) {
+    void onBusquedaEmpleadoKeyReleased(KeyEvent keyEvent) {
 
     }
 
@@ -279,14 +279,14 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     }
 
     @FXML
-    void onImagenRegistroMouseClick(MouseEvent event) {
-        File file = tomarImagen(event);
+    void onImagenRegistroMouseClick(MouseEvent mouseEvent) {
+        File file = tomarImagen(mouseEvent);
         String base64 = codificarImagenRegistroUsuario(file);
         Image imagen = decodificarImagen(base64);
         imagenUsuarioRegistro.setImage(imagen);
     }
 
-    public File tomarImagen (MouseEvent event) {
+    public File tomarImagen (MouseEvent mouseEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Elegir imagen centro");
         fileChooser.getExtensionFilters().addAll(
@@ -294,7 +294,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("PNG", "*.png")
         );
-        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+        File file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
         fileImagen = file;
         return file;
     }
