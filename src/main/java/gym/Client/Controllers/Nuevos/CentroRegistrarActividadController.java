@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ import javafx.stage.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainCentroRegistrarIngresoUsuarioController {
+public class CentroRegistrarActividadController  {
     // implements Initializable
 
     @FXML
@@ -38,13 +39,28 @@ public class MainCentroRegistrarIngresoUsuarioController {
     public Label registrarIngresoUsuarioLabel;
 
     @FXML
-    public Button administrarCentroBoton;
+    public TextField nombreActividadRegistro;
 
     @FXML
-    public Label nombreActividadDisplay;
+    public CheckBox reservableCheckBoxRegistro;
 
     @FXML
-    public Label reservableActividadDisplay;
+    public ChoiceBox tipoActividadChoiceBoxRegistro;
+
+    @FXML
+    public DatePicker diaDatePickerRegistro;
+
+    @FXML
+    public TextField horaActividadRegistro;
+
+    @FXML
+    public TextField duracionActividadRegistro;
+
+    @FXML
+    public TextField costoActividadRegistro;
+
+    @FXML
+    public Button registrarIngresoUsuarioBoton;
 
     @FXML
     public ChoiceBox tipoActividadChoiceBox;
@@ -61,33 +77,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
     @FXML
     public ImageView imagenActividadDisplay;
 
-    @FXML
-    public Label diaActividadDisplay;
 
-    @FXML
-    public Label horaActividadDisplay;
-
-
-    @FXML
-    public Label descripcionActividadDisplay;
-
-    @FXML
-    public Label cuposActividadDisplay;
-
-    @FXML
-    public Label duracionActividadDisplay;
-
-    @FXML
-    public Label costoActividadDisplay;
-
-    @FXML
-    public Button registrarActividadBoton;
-
-    @FXML
-    public TextField mailUsuarioDisplay;
-
-
-    public String mailUsuarioIngreso;
 
     private MyListener myListener;
 
@@ -143,7 +133,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     }
 
-    public void onRegistrarIngresoUsuarioButtonClick(MouseEvent mouseEvent) {
+    public void onRegistrarActividadButtonClick(MouseEvent mouseEvent) {
 
     }
 }
