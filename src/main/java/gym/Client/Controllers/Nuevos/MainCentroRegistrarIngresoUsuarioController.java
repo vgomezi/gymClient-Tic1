@@ -81,10 +81,10 @@ public class MainCentroRegistrarIngresoUsuarioController {
     public Label costoActividadDisplay;
 
     @FXML
-    public Button registrarActividadBoton;
+    public TextField mailUsuarioDisplay;
 
     @FXML
-    public TextField mailUsuarioDisplay;
+    public Button registrarIngresoUsuarioBoton;
 
 
     public String mailUsuarioIngreso;

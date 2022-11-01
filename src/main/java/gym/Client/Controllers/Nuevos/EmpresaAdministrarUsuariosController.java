@@ -8,11 +8,13 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -23,7 +25,7 @@ import javafx.stage.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CentroRegistrarActividadController  {
+public class EmpresaAdministrarUsuariosController {
     // implements Initializable
 
     @FXML
@@ -33,31 +35,25 @@ public class CentroRegistrarActividadController  {
     public Label nombreLabel;
 
     @FXML
-    public Label todasLasActividadesLabel;
+    public Label nombreUsuaioDisplay;
 
     @FXML
-    public Label registrarIngresoUsuarioLabel;
+    public Label apellidoUsuarioDisplay;
 
     @FXML
-    public TextField nombreActividadRegistro;
+    public Label emailUsuarioDisplay;
 
     @FXML
-    public CheckBox reservableCheckBoxRegistro;
+    public Label saldoUsuarioDisplay;
 
     @FXML
-    public ChoiceBox tipoActividadChoiceBoxRegistro;
+    public Label deudaUsuarioDisplay;
 
     @FXML
-    public DatePicker diaDatePickerRegistro;
+    public Label telefonoUsuarioDisplay;
 
     @FXML
-    public TextField horaActividadRegistro;
-
-    @FXML
-    public TextField duracionActividadRegistro;
-
-    @FXML
-    public TextField costoActividadRegistro;
+    public Label contrasenaUsuarioDisplay;
 
     @FXML
     public ChoiceBox tipoActividadChoiceBox;
@@ -72,21 +68,17 @@ public class CentroRegistrarActividadController  {
     }
 
     @FXML
-    public ImageView imagenActividadDisplay;
+    public ImageView imagenUsuarioDisplay;
 
     @FXML
-    public Button registrarActividadBoton;
+    public Button actualizarUsuarioBoton;
+
+    @FXML
+    public Button eliminarUsuarioBoton;
 
 
-    private MyListener myListener;
 
-    private List<ActividadObject> todasLasActividades = new ArrayList<>();
 
-    //Poner en lugar de anadidas recientemente las proximas actividades que estan por ocurrir, de forma que sea más
-    //fácil encontrarlas
-    private List<ActividadObject> proximasActividades = new ArrayList<>();
-
-    private List<ActividadObject> similarActividades = new ArrayList<>();
 
     public void onEnterPressed(KeyEvent keyEvent) {
     }
@@ -124,15 +116,19 @@ public class CentroRegistrarActividadController  {
 
     }
 
-    public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
+    public void onTodosLosUsuariosLabelClick(MouseEvent mouseEvent) {
 
     }
 
-    public void onRegistrarIngresoUsuarioLabelClick(MouseEvent mouseEvent) {
+    public void onAdministrarUsuariosLabelClick(MouseEvent mouseEvent) {
 
     }
 
-    public void onRegistrarActividadButtonClick(MouseEvent mouseEvent) {
+    public void onActualizarUsuarioButtonClick(MouseEvent mouseEvent) {
+
+    }
+
+    public void onEliminarUsuarioButtonClick(MouseEvent mouseEvent) {
 
     }
 }

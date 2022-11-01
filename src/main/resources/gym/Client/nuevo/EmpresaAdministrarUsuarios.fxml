@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.MainUsuarioTodasActividadesController">
+<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.EmpresaAdministrarUsuariosController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
@@ -76,7 +76,7 @@
                 </VBox>
                 <VBox alignment="TOP_CENTER" prefHeight="283.0" prefWidth="206.0">
                     <children>
-                        <Label fx:id="todasLosUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodosLosUsuariosLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS  LOS  USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                        <Label fx:id="todosLosUsuariosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodosLosUsuariosLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS  LOS  USUARIOS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                             <font>
                                 <Font name="Baskerville Old Face" size="18.0" />
                             </font>
@@ -115,7 +115,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imagenUsuarioDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="emailUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="EMAIL" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
@@ -147,12 +147,12 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label fx:id="contraseñaUsuarioDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="CONTRASEÑA" textAlignment="CENTER" textOverrun="CLIP">
+                  <Label fx:id="contrasenaUsuarioDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="CONTRASEÑA" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="actualizarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ACTUALIZAR" textFill="WHITE">
+                  <Button fx:id="actualizarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onActualizarUsuarioButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ACTUALIZAR" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -160,7 +160,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="eliminarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ELIMINAR" textFill="WHITE">
+                  <Button fx:id="eliminarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onEliminarUsuarioButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ELIMINAR" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
