@@ -104,7 +104,7 @@
             <children>
             <VBox fx:id="usuarioSeleccionadoVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                  <ImageView fx:id="imagenUsuarioDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imagenUsuarioRegistro" fitHeight="101.0" fitWidth="253.0" onMouseClicked="#onImagenRegistroMouseClick" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="nombreUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="26.0" prefWidth="266.0" text="NOMBRE" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
@@ -129,14 +129,14 @@
                      </font>
                   </Label>
                   <TextField fx:id="telefonoRegistroEmpleado" maxWidth="-Infinity" prefHeight="34.0" prefWidth="250.0" promptText="TELEFONO" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
-                  <Label fx:id="contraseñaUsuarioDisplay" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="266.0" text="CONTRASEÑA" textAlignment="CENTER" textOverrun="CLIP">
+                  <Label fx:id="contraseñaUsuarioDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="266.0" text="CONTRASEÑA" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="contrasenaRegistroEmpleado1" maxWidth="-Infinity" prefHeight="34.0" prefWidth="250.0" promptText="CONTRASEÑA" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
+                  <TextField fx:id="contrasenaRegistroEmpleado" maxWidth="-Infinity" prefHeight="34.0" prefWidth="250.0" promptText="CONTRASEÑA" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
                   <Pane prefHeight="44.0" prefWidth="266.0" />
-                  <Button fx:id="registrarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
+                  <Button fx:id="registrarUsuarioBoton" mnemonicParsing="false" onAction="#onRegistrarUsuarioBotonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -5,6 +5,7 @@ import com.mashape.unirest.http.Unirest;
 import gym.Client.Controllers.Admin.MainAdminController;
 import gym.Client.Controllers.Centro.MainCentroController;
 import gym.Client.Controllers.Empresa.MainEmpresaController;
+import gym.Client.Controllers.Nuevos.MainEmpresaTodosUsuariosController;
 import gym.Client.Controllers.Nuevos.MainUsuarioTodasActividadesController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -122,12 +123,17 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
+                                    //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
+
                                     //Parent root1 = FXMLLoader.load(getClass().getResource("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
                                     //Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
 
-                                    MainEmpresaController mainEmpresaController = fxmlLoader.getController();
-                                    mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);
+                                    //MainEmpresaController mainEmpresaController = fxmlLoader.getController();
+                                    //mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);
+
+                                    MainEmpresaTodosUsuariosController mainEmpresaTodosUsuariosController = fxmlLoader.getController();
+                                    mainEmpresaTodosUsuariosController.setEmpresaLogInMail(correoElectronico);
 
                                     Stage stage = new Stage();
 
