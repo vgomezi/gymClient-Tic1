@@ -12,6 +12,7 @@ import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -246,6 +247,12 @@ public class UsuarioMisActividadesController implements Initializable {
 
     public void onMisActividadesLabelClick(MouseEvent mouseEvent) {
 
+    }
+
+    public void onCancelarActividadBoton(ActionEvent event) {
+        //borrar actividad de la lista inscripciones actividades
+
+        //llamar a actividadesUsuario()
     }
 
     public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {
