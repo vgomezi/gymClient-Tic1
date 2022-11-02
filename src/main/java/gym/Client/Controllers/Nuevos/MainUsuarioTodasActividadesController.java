@@ -446,6 +446,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             UsuarioMisActividadesController usuarioMisActividadesController = fxmlLoader.getController();
             System.out.println(empleado.getMail());
             usuarioMisActividadesController.datosUsuario(empleado);
+            usuarioMisActividadesController.actividadesUsuario();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
@@ -538,6 +539,26 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             }
             System.out.println("Reservar actividad");
         } else if (reservarActividadBoton.getText().equals("GUARDAR")) {
+            try {
+                String json = "";
+
+                try {
+                    ObjectMapper mapper = new JsonMapper().builder().findAndAddModules().build();
+                    mapper.registerModule(new JavaTimeModule());
+                    InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "GUARDAR");
+                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
+                    System.out.println("json hecho");
+
+                    HttpResponse<JsonNode> apiResponse = null;
+                    apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json).asJson();
+                    System.out.println("Inscripciones actividades guardar hecho");
+                } catch (Exception e) {
+                    System.out.println("Error ingresando reserva");
+                    System.out.println(e.getMessage());
+                }
+            } catch (Exception e) {
+                System.out.println("Error fatal");
+            }
             System.out.println("Guardar actividad");
         } else {
             System.out.println("ERROR");

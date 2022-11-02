@@ -103,7 +103,7 @@ public class UsuarioMisActividadesController implements Initializable {
 
     private MyListener myListener;
 
-    private List<ActividadObject> todasLasActividades = new ArrayList<>();
+    private List<ActividadObject> misActividades = new ArrayList<>();
 
     EmpleadoObject empleado;
 
@@ -131,38 +131,42 @@ public class UsuarioMisActividadesController implements Initializable {
     }
 
     private List<ActividadObject> todasMisActividades() {
-        List<ActividadObject> listaActividadesNuevas = new ArrayList<>();
+        List<ActividadObject> listaMisActividades = new ArrayList<>();
         ActividadObject actividadObject;
 
         String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/actividades/allActividades/").header("Content-Type", "application/json").asObject(String.class);
+            apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcionUsuario/" + empleado.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
             System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-            listaActividadesNuevas = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+            listaMisActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
             System.out.println(actividad);
-            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE " + listaActividadesNuevas);
+            System.out.println("Lista actividades mis actividades " + listaMisActividades);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        return listaActividadesNuevas;
+        return listaMisActividades;
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Entro initialize");
-        todasLasActividades.addAll(todasMisActividades());
 
-        if(todasLasActividades.size() > 0) {
-            desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
+    }
+
+    public void actividadesUsuario() {
+        misActividades.addAll(todasMisActividades());
+
+        if(misActividades.size() > 0) {
+            desplegarInfoActividadSeleccionada(misActividades.get(0));
             this.myListener = new MyListener() {
 
 
@@ -183,7 +187,7 @@ public class UsuarioMisActividadesController implements Initializable {
         int column = 0;
         int row = 1;
         try{
-            for(ActividadObject actividad : todasLasActividades) {
+            for(ActividadObject actividad : misActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
                 System.out.println("Carga FXMLLoader");
