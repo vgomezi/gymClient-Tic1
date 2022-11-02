@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.EmpresaObject;
-import gym.Client.Controllers.Admin.AdminCentro.BuscarCentroController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,7 +63,7 @@ public class EliminarEmpresaController {
                 String nombreEmpresa = empresaObject.getNombre();
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 System.out.println("Entro confirmar eliminar centro");
-                Parent root1 = (Parent) fxmlLoader.load(EliminarEmpresaController.class.getResourceAsStream("/gym/Client/ConfirmarBorrarEmpresa.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load(EliminarEmpresaController.class.getResourceAsStream("/formularios/OpcionesAdministrador/ConfirmarBorrarEmpresa.fxml"));
 
                 ConfirmarBorrarEmpresaController confirmarBorrarEmpresaController = fxmlLoader.getController();
                 confirmarBorrarEmpresaController.setUsuarioAdminConfirmar(this.usuarioAdminEmpresaEliminar);
