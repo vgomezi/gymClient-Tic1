@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,10 +24,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class EmpresaAdministrarUsuariosController {
+public class EmpresaAdministrarUsuariosController implements Initializable {
     // implements Initializable
 
     @FXML
@@ -62,7 +65,7 @@ public class EmpresaAdministrarUsuariosController {
     ObservableList<String> tipoActividadChoiceBoxList = FXCollections.
             observableArrayList("Canchas", "Gimnasio/Sala", "Náuticas");
 
-    @FXML
+    //@FXML
     private void initialize() {
         tipoActividadChoiceBox.setItems(tipoActividadChoiceBoxList);
         tipoActividadChoiceBox.setValue("Categoria");
@@ -150,6 +153,11 @@ public class EmpresaAdministrarUsuariosController {
     }
 
     public void onEliminarUsuarioButtonClick(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
     }
 }

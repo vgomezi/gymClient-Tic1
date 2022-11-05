@@ -190,6 +190,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
             EmpresaAdministrarUsuariosController empresaAdministrarUsuariosController = fxmlLoader.getController();
             System.out.println(empresa.getMail());
+            //Agregar mail en administrarUsuariosEmpresa
             empresaAdministrarUsuariosController.datosEmpresa(empresa.getMail());
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -335,7 +336,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
 
             System.out.println(empleado);
-            System.out.println("Lista mis empleados " + listaMisEmpleados);
+            //System.out.println("Lista mis empleados " + listaMisEmpleados);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -345,34 +346,17 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     public void empleadosEmpresa() {
         misEmpleados.addAll(todosMisEmpleados());
 
-        /*if(misEmpleados.size() > 0) {
-            //desplegarInfoActividadSeleccionada(misActividades.get(0));
-            this.myListener = new MyListener() {
+        this.myListener = new MyListener() {
 
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {
+            }
 
-                @Override
-                public void onClickActividad(ActividadObject actividadObject) {
-                    //desplegarInfoActividadSeleccionada(actividadObject);
-                }
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
 
-                @Override
-                public void onClickUsuario(EmpleadoObject empleadoObject) {
-
-                }
-            };
-        } else {
-            /*cuposActividadDisplay.setText("");
-            costoActividadDisplay.setText("");
-            horaActividadDisplay.setText("");
-            diaActividadDisplay.setText("");
-            tipoActividadDisplay.setText("");
-            nombreActividadDisplay.setText("");
-            descripcionActividadDisplay.setText("");
-            duracionActividadDisplay.setText("");
-            imagenActividadDisplay.setImage(null);
-            centroActividadDisplay.setText("");
-            cancelarActividadBoton.setVisible(false);
-        }*/
+            }
+        };
 
         System.out.println("entro datos MainEmpresa");
 
