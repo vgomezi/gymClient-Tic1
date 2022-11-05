@@ -207,7 +207,7 @@
                         <Font name="Baskerville Old Face" size="24.0" />
                     </font>
                 </Label>
-            <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
+            <ScrollPane fx:id="misActividadesScroll" prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
                <content>
                   <GridPane fx:id="todasLasActividadesGridPane" prefHeight="0.0" prefWidth="0.0">
                     <rowConstraints>

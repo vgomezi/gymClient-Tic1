@@ -168,7 +168,7 @@
                 </Label>
                 <ScrollPane hbarPolicy="ALWAYS" prefHeight="166.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css">
                     <content>
-                        <HBox fx:id="actividadesRecienteLayout" alignment="CENTER_LEFT" prefHeight="135.0" prefWidth="1371.0" spacing="20.0" />
+                        <HBox fx:id="usuariosRecienteLayout" alignment="CENTER_LEFT" prefHeight="135.0" prefWidth="1371.0" spacing="20.0" />
                     </content>
                 </ScrollPane>
                 <Separator prefWidth="200.0" />
@@ -177,7 +177,7 @@
                         <Font name="Baskerville Old Face" size="24.0" />
                     </font>
                 </Label>
-            <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
+            <ScrollPane fx:id="todosLosUsuariosScroll" prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
                <content>
                   <GridPane fx:id="todasLasActividadesGridPane" prefHeight="0.0" prefWidth="0.0">
                     <rowConstraints>

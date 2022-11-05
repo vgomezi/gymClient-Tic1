@@ -2,11 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -21,7 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.CentroRegistrarActividadController">
+<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.Admin.AdministrarEmpresaController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
@@ -33,7 +29,7 @@
                 <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" />
                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="328.0" spacing="10.0" styleClass="round-layout" stylesheets="/css/style.css">
                     <children>
-                        <TextField onKeyPressed="#onEnterPressed" prefHeight="26.0" prefWidth="267.0" promptText="Barra de busqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
+                        <TextField fx:id="busquedaTextField" onKeyReleased="#onBusquedaKeyReleased" prefHeight="26.0" prefWidth="267.0" promptText="Barra de busqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@/Lupa.png" />
@@ -41,10 +37,7 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <ChoiceBox layoutX="14.0" layoutY="17.0" prefWidth="150.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
-               </children></Pane>
+                <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                 <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="273.0" spacing="20.0">
                     <children>
                         <Label fx:id="logOutLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" onMouseClicked="#onMouseClickedLogOut" prefHeight="46.0" prefWidth="96.0" text="LOG OUT" textAlignment="RIGHT" textOverrun="CLIP">
@@ -65,12 +58,12 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Circle radius="74.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="imagenAdministradorCirculo" radius="74.0" stroke="BLACK" strokeType="INSIDE" />
                     </children>
                 </VBox>
                 <VBox prefHeight="120.0" prefWidth="206.0">
                     <children>
-                        <Label fx:id="nombreLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="200.0" text="NOMBRE" textAlignment="RIGHT" textOverrun="CLIP">
+                        <Label fx:id="nombreAdministradorLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="200.0" text="NOMBRE" textAlignment="RIGHT" textOverrun="CLIP">
                             <font>
                                 <Font name="Baskerville Old Face" size="18.0" />
                             </font>
@@ -82,20 +75,19 @@
                 </VBox>
                 <VBox alignment="TOP_CENTER" prefHeight="283.0" prefWidth="206.0">
                     <children>
-                  <Label fx:id="registrarIngresoUsuarioLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onRegistrarIngresoUsuarioLabelClick" prefHeight="58.0" prefWidth="206.0" text="REGISTRAR INGRESO USUARIO" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                  <Label fx:id="todasLasEmpresasLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasActividadesLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODAS LAS EMPRESAS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                        <Label fx:id="todasLasActividadesLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasActividadesLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODAS LAS ACTIVIDADES" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
-                            <font>
-                                <Font name="Baskerville Old Face" size="18.0" />
-                            </font>
-                        </Label>
+                  <Label fx:id="administrarCentrosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onMisActividadesLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR EMPRESA" textAlignment="CENTER" textOverrun="CLIP">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0" />
-            <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0" />
             </children>
         </VBox>
     </left>
@@ -104,35 +96,39 @@
             <children>
             <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                  <TextField fx:id="nombreActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE" />
+                      <Label fx:id="nombreEmpresaDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="NOMBRE EMPRESA" textAlignment="CENTER" textOverrun="CLIP">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
                       <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
-                  <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
-                     <children>
-                        <CheckBox fx:id="reservableCheckBoxRegistro" prefHeight="18.0" prefWidth="115.0" text="RESERVABLE" />
-                        <ChoiceBox fx:id="tipoActividadChoiceBoxRegistro" prefWidth="150.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
-                     </children>
-                  </HBox>
+                      <Label fx:id="emailEmpresaDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="EMAIL EMPRESA" textAlignment="CENTER" textOverrun="CLIP">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
                       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
                           <children>
-                        <DatePicker fx:id="diaDatePickerRegistro" prefHeight="39.0" prefWidth="134.0" />
-                        <TextField fx:id="horaActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="133.0" promptText="HORA (hh:mm)" />
+                              <Label fx:id="contrasenaEmpresaDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="CONTRASEÑA EMPRESA" textAlignment="CENTER" textOverrun="CLIP">
+                                  <font>
+                                      <Font name="System Bold" size="18.0" />
+                                  </font>
+                              </Label>
                           </children>
                       </HBox>
-                  <TextField fx:id="descripcionActividadRegistro" alignment="CENTER" prefHeight="133.0" prefWidth="266.0" promptText="DESCRIPCIÓN" />
-                      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0">
-                     <children>
-                        <TextField fx:id="cuposActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="271.0" promptText="CUPOS" />
-                     </children>
-                      </HBox>
-                  <TextField fx:id="duracionActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="DURACIÓN (mm)" />
-                      <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0">
-                     <children>
-                        <TextField fx:id="costoActividadRegistro" alignment="CENTER" prefHeight="52.0" prefWidth="266.0" promptText="COSTO" />
-                     </children>
-                      </HBox>
-                  <Button fx:id="registrarActividadBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onRegistrarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
+                      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0" />
+                      <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0" />
+                      <Button fx:id="actualizarEmpresaBoton" mnemonicParsing="false" mouseTransparent="false" onAction="#onReservarActividadClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ACTUALIZAR" textFill="WHITE" textOverrun="CLIP">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                          <opaqueInsets>
+                              <Insets />
+                          </opaqueInsets>
+                      </Button>
+                  <Button fx:id="eliminarEmpresaBoton" mnemonicParsing="false" mouseTransparent="false" onAction="#onReservarActividadClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ELIMINAR" textFill="WHITE" textOverrun="CLIP">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
@@ -156,17 +152,12 @@
         <VBox prefHeight="599.0" prefWidth="708.0" spacing="20.0" BorderPane.alignment="CENTER">
             <children>
                 <Separator prefWidth="200.0" />
-                <Label fx:id="todasLasActividadesTitleLabel" prefHeight="35.0" prefWidth="418.0" text="TODAS LAS ACTIVIDADES">
-                    <font>
-                        <Font name="Baskerville Old Face" size="24.0" />
-                    </font>
-                </Label>
-                  <HBox fx:id="todasLasActividadesScroll" alignment="TOP_RIGHT" prefHeight="1100.0" prefWidth="689.0" spacing="20.0">
-               <children>
-                  <ScrollBar orientation="VERTICAL" />
-               </children>
-            </HBox>
-            <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
+            <Label fx:id="todasLasEmpresasTitleLabel" prefHeight="35.0" prefWidth="418.0" text="TODAS LAS EMPRESAS">
+               <font>
+                  <Font name="Baskerville Old Face" size="24.0" />
+               </font>
+            </Label>
+            <ScrollPane fx:id="todasLasEmpresasScroll" prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
                <content>
                   <GridPane fx:id="todasLasActividadesGridPane" prefHeight="0.0" prefWidth="0.0">
                     <rowConstraints>
