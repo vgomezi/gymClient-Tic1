@@ -21,6 +21,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -102,6 +103,9 @@ public class UsuarioMisActividadesController implements Initializable {
     @FXML
     private Label apellidoUsuarioLabel;;
 
+    @FXML
+    private Button cancelarActividadBoton;
+
     private MyListener myListener;
 
     private List<ActividadObject> misActividades = new ArrayList<>();
@@ -181,6 +185,18 @@ public class UsuarioMisActividadesController implements Initializable {
 
                 }
             };
+        } else {
+            cuposActividadDisplay.setText("");
+            costoActividadDisplay.setText("");
+            horaActividadDisplay.setText("");
+            diaActividadDisplay.setText("");
+            tipoActividadDisplay.setText("");
+            nombreActividadDisplay.setText("");
+            descripcionActividadDisplay.setText("");
+            duracionActividadDisplay.setText("");
+            imagenActividadDisplay.setImage(null);
+            centroActividadDisplay.setText("");
+            cancelarActividadBoton.setVisible(false);
         }
 
         System.out.println("entro initialize UsuarioMisActividadesController");
@@ -243,6 +259,7 @@ public class UsuarioMisActividadesController implements Initializable {
         actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
+        cancelarActividadBoton.setVisible(true);
     }
 
     public void onMisActividadesLabelClick(MouseEvent mouseEvent) {

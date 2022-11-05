@@ -134,6 +134,8 @@ public class LoginController {
 
                                     MainEmpresaTodosUsuariosController mainEmpresaTodosUsuariosController = fxmlLoader.getController();
                                     mainEmpresaTodosUsuariosController.setEmpresaLogInMail(correoElectronico);
+                                    mainEmpresaTodosUsuariosController.datosEmpresa(correoElectronico);
+                                    mainEmpresaTodosUsuariosController.empleadosEmpresa();
 
                                     Stage stage = new Stage();
 

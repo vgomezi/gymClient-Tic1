@@ -1,6 +1,9 @@
 package gym.Client.Controllers.Nuevos;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -9,7 +12,9 @@ import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.EmpresaObject;
 import gym.Client.Classes.UserLoginObject;
+import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.LoginController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +24,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,6 +37,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -43,6 +51,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -114,15 +124,62 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     @FXML
     private VBox usuarioSeleccionadoVBox;
 
+    @FXML
+    private Circle imagenEmpresaCirculo;
+
     private String empresaLogInMail;
+
+    private MyListener myListener;
 
     private File fileImagen;
 
     public EmpresaObject empresa;
 
-    public void datosEmpresa(String correoElectronico) {
-        //fijarse main usuarios todas actividades
+    private List<EmpleadoObject> misEmpleados = new ArrayList<>();
 
+    public void datosEmpresa(String correoElectronico) {
+        EmpresaObject empresaObject = null;
+        try {
+            System.out.println("try obtener empresa");
+            String empresa = "";
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correoElectronico).asObject(String.class);
+            empresa = apiResponse.getBody();
+            System.out.println("Imprimo empresa");
+            System.out.println(empresa);
+
+
+            if (!empresa.isBlank()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if empresa");
+                empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
+                this.empresa = empresaObject;
+                System.out.println(empresaObject);
+            }
+            System.out.println("Try obtener empresa hecho");
+        } catch (Exception e) {
+            System.out.println("Try obtener empresa error");
+        }
+
+        if(empresaObject.getImagen() != null) {
+            byte[] imageDecoded = java.util.Base64.getDecoder().decode(empresaObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenEmpresaCirculo.setFill(new ImagePattern(toAdd));
+        } else {
+            Image imageView = new Image("/imagen/empresadefault.png");
+            imagenEmpresaCirculo.setFill(new ImagePattern(imageView));
+        }
+
+        nombreLabel.setText(empresaObject.getNombre());
     }
 
     @FXML
@@ -258,9 +315,93 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
         } else {
             //Agregar label
         }
+    }
+
+    private List<EmpleadoObject> todosMisEmpleados() {
+        List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
+        EmpleadoObject empleadoObject;
+
+        String empleado = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadosEmpresa/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+            System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
+
+            System.out.println(empleado);
+            System.out.println("Lista mis empleados " + listaMisEmpleados);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaMisEmpleados;
+    }
+
+    public void empleadosEmpresa() {
+        misEmpleados.addAll(todosMisEmpleados());
+
+        /*if(misEmpleados.size() > 0) {
+            //desplegarInfoActividadSeleccionada(misActividades.get(0));
+            this.myListener = new MyListener() {
 
 
+                @Override
+                public void onClickActividad(ActividadObject actividadObject) {
+                    //desplegarInfoActividadSeleccionada(actividadObject);
+                }
 
+                @Override
+                public void onClickUsuario(EmpleadoObject empleadoObject) {
+
+                }
+            };
+        } else {
+            /*cuposActividadDisplay.setText("");
+            costoActividadDisplay.setText("");
+            horaActividadDisplay.setText("");
+            diaActividadDisplay.setText("");
+            tipoActividadDisplay.setText("");
+            nombreActividadDisplay.setText("");
+            descripcionActividadDisplay.setText("");
+            duracionActividadDisplay.setText("");
+            imagenActividadDisplay.setImage(null);
+            centroActividadDisplay.setText("");
+            cancelarActividadBoton.setVisible(false);
+        }*/
+
+        System.out.println("entro datos MainEmpresa");
+
+        int column = 0;
+        int row = 1;
+        try{
+            for(EmpleadoObject empleado : misEmpleados) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                VBox usuarioEmpresaVbox = fxmlLoader.load();
+                UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
+
+                usuarioEmpresaController.setearDatos(empleado, myListener);
+
+                if (column == 2) {
+                    column = 0;
+                    ++row;
+                }
+
+                todasLasActividadesGridPane.add(usuarioEmpresaVbox, column++, row);
+                GridPane.setMargin(usuarioEmpresaVbox, new Insets(10));
+
+            }
+        } catch (Exception e){
+            System.out.println("Error creando panel " + e);
+
+        }
     }
 
     public String getEmpresaLogInMail() {
@@ -275,7 +416,6 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Image imagen = new Image("/imagen/usuariodefault.png");
         imagenUsuarioRegistro.setImage(imagen);
-
     }
 
     @FXML
