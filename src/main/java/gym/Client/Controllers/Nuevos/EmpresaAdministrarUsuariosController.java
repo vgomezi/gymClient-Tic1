@@ -224,6 +224,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             MainEmpresaTodosUsuariosController mainEmpresaTodosUsuariosController = fxmlLoader.getController();
             System.out.println(empresa.getMail());
             mainEmpresaTodosUsuariosController.datosEmpresa(empresa.getMail());
+            mainEmpresaTodosUsuariosController.empleadosEmpresa();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
