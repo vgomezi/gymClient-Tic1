@@ -1,11 +1,15 @@
 package gym.Client.Controllers.Nuevos;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.EmpresaObject;
+import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.collections.FXCollections;
@@ -16,6 +20,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,6 +32,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -34,6 +40,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -98,9 +105,17 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     @FXML
     public Button eliminarUsuarioBoton;
 
+    @FXML
+    private ScrollPane todosLosUsuariosScroll;
+
+    @FXML
+    private GridPane todasLasActividadesGridPane;
+
     private String empresaLogInMail;
 
     private MyListener myListener;
+
+    private List<EmpleadoObject> misEmpleados = new ArrayList<>();
 
     public EmpresaObject empresa;
 
@@ -181,6 +196,77 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
         }
         empleadoSeleccionadoVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+    }
+
+    private List<EmpleadoObject> todosMisEmpleados() {
+        List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
+        EmpleadoObject empleadoObject;
+
+        String empleado = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadosEmpresa/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+            System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
+
+            System.out.println(empleado);
+            //System.out.println("Lista mis empleados " + listaMisEmpleados);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaMisEmpleados;
+    }
+
+    public void empleadosEmpresa() {
+        misEmpleados.addAll(todosMisEmpleados());
+
+        this.myListener = new MyListener() {
+
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {
+            }
+
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
+                desplegarEmpleadoSeleccionado(empleadoObject);
+
+            }
+        };
+
+        System.out.println("entro datos MainEmpresa");
+
+        int column = 0;
+        int row = 1;
+        try{
+            for(EmpleadoObject empleado : misEmpleados) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                VBox usuarioEmpresaVbox = fxmlLoader.load();
+                UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
+
+                usuarioEmpresaController.setearDatos(empleado, myListener);
+
+                if (column == 2) {
+                    column = 0;
+                    ++row;
+                }
+
+                todasLasActividadesGridPane.add(usuarioEmpresaVbox, column++, row);
+                GridPane.setMargin(usuarioEmpresaVbox, new Insets(10));
+
+            }
+        } catch (Exception e){
+            System.out.println("Error creando panel " + e);
+
+        }
     }
 
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {

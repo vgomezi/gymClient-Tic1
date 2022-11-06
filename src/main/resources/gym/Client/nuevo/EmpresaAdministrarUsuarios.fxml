@@ -155,6 +155,9 @@
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
             </VBox>
          </children>
         </VBox>
