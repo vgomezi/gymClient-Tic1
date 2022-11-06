@@ -88,15 +88,14 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
 
     @FXML
-    public ChoiceBox tipoActividadChoiceBox;
+    public ChoiceBox deudoresChoiceBox;
 
     ObservableList<String> tipoActividadChoiceBoxList = FXCollections.
             observableArrayList("TODOS", "CON DEUDA");
 
-    //@FXML
+    @FXML
     private void initialize() {
-        tipoActividadChoiceBox.setItems(tipoActividadChoiceBoxList);
-        tipoActividadChoiceBox.setValue("Categoria");
+        deudoresChoiceBox.setItems(tipoActividadChoiceBoxList);
     }
 
     @FXML
@@ -111,7 +110,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     @FXML
     private GridPane todasLasActividadesGridPane;
 
-    private String empresaLogInMail;
+    public String empresaLogInMail;
 
     private MyListener myListener;
 
@@ -345,7 +344,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        System.out.println("HOLA");
     }
 
     public String getEmpresaLogInMail() {

@@ -186,13 +186,15 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     void onAdministrarUsuariosLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
+            System.out.println("Apreto administrar usuarios");
             Parent root1 = (Parent) fxmlLoader.load(MainEmpresaTodosUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/EmpresaAdministrarUsuarios.fxml"));
-
+            System.out.println("HOLA 2");
             EmpresaAdministrarUsuariosController empresaAdministrarUsuariosController = fxmlLoader.getController();
             empresaAdministrarUsuariosController.setEmpresaLogInMail(empresa.getMail());
             System.out.println(empresa.getMail());
             //Agregar mail en administrarUsuariosEmpresa
             empresaAdministrarUsuariosController.datosEmpresa(empresa.getMail());
+            empresaAdministrarUsuariosController.empleadosEmpresa();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 

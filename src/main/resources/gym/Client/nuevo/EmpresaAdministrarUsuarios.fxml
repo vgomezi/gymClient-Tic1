@@ -134,7 +134,7 @@
                      </children>
                   </HBox>
                   <Pane prefHeight="71.0" prefWidth="286.0" />
-                  <Button fx:id="actualizarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" onAction="#onActualizarUsuarioButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="ACTUALIZAR" textFill="WHITE">
+                  <Button fx:id="actualizarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" onAction="#onActualizarUsuarioButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ACTUALIZAR" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -142,7 +142,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="eliminarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" onAction="#onEliminarUsuarioButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="ELIMINAR" textFill="WHITE">
+                  <Button fx:id="eliminarUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" onAction="#onEliminarUsuarioButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ELIMINAR" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -170,7 +170,7 @@
                         <Font name="Baskerville Old Face" size="24.0" />
                     </font>
                 </Label>
-                  <HBox fx:id="todosLosUsuariosScroll" alignment="TOP_RIGHT" prefHeight="1100.0" prefWidth="689.0" spacing="20.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="1100.0" prefWidth="689.0" spacing="20.0">
                <children>
                   <ScrollPane prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css">
                      <content>
