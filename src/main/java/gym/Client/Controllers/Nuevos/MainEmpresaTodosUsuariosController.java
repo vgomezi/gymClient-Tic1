@@ -189,6 +189,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load(MainEmpresaTodosUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/EmpresaAdministrarUsuarios.fxml"));
 
             EmpresaAdministrarUsuariosController empresaAdministrarUsuariosController = fxmlLoader.getController();
+            empresaAdministrarUsuariosController.setEmpresaLogInMail(empresa.getMail());
             System.out.println(empresa.getMail());
             //Agregar mail en administrarUsuariosEmpresa
             empresaAdministrarUsuariosController.datosEmpresa(empresa.getMail());

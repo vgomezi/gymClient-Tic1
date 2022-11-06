@@ -276,9 +276,10 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         if (todasLasActividades.isEmpty()) {
             todasLasActividades.addAll(todasLasActividades());
         }
-
+        System.out.println("Inicializo listas");
         if(todasLasActividades.size() > 0) {
             desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
+            System.out.println("Desplega informacion");
             this.myListener = new MyListener() {
                 @Override
                 public void onClickActividad(ActividadObject actividadObject) {
@@ -292,6 +293,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             };
         } else {
             desplegarInfoActividadSeleccionada(null);
+            System.out.println("Desplega informacion");
             this.myListener = new MyListener() {
                 @Override
                 public void onClickActividad(ActividadObject actividadObject) {

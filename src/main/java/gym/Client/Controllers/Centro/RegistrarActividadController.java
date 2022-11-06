@@ -141,7 +141,7 @@ public class RegistrarActividadController {
                     TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
                     ObjectMapper mapperActividad = new JsonMapper().builder()
                             .findAndAddModules()
-                            .build();;
+                            .build();
                     mapperActividad.registerModule(new JavaTimeModule());
                     /*ObjectNode rest = mapperActividad.createObjectNode();
                     rest.put("nombre", nombre);

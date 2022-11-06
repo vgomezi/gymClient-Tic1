@@ -1,11 +1,17 @@
 package gym.Client.Controllers.Nuevos;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
+import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.EmpresaObject;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +27,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -39,31 +53,38 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     public Label nombreLabel;
 
     @FXML
-    public Label nombreUsuarioDisplay;
+    private ImageView imagenView;
 
     @FXML
-    public Label apellidoUsuarioDisplay;
+    private TextField nombreTextField;
 
     @FXML
-    public Label emailUsuarioDisplay;
+    private TextField apellidoTextField;
 
     @FXML
-    public Label saldoUsuarioDisplay;
+    private Label emailUsuarioLabel;
 
     @FXML
-    public Label deudaUsuarioDisplay;
+    private TextField saldoTextField;
 
     @FXML
-    public Label telefonoUsuarioDisplay;
+    private TextField deudaTextField;
 
     @FXML
-    public Label contrasenaUsuarioDisplay;
+    private TextField telefonoTextField;
+
+    @FXML
+    private VBox empleadoSeleccionadoVBox;
+
+    @FXML
+    private Circle empresaImagenCircle;
+
 
     @FXML
     public ChoiceBox tipoActividadChoiceBox;
 
     ObservableList<String> tipoActividadChoiceBoxList = FXCollections.
-            observableArrayList("Canchas", "Gimnasio/Sala", "Náuticas");
+            observableArrayList("TODOS", "CON DEUDA");
 
     //@FXML
     private void initialize() {
@@ -72,23 +93,94 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     }
 
     @FXML
-    public ImageView imagenUsuarioDisplay;
-
-    @FXML
     public Button actualizarUsuarioBoton;
 
     @FXML
     public Button eliminarUsuarioBoton;
 
+    private String empresaLogInMail;
+
+    private MyListener myListener;
+
     public EmpresaObject empresa;
 
     public void datosEmpresa(String correoElectronico) {
-        //fijarse main usuarios todas actividades
+        EmpresaObject empresaObject = null;
+        try {
+            System.out.println("try obtener empresa");
+            String empresa = "";
+            HttpResponse<String> apiResponse = null;
 
+            apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correoElectronico).asObject(String.class);
+            empresa = apiResponse.getBody();
+            System.out.println("Imprimo empresa");
+            System.out.println(empresa);
+
+
+            if (!empresa.isBlank()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if empresa");
+                empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
+                this.empresa = empresaObject;
+                System.out.println(empresaObject);
+            }
+            System.out.println("Try obtener empresa hecho");
+        } catch (Exception e) {
+            System.out.println("Try obtener empresa error");
+        }
+
+        if(empresaObject.getImagen() != null) {
+            byte[] imageDecoded = java.util.Base64.getDecoder().decode(empresaObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            empresaImagenCircle.setFill(new ImagePattern(toAdd));
+        } else {
+            Image imageView = new Image("/imagen/empresadefault.png");
+            empresaImagenCircle.setFill(new ImagePattern(imageView));
+        }
+
+        nombreLabel.setText(empresaObject.getNombre());
     }
 
+    public EmpleadoObject empleadoEnDisplay;
 
-    public void onEnterPressed(KeyEvent keyEvent) {
+    public void desplegarEmpleadoSeleccionado(EmpleadoObject empleadoObject) {
+        empleadoEnDisplay = empleadoObject;
+        if (!empleadoObject.equals(null)) {
+            if (empleadoObject.getImagen() != null) {
+                byte[] imageDecoded = Base64.getDecoder().decode(empleadoObject.getImagen());
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+                BufferedImage bImage = null;
+                try {
+                    bImage = ImageIO.read(bis);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+                imagenView.setImage(toAdd);
+            } else {
+                Image imageView = new Image("/imagen/usuariodefault.png");
+                imagenView.setImage(imageView);
+            }
+            nombreTextField.setText(empleadoObject.getNombre());
+            apellidoTextField.setText(empleadoObject.getApellido());
+            emailUsuarioLabel.setText(empleadoObject.getMail());
+            saldoTextField.setText(String.valueOf(empleadoObject.getSaldoDisponible()));
+            deudaTextField.setText(String.valueOf(empleadoObject.getDeuda()));
+            telefonoTextField.setText(empleadoObject.getTelefono());
+        } else {
+
+        }
+        empleadoSeleccionadoVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
     }
 
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
@@ -144,20 +236,36 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
         }
     }
 
-    public void onAdministrarUsuariosLabelClick(MouseEvent mouseEvent) {
+    @FXML
+    void onActualizarUsuarioButtonClick(ActionEvent event) {
 
     }
 
-    public void onActualizarUsuarioButtonClick(MouseEvent mouseEvent) {
+    @FXML
+    void onAdministrarUsuariosLabelClick(MouseEvent event) {
 
     }
 
-    public void onEliminarUsuarioButtonClick(MouseEvent mouseEvent) {
+    @FXML
+    void onBusquedaEmpleadoReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void onEliminarUsuarioButtonClick(ActionEvent event) {
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    public String getEmpresaLogInMail() {
+        return empresaLogInMail;
+    }
+
+    public void setEmpresaLogInMail(String empresaLogInMail) {
+        this.empresaLogInMail = empresaLogInMail;
     }
 }
