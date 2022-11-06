@@ -39,7 +39,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     public Label nombreLabel;
 
     @FXML
-    public Label nombreUsuaioDisplay;
+    public Label nombreUsuarioDisplay;
 
     @FXML
     public Label apellidoUsuarioDisplay;
