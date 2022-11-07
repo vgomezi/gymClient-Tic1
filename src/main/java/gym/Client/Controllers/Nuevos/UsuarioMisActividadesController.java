@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -110,6 +111,9 @@ public class UsuarioMisActividadesController implements Initializable {
     @FXML
     private Button cancelarActividadBoton;
 
+    @FXML
+    private ScrollPane misActividadesScroll;
+
     private MyListener myListener;
 
     private List<ActividadObject> misActividades = new ArrayList<>();
@@ -172,6 +176,9 @@ public class UsuarioMisActividadesController implements Initializable {
     }
 
     public void actividadesUsuario() {
+        todasLasActividadesGridPane = new GridPane();
+        misActividadesScroll.setContent(todasLasActividadesGridPane);
+        misActividades = new ArrayList<>();
         misActividades.addAll(todasMisActividades());
 
         if(misActividades.size() > 0) {
@@ -275,7 +282,7 @@ public class UsuarioMisActividadesController implements Initializable {
 
     public void onCancelarActividadBoton(ActionEvent event) {
         System.out.println("Apreto boton cancelar");
-        String nombre = nombreActividadDisplay.getText();
+        String nombre = actividadEnDisplay.getNombre();
         String dia = diaActividadDisplay.getText();
         String hora = horaActividadDisplay.getText();
         String centromail = actividadEnDisplay.getCentroMail();
@@ -301,7 +308,7 @@ public class UsuarioMisActividadesController implements Initializable {
                 } catch (Exception e) {
                     System.out.println("Error borrando inscripcion: " + e);
                 }
-                //actividadesUsuario();
+                actividadesUsuario();
                 /*System.out.println("Actualizo actividades del usuario");
 
                 String json = "";
