@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
@@ -40,10 +41,12 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.Temporal;
+import java.util.*;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class UsuarioMisActividadesController implements Initializable {
 
@@ -229,7 +232,10 @@ public class UsuarioMisActividadesController implements Initializable {
         }
     }
 
+    public ActividadObject actividadEnDisplay;
+
     public void desplegarInfoActividadSeleccionada(ActividadObject actividadObject) {
+        actividadEnDisplay = actividadObject;
         cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
         costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
         horaActividadDisplay.setText(actividadObject.getHora().toString());
@@ -267,9 +273,54 @@ public class UsuarioMisActividadesController implements Initializable {
     }
 
     public void onCancelarActividadBoton(ActionEvent event) {
-        //borrar actividad de la lista inscripciones actividades
+        String nombre = nombreActividadDisplay.getText();
+        String dia = diaActividadDisplay.getText();
+        String hora = horaActividadDisplay.getText();
+        String centromail = actividadEnDisplay.getCentroMail();
 
-        //llamar a actividadesUsuario()
+        try {
+            LocalTime horaTime = LocalTime.parse(hora);
+            LocalDate diaDate = LocalDate.parse(dia);
+
+            long daysBetween =DAYS.between((Temporal) diaDate, (Temporal) new Date());
+
+            if (daysBetween <= 0) {
+
+            } else {
+                System.out.println("Borro inscripcion usuario");
+                try {
+                    HttpResponse<JsonNode> apiResponse = null;
+
+                    apiResponse = Unirest.delete("http://localhost:8987/inscripciones/delete/" + empleado.getMail() + "/" + nombre + "/" + diaDate + "/" + horaTime + "/" + centromail).asJson();
+                    System.out.println("Inscripcion borrada");
+
+                } catch (Exception e) {
+                    System.out.println("Error borrando inscripcion: " + e);
+                }
+                actividadesUsuario();
+                /*System.out.println("Actualizo actividades del usuario");
+
+                String json = "";
+                try {
+                    actividadEnDisplay.setCupos(actividadEnDisplay.getCupos()+1);
+                    ObjectMapper mapperActividad = new JsonMapper().builder()
+                            .findAndAddModules()
+                            .build();
+                    mapperActividad.registerModule(new JavaTimeModule());
+                    json = mapperActividad.writeValueAsString(actividadEnDisplay);
+                    HttpResponse<JsonNode> apiResponse = null;
+                    apiResponse = Unirest.put("http://localhost:8987/api/actividades/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
+                    System.out.println("Put Hecho");
+
+
+                } catch (Exception e) {
+                    System.out.println("Error actualizando put: " + e.getMessage());
+
+                }*/
+            }
+        } catch (Exception e) {
+
+        }
     }
 
     public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {
