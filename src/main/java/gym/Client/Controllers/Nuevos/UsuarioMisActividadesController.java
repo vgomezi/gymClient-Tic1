@@ -43,6 +43,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.time.temporal.Temporal;
 import java.util.*;
 
@@ -273,6 +274,7 @@ public class UsuarioMisActividadesController implements Initializable {
     }
 
     public void onCancelarActividadBoton(ActionEvent event) {
+        System.out.println("Apreto boton cancelar");
         String nombre = nombreActividadDisplay.getText();
         String dia = diaActividadDisplay.getText();
         String hora = horaActividadDisplay.getText();
@@ -282,22 +284,24 @@ public class UsuarioMisActividadesController implements Initializable {
             LocalTime horaTime = LocalTime.parse(hora);
             LocalDate diaDate = LocalDate.parse(dia);
 
-            long daysBetween =DAYS.between((Temporal) diaDate, (Temporal) new Date());
+            System.out.println(new Date().toInstant());
+            //long daysBetween =DAYS.between(new Date().toInstant(), diaDate.atStartOfDay());
+            //System.out.println(daysBetween);
 
-            if (daysBetween <= 0) {
+            //if (daysBetween <= 0) {
 
-            } else {
+            //} else {
                 System.out.println("Borro inscripcion usuario");
                 try {
                     HttpResponse<JsonNode> apiResponse = null;
-
-                    apiResponse = Unirest.delete("http://localhost:8987/inscripciones/delete/" + empleado.getMail() + "/" + nombre + "/" + diaDate + "/" + horaTime + "/" + centromail).asJson();
+                    System.out.println(horaTime);
+                    apiResponse = Unirest.delete("http://localhost:8987/inscripciones/delete/" + empleado.getMail() + "/" + nombre + "/" + dia + "/" + horaTime + "/" + centromail).asJson();
                     System.out.println("Inscripcion borrada");
 
                 } catch (Exception e) {
                     System.out.println("Error borrando inscripcion: " + e);
                 }
-                actividadesUsuario();
+                //actividadesUsuario();
                 /*System.out.println("Actualizo actividades del usuario");
 
                 String json = "";
@@ -317,8 +321,9 @@ public class UsuarioMisActividadesController implements Initializable {
                     System.out.println("Error actualizando put: " + e.getMessage());
 
                 }*/
-            }
+           // }
         } catch (Exception e) {
+            System.out.println("Error boton cancelar: " + e.getMessage());
 
         }
     }
