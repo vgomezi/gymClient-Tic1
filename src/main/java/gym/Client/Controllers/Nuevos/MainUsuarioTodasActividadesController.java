@@ -537,6 +537,24 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                     System.out.println("Error ingresando reserva");
                     System.out.println(e.getMessage());
                 }
+
+                String json1 = "";
+                try {
+                    actividadEnDisplay.setCupos(actividadEnDisplay.getCupos()-1);
+                    ObjectMapper mapperActividad = new JsonMapper().builder()
+                            .findAndAddModules()
+                            .build();
+                    mapperActividad.registerModule(new JavaTimeModule());
+                    json1 = mapperActividad.writeValueAsString(actividadEnDisplay);
+                    HttpResponse<JsonNode> apiResponse = null;
+                    apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json1).asJson();
+                    System.out.println("Put Hecho");
+
+
+                } catch (Exception e) {
+                    System.out.println("Error actualizando put: " + e.getMessage());
+
+                }
             } catch (Exception e) {
                 System.out.println("Error fatal");
             }
