@@ -36,6 +36,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -43,8 +44,10 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -113,6 +116,8 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     public String empresaLogInMail;
 
     private MyListener myListener;
+
+    private File fileImagen;
 
     private List<EmpleadoObject> misEmpleados = new ArrayList<>();
 
@@ -326,6 +331,56 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     void onActualizarUsuarioButtonClick(ActionEvent event) {
 
     }
+
+    @FXML
+    void onImagenDisplayMouseClick (MouseEvent event) {
+        File file = tomarImagen(event);
+        String base64 = codificarImagenRegistroUsuario(file);
+        Image imagen = decodificarImagen(base64);
+        imagenView.setImage(imagen);
+    }
+
+    public File tomarImagen (MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir imagen centro");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
+        fileImagen = file;
+        return file;
+    }
+
+    public String codificarImagenRegistroUsuario(File file) {
+        String base64String = null;
+        try {
+            System.out.println(file);
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            System.out.println("Convertí file en bytes");
+            base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
+            System.out.println("Converti bytes en string");
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return base64String;
+    }
+
+    public Image decodificarImagen(String imagen) {
+        byte[] imageDecoded = org.apache.commons.codec.binary.Base64.decodeBase64(imagen);
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+        BufferedImage bImage = null;
+        try {
+            bImage = ImageIO.read(bis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+        return toAdd;
+    }
+
 
     @FXML
     void onAdministrarUsuariosLabelClick(MouseEvent event) {

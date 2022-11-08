@@ -253,7 +253,7 @@ public class UsuarioMisActividadesController implements Initializable {
         descripcionActividadDisplay.setText(actividadObject.getDescripcion());
         duracionActividadDisplay.setText(String.valueOf(actividadObject.getDuracion()) + " min");
 
-        if(actividadObject.getImagen() != null) {
+        if (actividadObject.getImagen() != null) {
             byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
             ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
             BufferedImage bImage = null;

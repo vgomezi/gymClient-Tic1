@@ -102,9 +102,9 @@
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
+            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="589.0" prefWidth="266.0" spacing="6.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                  <TextField fx:id="nombreActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE" />
+                  <TextField fx:id="nombreActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE" style="-fx-background-radius: 15;" />
                       <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
                      <children>
@@ -112,27 +112,27 @@
                         <ChoiceBox fx:id="tipoActividadChoiceBoxRegistro" prefWidth="150.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
                      </children>
                   </HBox>
-                      <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
+                      <HBox alignment="CENTER" prefHeight="35.0" prefWidth="266.0">
                           <children>
-                        <DatePicker fx:id="diaDatePickerRegistro" prefHeight="39.0" prefWidth="134.0" />
-                        <TextField fx:id="horaActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="133.0" promptText="HORA (hh:mm)" />
+                        <DatePicker fx:id="diaDatePickerRegistro" prefHeight="39.0" prefWidth="136.0" />
+                        <TextField fx:id="horaActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="133.0" promptText="HORA (hh:mm)" style="-fx-background-radius: 15;" />
                           </children>
                       </HBox>
-                  <TextField fx:id="descripcionActividadRegistro" alignment="CENTER" prefHeight="133.0" prefWidth="266.0" promptText="DESCRIPCIÓN" />
+                  <TextField fx:id="descripcionActividadRegistro" alignment="CENTER" prefHeight="133.0" prefWidth="266.0" promptText="DESCRIPCIÓN" style="-fx-background-radius: 15;" />
                       <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0">
                      <children>
-                        <TextField fx:id="cuposActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="271.0" promptText="CUPOS" />
+                        <TextField fx:id="cuposActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="271.0" promptText="CUPOS" style="-fx-background-radius: 15;" />
                      </children>
                       </HBox>
-                  <TextField fx:id="duracionActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="DURACIÓN (mm)" />
+                  <TextField fx:id="duracionActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="DURACIÓN (mm)" style="-fx-background-radius: 15;" />
                       <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0">
                      <children>
-                        <TextField fx:id="costoActividadRegistro" alignment="CENTER" prefHeight="52.0" prefWidth="266.0" promptText="COSTO" />
+                        <TextField fx:id="costoActividadRegistro" alignment="CENTER" prefHeight="52.0" prefWidth="266.0" promptText="COSTO" style="-fx-background-radius: 15;" />
                      </children>
                       </HBox>
-                  <Button fx:id="registrarActividadBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onRegistrarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
+                  <Button fx:id="registrarActividadBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onRegistrarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="REGISTRAR" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
@@ -143,7 +143,7 @@
                   <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                </VBox.margin>
                <padding>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </VBox>
             </children>
