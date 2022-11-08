@@ -165,14 +165,14 @@ public class UsuarioMisActividadesController implements Initializable {
             apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcionUsuario/" + empleado.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
-            System.out.println(json);
+            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaMisActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            System.out.println(actividad);
-            System.out.println("Lista actividades mis actividades " + listaMisActividades);
+            //System.out.println(actividad);
+            //System.out.println("Lista actividades mis actividades " + listaMisActividades);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -445,10 +445,6 @@ public class UsuarioMisActividadesController implements Initializable {
                 } catch (Exception e) {
                     System.out.println("Error borrando inscripcion: " + e);
                 }
-                misActividades = new ArrayList<>();
-                misActividades.addAll(todasMisActividades());
-                filtrarNuevas("NUEVAS");
-                /*System.out.println("Actualizo actividades del usuario");
 
                 String json = "";
                 try {
@@ -459,15 +455,20 @@ public class UsuarioMisActividadesController implements Initializable {
                     mapperActividad.registerModule(new JavaTimeModule());
                     json = mapperActividad.writeValueAsString(actividadEnDisplay);
                     HttpResponse<JsonNode> apiResponse = null;
-                    apiResponse = Unirest.put("http://localhost:8987/api/actividades/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
+                    apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
                     System.out.println("Put Hecho");
 
 
                 } catch (Exception e) {
                     System.out.println("Error actualizando put: " + e.getMessage());
 
-                }*/
-           // }
+                }
+
+                misActividades = new ArrayList<>();
+                misActividades.addAll(todasMisActividades());
+                filtrarNuevas("NUEVAS");
+                System.out.println("Actualizo actividades del usuario");
+
         } catch (Exception e) {
             System.out.println("Error boton cancelar: " + e.getMessage());
 
