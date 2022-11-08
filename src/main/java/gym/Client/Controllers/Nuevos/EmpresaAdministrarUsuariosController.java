@@ -339,7 +339,53 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     @FXML
     void onActualizarUsuarioButtonClick(ActionEvent event) {
+        String nombre = nombreTextField.getText();
+        String apellido = apellidoTextField.getText();
+        String saldo = saldoTextField.getText();
+        String deuda = deudaTextField.getText();
+        String telefono = telefonoTextField.getText();
+        String imagen = null;
+        try {
+            imagen = codificarImagenRegistroUsuario(fileImagen);
+        } catch (Exception ignored) {
 
+        }
+
+        if (!nombre.isEmpty() && !apellido.isEmpty() && !saldo.isEmpty() && !deuda.isEmpty() && !telefono.isEmpty()) {
+            try {
+                int saldoInt = Integer.parseInt(saldo);
+                int deudaInt = Integer.parseInt(deuda);
+
+                empleadoEnDisplay.setNombre(nombre);
+                empleadoEnDisplay.setApellido(apellido);
+                empleadoEnDisplay.setSaldoDisponible(saldoInt);
+                empleadoEnDisplay.setDeuda(deudaInt);
+                empleadoEnDisplay.setTelefono(telefono);
+                if (imagen != null) {
+                    empleadoEnDisplay.setImagen(imagen);
+                }
+
+                String json = "";
+                try {
+                    ObjectMapper mapperEmpleado = new ObjectMapper();
+                    json = mapperEmpleado.writeValueAsString(empleadoEnDisplay);
+                    HttpResponse<JsonNode> apiResponse = null;
+                    apiResponse = Unirest.put("http://localhost:8987/api/usuarios/actualizar/" + empleadoEnDisplay.getMail()).header("Content-Type", "application/json").body(json).asJson();
+                    System.out.println("Put Hecho empleado");
+
+
+                } catch (Exception e) {
+                    System.out.println("Error actualizando put: " + e.getMessage());
+
+                }
+
+            } catch (Exception e) {
+
+            }
+        }
+        misEmpleados.clear();
+        empleadosEmpresa();
+        desplegarEmpleadoSeleccionado(null);
     }
 
     @FXML
