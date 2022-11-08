@@ -2,8 +2,6 @@ package gym.Client.Controllers.Nuevos.Admin;
 
 import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Controllers.LoginController;
-import gym.Client.Controllers.Nuevos.CentroRegistrarActividadController;
-import gym.Client.Controllers.Nuevos.MainCentroRegistrarIngresoUsuarioController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

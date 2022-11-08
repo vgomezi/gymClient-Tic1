@@ -1,15 +1,25 @@
 package gym.Client.Controllers.Nuevos;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.CentroDeportivoObject;
+import gym.Client.Classes.EmpleadoObject;
+import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,13 +28,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.springframework.lang.Nullable;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
-public class CentroRegistrarActividadController  {
+public class CentroTodasActividadesController {
     // implements Initializable
 
     @FXML
@@ -40,40 +58,35 @@ public class CentroRegistrarActividadController  {
     public Label registrarIngresoUsuarioLabel;
 
     @FXML
-    public TextField nombreActividadRegistro;
+    public TextField nombreActividadRegistroDisplay;
 
     @FXML
-    public CheckBox reservableCheckBoxRegistro;
+    public ImageView imagenActividadRegistroDisplay;
 
     @FXML
-    public ChoiceBox tipoActividadChoiceBoxRegistro;
+    public CheckBox reservableCheckBoxRegistroDisplay;
 
     @FXML
-    public DatePicker diaDatePickerRegistro;
+    public ChoiceBox tipoActividadChoiceBoxRegistroDisplay;
 
     @FXML
-    public TextField horaActividadRegistro;
+    public DatePicker diaDatePickerRegistroDisplay;
 
     @FXML
-    public TextField duracionActividadRegistro;
+    public TextField horaActividadRegistroDisplay;
 
     @FXML
-    public TextField costoActividadRegistro;
+    public TextField descripcionActividadRegistroDisplay;
 
     @FXML
-    public ChoiceBox tipoActividadChoiceBox;
-
-    ObservableList<String> tipoActividadChoiceBoxList = FXCollections.
-            observableArrayList("Canchas", "Gimnasio/Sala", "Náuticas");
+    public TextField cuposActividadRegistroDisplay;
 
     @FXML
-    private void initialize() {
-        tipoActividadChoiceBox.setItems(tipoActividadChoiceBoxList);
-        tipoActividadChoiceBox.setValue("Categoria");
-    }
+    public TextField duracionActividadRegistroDisplay;
 
     @FXML
-    public ImageView imagenActividadRegistro;
+    public TextField costoActividadRegistroDisplay;
+
 
     @FXML
     public Button registrarActividadBoton;
@@ -145,7 +158,7 @@ public class CentroRegistrarActividadController  {
     public void onRegistrarIngresoUsuarioLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(CentroRegistrarActividadController.class.getResourceAsStream("/gym/Client/nuevo/MainCentroRegistrarIngresoUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(CentroTodasActividadesController.class.getResourceAsStream("/gym/Client/nuevo/MainCentroRegistrarIngresoUsuario.fxml"));
 
             MainCentroRegistrarIngresoUsuarioController mainCentroRegistrarIngresoUsuarioController = fxmlLoader.getController();
             System.out.println(centro.getMail());
@@ -171,7 +184,27 @@ public class CentroRegistrarActividadController  {
 
     }
 
-    public void onEliminarActividadButtonClick(MouseEvent mouseEvent) {
+    private List<ActividadObject> misActividades = new ArrayList<>();
 
+    public EmpleadoObject empleadoEnDisplay;
+
+
+    public void onEliminarActividadButtonClick(MouseEvent mouseEvent) {
+        String nombreActividad = nombreActividadRegistroDisplay.getText();
+        String diaActividad = diaDatePickerRegistroDisplay.getValue().toString();
+        String horaActividad = horaActividadRegistroDisplay.getText();
+
+        try {
+            HttpResponse<JsonNode> apiResponse = null;
+            System.out.println(nombreActividad);
+            apiResponse = Unirest.delete("http://localhost:8987/api/actividades/deleteActividad/" + nombreActividad + diaActividad + horaActividad).asJson();
+            System.out.println("Actividad borrada");
+
+        } catch (Exception e) {
+            System.out.println("Error borrando inscripcion: " + e);
+        }
+        misActividades.clear();
+        //actividadesCentro();
+        //desplegarActividadSeleccionada(null);
     }
 }

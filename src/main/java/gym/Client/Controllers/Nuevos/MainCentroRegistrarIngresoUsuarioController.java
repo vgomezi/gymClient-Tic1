@@ -2,7 +2,6 @@ package gym.Client.Controllers.Nuevos;
 
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.CentroDeportivoObject;
-import gym.Client.Classes.EmpresaObject;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.collections.FXCollections;
@@ -144,9 +143,9 @@ public class MainCentroRegistrarIngresoUsuarioController {
     public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainCentroRegistrarIngresoUsuarioController.class.getResourceAsStream("/gym/Client/nuevo/CentroRegistrarActividad.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainCentroRegistrarIngresoUsuarioController.class.getResourceAsStream("/gym/Client/nuevo/CentroTodasActividades.fxml"));
 
-            CentroRegistrarActividadController centroRegistrarActividadController = fxmlLoader.getController();
+            CentroTodasActividadesController centroRegistrarActividadController = fxmlLoader.getController();
             System.out.println(centro.getMail());
             centroRegistrarActividadController.datosCentro(centro.getMail());
 
