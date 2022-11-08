@@ -449,6 +449,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             System.out.println(empleado.getMail());
             usuarioMisActividadesController.datosUsuario(empleado);
             usuarioMisActividadesController.actividadesUsuario();
+            usuarioMisActividadesController.filtrarNuevas("NUEVAS");
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 

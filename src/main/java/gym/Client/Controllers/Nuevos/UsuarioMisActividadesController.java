@@ -9,9 +9,14 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
+import gym.Client.Classes.TipoActividadObject;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,6 +28,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -36,6 +42,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.springframework.lang.Nullable;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -44,6 +51,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 import java.time.ZoneOffset;
 import java.time.temporal.Temporal;
 import java.util.*;
@@ -114,6 +122,9 @@ public class UsuarioMisActividadesController implements Initializable {
     @FXML
     private ScrollPane misActividadesScroll;
 
+    @FXML
+    private ChoiceBox<String> filtroNuevasTodasActividades;
+
     private MyListener myListener;
 
     private List<ActividadObject> misActividades = new ArrayList<>();
@@ -171,8 +182,115 @@ public class UsuarioMisActividadesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        inicializoChoiceBox();
         System.out.println("Entro initialize");
 
+    }
+
+    public void inicializoChoiceBox() {
+        ObservableList<String> listaItems = FXCollections.observableArrayList();
+        listaItems.add("TODAS");
+        listaItems.add("NUEVAS");
+        filtroNuevasTodasActividades.setItems(listaItems);
+        filtroNuevasTodasActividades.setValue("NUEVAS");
+
+        filtroNuevasTodasActividades.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                filtrarNuevas(observable.getValue());
+            }
+        });
+    }
+
+    public void filtrarNuevas (String filtro) {
+        this.myListener = new MyListener() {
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {
+                desplegarInfoActividadSeleccionada(actividadObject);
+            }
+
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
+
+            }
+        };
+        System.out.println(filtro);
+
+        if (filtro.equals("TODAS")) {
+            todasLasActividadesGridPane = new GridPane();
+            misActividadesScroll.setContent(todasLasActividadesGridPane);
+            int column = 0;
+            int row = 1;
+            try{
+                for(ActividadObject actividad : misActividades) {
+                    if(row == 1 && column == 0) {
+                        desplegarInfoActividadSeleccionada(actividad);
+                    }
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox todaActividadbox = fxmlLoader.load();
+                    ActividadTodaController actividadTodaController = fxmlLoader.getController();
+
+                    actividadTodaController.setearDatos(actividad, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasActividadesGridPane.add(todaActividadbox, column++, row);
+                    GridPane.setMargin(todaActividadbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel PARA FILTRO TODAS " + e);
+
+            }
+        } else {
+            todasLasActividadesGridPane = new GridPane();
+            misActividadesScroll.setContent(todasLasActividadesGridPane);
+            System.out.println("Actividades Nuevas");
+            int column = 0;
+            int row = 1;
+            try{
+                int count = 0;
+                for(ActividadObject actividad : misActividades) {
+                    Period period = Period.between(LocalDate.now(), actividad.getDia());
+                    if (period.getDays() >= 0) {
+                        count++;
+                        if(count == 1) {
+                            desplegarInfoActividadSeleccionada(actividad);
+                        }
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                        System.out.println("Carga FXMLLoader");
+
+                        VBox todaActividadbox = fxmlLoader.load();
+                        ActividadTodaController actividadTodaController = fxmlLoader.getController();
+
+                        actividadTodaController.setearDatos(actividad, myListener);
+
+                        if (column == 2) {
+                            column = 0;
+                            ++row;
+                        }
+
+                        todasLasActividadesGridPane.add(todaActividadbox, column++, row);
+                        //System.out.println(similarActividades.size());
+                        GridPane.setMargin(todaActividadbox, new Insets(10));
+                    }
+                }
+                if (count == 0) {
+                    desplegarInfoActividadSeleccionada(null);
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+
+        }
     }
 
     public void actividadesUsuario() {
@@ -242,38 +360,57 @@ public class UsuarioMisActividadesController implements Initializable {
 
     public ActividadObject actividadEnDisplay;
 
-    public void desplegarInfoActividadSeleccionada(ActividadObject actividadObject) {
+    public void desplegarInfoActividadSeleccionada(@Nullable ActividadObject actividadObject) {
         actividadEnDisplay = actividadObject;
-        cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
-        costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
-        horaActividadDisplay.setText(actividadObject.getHora().toString());
-        diaActividadDisplay.setText(actividadObject.getDia().toString());
-        tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
-        nombreActividadDisplay.setText(actividadObject.getNombre().toUpperCase());
-        descripcionActividadDisplay.setText(actividadObject.getDescripcion());
-        duracionActividadDisplay.setText(String.valueOf(actividadObject.getDuracion()) + " min");
+        if (actividadObject == null) {
+            cuposActividadDisplay.setText("");
+            costoActividadDisplay.setText("");
+            horaActividadDisplay.setText("");
+            diaActividadDisplay.setText("");
+            tipoActividadDisplay.setText("");
+            nombreActividadDisplay.setText("");
+            descripcionActividadDisplay.setText("");
+            duracionActividadDisplay.setText("");
+            imagenActividadDisplay.setImage(null);
+            centroActividadDisplay.setText("");
+            cancelarActividadBoton.setVisible(false);
+        } else {
+            cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
+            costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
+            horaActividadDisplay.setText(actividadObject.getHora().toString());
+            diaActividadDisplay.setText(actividadObject.getDia().toString());
+            tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
+            nombreActividadDisplay.setText(actividadObject.getNombre().toUpperCase());
+            descripcionActividadDisplay.setText(actividadObject.getDescripcion());
+            duracionActividadDisplay.setText(String.valueOf(actividadObject.getDuracion()) + " min");
 
-        if (actividadObject.getImagen() != null) {
-            byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
-            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
-            BufferedImage bImage = null;
-            try {
-                bImage = ImageIO.read(bis);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (actividadObject.getImagen() != null) {
+                byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+                BufferedImage bImage = null;
+                try {
+                    bImage = ImageIO.read(bis);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+                imagenActividadDisplay.setImage(toAdd);
+            } else {
+                Image imageView = new Image("/imagen/actividaddefault.png");
+                imagenActividadDisplay.setImage(imageView);
             }
 
-            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
-            imagenActividadDisplay.setImage(toAdd);
-        } else {
-            Image imageView = new Image("/imagen/actividaddefault.png");
-            imagenActividadDisplay.setImage(imageView);
+            actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+            centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
+            Period period = Period.between(LocalDate.now(), actividadEnDisplay.getDia());
+            if (period.getDays() < 0) {
+                cancelarActividadBoton.setVisible(false);
+            } else {
+                cancelarActividadBoton.setVisible(true);
+            }
         }
-
-        actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
-                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-        centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
-        cancelarActividadBoton.setVisible(true);
     }
 
     public void onMisActividadesLabelClick(MouseEvent mouseEvent) {
@@ -308,7 +445,9 @@ public class UsuarioMisActividadesController implements Initializable {
                 } catch (Exception e) {
                     System.out.println("Error borrando inscripcion: " + e);
                 }
-                actividadesUsuario();
+                misActividades = new ArrayList<>();
+                misActividades.addAll(todasMisActividades());
+                filtrarNuevas("NUEVAS");
                 /*System.out.println("Actualizo actividades del usuario");
 
                 String json = "";
@@ -357,19 +496,6 @@ public class UsuarioMisActividadesController implements Initializable {
         }
     }
 
-    /*private void setActividadSeleccionada(ActividadObject actividad) {
-        //centroActividadDisplay.setText(actividad.getCentroDeportivo().getNombre());
-        costoActividadDisplay.setText(String.valueOf(actividad.getCosto()));
-        cuposActividadDisplay.setText(String.valueOf(actividad.getCupos()));
-        tipoActividadDisplay.setText(actividad.getTipo().getTipo());
-        descripcionActividadDisplay.setText(actividad.getDescripcion());
-        diaActividadDisplay.setText(actividad.getDia().toString());
-        horaActividadDisplay.setText(actividad.getHora().toString());
-        nombreActividadDisplay.setText(actividad.getNombre());
-        Image image = new Image("/centro.jpg");
-        imagenActividadDisplay.setImage(image);
-    }*/
-
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
         Node source = (Node) mouseEvent.getSource();
         Stage stage1 = (Stage) source.getScene().getWindow();
@@ -405,7 +531,7 @@ public class UsuarioMisActividadesController implements Initializable {
 
     }
 
-    public void onEnterPressed(KeyEvent keyEvent) {
+    public void onKeyReleased(KeyEvent keyEvent) {
         //Desplegar pantalla con los resultados encontrados
 
         //Si no se encuentra ninguno desplegar "No se encontraron actividades relacionadas con esa busqueda"
