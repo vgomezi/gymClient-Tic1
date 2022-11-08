@@ -102,10 +102,10 @@
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="589.0" prefWidth="266.0" spacing="6.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
+            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="616.0" prefWidth="266.0" spacing="6.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
                   <TextField fx:id="nombreActividadRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE" style="-fx-background-radius: 15;" />
-                      <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
+                      <ImageView fx:id="imagenActividadRegistro" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
                      <children>
                         <CheckBox fx:id="reservableCheckBoxRegistro" prefHeight="18.0" prefWidth="115.0" text="RESERVABLE" />
@@ -131,6 +131,22 @@
                      </children>
                       </HBox>
                   <Button fx:id="registrarActividadBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onRegistrarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="REGISTRAR" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="actualizarActividadBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onActualizarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="ACTUALIZAR" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="eliminarActividadBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onEliminarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../css/style.css" text="ELIMINAR" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

@@ -52,7 +52,7 @@ public class MainAdminRegistrarEmpresa {
     private HBox empresasRecientesLayout;
 
     @FXML
-    private ImageView imagenActividadDisplay;
+    private ImageView imagenEmpresaRegistro;
 
     @FXML
     private Circle imagenAdministradorCirculo;

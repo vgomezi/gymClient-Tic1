@@ -73,10 +73,16 @@ public class CentroRegistrarActividadController  {
     }
 
     @FXML
-    public ImageView imagenActividadDisplay;
+    public ImageView imagenActividadRegistro;
 
     @FXML
     public Button registrarActividadBoton;
+
+    @FXML
+    public Button actualizarActividadBoton;
+
+    @FXML
+    public Button eliminarActividadBoton;
 
 
     private MyListener myListener;
@@ -158,6 +164,14 @@ public class CentroRegistrarActividadController  {
     }
 
     public void onRegistrarActividadButtonClick(MouseEvent mouseEvent) {
+
+    }
+
+    public void onActualizarActividadButtonClick(MouseEvent mouseEvent) {
+
+    }
+
+    public void onEliminarActividadButtonClick(MouseEvent mouseEvent) {
 
     }
 }

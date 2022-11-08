@@ -100,7 +100,7 @@
             <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
                   <TextField fx:id="nombreCentroRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE CENTRO" />
-                  <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imagenActividadRegistro" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0">
                      <children>
                         <TextField fx:id="emailCentroRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="EMAIL CENTRO" />

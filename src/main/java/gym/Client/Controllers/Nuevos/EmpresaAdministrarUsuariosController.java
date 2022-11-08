@@ -54,7 +54,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmpresaAdministrarUsuariosController implements Initializable {
-    // implements Initializable
 
     @FXML
     public Label logOutLabel;
@@ -63,7 +62,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     public Label nombreLabel;
 
     @FXML
-    private ImageView imagenView;
+    private ImageView imagenUsuarioDisplay;
 
     @FXML
     private TextField nombreTextField;
@@ -184,10 +183,10 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                 }
 
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
-                imagenView.setImage(toAdd);
+                imagenUsuarioDisplay.setImage(toAdd);
             } else {
                 Image imageView = new Image("/imagen/usuariodefault.png");
-                imagenView.setImage(imageView);
+                imagenUsuarioDisplay.setImage(imageView);
             }
             nombreTextField.setText(empleadoObject.getNombre());
             apellidoTextField.setText(empleadoObject.getApellido());
@@ -337,12 +336,12 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
         File file = tomarImagen(event);
         String base64 = codificarImagenRegistroUsuario(file);
         Image imagen = decodificarImagen(base64);
-        imagenView.setImage(imagen);
+        imagenUsuarioDisplay.setImage(imagen);
     }
 
     public File tomarImagen (MouseEvent mouseEvent) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Elegir imagen centro");
+        fileChooser.setTitle("Elegir imagen usuario");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
