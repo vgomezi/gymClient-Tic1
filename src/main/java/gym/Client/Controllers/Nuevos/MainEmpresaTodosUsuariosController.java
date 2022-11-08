@@ -198,6 +198,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             //Agregar mail en administrarUsuariosEmpresa
             empresaAdministrarUsuariosController.datosEmpresa(empresa.getMail());
             empresaAdministrarUsuariosController.empleadosEmpresa();
+            empresaAdministrarUsuariosController.desplegarEmpleadoSeleccionado(null);
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 

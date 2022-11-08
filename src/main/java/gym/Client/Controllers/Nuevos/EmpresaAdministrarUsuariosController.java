@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
@@ -24,10 +25,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -39,9 +37,9 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.springframework.lang.Nullable;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -92,6 +90,9 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     @FXML
     public ChoiceBox deudoresChoiceBox;
 
+    @FXML
+    public ScrollPane todosLosEmpleadosScroll;
+
     ObservableList<String> tipoActividadChoiceBoxList = FXCollections.
             observableArrayList("TODOS", "CON DEUDA");
 
@@ -105,9 +106,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     @FXML
     public Button eliminarUsuarioBoton;
-
-    @FXML
-    private ScrollPane todosLosUsuariosScroll;
 
     @FXML
     private GridPane todasLasActividadesGridPane;
@@ -169,9 +167,9 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     public EmpleadoObject empleadoEnDisplay;
 
-    public void desplegarEmpleadoSeleccionado(EmpleadoObject empleadoObject) {
+    public void desplegarEmpleadoSeleccionado(@Nullable EmpleadoObject empleadoObject) {
         empleadoEnDisplay = empleadoObject;
-        if (!empleadoObject.equals(null)) {
+        if (empleadoObject != null) {
             if (empleadoObject.getImagen() != null) {
                 byte[] imageDecoded = Base64.getDecoder().decode(empleadoObject.getImagen());
                 ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
@@ -194,7 +192,18 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             saldoTextField.setText(String.valueOf(empleadoObject.getSaldoDisponible()));
             deudaTextField.setText(String.valueOf(empleadoObject.getDeuda()));
             telefonoTextField.setText(empleadoObject.getTelefono());
+            actualizarUsuarioBoton.setVisible(true);
+            eliminarUsuarioBoton.setVisible(true);
         } else {
+            nombreTextField.clear();
+            apellidoTextField.clear();
+            emailUsuarioLabel.setText("");
+            saldoTextField.clear();
+            deudaTextField.clear();
+            telefonoTextField.clear();
+            imagenUsuarioDisplay.setImage(null);
+            actualizarUsuarioBoton.setVisible(false);
+            eliminarUsuarioBoton.setVisible(false);
 
         }
         empleadoSeleccionadoVBox.setStyle("-fx-background-color : #9AC8F5;" +
@@ -212,13 +221,13 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadosEmpresa/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
-            System.out.println(json);
+            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
 
-            System.out.println(empleado);
+            //System.out.println(empleado);
             //System.out.println("Lista mis empleados " + listaMisEmpleados);
         } catch (Exception e) {
             System.out.println("Error: " + e);
@@ -227,6 +236,8 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     }
 
     public void empleadosEmpresa() {
+        todasLasActividadesGridPane = new GridPane();
+        todosLosEmpleadosScroll.setContent(todasLasActividadesGridPane);
         misEmpleados.addAll(todosMisEmpleados());
 
         this.myListener = new MyListener() {
@@ -393,6 +404,19 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     @FXML
     void onEliminarUsuarioButtonClick(ActionEvent event) {
+        String mailUsuario = emailUsuarioLabel.getText();
+        try {
+            HttpResponse<JsonNode> apiResponse = null;
+            System.out.println(mailUsuario);
+            apiResponse = Unirest.delete("http://localhost:8987/api/usuarios/deleteEmpleado/" + mailUsuario).asJson();
+            System.out.println("Usuario borrado");
+
+        } catch (Exception e) {
+            System.out.println("Error borrando inscripcion: " + e);
+        }
+        misEmpleados.clear();
+        empleadosEmpresa();
+        desplegarEmpleadoSeleccionado(null);
 
     }
 
