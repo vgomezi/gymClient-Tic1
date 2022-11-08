@@ -55,11 +55,11 @@ public class MainCentroRegistrarIngresoUsuarioController {
     ObservableList<String> tipoActividadChoiceBoxList = FXCollections.
             observableArrayList("Canchas", "Gimnasio/Sala", "Náuticas");
 
-    @FXML
+    /*@FXML
     private void initialize() {
         tipoActividadChoiceBox.setItems(tipoActividadChoiceBoxList);
         tipoActividadChoiceBox.setValue("Categoria");
-    }
+    }*/
 
     @FXML
     public ImageView imagenActividadDisplay;
@@ -69,10 +69,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     @FXML
     public Label horaActividadDisplay;
-
-
-    @FXML
-    public Label descripcionActividadDisplay;
 
     @FXML
     public Label cuposActividadDisplay;

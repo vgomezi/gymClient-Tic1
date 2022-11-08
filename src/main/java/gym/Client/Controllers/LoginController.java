@@ -170,10 +170,11 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentro/MainCentro.fxml"));
+                                    //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentro/MainCentro.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainCentroRegistrarIngresoUsuario.fxml"));
 
-                                    MainCentroController mainCentroController = fxmlLoader.getController();
-                                    mainCentroController.setUsuarioMainCentro(correoElectronico);
+                                    //MainCentroController mainCentroController = fxmlLoader.getController();
+                                    //mainCentroController.setUsuarioMainCentro(correoElectronico);
 
                                     Stage stage = new Stage();
 

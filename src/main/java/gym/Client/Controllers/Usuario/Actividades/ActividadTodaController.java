@@ -69,8 +69,8 @@ public class ActividadTodaController {
             imagenActividadTodaImage.setImage(imageView);
         }
 
-        costoActividadTodaLabel.setText(String.valueOf(actividadObject.getCosto()));
-        cuposActividadTodaLabel.setText(String.valueOf(actividadObject.getCupos()));
+        costoActividadTodaLabel.setText("$" + String.valueOf(actividadObject.getCosto()));
+        cuposActividadTodaLabel.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
         diaActividadTodaLabel.setText(actividadObject.getDia().toString());
         horaActividadTodaLabel.setText(actividadObject.getHora().toString());
         nombreActividadTodaLabel.setText(actividadObject.getNombre());

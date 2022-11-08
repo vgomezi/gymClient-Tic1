@@ -127,6 +127,9 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     @FXML
     private Circle imagenEmpresaCirculo;
 
+    @FXML
+    private ScrollPane todosLosUsuariosScroll;
+
     private String empresaLogInMail;
 
     private MyListener myListener;
@@ -313,6 +316,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
                 contrasenaRegistroEmpleado.clear();
                 Image image = new Image("/imagen/usuariodefault.png");
                 imagenUsuarioRegistro.setImage(image);
+                empleadosEmpresa();
             } catch (UnirestException e) {
                 throw new RuntimeException(e);
             }
@@ -347,6 +351,9 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     }
 
     public void empleadosEmpresa() {
+        todasLasActividadesGridPane = new GridPane();
+        todosLosUsuariosScroll.setContent(todasLasActividadesGridPane);
+        misEmpleados.clear();
         misEmpleados.addAll(todosMisEmpleados());
 
         this.myListener = new MyListener() {
