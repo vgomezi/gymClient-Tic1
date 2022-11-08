@@ -386,6 +386,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
         misEmpleados.clear();
         empleadosEmpresa();
         desplegarEmpleadoSeleccionado(null);
+        fileImagen = null;
     }
 
     @FXML
