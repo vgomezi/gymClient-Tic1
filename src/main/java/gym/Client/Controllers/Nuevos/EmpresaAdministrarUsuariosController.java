@@ -108,7 +108,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     public Button eliminarUsuarioBoton;
 
     @FXML
-    private GridPane todasLasActividadesGridPane;
+    private GridPane todosLosEmpleadosGridPane;
 
     public String empresaLogInMail;
 
@@ -236,8 +236,8 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     }
 
     public void empleadosEmpresa() {
-        todasLasActividadesGridPane = new GridPane();
-        todosLosEmpleadosScroll.setContent(todasLasActividadesGridPane);
+        todosLosEmpleadosGridPane = new GridPane();
+        todosLosEmpleadosScroll.setContent(todosLosEmpleadosGridPane);
         misEmpleados.addAll(todosMisEmpleados());
 
         this.myListener = new MyListener() {
@@ -273,7 +273,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                     ++row;
                 }
 
-                todasLasActividadesGridPane.add(usuarioEmpresaVbox, column++, row);
+                todosLosEmpleadosGridPane.add(usuarioEmpresaVbox, column++, row);
                 GridPane.setMargin(usuarioEmpresaVbox, new Insets(10));
 
             }

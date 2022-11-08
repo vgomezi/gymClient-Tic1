@@ -97,8 +97,18 @@ public class CentroTodasActividadesController {
     @FXML
     public Button eliminarActividadBoton;
 
+    @FXML
+    private GridPane todasLasActividadesGridPane;
+
+    @FXML
+    public ScrollPane todasLasActividadesScroll;
 
     private MyListener myListener;
+
+    @FXML
+    private VBox actividadSeleccionadaVBox;
+
+
 
     private List<ActividadObject> todasLasActividades = new ArrayList<>();
 
@@ -110,6 +120,125 @@ public class CentroTodasActividadesController {
 
     public void onEnterPressed(KeyEvent keyEvent) {
     }
+
+
+    /*
+    public void desplegarActividadSeleccionada(@Nullable EmpleadoObject empleadoObject) {
+        empleadoEnDisplay = empleadoObject;
+        if (empleadoObject != null) {
+            if (empleadoObject.getImagen() != null) {
+                byte[] imageDecoded = Base64.getDecoder().decode(empleadoObject.getImagen());
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+                BufferedImage bImage = null;
+                try {
+                    bImage = ImageIO.read(bis);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+                imagenUsuarioDisplay.setImage(toAdd);
+            } else {
+                Image imageView = new Image("/imagen/usuariodefault.png");
+                imagenUsuarioDisplay.setImage(imageView);
+            }
+            nombreTextField.setText(empleadoObject.getNombre());
+            apellidoTextField.setText(empleadoObject.getApellido());
+            emailUsuarioLabel.setText(empleadoObject.getMail());
+            saldoTextField.setText(String.valueOf(empleadoObject.getSaldoDisponible()));
+            deudaTextField.setText(String.valueOf(empleadoObject.getDeuda()));
+            telefonoTextField.setText(empleadoObject.getTelefono());
+            actualizarUsuarioBoton.setVisible(true);
+            eliminarUsuarioBoton.setVisible(true);
+        } else {
+            nombreTextField.clear();
+            apellidoTextField.clear();
+            emailUsuarioLabel.setText("");
+            saldoTextField.clear();
+            deudaTextField.clear();
+            telefonoTextField.clear();
+            imagenUsuarioDisplay.setImage(null);
+            actualizarUsuarioBoton.setVisible(false);
+            eliminarUsuarioBoton.setVisible(false);
+
+        }
+        actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+    }
+
+    private List<ActividadObject> todasMisActividades() {
+        List<ActividadObject> listaMisActividades = new ArrayList<>();
+        ActividadObject actividadObject;
+
+        String empleado = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/actividadesCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaMisActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaMisActividades;
+    }
+
+    public void actividadesCentro() {
+        todasLasActividadesGridPane = new GridPane();
+        todasLasActividadesGridPane.setContent(todasLasActividadesGridPane);
+        misActividades.addAll(todasMisActividades());
+
+        this.myListener = new MyListener() {
+
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {
+            }
+
+            @Override
+            public void onClickUsuario(ActividadObject actividadObject) {
+                desplegarActividadSeleccionada(actividadObject);
+
+            }
+        };
+
+        System.out.println("entro datos MainEmpresa");
+
+        int column = 0;
+        int row = 1;
+        try{
+            for(ActividadObject actividad : misActividades) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                //bien la direccion?
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesCentro/ActividadesPane/ActividadCentro.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                VBox actividadCentroVbox = fxmlLoader.load();
+                UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
+                //hacer controller
+                usuarioEmpresaController.setearDatos(actividad, myListener);
+
+                if (column == 2) {
+                    column = 0;
+                    ++row;
+                }
+
+                todasLasActividadesGridPane.add(actividadCentroVbox, column++, row);
+                GridPane.setMargin(actividadCentroVbox, new Insets(10));
+
+            }
+        } catch (Exception e){
+            System.out.println("Error creando panel " + e);
+
+        }
+    }
+    */
 
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
         Node source = (Node) mouseEvent.getSource();
@@ -186,7 +315,7 @@ public class CentroTodasActividadesController {
 
     private List<ActividadObject> misActividades = new ArrayList<>();
 
-    public EmpleadoObject empleadoEnDisplay;
+    public ActividadObject actividadEnDisplay;
 
 
     public void onEliminarActividadButtonClick(MouseEvent mouseEvent) {
@@ -197,6 +326,7 @@ public class CentroTodasActividadesController {
         try {
             HttpResponse<JsonNode> apiResponse = null;
             System.out.println(nombreActividad);
+            //chequear camino borrar actividad
             apiResponse = Unirest.delete("http://localhost:8987/api/actividades/deleteActividad/" + nombreActividad + diaActividad + horaActividad).asJson();
             System.out.println("Actividad borrada");
 
