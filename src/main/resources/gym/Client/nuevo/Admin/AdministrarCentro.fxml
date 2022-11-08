@@ -96,26 +96,10 @@
             <children>
             <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                      <Label fx:id="nombreCentroDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="NOMBRE CENTRO" textAlignment="CENTER" textOverrun="CLIP">
-                          <font>
-                              <Font name="System Bold" size="18.0" />
-                          </font>
-                      </Label>
+                  <TextField fx:id="nombreCentroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE CENTRO" />
                       <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
-                      <Label fx:id="emailCentroDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="EMAIL CENTRO" textAlignment="CENTER" textOverrun="CLIP">
-                          <font>
-                              <Font name="System Bold" size="18.0" />
-                          </font>
-                      </Label>
-                      <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
-                          <children>
-                              <Label fx:id="contrasenaCentroDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="CONTRASEÑA CENTRO" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="System Bold" size="18.0" />
-                                  </font>
-                              </Label>
-                          </children>
-                      </HBox>
+                  <TextField fx:id="emailCentroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="EMAIL CENTRO" />
+                  <TextField fx:id="contrasenaCentroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CONTRASEÑA" />
                       <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0" />
                       <Button fx:id="actualizarCentroBoton" mnemonicParsing="false" mouseTransparent="false" onAction="#onActualizarCentroButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ACTUALIZAR" textFill="WHITE" textOverrun="CLIP">
                           <font>

@@ -39,13 +39,13 @@ public class AdministrarEmpresaController {
     private TextField busquedaTextField;
 
     @FXML
-    private Label contrasenaEmpresaDisplay;
+    private TextField contrasenaEmpresaDisplay;
 
     @FXML
     private Button eliminarEmpresaBoton;
 
     @FXML
-    private Label emailEmpresaDisplay;
+    private TextField emailEmpresaDisplay;
 
     @FXML
     private ImageView imagenActividadDisplay;
@@ -60,7 +60,10 @@ public class AdministrarEmpresaController {
     private Label nombreAdministradorLabel;
 
     @FXML
-    private Label nombreEmpresaDisplay;
+    private TextField nombreEmpresaDisplay;
+
+    @FXML
+    private TextField bonoEmpleadosDisplay;
 
     @FXML
     private BorderPane pantallaMainUsuario;

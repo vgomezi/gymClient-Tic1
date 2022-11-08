@@ -41,13 +41,13 @@ public class AdministrarCentroController {
     private TextField busquedaTextField;
 
     @FXML
-    private Label contrasenaCentroDisplay;
+    private TextField contrasenaCentroDisplay;
 
     @FXML
     private Button eliminarCentroBoton;
 
     @FXML
-    private Label emailCentroDisplay;
+    private TextField emailCentroDisplay;
 
     @FXML
     private ImageView imagenActividadDisplay;
@@ -62,7 +62,7 @@ public class AdministrarCentroController {
     private Label nombreAdministradorLabel;
 
     @FXML
-    private Label nombreCentroDisplay;
+    private TextField nombreCentroDisplay;
 
     @FXML
     private BorderPane pantallaMainUsuario;

@@ -96,27 +96,11 @@
             <children>
             <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                      <Label fx:id="nombreEmpresaDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="NOMBRE EMPRESA" textAlignment="CENTER" textOverrun="CLIP">
-                          <font>
-                              <Font name="System Bold" size="18.0" />
-                          </font>
-                      </Label>
+                  <TextField fx:id="nombreEmpresaDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE EMPRESA" />
                       <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
-                      <Label fx:id="emailEmpresaDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="EMAIL EMPRESA" textAlignment="CENTER" textOverrun="CLIP">
-                          <font>
-                              <Font name="System Bold" size="18.0" />
-                          </font>
-                      </Label>
-                      <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
-                          <children>
-                              <Label fx:id="contrasenaEmpresaDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="288.0" text="CONTRASEÑA EMPRESA" textAlignment="CENTER" textOverrun="CLIP">
-                                  <font>
-                                      <Font name="System Bold" size="18.0" />
-                                  </font>
-                              </Label>
-                          </children>
-                      </HBox>
-                      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0" />
+                  <TextField fx:id="bonoEmpleadosDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="BONO EMPLEADOS" />
+                  <TextField fx:id="emailEmpresaDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="EMAIL EMPRESA" />
+                  <TextField fx:id="contrasenaEmpresaDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CONTRASEÑA EMPRESA" />
                       <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0" />
                       <Button fx:id="actualizarEmpresaBoton" mnemonicParsing="false" mouseTransparent="false" onAction="#onActualizarEmpresaButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ACTUALIZAR" textFill="WHITE" textOverrun="CLIP">
                           <font>
