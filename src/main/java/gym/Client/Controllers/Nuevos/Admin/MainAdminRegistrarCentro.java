@@ -51,7 +51,7 @@ public class MainAdminRegistrarCentro {
     private TextField emailCentroRegistro;
 
     @FXML
-    private ImageView imagenActividadDisplay;
+    private ImageView imagenActividadRegistro;
 
     @FXML
     private Circle imagenAdministradorCirculo;

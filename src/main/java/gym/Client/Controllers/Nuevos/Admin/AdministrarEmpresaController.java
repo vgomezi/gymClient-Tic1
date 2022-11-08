@@ -48,7 +48,7 @@ public class AdministrarEmpresaController {
     private TextField emailEmpresaDisplay;
 
     @FXML
-    private ImageView imagenActividadDisplay;
+    private ImageView imagenEmpresaDisplay;
 
     @FXML
     private Circle imagenAdministradorCirculo;

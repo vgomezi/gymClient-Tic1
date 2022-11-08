@@ -4,6 +4,7 @@ import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Nuevos.CentroRegistrarActividadController;
 import gym.Client.Controllers.Nuevos.MainCentroRegistrarIngresoUsuarioController;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,8 +24,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class AdministrarCentroController {
 
@@ -78,6 +87,8 @@ public class AdministrarCentroController {
 
     @FXML
     private ScrollPane todosLosCentrosScroll;
+
+    private File fileImagen;
 
     @FXML
     void onBusquedaKeyReleased(KeyEvent event) {
@@ -155,6 +166,55 @@ public class AdministrarCentroController {
     @FXML
     void onActualizarCentroButtonClick(ActionEvent event) {
 
+    }
+
+    @FXML
+    void onImagenDisplayMouseClick (MouseEvent event) {
+        File file = tomarImagen(event);
+        String base64 = codificarImagenRegistroUsuario(file);
+        Image imagen = decodificarImagen(base64);
+        imagenActividadDisplay.setImage(imagen);
+    }
+
+    public File tomarImagen (MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir imagen usuario");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
+        fileImagen = file;
+        return file;
+    }
+
+    public String codificarImagenRegistroUsuario(File file) {
+        String base64String = null;
+        try {
+            System.out.println(file);
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            System.out.println("Convertí file en bytes");
+            base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
+            System.out.println("Converti bytes en string");
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return base64String;
+    }
+
+    public Image decodificarImagen(String imagen) {
+        byte[] imageDecoded = org.apache.commons.codec.binary.Base64.decodeBase64(imagen);
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+        BufferedImage bImage = null;
+        try {
+            bImage = ImageIO.read(bis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+        return toAdd;
     }
 
     @FXML

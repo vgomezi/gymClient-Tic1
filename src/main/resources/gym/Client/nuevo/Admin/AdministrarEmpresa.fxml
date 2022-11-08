@@ -97,7 +97,7 @@
             <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
                   <TextField fx:id="nombreEmpresaDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE EMPRESA" />
-                      <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
+                      <ImageView fx:id="imagenEmpresaDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <TextField fx:id="bonoEmpleadosDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="BONO EMPLEADOS" />
                   <TextField fx:id="emailEmpresaDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="EMAIL EMPRESA" />
                   <TextField fx:id="contrasenaEmpresaDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CONTRASEÑA EMPRESA" />

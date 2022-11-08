@@ -104,7 +104,7 @@
          <children>
             <VBox fx:id="empleadoSeleccionadoVBox" alignment="CENTER" prefHeight="578.0" prefWidth="266.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                  <ImageView fx:id="imagenView" fitHeight="101.0" fitWidth="253.0" onMouseClicked="#onImagenDisplayMouseClick" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imagenUsuarioDisplay" fitHeight="101.0" fitWidth="253.0" onMouseClicked="#onImagenDisplayMouseClick" pickOnBounds="true" preserveRatio="true" />
                   <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0" spacing="5.0">
                      <children>
                         <TextField fx:id="nombreTextField" style="-fx-background-radius: 15;" />
