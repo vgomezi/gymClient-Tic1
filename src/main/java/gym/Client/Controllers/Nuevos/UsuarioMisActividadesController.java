@@ -428,13 +428,7 @@ public class UsuarioMisActividadesController implements Initializable {
             LocalTime horaTime = LocalTime.parse(hora);
             LocalDate diaDate = LocalDate.parse(dia);
 
-            System.out.println(new Date().toInstant());
-            //long daysBetween =DAYS.between(new Date().toInstant(), diaDate.atStartOfDay());
-            //System.out.println(daysBetween);
 
-            //if (daysBetween <= 0) {
-
-            //} else {
                 System.out.println("Borro inscripcion usuario");
                 try {
                     HttpResponse<JsonNode> apiResponse = null;
@@ -446,22 +440,24 @@ public class UsuarioMisActividadesController implements Initializable {
                     System.out.println("Error borrando inscripcion: " + e);
                 }
 
-                String json = "";
-                try {
-                    actividadEnDisplay.setCupos(actividadEnDisplay.getCupos()+1);
-                    ObjectMapper mapperActividad = new JsonMapper().builder()
-                            .findAndAddModules()
-                            .build();
-                    mapperActividad.registerModule(new JavaTimeModule());
-                    json = mapperActividad.writeValueAsString(actividadEnDisplay);
-                    HttpResponse<JsonNode> apiResponse = null;
-                    apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
-                    System.out.println("Put Hecho");
+                if (actividadEnDisplay.isReservable()) {
+                    String json = "";
+                    try {
+                        actividadEnDisplay.setCupos(actividadEnDisplay.getCupos() + 1);
+                        ObjectMapper mapperActividad = new JsonMapper().builder()
+                                .findAndAddModules()
+                                .build();
+                        mapperActividad.registerModule(new JavaTimeModule());
+                        json = mapperActividad.writeValueAsString(actividadEnDisplay);
+                        HttpResponse<JsonNode> apiResponse = null;
+                        apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
+                        System.out.println("Put Hecho");
 
 
-                } catch (Exception e) {
-                    System.out.println("Error actualizando put: " + e.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error actualizando put: " + e.getMessage());
 
+                    }
                 }
 
                 misActividades = new ArrayList<>();

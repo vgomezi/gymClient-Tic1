@@ -172,7 +172,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         try {
             HttpResponse<String> apiResponse = null;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/actividades/allActividades/").header("Content-Type", "application/json").asObject(String.class);
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/actividadesDisponibles").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Logro json");
             //System.out.println(json);
