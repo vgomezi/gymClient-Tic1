@@ -101,7 +101,7 @@
                 </Label>
             <ScrollPane fx:id="liquidacionUsuariosScroll" maxHeight="-Infinity" prefHeight="710.0" prefWidth="975.0" styleClass="transparent" stylesheets="/css/style.css" VBox.vgrow="ALWAYS">
                <content>
-                  <GridPane fx:id="todasLasActividadesGridPane" prefHeight="0.0" prefWidth="0.0">
+                  <GridPane fx:id="todosLosUsuariosGridPane" prefHeight="0.0" prefWidth="0.0">
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
