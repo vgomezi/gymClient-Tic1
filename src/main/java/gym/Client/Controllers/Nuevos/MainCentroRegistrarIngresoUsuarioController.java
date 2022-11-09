@@ -105,6 +105,12 @@ public class MainCentroRegistrarIngresoUsuarioController {
     @FXML
     public Button registrarIngresoUsuarioBoton;
 
+    @FXML
+    public ScrollPane todasLasActividadesScroll;
+
+    @FXML
+    public GridPane todasLasActividadesGridPane;
+
 
     public String mailUsuarioIngreso;
 
@@ -221,20 +227,20 @@ public class MainCentroRegistrarIngresoUsuarioController {
         return listaActividades;
     }
 
-    /*public void actividadesUsuario() {
+    public void actividadesCentro() {
         todasLasActividadesGridPane = new GridPane();
-        misActividadesScroll.setContent(todasLasActividadesGridPane);
-        misActividades = new ArrayList<>();
-        misActividades.addAll(todasMisActividades());
+        todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
+        todasLasActividades = new ArrayList<>();
+        todasLasActividades.addAll(todasLasActividadesCentro());
 
-        if(misActividades.size() > 0) {
-            desplegarInfoActividadSeleccionada(misActividades.get(0));
+        if(todasLasActividades.size() > 0) {
+            //desplegarInfoActividadSeleccionada(misActividades.get(0));
             this.myListener = new MyListener() {
 
 
                 @Override
                 public void onClickActividad(ActividadObject actividadObject) {
-                    desplegarInfoActividadSeleccionada(actividadObject);
+                    //desplegarInfoActividadSeleccionada(actividadObject);
                 }
 
                 @Override
@@ -251,7 +257,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
         int column = 0;
         int row = 1;
         try{
-            for(ActividadObject actividad : misActividades) {
+            for(ActividadObject actividad : todasLasActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
                 System.out.println("Carga FXMLLoader");
