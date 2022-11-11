@@ -264,9 +264,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         apellidoUsuarioLabel.setText(empleadoObject.getApellido());
     }
 
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void actividadesDisponibles() {
         System.out.println("Entro initialize");
         //System.out.println(anadidosRecientemente());
         if (anadidosRecienteLista.isEmpty()) {
@@ -347,12 +345,16 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 GridPane.setMargin(todaActividadbox, new Insets(10));
 
             }
-        inicializoChoiceBox();
         } catch (Exception e){
             System.out.println("Error creando panel " + e);
 
         }
+    }
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        inicializoChoiceBox();
     }
 
     public void inicializoChoiceBox() {
@@ -462,10 +464,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             System.out.println("Error");
             //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {
-
     }
 
     public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {

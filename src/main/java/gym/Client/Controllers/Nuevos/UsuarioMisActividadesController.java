@@ -482,6 +482,7 @@ public class UsuarioMisActividadesController implements Initializable {
 
             MainUsuarioTodasActividadesController mainUsuarioTodasActividadesController = fxmlLoader.getController();
             mainUsuarioTodasActividadesController.datosUsuario(empleado.getMail());
+            mainUsuarioTodasActividadesController.actividadesDisponibles();
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
             stage.setScene(new Scene(root1));

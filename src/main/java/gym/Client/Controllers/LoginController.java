@@ -220,6 +220,7 @@ public class LoginController {
                                     MainUsuarioTodasActividadesController mainUsuarioTodasActividadesController = fxmlLoader.getController();
                                     System.out.println(emailText.getText());
                                     mainUsuarioTodasActividadesController.datosUsuario(correoElectronico);
+                                    mainUsuarioTodasActividadesController.actividadesDisponibles();
 
                                     Stage stage = new Stage();
 
