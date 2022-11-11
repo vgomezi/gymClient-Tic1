@@ -443,6 +443,14 @@ public class MainCentroRegistrarIngresoUsuarioController {
     }
 
     public void onRegistrarIngresoUsuarioButtonClick(MouseEvent mouseEvent) {
+        if (!mailUsuarioDisplay.getText().isEmpty()) {
+            String mailUsuario = mailUsuarioDisplay.getText();
+            if (actividadEnDisplay.isReservable()) {
+                // verificar que existe la reserva
+            } else {
+                // no es necesario verificar nada
+            }
+        }
 
     }
 
