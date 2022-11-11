@@ -35,6 +35,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.springframework.lang.Nullable;
 
 
 import javax.imageio.ImageIO;
@@ -42,6 +43,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class MainCentroRegistrarIngresoUsuarioController {
@@ -81,6 +83,9 @@ public class MainCentroRegistrarIngresoUsuarioController {
     }*/
 
     @FXML
+    public VBox actividadSeleccionadaVBox;
+
+    @FXML
     public ImageView imagenActividadDisplay;
 
     @FXML
@@ -88,6 +93,9 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     @FXML
     public Label horaActividadDisplay;
+
+    @FXML
+    public Label tipoActividadDisplay;
 
     @FXML
     public Label cuposActividadDisplay;
@@ -207,6 +215,61 @@ public class MainCentroRegistrarIngresoUsuarioController {
         nombreLabel.setText(centroDeportivoObject.getNombre());
     }
 
+    public ActividadObject actividadEnDisplay;
+
+    public void desplegarInfoActividadSeleccionada(@Nullable ActividadObject actividadObject) {
+        actividadEnDisplay = actividadObject;
+        if (actividadObject != null) {
+            cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
+            costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
+            horaActividadDisplay.setText(actividadObject.getHora().toString());
+            diaActividadDisplay.setText(actividadObject.getDia().toString());
+            tipoActividadDisplay.setText(actividadObject.getTipo().getTipo());
+            nombreActividadDisplay.setText(actividadObject.getNombre().toUpperCase());
+            duracionActividadDisplay.setText(String.valueOf(actividadObject.getDuracion()) + " min");
+            if (actividadObject.isReservable()) {
+                reservableActividadDisplay.setText("Reservable");
+            } else {
+                reservableActividadDisplay.setText("Sin reserva");
+            }
+            mailUsuarioDisplay.setVisible(true);
+            registrarIngresoUsuarioBoton.setVisible(true);
+
+
+            if (actividadObject.getImagen() != null) {
+                byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+                BufferedImage bImage = null;
+                try {
+                    bImage = ImageIO.read(bis);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+                imagenActividadDisplay.setImage(toAdd);
+            } else {
+                Image imageView = new Image("/imagen/actividaddefault.png");
+                imagenActividadDisplay.setImage(imageView);
+            }
+        } else {
+            cuposActividadDisplay.setText("");
+            costoActividadDisplay.setText("");
+            horaActividadDisplay.setText("");
+            diaActividadDisplay.setText("");
+            tipoActividadDisplay.setText("");
+            nombreActividadDisplay.setText("");
+            duracionActividadDisplay.setText("");
+            imagenActividadDisplay.setImage(null);
+            reservableActividadDisplay.setText("");
+            mailUsuarioDisplay.setVisible(false);
+            registrarIngresoUsuarioBoton.setVisible(false);
+        }
+
+        actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+    }
+
     private List<ActividadObject> todasLasActividadesCentro() {
         List<ActividadObject> listaActividades = new ArrayList<>();
         ActividadObject actividadObject;
@@ -270,7 +333,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
                 @Override
                 public void onClickActividad(ActividadObject actividadObject) {
-                    //desplegarInfoActividadSeleccionada(actividadObject);
+                    desplegarInfoActividadSeleccionada(actividadObject);
                 }
 
                 @Override
@@ -310,13 +373,13 @@ public class MainCentroRegistrarIngresoUsuarioController {
         todasLasActividades.addAll(todasLasActividadesCentro());
 
         if(todasLasActividades.size() > 0) {
-            //desplegarInfoActividadSeleccionada(misActividades.get(0));
+            //desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
             this.myListener = new MyListener() {
 
 
                 @Override
                 public void onClickActividad(ActividadObject actividadObject) {
-                    //desplegarInfoActividadSeleccionada(actividadObject);
+                    desplegarInfoActividadSeleccionada(actividadObject);
                 }
 
                 @Override
@@ -358,11 +421,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
         }
     }
 
-    /*
-    *
-    *
-    * */
-
     public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -381,10 +439,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
             System.out.println(ex.toString());
             System.out.println("Error");
         }
-    }
-
-    public void onRegistrarIngresoUsuarioLabelClick(MouseEvent mouseEvent) {
-
     }
 
     public void onRegistrarIngresoUsuarioButtonClick(MouseEvent mouseEvent) {

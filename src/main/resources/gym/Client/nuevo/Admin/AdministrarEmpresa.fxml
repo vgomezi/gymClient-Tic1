@@ -80,7 +80,7 @@
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="administrarEmpresaLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarEmpresaLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR EMPRESA" textAlignment="CENTER" textOverrun="CLIP">
+                  <Label fx:id="administrarEmpresaLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarEmpresaLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR EMPRESA" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>

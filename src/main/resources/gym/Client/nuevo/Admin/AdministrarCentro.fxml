@@ -80,7 +80,7 @@
                                 <Font name="Baskerville Old Face" size="18.0" />
                             </font>
                         </Label>
-                  <Label fx:id="administrarCentroLabel" alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" onMouseClicked="#onAdministrarCentroLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR CENTRO" textAlignment="CENTER" textOverrun="CLIP">
+                  <Label fx:id="administrarCentroLabel" alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" onMouseClicked="#onAdministrarCentroLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR CENTRO" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>

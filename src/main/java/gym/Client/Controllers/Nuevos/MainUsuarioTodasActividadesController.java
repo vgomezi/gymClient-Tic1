@@ -389,7 +389,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     public void desplegarInfoActividadSeleccionada(@Nullable ActividadObject actividadObject) {
         actividadEnDisplay = actividadObject;
-        if (!actividadObject.equals(null)) {
+        if (actividadObject != null) {
             cuposActividadDisplay.setText("CUPOS: " + String.valueOf(actividadObject.getCupos()));
             costoActividadDisplay.setText("$" + String.valueOf(actividadObject.getCosto()));
             horaActividadDisplay.setText(actividadObject.getHora().toString());
