@@ -10,15 +10,19 @@ import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Classes.EmpleadoObject;
+import gym.Client.Classes.TipoActividadObject;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -32,6 +36,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.springframework.lang.Nullable;
@@ -39,12 +44,15 @@ import org.springframework.lang.Nullable;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.net.URL;
+import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.*;
 
-public class CentroTodasActividadesController {
+public class CentroTodasActividadesController implements Initializable {
     // implements Initializable
 
     @FXML
@@ -109,6 +117,8 @@ public class CentroTodasActividadesController {
     public ScrollPane todasLasActividadesScroll;
 
     private MyListener myListener;
+
+    private File fileImagen;
 
     @FXML
     private VBox actividadSeleccionadaVBox;
@@ -245,6 +255,27 @@ public class CentroTodasActividadesController {
     }
     */
 
+    public void inicializoChoiceBox() {
+        try {
+            HttpResponse<String> apiResponse = null;
+            apiResponse = Unirest.get("http://localhost:8987/api/tipoactividad/allTipoActividad").asObject(String.class);
+            System.out.println("Logre get tipos actividades");
+
+            if (!apiResponse.getBody().isEmpty()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if inicializoChoiceBox");
+                List<TipoActividadObject> listaTipos = mapper.readValue(apiResponse.getBody(), new TypeReference<List<TipoActividadObject>>() {});
+                ObservableList<String> listaItems = FXCollections.observableArrayList();
+                for (TipoActividadObject tipoActividad: listaTipos) {
+                    listaItems.add(tipoActividad.getTipo()); /*.toUpperCase()*/
+                }
+                tipoActividadChoiceBoxRegistroDisplay.setItems(listaItems);
+            }
+        } catch (Exception e) {
+            System.out.println("Error cargando choicebox :" + e);
+        }
+    }
+
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
         Node source = (Node) mouseEvent.getSource();
         Stage stage1 = (Stage) source.getScene().getWindow();
@@ -331,8 +362,151 @@ public class CentroTodasActividadesController {
     }
 
     public void onRegistrarActividadButtonClick(MouseEvent mouseEvent) {
+        String nombre = nombreActividadRegistroDisplay.getText();
+        String descripcion = descripcionActividadRegistroDisplay.getText();
+        String hora = horaActividadRegistroDisplay.getText();
+        String dia = diaDatePickerRegistroDisplay.getValue().toString();
+        String cupos = cuposActividadRegistroDisplay.getText();
+        String costo = costoActividadRegistroDisplay.getText();
+        String duracion = duracionActividadRegistroDisplay.getText();
+        Boolean reservable = reservableCheckBoxRegistroDisplay.isSelected();
+        String tipo = tipoActividadChoiceBoxRegistroDisplay.getValue().toString();
+        String imagen = null;
+        try {
+            imagen = codificarImagenRegistroActividad(fileImagen);
+        } catch (Exception ignored) {
+
+        }
+
+        if (!nombre.isEmpty() && !descripcion.isEmpty() && !hora.isEmpty() && !dia.isEmpty() && !cupos.isEmpty() && !costo.isEmpty() && !duracion.isEmpty() && !tipo.isEmpty()) {
+            try {
+                LocalTime timeLT = LocalTime.parse(hora);
+                LocalDate dateDT = LocalDate.parse(dia);
+                Integer cuposInt = Integer.parseInt(cupos);
+                Integer costoInt = Integer.parseInt(costo);
+                int duracionInt = Integer.parseInt(duracion);
+                CentroDeportivoObject centroDeportivoObject = centro;
+
+
+                String json = "";
+
+                try {
+                    TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
+                    ObjectMapper mapperActividad = new JsonMapper().builder()
+                            .findAndAddModules()
+                            .build();
+                    mapperActividad.registerModule(new JavaTimeModule());
+                    ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivoObject.getMail(), tipoActividadObject, descripcion, duracionInt, costoInt, cuposInt, reservable, new Date(), imagen, centroDeportivoObject);
+                    System.out.println("Imagen actividad");
+                    System.out.println(actividadObject.getImagen());
+                    json = mapperActividad.writeValueAsString(actividadObject);
+
+                    HttpResponse<JsonNode> apiResponse = null;
+                    apiResponse = Unirest.post("http://localhost:8987/api/actividades").header("Content-Type", "application/json").body(json).asJson();
+                    System.out.println("Registro actividad hecho");
+
+                } catch (Exception e) {
+
+                }
+            } catch (Exception e) {
+
+            }
+        }
+
 
     }
+
+
+    /*
+    * String nombre = nombreText.getText();
+        String tipo = tipoChoiceBox.getValue().toString();
+        String descripcion = descripcionText.getText();
+        String hora = horaText.getText();
+        String dia = diaTextPicker.getValue().toString();
+        String cupos = cuposText.getText();
+        String costo = costoText.getText();
+        //byte[] imagen = registrarActividadAction(event);
+        String imagen = registrarActividadAction(event);
+        //System.out.println(imagen);
+        Boolean reservable = reservableCheckBox.isSelected();
+        System.out.println(reservable);
+        System.out.println(tipo);
+
+        if (!nombre.isEmpty() && !tipo.isEmpty() && !descripcion.isEmpty() && !hora.isEmpty() && !dia.isEmpty() && !costo.isEmpty()) {
+            try {
+                LocalTime timeLT = LocalTime.parse(hora);
+                LocalDate dateDT = LocalDate.parse(dia);
+                Integer cuposInt = Integer.parseInt(cupos);
+                Integer costoInt = Integer.parseInt(costo);
+
+
+                String json = "";
+                String jsonCentro = "";
+
+                try {
+                    HttpResponse<String> apiResponse = null;
+                    apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/centrosMail/" + usuarioCentroRegistrarActividad).asObject(String.class);
+                    jsonCentro = apiResponse.getBody();
+                    System.out.println(jsonCentro);
+                    CentroDeportivoObject centroDeportivo = null;
+                    System.out.println(jsonCentro);
+
+                    if (!jsonCentro.isBlank()) {
+                        System.out.println("Entro if");
+                        ObjectMapper mapper = new JsonMapper().builder()
+                                .findAndAddModules()
+                                .build();
+                        centroDeportivo = mapper.readValue(jsonCentro, CentroDeportivoObject.class);
+                        System.out.println("centro mapper Hecho ");
+                    }
+                    TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
+                    ObjectMapper mapperActividad = new JsonMapper().builder()
+                            .findAndAddModules()
+                            .build();
+                    mapperActividad.registerModule(new JavaTimeModule());
+                    /*ObjectNode rest = mapperActividad.createObjectNode();
+                    rest.put("nombre", nombre);
+                    rest.put("hora", String.valueOf(timeLT));
+                    rest.put("dia", String.valueOf(dateDT));
+                    rest.put("centroMail", centroDeportivo.getMail());
+                    rest.put("tipo", tipoActividadObject.getTipo());
+                    rest.put("descripcion", descripcion);
+                    rest.put("costo", costo);
+                    rest.put("cupos", cupos);
+                    rest.put("reservable", reservable);
+                    rest.put("dateCreada", String.valueOf(new Date()));
+                    rest.put("imagen", imagen);*/
+    /*ActividadObject actividadObject = new ActividadObject(nombre, timeLT, dateDT, centroDeportivo.getMail(), tipoActividadObject, descripcion, 40, costoInt, cuposInt, reservable, new Date(), imagen, centroDeportivo);
+                    System.out.println("Imagen actividad");
+                    System.out.println(actividadObject.getImagen());
+    json = mapperActividad.writeValueAsString(actividadObject);
+    //json = mapperActividad.writeValueAsString(rest);
+                    System.out.println(json);
+} catch (Exception e) {
+        System.out.println("Error " + e);
+        }
+        System.out.println("Http respones luego de catch");
+        HttpResponse<JsonNode> apiResponse = null;
+        apiResponse = Unirest.post("http://localhost:8987/api/actividades").header("Content-Type", "application/json").body(json).asJson();
+
+        System.out.println("Hecho Actividad");
+
+
+        System.out.println("Hecho");
+
+                /*Node source = (Node) event.getSource();
+                Stage stage = (Stage) source.getScene().getWindow();
+                stage.close();*/
+
+        /*} catch (Exception e) {
+        System.out.println(e.toString());
+        System.out.println("Error");
+
+        }
+
+        } else {
+        System.out.println("Pantalla error datos incorrectos");
+        }*/
 
     public void onActualizarActividadButtonClick(MouseEvent mouseEvent) {
 
@@ -361,5 +535,59 @@ public class CentroTodasActividadesController {
         misActividades.clear();
         //actividadesCentro();
         //desplegarActividadSeleccionada(null);
+    }
+
+    @FXML
+    void onImagenRegistroMouseClick(MouseEvent mouseEvent) {
+        File file = tomarImagen(mouseEvent);
+        String base64 = codificarImagenRegistroActividad(file);
+        Image imagen = decodificarImagen(base64);
+        imagenActividadRegistroDisplay.setImage(imagen);
+    }
+
+    public File tomarImagen (MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir imagen centro");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
+        fileImagen = file;
+        return file;
+    }
+
+    public String codificarImagenRegistroActividad(File file) {
+        String base64String = null;
+        try {
+            System.out.println(file);
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            System.out.println("Convertí file en bytes");
+            base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
+            System.out.println("Converti bytes en string");
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return base64String;
+    }
+
+    public Image decodificarImagen(String imagen) {
+        byte[] imageDecoded = org.apache.commons.codec.binary.Base64.decodeBase64(imagen);
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+        BufferedImage bImage = null;
+        try {
+            bImage = ImageIO.read(bis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+        return toAdd;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        inicializoChoiceBox();
     }
 }

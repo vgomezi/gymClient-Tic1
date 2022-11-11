@@ -461,6 +461,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
             AdministrarCentroDeudaController administrarCentroDeudaController = fxmlLoader.getController();
             administrarCentroDeudaController.setCentro(centro);
+            administrarCentroDeudaController.datosCentro(centro);
             administrarCentroDeudaController.deudaEmpresa();
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

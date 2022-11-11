@@ -85,6 +85,16 @@
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
+                  <Label fx:id="administrarCentroLabel1" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarCentroLabelClick" prefHeight="50.0" prefWidth="205.0" text="TODAS LAS EMPRESAS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="administrarCentroLabel2" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarCentroLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR EMPRESAS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
                     </children>
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0" />
@@ -97,18 +107,18 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
+            <VBox fx:id="actividadRegistroVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                  <TextField fx:id="nombreCentroRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE CENTRO" />
+                  <TextField fx:id="nombreCentroRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE CENTRO" style="-fx-background-radius: 15;" stylesheets="@../../../../css/style.css" />
                   <ImageView fx:id="imagenActividadRegistro" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0">
                      <children>
-                        <TextField fx:id="emailCentroRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="EMAIL CENTRO" />
+                        <TextField fx:id="emailCentroRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="EMAIL CENTRO" style="-fx-background-radius: 15;" />
                      </children>
                   </HBox>
-                  <TextField fx:id="contrasenaCentroRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CONTRASEÑA" />
+                  <TextField fx:id="contrasenaCentroRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CONTRASEÑA" style="-fx-background-radius: 15;" />
                   <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0" />
-                  <Button fx:id="registrarCentroBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onRegistrarCentroButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
+                  <Button fx:id="registrarCentroBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onRegistrarCentroButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@../../../../css/style.css" text="REGISTRAR" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -118,8 +128,11 @@
                   </Button>
                </children>
                <padding>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
             </VBox>
          </children>
         </VBox>

@@ -16,6 +16,7 @@ public class EmpleadoObject {
 
     private int saldoDisponible;
 
+    //Cambiar por date Creado;
     private int saldoOriginal;
 
     private int deuda;

@@ -9,6 +9,7 @@ import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.*;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,11 +26,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,6 +54,9 @@ public class AdministrarCentroDeudaController implements Initializable {
 
     @FXML
     private Label nombreLabel;
+
+    @FXML
+    private Circle imagenCentroDeudaCirculo;
 
     @FXML
     private BorderPane pantallaMainUsuario;
@@ -124,6 +135,28 @@ public class AdministrarCentroDeudaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    public void datosCentro(CentroDeportivoObject centroDeportivoObject) {
+        this.centro = centroDeportivoObject;
+        if(centroDeportivoObject.getImagen() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(centroDeportivoObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenCentroDeudaCirculo.setFill(new ImagePattern(toAdd));
+        } else {
+            Image imageView = new Image("/imagen/centrodefault.png");
+            imagenCentroDeudaCirculo.setFill(new ImagePattern(imageView));
+        }
+
+        nombreLabel.setText(centroDeportivoObject.getNombre());
     }
 
 
