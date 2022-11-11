@@ -32,9 +32,9 @@ public class DeudaEmpCentPaneController {
         this.myListener = myListener;
         this.pago = pagoEmpCentObject;
 
-        nombreLabel.setText("EMPRESA" + String.valueOf(pagoEmpCentObject.getEmpresa().getNombre()));
-        mailLabel.setText("MAIL: " + String.valueOf(pagoEmpCentObject.getEmpresaMailPago()));
-        deudaLabel.setText("DEUDA: " + String.valueOf(pagoEmpCentObject.getMonto()));
+        nombreLabel.setText("EMPRESA:  " + String.valueOf(pagoEmpCentObject.getEmpresa().getNombre()));
+        mailLabel.setText("MAIL:  " + String.valueOf(pagoEmpCentObject.getEmpresaMailPago()));
+        deudaLabel.setText("DEUDA:  " + String.valueOf(pagoEmpCentObject.getMonto()));
 
 
     }

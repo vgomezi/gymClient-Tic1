@@ -16,6 +16,7 @@ import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -443,6 +444,26 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     public void onRegistrarIngresoUsuarioButtonClick(MouseEvent mouseEvent) {
 
+    }
+
+    public void onAdministrarCentroButtonClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainCentroRegistrarIngresoUsuarioController.class.getResourceAsStream("/gym/Client/nuevo/AdministrarCentroDeuda.fxml"));
+
+            AdministrarCentroDeudaController administrarCentroDeudaController = fxmlLoader.getController();
+            administrarCentroDeudaController.setCentro(centro);
+            administrarCentroDeudaController.deudaEmpresa();
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
 

@@ -136,7 +136,7 @@ public class AdministrarCentroDeudaController implements Initializable {
             HttpResponse<String> apiResponse = null;
 
             //ver direccion http
-            apiResponse = Unirest.get("http://localhost:8987/api/pagos/allPagos/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            apiResponse = Unirest.get("http://localhost:8987/api/pagos/allPagosCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
             System.out.println(json);
@@ -178,7 +178,7 @@ public class AdministrarCentroDeudaController implements Initializable {
         try{
             for(PagoEmpCentObject pago : misEmpresas) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/gym.Client/nuevo/Admin/DeudaEmpCentPane.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaEmpCentPane.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 VBox DeudaEmpCentVbox = fxmlLoader.load();
@@ -201,6 +201,11 @@ public class AdministrarCentroDeudaController implements Initializable {
         }
     }
 
+    public CentroDeportivoObject getCentro() {
+        return centro;
+    }
 
-
+    public void setCentro(CentroDeportivoObject centro) {
+        this.centro = centro;
+    }
 }

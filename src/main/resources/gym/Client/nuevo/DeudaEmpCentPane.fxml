@@ -7,21 +7,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="DeudaEmpCentVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onDeudaPaneClick" prefHeight="52.0" prefWidth="970.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.DeudaEmpCentPaneController">
+<VBox fx:id="DeudaEmpCentVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onDeudaPaneClick" prefHeight="52.0" prefWidth="940.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.DeudaEmpCentPaneController">
    <children>
       <HBox alignment="CENTER" prefHeight="32.0" prefWidth="480.0">
          <children>
-            <Label fx:id="nombreLabel" alignment="CENTER" prefHeight="31.0" prefWidth="323.0" text="NOMBRE">
+            <Label fx:id="nombreLabel" alignment="CENTER" prefHeight="31.0" prefWidth="313.0" text="NOMBRE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="mailLabel" alignment="CENTER" prefHeight="31.0" prefWidth="323.0" text="MAIL">
+            <Label fx:id="mailLabel" alignment="CENTER" prefHeight="31.0" prefWidth="313.0" text="MAIL">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="deudaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="323.0" text="DEUDA">
+            <Label fx:id="deudaLabel" alignment="CENTER" prefHeight="31.0" prefWidth="313.0" text="DEUDA">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

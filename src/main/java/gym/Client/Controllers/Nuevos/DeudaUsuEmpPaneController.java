@@ -33,9 +33,9 @@ public class DeudaUsuEmpPaneController {
         this.myListener = myListener;
         this.pago = pagoUsuEmpObject;
 
-        nombreLabel.setText("USUARIO" + String.valueOf(pagoUsuEmpObject.getEmpleado().getNombre()));
-        mailLabel.setText("MAIL: " + String.valueOf(pagoUsuEmpObject.getEmpleadoMailPago()));
-        deudaLabel.setText("DEUDA: " + String.valueOf(pagoUsuEmpObject.getMonto()));
+        nombreLabel.setText("USUARIO:  " + String.valueOf(pagoUsuEmpObject.getEmpleado().getNombre()));
+        mailLabel.setText("MAIL:  " + String.valueOf(pagoUsuEmpObject.getEmpleadoMailPago()));
+        deudaLabel.setText("DEUDA:  " + String.valueOf(pagoUsuEmpObject.getMonto()));
 
 
     }
