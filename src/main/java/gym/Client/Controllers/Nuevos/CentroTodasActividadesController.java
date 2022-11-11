@@ -30,6 +30,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.springframework.lang.Nullable;
@@ -50,6 +52,9 @@ public class CentroTodasActividadesController {
 
     @FXML
     public Label nombreLabel;
+
+    @FXML
+    public Circle centroImagenCirculo;
 
     @FXML
     public Label todasLasActividadesLabel;
@@ -275,9 +280,26 @@ public class CentroTodasActividadesController {
 
     public CentroDeportivoObject centro;
 
-    public void datosCentro(String correoElectronico) {
-        //fijarse main usuarios todas actividades
+    public void datosCentro(CentroDeportivoObject centroDeportivoObject) {
+        this.centro = centroDeportivoObject;
+        if(centroDeportivoObject.getImagen() != null) {
+            byte[] imageDecoded = Base64.getDecoder().decode(centroDeportivoObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            centroImagenCirculo.setFill(new ImagePattern(toAdd));
+        } else {
+            Image imageView = new Image("/imagen/centrodefault.png");
+            centroImagenCirculo.setFill(new ImagePattern(imageView));
+        }
+
+        nombreLabel.setText(centroDeportivoObject.getNombre());
     }
 
     public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
@@ -292,6 +314,9 @@ public class CentroTodasActividadesController {
             MainCentroRegistrarIngresoUsuarioController mainCentroRegistrarIngresoUsuarioController = fxmlLoader.getController();
             System.out.println(centro.getMail());
             mainCentroRegistrarIngresoUsuarioController.datosCentro(centro.getMail());
+            mainCentroRegistrarIngresoUsuarioController.actividadesProximasCentro();
+            mainCentroRegistrarIngresoUsuarioController.actividadesCentro();
+
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
@@ -313,7 +338,7 @@ public class CentroTodasActividadesController {
 
     }
 
-    private List<ActividadObject> misActividades = new ArrayList<>();
+    private List<ActividadObject> misActividades;
 
     public ActividadObject actividadEnDisplay;
 

@@ -429,7 +429,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
             CentroTodasActividadesController centroRegistrarActividadController = fxmlLoader.getController();
             System.out.println(centro.getMail());
-            centroRegistrarActividadController.datosCentro(centro.getMail());
+            centroRegistrarActividadController.datosCentro(centro);
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
