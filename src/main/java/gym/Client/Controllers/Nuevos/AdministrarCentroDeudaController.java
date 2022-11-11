@@ -6,14 +6,8 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import gym.Client.Classes.ActividadObject;
-import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Classes.EmpresaObject;
-import gym.Client.Classes.PagoObject;
-import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
+import gym.Client.Classes.*;
 import gym.Client.Controllers.LoginController;
-import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
-import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,7 +24,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -41,6 +34,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdministrarCentroDeudaController implements Initializable {
+
+    @FXML
+    private VBox DeudaEmpCentVbox;
 
     @FXML
     private Label liquidacionTitleLabel;
@@ -65,12 +61,16 @@ public class AdministrarCentroDeudaController implements Initializable {
 
     public EmpresaObject empresa;
 
+    public CentroDeportivoObject centro;
+
     private MyListener myListener;
+
+    private List<PagoEmpCentObject> misEmpresas = new ArrayList<>();
 
     @FXML
     private Label todasLasActividadesLabel;
 
-    private List<EmpresaObject> misEmpresas = new ArrayList<>();
+
 
     @FXML
     void onBusquedaEmpleadoKeyReleased(KeyEvent keyEvent) {
@@ -126,31 +126,31 @@ public class AdministrarCentroDeudaController implements Initializable {
 
     }
 
-    /*
-    private List<PagoObject> todasMisEmpresas() {
-        List<PagoObject> listaMisEmppresas = new ArrayList<>();
-        PagoObject pagoObject;
 
-        String empleado = "";
+    private List<PagoEmpCentObject> todasMisEmpresas() {
+        List<PagoEmpCentObject> listaMisEmpresas = new ArrayList<>();
+        PagoEmpCentObject pagoEmpCentObject;
+
+        String pago = "";
         try {
             HttpResponse<String> apiResponse = null;
 
-            //doreccion http???
-            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadosEmpresa/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            //ver direccion http
+            apiResponse = Unirest.get("http://localhost:8987/api/pagos/allPagos/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
             System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-            listaMisEmppresas = mapper.readValue(json, new TypeReference<List<PagoObject>>() {});
+            listaMisEmpresas = mapper.readValue(json, new TypeReference<List<PagoEmpCentObject>>() {});
 
-            System.out.println(empleado);
-            //System.out.println("Lista mis empleados " + listaMisEmpleados);
+            System.out.println(pago);
+
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        return listaMisEmppresas;
+        return listaMisEmpresas;
     }
 
     public void deudaEmpresa() {
@@ -171,12 +171,12 @@ public class AdministrarCentroDeudaController implements Initializable {
             }
         };
 
-        System.out.println("entro datos AdministrarCentro");
+        System.out.println("hola");
 
         int column = 0;
         int row = 1;
         try{
-            for(PagoObject pago : misEmpresas) {
+            for(PagoEmpCentObject pago : misEmpresas) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym.Client/nuevo/Admin/DeudaEmpCentPane.fxml"));
                 System.out.println("Carga FXMLLoader");
@@ -201,6 +201,6 @@ public class AdministrarCentroDeudaController implements Initializable {
         }
     }
 
-     */
+
 
 }

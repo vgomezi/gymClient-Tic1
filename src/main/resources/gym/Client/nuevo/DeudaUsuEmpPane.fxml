@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="DeudaEmpCentVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onDeudaPaneClick" prefHeight="52.0" prefWidth="970.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.DeudaEmpCentPaneController">
+<VBox fx:id="DeudaEmpCentVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onDeudaPaneClick" prefHeight="52.0" prefWidth="970.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.DeudaUsuEmpPaneController">
    <children>
       <HBox alignment="CENTER" prefHeight="32.0" prefWidth="480.0">
          <children>

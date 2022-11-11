@@ -1,23 +1,23 @@
 package gym.Client.Classes;
 
-public class PagoObject {
+public class PagoUsuEmpObject {
     private String empresaMailPago;
 
 
-    private String centroMailPago;
+    private String empleadoMailPago;
 
     private Integer monto;
 
     private EmpresaObject empresa;
 
-    private CentroDeportivoObject centroDeportivo;
+    private EmpleadoObject empleado;
 
-    public PagoObject() {
+    public PagoUsuEmpObject() {
         }
 
-    public PagoObject(String empresaMailPago, String centroMailPago, Integer monto) {
+    public PagoUsuEmpObject(String empresaMailPago, String empleadoMailPago, Integer monto) {
             this.empresaMailPago = empresaMailPago;
-            this.centroMailPago = centroMailPago;
+            this.empleadoMailPago = empleadoMailPago;
             this.monto = monto;
             }
 
@@ -29,12 +29,12 @@ public class PagoObject {
         this.empresaMailPago = empresaMailPago;
     }
 
-    public String getCentroMailPago() {
-        return centroMailPago;
+    public String getEmpleadoMailPago() {
+        return empleadoMailPago;
     }
 
-    public void setCentroMailPago(String centroMailPago) {
-        this.centroMailPago = centroMailPago;
+    public void setEmpleadoMailPago(String empleadoMailPago) {
+        this.empleadoMailPago = empleadoMailPago;
     }
 
     public Integer getMonto() {
@@ -53,11 +53,11 @@ public class PagoObject {
         this.empresa = empresa;
     }
 
-    public CentroDeportivoObject getCentroDeportivo() {
-        return centroDeportivo;
+    public EmpleadoObject getEmpleado() {
+        return empleado;
     }
 
-    public void setCentroDeportivo(CentroDeportivoObject centroDeportivo) {
-        this.centroDeportivo = centroDeportivo;
+    public void setEmpleado(EmpleadoObject empleado) {
+        this.empleado = empleado;
     }
 }

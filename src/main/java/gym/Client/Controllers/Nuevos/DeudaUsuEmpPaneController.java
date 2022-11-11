@@ -1,13 +1,14 @@
 package gym.Client.Controllers.Nuevos;
 
 import gym.Client.Classes.PagoEmpCentObject;
+import gym.Client.Classes.PagoUsuEmpObject;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
-public class DeudaEmpCentPaneController {
+public class DeudaUsuEmpPaneController {
 
 
     @FXML
@@ -21,20 +22,20 @@ public class DeudaEmpCentPaneController {
 
     private MyListener myListener;
 
-    private PagoEmpCentObject pago;
+    private PagoUsuEmpObject pago;
 
     @FXML
     void onDeudaPaneClick(MouseEvent mouseEvent) {
 
     }
 
-    public void setearDatos(PagoEmpCentObject pagoEmpCentObject, MyListener myListener) {
+    public void setearDatos(PagoUsuEmpObject pagoUsuEmpObject, MyListener myListener) {
         this.myListener = myListener;
-        this.pago = pagoEmpCentObject;
+        this.pago = pagoUsuEmpObject;
 
-        nombreLabel.setText("EMPRESA" + String.valueOf(pagoEmpCentObject.getEmpresa().getNombre()));
-        mailLabel.setText("MAIL: " + String.valueOf(pagoEmpCentObject.getEmpresaMailPago()));
-        deudaLabel.setText("DEUDA: " + String.valueOf(pagoEmpCentObject.getMonto()));
+        nombreLabel.setText("USUARIO" + String.valueOf(pagoUsuEmpObject.getEmpleado().getNombre()));
+        mailLabel.setText("MAIL: " + String.valueOf(pagoUsuEmpObject.getEmpleadoMailPago()));
+        deudaLabel.setText("DEUDA: " + String.valueOf(pagoUsuEmpObject.getMonto()));
 
 
     }
