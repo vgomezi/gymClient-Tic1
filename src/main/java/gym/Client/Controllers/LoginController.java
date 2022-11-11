@@ -176,6 +176,7 @@ public class LoginController {
 
                                     MainCentroRegistrarIngresoUsuarioController mainCentroRegistrarIngresoUsuarioController = fxmlLoader.getController();
                                     mainCentroRegistrarIngresoUsuarioController.datosCentro(correoElectronico);
+                                    mainCentroRegistrarIngresoUsuarioController.actividadesProximasCentro();
                                     mainCentroRegistrarIngresoUsuarioController.actividadesCentro();
 
 

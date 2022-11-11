@@ -10,6 +10,7 @@ import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.LoginController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -103,6 +105,9 @@ public class MainCentroRegistrarIngresoUsuarioController {
     public TextField mailUsuarioDisplay;
 
     @FXML
+    private HBox proximasActividadesLayout;
+
+    @FXML
     public Button registrarIngresoUsuarioBoton;
 
     @FXML
@@ -116,7 +121,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     private MyListener myListener;
 
-    private List<ActividadObject> todasLasActividades = new ArrayList<>();
+    private List<ActividadObject> todasLasActividades;
 
     //Poner en lugar de anadidas recientemente las proximas actividades que estan por ocurrir, de forma que sea más
     //fácil encontrarlas
@@ -225,6 +230,77 @@ public class MainCentroRegistrarIngresoUsuarioController {
             System.out.println("Error: " + e);
         }
         return listaActividades;
+    }
+
+    private List<ActividadObject> proximasActividadesCentro() {
+        List<ActividadObject> listaActividades = new ArrayList<>();
+        ActividadObject actividadObject;
+
+        String actividad = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/proximasActividadesCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Logro json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+
+            //System.out.println(actividad);
+            System.out.println("Lista actividades Proximas Actividades " /*+ listaActividades*/);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaActividades;
+    }
+
+    public void actividadesProximasCentro() {
+        if (proximasActividades.isEmpty()) {
+            System.out.println("entro anadidosreciente if");
+            proximasActividades.addAll(proximasActividadesCentro());
+        }
+
+        if(proximasActividades.size() > 0) {
+            //desplegarInfoActividadSeleccionada(misActividades.get(0));
+            this.myListener = new MyListener() {
+
+
+                @Override
+                public void onClickActividad(ActividadObject actividadObject) {
+                    //desplegarInfoActividadSeleccionada(actividadObject);
+                }
+
+                @Override
+                public void onClickUsuario(EmpleadoObject empleadoObject) {
+
+                }
+            };
+        }
+
+        //System.out.println(anadidosRecienteLista + "anadidos reciente lista");
+        System.out.println("entro initialize actividadRecienteScrollController");
+
+        try {
+            for (ActividadObject proximasActividade : proximasActividades) {
+                //System.out.println("tamaño i = " + anadidosRecienteLista.size());
+                System.out.println("Entro try");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadReciente.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                HBox anadidaRecienteBox = fxmlLoader.load();
+                ActividadRecienteController actividadRecienteController = fxmlLoader.getController();
+
+                actividadRecienteController.obtenerDatos(proximasActividade, myListener);
+
+                this.proximasActividadesLayout.getChildren().add(anadidaRecienteBox);
+            }
+        } catch (Exception e) {
+            System.out.println("Error cargando actividades proximas centro");
+        }
     }
 
     public void actividadesCentro() {
