@@ -194,6 +194,11 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             telefonoTextField.setText(empleadoObject.getTelefono());
             actualizarUsuarioBoton.setVisible(true);
             eliminarUsuarioBoton.setVisible(true);
+            nombreTextField.setVisible(true);
+            apellidoTextField.setVisible(true);
+            saldoTextField.setVisible(true);
+            deudaTextField.setVisible(true);
+            telefonoTextField.setVisible(true);
         } else {
             nombreTextField.clear();
             apellidoTextField.clear();
@@ -204,6 +209,11 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             imagenUsuarioDisplay.setImage(null);
             actualizarUsuarioBoton.setVisible(false);
             eliminarUsuarioBoton.setVisible(false);
+            nombreTextField.setVisible(false);
+            apellidoTextField.setVisible(false);
+            saldoTextField.setVisible(false);
+            deudaTextField.setVisible(false);
+            telefonoTextField.setVisible(false);
 
         }
         empleadoSeleccionadoVBox.setStyle("-fx-background-color : #9AC8F5;" +

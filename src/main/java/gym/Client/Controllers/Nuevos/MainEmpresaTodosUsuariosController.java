@@ -107,6 +107,9 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     private BorderPane pantallaMainUsuario;
 
     @FXML
+    private TextField busquedaEmpleadoTextField;
+
+    @FXML
     private TextField telefonoRegistroEmpleado;
 
     @FXML
@@ -139,6 +142,8 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     public EmpresaObject empresa;
 
     private List<EmpleadoObject> misEmpleados = new ArrayList<>();
+
+    private List<EmpleadoObject> empleadosLike;
 
     public void datosEmpresa(String correoElectronico) {
         EmpresaObject empresaObject = null;
@@ -217,41 +222,96 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
     }
 
-    @FXML
-    void onBusquedaEmpleadoKeyReleased(KeyEvent keyEvent) {
+    private List<EmpleadoObject> misEmpleadosLike(String like) {
+        List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
+        EmpleadoObject empleadoObject;
 
+        String empleado = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios//similarEmpleado/" + empresa.getMail() + "/" + like).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaMisEmpleados;
     }
 
     @FXML
-    void onMouseClickedLogOut(MouseEvent mouseEvent) {
-        Node source = (Node) mouseEvent.getSource();
-        Stage stage1 = (Stage) source.getScene().getWindow();
-        stage1.close();
+    void onBusquedaEmpleadoKeyReleased(KeyEvent keyEvent) {
 
-        try {
+        this.myListener = new MyListener() {
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {}
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/Login.fxml"));
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {}
+        };
 
-            Stage stage = new Stage();
+        if (busquedaEmpleadoTextField.getText().isEmpty()) {
+            todasLasActividadesGridPane = new GridPane();
+            todosLosUsuariosScroll.setContent(todasLasActividadesGridPane);
+            int column = 0;
+            int row = 1;
+            try{
+                for(EmpleadoObject empleado : misEmpleados) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    System.out.println("Carga FXMLLoader");
 
-            stage.setTitle("Login");
-            stage.setIconified(false);
-            stage.setResizable(false);
-            stage.getIcons().add(new Image("FitnessIcon.png"));
-            stage.setScene(new Scene(root1));
-            stage.show();
+                    VBox usuarioEmpresaVbox = fxmlLoader.load();
+                    UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
 
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    System.exit(0);
+                    usuarioEmpresaController.setearDatos(empleado, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasActividadesGridPane.add(usuarioEmpresaVbox, column++, row);
+                    GridPane.setMargin(usuarioEmpresaVbox, new Insets(10));
+
                 }
-            });
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
 
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-            System.out.println("Error");
+            }
+        } else {
+            todasLasActividadesGridPane = new GridPane();
+            todosLosUsuariosScroll.setContent(todasLasActividadesGridPane);
+            empleadosLike = misEmpleadosLike(busquedaEmpleadoTextField.getText());
+            int column = 0;
+            int row = 1;
+            try{
+                for(EmpleadoObject empleado : empleadosLike) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox usuarioEmpresaVbox = fxmlLoader.load();
+                    UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
+
+                    usuarioEmpresaController.setearDatos(empleado, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasActividadesGridPane.add(usuarioEmpresaVbox, column++, row);
+                    GridPane.setMargin(usuarioEmpresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
         }
     }
 
@@ -399,18 +459,45 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
         }
     }
 
-    public String getEmpresaLogInMail() {
-        return empresaLogInMail;
-    }
+    @FXML
+    void onMouseClickedLogOut(MouseEvent mouseEvent) {
+        Node source = (Node) mouseEvent.getSource();
+        Stage stage1 = (Stage) source.getScene().getWindow();
+        stage1.close();
 
-    public void setEmpresaLogInMail(String empresaLogInMail) {
-        this.empresaLogInMail = empresaLogInMail;
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/Login.fxml"));
+
+            Stage stage = new Stage();
+
+            stage.setTitle("Login");
+            stage.setIconified(false);
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("FitnessIcon.png"));
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    System.exit(0);
+                }
+            });
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image imagen = new Image("/imagen/usuariodefault.png");
         imagenUsuarioRegistro.setImage(imagen);
+        usuarioSeleccionadoVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
     }
 
     @FXML
@@ -460,6 +547,14 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
         Image toAdd = SwingFXUtils.toFXImage(bImage, null);
         return toAdd;
+    }
+
+    public String getEmpresaLogInMail() {
+        return empresaLogInMail;
+    }
+
+    public void setEmpresaLogInMail(String empresaLogInMail) {
+        this.empresaLogInMail = empresaLogInMail;
     }
 
 
