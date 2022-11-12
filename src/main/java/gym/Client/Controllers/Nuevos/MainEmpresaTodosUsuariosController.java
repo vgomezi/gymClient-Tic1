@@ -14,10 +14,7 @@ import gym.Client.Classes.EmpresaObject;
 import gym.Client.Classes.UserLoginObject;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.LoginController;
-import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,7 +25,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -155,7 +155,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correoElectronico).asObject(String.class);
             empresa = apiResponse.getBody();
             System.out.println("Imprimo empresa");
-            System.out.println(empresa);
+            //System.out.println(empresa);
 
 
             if (!empresa.isBlank()) {
@@ -163,7 +163,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
                 System.out.println("Entro if empresa");
                 empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
                 this.empresa = empresaObject;
-                System.out.println(empresaObject);
+                //System.out.println(empresaObject);
             }
             System.out.println("Try obtener empresa hecho");
         } catch (Exception e) {
@@ -556,72 +556,5 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     public void setEmpresaLogInMail(String empresaLogInMail) {
         this.empresaLogInMail = empresaLogInMail;
     }
-
-
-    /*
-    * System.out.println(usuarioEmpresaCrearUsuario);
-        String nombre = nombreText.getText();
-        String apellido = apellidoText.getText();
-        String email = emailText.getText();
-        String telefono = telefonoText.getText();
-        String contrasena = contrasenaText.getText();
-        String imagen = registrarEmpleadoAction(event);
-
-        if (!nombre.isEmpty() && !apellido.isEmpty() && !email.isEmpty() && !telefono.isEmpty() && !contrasena.isEmpty()) {
-
-            try {
-                String json = "";
-                String json2 = "";
-
-                try {
-                    ObjectMapper mapper = new ObjectMapper();
-                    ObjectMapper mapper2 = new ObjectMapper();
-                    UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Usuario");
-
-                    String empresa  = "";
-                    try {
-                        HttpResponse<String> apiResponse = null;
-
-                        apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + usuarioEmpresaCrearUsuario).asObject(String.class);
-                        empresa = apiResponse.getBody();
-                        System.out.println(empresa);
-
-                        if (!empresa.isBlank()) {
-                            ObjectMapper mapper1 = new ObjectMapper();
-                            EmpresaObject empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
-
-                            //Corregir imagen al fondo
-                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresaObject, Integer.parseInt(empresaObject.getBono()), Integer.parseInt(empresaObject.getBono()), 0, imagen);
-                            json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
-                            json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empleadoObject);
-                            System.out.println(json);
-                        }
-                    } catch (Exception e) {
-
-                    }
-                    //Cambiar definiciones obteniendo la empresa y sus datos
-                } catch (Exception ignored) {
-                }
-                HttpResponse<JsonNode> apiResponse = null;
-                apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
-                apiResponse = Unirest.post("http://localhost:8987/api/usuarios").header("Content-Type", "application/json").body(json2).asJson();
-                System.out.println("Hecho Usuario");
-
-                System.out.println("Hecho");
-                nombreText.clear();
-                apellidoText.clear();
-                emailText.clear();
-                telefonoText.clear();
-                contrasenaText.clear();
-                /*Node source = (Node) event.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
-
-} catch (Exception e) {
-        System.out.println(e.toString());
-        System.out.println("Error");
-
-        }
-    * */
 
 }
