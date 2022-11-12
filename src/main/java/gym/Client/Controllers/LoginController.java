@@ -2,9 +2,7 @@ package gym.Client.Controllers;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import gym.Client.Controllers.Admin.MainAdminController;
-import gym.Client.Controllers.Centro.MainCentroController;
-import gym.Client.Controllers.Empresa.MainEmpresaController;
+import gym.Client.Controllers.Nuevos.Admin.MainAdminController;
 import gym.Client.Controllers.Nuevos.MainCentroRegistrarIngresoUsuarioController;
 import gym.Client.Controllers.Nuevos.MainEmpresaTodosUsuariosController;
 import gym.Client.Controllers.Nuevos.MainUsuarioTodasActividadesController;
@@ -89,16 +87,19 @@ public class LoginController {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
                                     System.out.println("Entro Admin Login");
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/MainAdmin.fxml"));
+                                    //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/MainAdmin.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/admin/MainAdmin.fxml"));
 
                                     MainAdminController mainAdminController = fxmlLoader.getController();
-                                    mainAdminController.setUsuarioAdminMain(correoElectronico);
+                                    mainAdminController.datosAdmin();
 
                                     Stage stage = new Stage();
 
                                     stage.initModality(Modality.APPLICATION_MODAL);
 
                                     stage.setTitle("Login Admin");
+                                    stage.setIconified(false);
+                                    stage.setResizable(false);
                                     stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();

@@ -21,6 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -84,6 +85,12 @@ public class MainAdminRegistrarEmpresa {
     @FXML
     private Label todasLasEmpresasTitleLabel;
 
+    public void datosAdmin() {
+        nombreAdministradorLabel.setText("ADMINISTRADOR");
+        Image imageView = new Image("/imagen/imagenadministrador.png");
+        imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
+    }
+
     @FXML
     void onBusquedaKeyReleased(KeyEvent event) {
 
@@ -138,8 +145,7 @@ public class MainAdminRegistrarEmpresa {
             Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarEmpresa.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarEmpresa.fxml"));
 
             AdministrarEmpresaController administrarEmpresaController = fxmlLoader.getController();
-            System.out.println(empresa.getMail());
-            administrarEmpresaController.datosEmpresa(empresa.getMail());
+            administrarEmpresaController.datosAdmin();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 

@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
 
 
 @Controller
-public class MainAdminController {
+public class MainAdministradorController {
 
     public String usuarioAdminMain;
 

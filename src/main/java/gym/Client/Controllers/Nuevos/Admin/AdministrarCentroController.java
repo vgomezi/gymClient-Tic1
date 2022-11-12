@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -88,6 +89,12 @@ public class AdministrarCentroController {
 
     private File fileImagen;
 
+    public void datosAdmin() {
+        nombreAdministradorLabel.setText("ADMINISTRADOR");
+        Image imageView = new Image("/imagen/imagenadministrador.png");
+        imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
+    }
+
     @FXML
     void onBusquedaKeyReleased(KeyEvent event) {
 
@@ -129,11 +136,6 @@ public class AdministrarCentroController {
     }
 
     public CentroDeportivoObject centro;
-
-    public void datosCentro(String correoElectronico) {
-        //fijarse main usuarios todas actividades
-
-    }
 
     @FXML
     void onAdministrarCentroLabelClick(MouseEvent event) {

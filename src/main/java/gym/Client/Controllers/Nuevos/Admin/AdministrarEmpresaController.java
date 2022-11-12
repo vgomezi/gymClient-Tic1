@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -79,6 +80,12 @@ public class AdministrarEmpresaController {
 
     @FXML
     private Label todasLasEmpresasTitleLabel;
+
+    public void datosAdmin() {
+        nombreAdministradorLabel.setText("ADMINISTRADOR");
+        Image imageView = new Image("/imagen/imagenadministrador.png");
+        imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
+    }
 
     @FXML
     void onBusquedaKeyReleased(KeyEvent event) {
@@ -141,7 +148,7 @@ public class AdministrarEmpresaController {
 
             MainAdminRegistrarEmpresa mainAdminRegistrarEmpresa = fxmlLoader.getController();
             System.out.println(empresa.getMail());
-            mainAdminRegistrarEmpresa.datosEmpresa(empresa.getMail());
+            mainAdminRegistrarEmpresa.datosAdmin();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 

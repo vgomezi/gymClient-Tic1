@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="pantallaMainUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.Admin.MainAdminController">
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="184.0" text="SENSE FIT" textAlignment="CENTER">
+                    <font>
+                        <Font name="Modern No. 20" size="30.0" />
+                    </font>
+                </Label>
+                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" />
+                <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="273.0" spacing="20.0">
+                    <children>
+                        <Label fx:id="logOutLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" onMouseClicked="#onMouseClickedLogOut" prefHeight="46.0" prefWidth="96.0" text="LOG OUT" textAlignment="RIGHT" textOverrun="CLIP">
+                            <font>
+                                <Font name="Baskerville Old Face" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="5.0" right="20.0" top="5.0" />
+                    </HBox.margin>
+                </HBox>
+            </children>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefHeight="560.0" prefWidth="205.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Circle fx:id="imagenAdministradorCirculo" radius="74.0" stroke="BLACK" strokeType="INSIDE" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="120.0" prefWidth="206.0">
+                    <children>
+                        <Label fx:id="nombreAdministradorLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="200.0" text="NOMBRE" textAlignment="RIGHT" textOverrun="CLIP">
+                            <font>
+                                <Font name="Baskerville Old Face" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox alignment="TOP_CENTER" prefHeight="283.0" prefWidth="206.0">
+                    <children>
+                        <Label fx:id="todosLosCentrosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodosLosCentrosLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS LOS CENTROS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                            <font>
+                                <Font name="Baskerville Old Face" size="18.0" />
+                            </font>
+                        </Label>
+                  <Label fx:id="administrarCentrosLabel" alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" onMouseClicked="#onAdministrarCentroLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR CENTRO" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="todasLasEmpresasLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasEmpresasLabelClick" prefHeight="50.0" prefWidth="205.0" text="TODAS LAS EMPRESAS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="administrarEmpresasLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarEmpresasLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR EMPRESAS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox prefHeight="599.0" prefWidth="708.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+                <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER" prefHeight="346.0" prefWidth="974.0" spacing="25.0">
+               <children>
+                  <VBox prefHeight="395.0" prefWidth="254.0">
+                     <children>
+                        <Label fx:id="cantidadEmpresasLabel" alignment="CENTER" prefHeight="192.0" prefWidth="254.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="64.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="130.0" prefWidth="285.0" text="EMPRESAS REGISTRADAS" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="395.0" prefWidth="254.0">
+                     <children>
+                        <PieChart fx:id="usuariosActivosChart" legendVisible="false" prefHeight="188.0" prefWidth="254.0" />
+                        <Label prefHeight="130.0" prefWidth="285.0" text="USUARIOS ACTIVOS" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="395.0" prefWidth="254.0">
+                     <children>
+                        <Label fx:id="cantidadCentrosLabel" alignment="CENTER" prefHeight="192.0" prefWidth="254.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="64.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="130.0" prefWidth="285.0" text="CENTROS REGISTRADOS" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER" prefHeight="195.0" prefWidth="974.0" spacing="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="195.0" prefWidth="254.0">
+                     <children>
+                        <TextField fx:id="crearTipoTextField" prefHeight="36.0" prefWidth="254.0" style="-fx-background-radius: 15;" />
+                        <AnchorPane prefHeight="66.0" prefWidth="254.0" />
+                        <Button fx:id="crearTipoButton" mnemonicParsing="false" onAction="#onCrearTipoButtonClick" prefHeight="33.0" prefWidth="88.0" stylesheets="/css/style.css" text="CREAR" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Button>
+                     </children>
+                  </VBox>
+                  <ScrollPane fx:id="tiposActividadScroll" prefHeight="186.0" prefWidth="642.0" styleClass="transparent" stylesheets="/css/style.css">
+                     <content>
+                        <GridPane fx:id="tiposActividadGridPane">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+            </HBox>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>
