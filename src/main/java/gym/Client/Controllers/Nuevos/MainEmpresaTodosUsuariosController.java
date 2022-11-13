@@ -250,7 +250,10 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             public void onClickActividad(ActividadObject actividadObject) {}
 
             @Override
-            public void onClickUsuario(EmpleadoObject empleadoObject) {}
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
+                usuarioSeleccionadoVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+            }
         };
 
         if (busquedaEmpleadoTextField.getText().isEmpty()) {
@@ -333,56 +336,77 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
         if (!nombre.isEmpty() && !apellido.isEmpty() && !email.isEmpty() && !telefono.isEmpty() && !contrasena.isEmpty()) {
             try {
-                String json = "";
-                String json2 = "";
+                HttpResponse<String> apiResponse1 = null;
 
-                try {
-                    ObjectMapper mapper = new ObjectMapper();
-                    ObjectMapper mapper2 = new ObjectMapper();
-                    UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Usuario");
+                apiResponse1 = Unirest.get("http://localhost:8987/api/usuarios//empleadoMail/" + email).header("Content-Type", "application/json").asObject(String.class);
+                String existeEmpleadoMail = apiResponse1.getBody();
 
-                    String empresa = "";
+                if (existeEmpleadoMail.isEmpty()) {
+                    System.out.println("No existe");
                     try {
-                        HttpResponse<String> apiResponse = null;
+                        String json = "";
+                        String json2 = "";
 
-                        apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + empresaLogInMail).asObject(String.class);
-                        empresa = apiResponse.getBody();
-                        System.out.println(empresa);
+                        try {
+                            ObjectMapper mapper = new ObjectMapper();
+                            ObjectMapper mapper2 = new ObjectMapper();
+                            UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Usuario");
 
-                        if (!empresa.isBlank()) {
-                            ObjectMapper mapper1 = new ObjectMapper();
-                            EmpresaObject empresaObject = mapper1.readValue(apiResponse.getBody(), EmpresaObject.class);
+                            //Intentar cambiar por objeto empresa ya en este lugar
+                            //String empresa = "";
+                            //try {
+                            //    HttpResponse<String> apiResponse = null;
 
-                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresaObject, Integer.parseInt(empresaObject.getBono()), Integer.parseInt(empresaObject.getBono()), 0, imagen);
+                            //    apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + empresaLogInMail).asObject(String.class);
+                            //    empresa = apiResponse.getBody();
+                            //    System.out.println(empresa);
+
+                            //    if (!empresa.isBlank()) {
+                            //        ObjectMapper mapper1 = new ObjectMapper();
+                            //        EmpresaObject empresaObject = mapper1.readValue(apiResponse.getBody(), EmpresaObject.class);
+
+                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresa, Integer.parseInt(empresa.getBono()), Integer.parseInt(empresa.getBono()), 0, imagen);
                             json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                             json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empleadoObject);
-                            System.out.println(json);
+                            //System.out.println(json);
+                                //}
+                            //} catch (Exception e) {
+
+                            //}
+                            //Cambiar definiciones obteniendo la empresa y sus datos
+                        } catch (Exception ignored) {
                         }
-                    } catch (Exception e) {
+                        HttpResponse<JsonNode> apiResponse = null;
+                        apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
+                        apiResponse = Unirest.post("http://localhost:8987/api/usuarios").header("Content-Type", "application/json").body(json2).asJson();
+                        System.out.println("Hecho Usuario");
 
+                        System.out.println("Hecho");
+                        nombreRegistroEmpleado.clear();
+                        apellidoRegistroEmpleado.clear();
+                        emailRegistroEmpleado.clear();
+                        telefonoRegistroEmpleado.clear();
+                        contrasenaRegistroEmpleado.clear();
+                        Image image = new Image("/imagen/usuariodefault.png");
+                        imagenUsuarioRegistro.setImage(image);
+                        empleadosEmpresa();
+                        usuarioSeleccionadoVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+                    } catch (UnirestException e) {
+                        throw new RuntimeException(e);
                     }
-                    //Cambiar definiciones obteniendo la empresa y sus datos
-                } catch (Exception ignored) {
+                } else {
+                    usuarioSeleccionadoVBox.setStyle("-fx-background-color : #f4f723;" +
+                            "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+                    emailRegistroEmpleado.clear();
                 }
-                HttpResponse<JsonNode> apiResponse = null;
-                apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
-                apiResponse = Unirest.post("http://localhost:8987/api/usuarios").header("Content-Type", "application/json").body(json2).asJson();
-                System.out.println("Hecho Usuario");
+            } catch (Exception e) {
 
-                System.out.println("Hecho");
-                nombreRegistroEmpleado.clear();
-                apellidoRegistroEmpleado.clear();
-                emailRegistroEmpleado.clear();
-                telefonoRegistroEmpleado.clear();
-                contrasenaRegistroEmpleado.clear();
-                Image image = new Image("/imagen/usuariodefault.png");
-                imagenUsuarioRegistro.setImage(image);
-                empleadosEmpresa();
-            } catch (UnirestException e) {
-                throw new RuntimeException(e);
             }
+
         } else {
-            //Agregar label
+            usuarioSeleccionadoVBox.setStyle("-fx-background-color : #E3350E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         }
     }
 
@@ -400,7 +424,6 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
 
             System.out.println(empleado);
@@ -425,7 +448,8 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
             @Override
             public void onClickUsuario(EmpleadoObject empleadoObject) {
-
+                usuarioSeleccionadoVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
             }
         };
 

@@ -86,6 +86,9 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     @FXML
     private Circle empresaImagenCircle;
 
+    @FXML
+    private TextField busquedaEmpleadoTextField;
+
 
     @FXML
     public ChoiceBox deudoresChoiceBox;
@@ -117,6 +120,8 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     private File fileImagen;
 
     private List<EmpleadoObject> misEmpleados = new ArrayList<>();
+
+    private List<EmpleadoObject> empleadosLike;
 
     public EmpresaObject empresa;
 
@@ -392,6 +397,8 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             } catch (Exception e) {
 
             }
+        } else {
+
         }
         misEmpleados.clear();
         empleadosEmpresa();
@@ -454,9 +461,97 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     }
 
+    private List<EmpleadoObject> misEmpleadosLike(String like) {
+        List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
+        EmpleadoObject empleadoObject;
+
+        String empleado = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios//similarEmpleado/" + empresa.getMail() + "/" + like).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaMisEmpleados;
+    }
+
     @FXML
     void onBusquedaEmpleadoReleased(KeyEvent event) {
+        this.myListener = new MyListener() {
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {}
 
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
+                desplegarEmpleadoSeleccionado(empleadoObject);
+            }
+        };
+
+        if (busquedaEmpleadoTextField.getText().isEmpty()) {
+            todosLosEmpleadosGridPane = new GridPane();
+            todosLosEmpleadosScroll.setContent(todosLosEmpleadosGridPane);
+            int column = 0;
+            int row = 1;
+            try{
+                for(EmpleadoObject empleado : misEmpleados) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox usuarioEmpresaVbox = fxmlLoader.load();
+                    UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
+
+                    usuarioEmpresaController.setearDatos(empleado, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todosLosEmpleadosGridPane.add(usuarioEmpresaVbox, column++, row);
+                    GridPane.setMargin(usuarioEmpresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+        } else {
+            todosLosEmpleadosGridPane = new GridPane();
+            todosLosEmpleadosScroll.setContent(todosLosEmpleadosGridPane);
+            empleadosLike = misEmpleadosLike(busquedaEmpleadoTextField.getText());
+            int column = 0;
+            int row = 1;
+            try{
+                for(EmpleadoObject empleado : empleadosLike) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox usuarioEmpresaVbox = fxmlLoader.load();
+                    UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
+
+                    usuarioEmpresaController.setearDatos(empleado, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todosLosEmpleadosGridPane.add(usuarioEmpresaVbox, column++, row);
+                    GridPane.setMargin(usuarioEmpresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+            }
+        }
     }
 
     @FXML
