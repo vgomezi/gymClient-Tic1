@@ -53,7 +53,6 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class CentroTodasActividadesController implements Initializable {
-    // implements Initializable
 
     @FXML
     public Label logOutLabel;

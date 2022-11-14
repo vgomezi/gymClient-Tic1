@@ -173,7 +173,7 @@
                <children>
                   <ScrollPane fx:id="todosLosEmpleadosScroll" prefHeight="326.0" prefWidth="687.0" styleClass="transparent" stylesheets="/css/style.css">
                      <content>
-                        <GridPane fx:id="todasLasActividadesGridPane" prefHeight="0.0" prefWidth="0.0">
+                        <GridPane fx:id="todosLosEmpleadosGridPane" prefHeight="0.0" prefWidth="0.0">
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>

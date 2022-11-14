@@ -12,7 +12,10 @@ import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.EmpresaObject;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.LoginController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -26,12 +29,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -46,6 +52,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -91,18 +99,10 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
 
     @FXML
-    public ChoiceBox deudoresChoiceBox;
+    public ChoiceBox<String> deudoresChoiceBox;
 
     @FXML
     public ScrollPane todosLosEmpleadosScroll;
-
-    ObservableList<String> tipoActividadChoiceBoxList = FXCollections.
-            observableArrayList("TODOS", "CON DEUDA");
-
-    @FXML
-    private void initialize() {
-        deudoresChoiceBox.setItems(tipoActividadChoiceBoxList);
-    }
 
     @FXML
     public Button actualizarUsuarioBoton;
@@ -135,7 +135,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correoElectronico).asObject(String.class);
             empresa = apiResponse.getBody();
             System.out.println("Imprimo empresa");
-            System.out.println(empresa);
+            //System.out.println(empresa);
 
 
             if (!empresa.isBlank()) {
@@ -143,7 +143,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                 System.out.println("Entro if empresa");
                 empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
                 this.empresa = empresaObject;
-                System.out.println(empresaObject);
+                //System.out.println(empresaObject);
             }
             System.out.println("Try obtener empresa hecho");
         } catch (Exception e) {
@@ -554,6 +554,104 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
         }
     }
 
+    public void inicializoChoiceBox() {
+        ObservableList<String> listaItems = FXCollections.observableArrayList();
+        listaItems.add("TODOS");
+        listaItems.add("DEUDORES");
+        deudoresChoiceBox.setItems(listaItems);
+        deudoresChoiceBox.setStyle("-fx-background-color : #FFFFFF;");
+        DropShadow dropShadow = new DropShadow(10, Color.valueOf("#c7c9c9"));
+        deudoresChoiceBox.setEffect(dropShadow);
+        deudoresChoiceBox.setValue("TODOS");
+
+        deudoresChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                filtrarDeudores(observable.getValue());
+            }
+        });
+    }
+
+    public void filtrarDeudores (String filtro) {
+        desplegarEmpleadoSeleccionado(null);
+        this.myListener = new MyListener() {
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {
+
+            }
+
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
+                desplegarEmpleadoSeleccionado(empleadoObject);
+            }
+        };
+        System.out.println(filtro);
+
+        if (filtro.equals("TODOS")) {
+            todosLosEmpleadosGridPane = new GridPane();
+            todosLosEmpleadosScroll.setContent(todosLosEmpleadosGridPane);
+            int column = 0;
+            int row = 1;
+            try{
+                for(EmpleadoObject empleado : misEmpleados) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox usuarioEmpresaVbox = fxmlLoader.load();
+                    UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
+
+                    usuarioEmpresaController.setearDatos(empleado, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todosLosEmpleadosGridPane.add(usuarioEmpresaVbox, column++, row);
+                    GridPane.setMargin(usuarioEmpresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel PARA FILTRO TODAS " + e);
+
+            }
+        } else {
+            todosLosEmpleadosGridPane = new GridPane();
+            todosLosEmpleadosScroll.setContent(todosLosEmpleadosGridPane);
+            System.out.println("Empleados con deuda");
+            int column = 0;
+            int row = 1;
+            try{
+                for(EmpleadoObject empleado : misEmpleados) {
+                    if (empleado.getDeuda() > 0) {
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                        System.out.println("Carga FXMLLoader");
+
+                        VBox usuarioEmpresaVbox = fxmlLoader.load();
+                        UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
+
+                        usuarioEmpresaController.setearDatos(empleado, myListener);
+
+                        if (column == 2) {
+                            column = 0;
+                            ++row;
+                        }
+
+                        todosLosEmpleadosGridPane.add(usuarioEmpresaVbox, column++, row);
+                        GridPane.setMargin(usuarioEmpresaVbox, new Insets(10));
+
+                    }
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+            }
+        }
+    }
+
+
+
     @FXML
     void onEliminarUsuarioButtonClick(ActionEvent event) {
         String mailUsuario = emailUsuarioLabel.getText();
@@ -575,6 +673,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("HOLA");
+        inicializoChoiceBox();
     }
 
     public String getEmpresaLogInMail() {
