@@ -452,7 +452,6 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
         todasLasActividadesGridPane = new GridPane();
         todosLosUsuariosScroll.setContent(todasLasActividadesGridPane);
         this.usuariosRecienteLayout.getChildren().clear();
-        //anadidosRecientementeUsuariosScroll.setContent(usuariosRecienteLayout);
         misEmpleados.clear();
         misEmpleados.addAll(todosMisEmpleados());
         misNuevosEmpleados.clear();
@@ -476,8 +475,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
         int column = 0;
         int row = 1;
         try{
-            for (int i = 0; i < misNuevosEmpleados.size(); i++) {
-                //System.out.println("tamaño i = " + anadidosRecienteLista.size());
+            for (EmpleadoObject misNuevosEmpleado : misNuevosEmpleados) {
                 System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresaNuevo.fxml"));
@@ -486,7 +484,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
                 HBox anadidaRecienteBox = fxmlLoader.load();
                 UsuarioEmpresaNuevoController usuarioEmpresaNuevoController = fxmlLoader.getController();
 
-                usuarioEmpresaNuevoController.obtenerDatos(misNuevosEmpleados.get(i), myListener);
+                usuarioEmpresaNuevoController.obtenerDatos(misNuevosEmpleado, myListener);
 
                 this.usuariosRecienteLayout.getChildren().add(anadidaRecienteBox);
             }
