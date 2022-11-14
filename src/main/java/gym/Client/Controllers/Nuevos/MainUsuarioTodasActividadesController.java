@@ -34,11 +34,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -374,6 +376,9 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 listaItems.add("TODAS");
                 tiposPantallaPrincipalChoiceBox.setItems(listaItems);
                 tiposPantallaPrincipalChoiceBox.setValue("TODAS");
+                tiposPantallaPrincipalChoiceBox.setStyle("-fx-background-color : #FFFFFF;");
+                DropShadow dropShadow = new DropShadow(10, Color.valueOf("#c7c9c9"));
+                tiposPantallaPrincipalChoiceBox.setEffect(dropShadow);
 
                 tiposPantallaPrincipalChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
                     @Override

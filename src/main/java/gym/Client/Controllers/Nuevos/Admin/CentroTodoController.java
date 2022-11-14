@@ -1,8 +1,6 @@
 package gym.Client.Controllers.Nuevos.Admin;
 
 import gym.Client.Classes.CentroDeportivoObject;
-import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -31,6 +31,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -38,6 +39,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -193,6 +195,10 @@ public class UsuarioMisActividadesController implements Initializable {
         listaItems.add("NUEVAS");
         filtroNuevasTodasActividades.setItems(listaItems);
         filtroNuevasTodasActividades.setValue("NUEVAS");
+        filtroNuevasTodasActividades.setStyle("-fx-background-color : #FFFFFF;");
+        DropShadow dropShadow = new DropShadow(10, Color.valueOf("#c7c9c9"));
+        filtroNuevasTodasActividades.setEffect(dropShadow);
+
 
         filtroNuevasTodasActividades.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
