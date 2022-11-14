@@ -1,11 +1,23 @@
 package gym.Client.Controllers.Nuevos.Admin;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Classes.EmpresaObject;
+import gym.Client.Classes.UserLoginObject;
 import gym.Client.Controllers.LoginController;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,13 +35,26 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.apache.commons.codec.binary.Base64;
 
-public class MainAdminRegistrarEmpresaController {
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class MainAdminRegistrarEmpresaController implements Initializable {
 
     @FXML
-    private VBox actividadSeleccionadaVBox;
+    private VBox empresaRegistroVBox;
 
     @FXML
     private Label administrarEmpresaLabel;
@@ -85,10 +110,81 @@ public class MainAdminRegistrarEmpresaController {
     @FXML
     private Label todasLasEmpresasTitleLabel;
 
+    private List<EmpresaObject> empresasList = new ArrayList<>();
+
+    private MyListenerEmpresa myListenerEmpresa;
+
+    private File fileImagen;
+
     public void datosAdmin() {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
         Image imageView = new Image("/imagen/imagenadministrador.png");
         imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
+    }
+
+    private List<EmpresaObject> todasLasEmpresas() {
+        List<EmpresaObject> listaEmpresas = new ArrayList<>();
+        EmpresaObject empresaObject;
+
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/empresas/allEmpresas").header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaEmpresas = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {});
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaEmpresas;
+    }
+
+    public void todasEmpresas() {
+        todasLasActividadesGridPane = new GridPane();
+        todasLasEmpresasScroll.setContent(todasLasActividadesGridPane);
+        empresasList.clear();
+        empresasList.addAll(todasLasEmpresas());
+
+        this.myListenerEmpresa = new MyListenerEmpresa() {
+            @Override
+            public void onClickEmpresa(EmpresaObject empresaObject) {
+                empresaRegistroVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+            }
+        };
+
+        System.out.println("entro datos MainAdminRegistrarCentro");
+
+        int column = 0;
+        int row = 1;
+        try{
+            for(EmpresaObject empresa : empresasList) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                VBox empresaVBox = fxmlLoader.load();
+                EmpresaTodaController empresaTodaController = fxmlLoader.getController();
+
+                empresaTodaController.setearDatos(empresa, myListenerEmpresa);
+
+                if (column == 2) {
+                    column = 0;
+                    ++row;
+                }
+
+                todasLasActividadesGridPane.add(empresaVBox, column++, row);
+                GridPane.setMargin(empresaVBox, new Insets(10));
+
+            }
+        } catch (Exception e){
+            System.out.println("Error creando panel " + e);
+
+        }
     }
 
     @FXML
@@ -133,11 +229,6 @@ public class MainAdminRegistrarEmpresaController {
 
     public EmpresaObject empresa;
 
-    public void datosEmpresa(String correoElectronico) {
-        //fijarse main usuarios todas actividades
-
-    }
-
     @FXML
     void onAdministrarEmpresaLabelClick(MouseEvent mouseEvent) {
         try {
@@ -166,8 +257,142 @@ public class MainAdminRegistrarEmpresaController {
 
     @FXML
     void onRegistrarEmpresaButtonClick(MouseEvent event) {
+        String nombre = nombreEmpresaRegistro.getText();
+        String email = emailEmpresaRegistro.getText();
+        String contrasena = contrasenaEmpresaRegistro.getText();
+        String bono = bonoEmpleadosRegistro.getText();
+        String imagen = null;
+        try {
+            imagen = codificarImagenRegistroUsuario(fileImagen);
+        } catch (Exception ignored) {
+
+        }
+
+        if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty() && !bono.isEmpty()) {
+            try {
+                HttpResponse<String> apiResponse1 = null;
+
+                apiResponse1 = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + email).header("Content-Type", "application/json").asObject(String.class);
+                String existeEmpresaMail = apiResponse1.getBody();
+
+                if (existeEmpresaMail.isEmpty()) {
+                    System.out.println("No existe");
+                    try {
+                        String json = "";
+                        String json2 = "";
+
+                        try {
+                            ObjectMapper mapper = new ObjectMapper();
+                            ObjectMapper mapper2 = new ObjectMapper();
+                            UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Empresa");
+                            EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, bono, email, imagen);
+                            json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
+                            json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empresaObject);
+
+                        } catch (Exception e) {
+
+                        }
+                        HttpResponse<JsonNode> apiResponse = null;
+                        apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
+                        apiResponse = Unirest.post("http://localhost:8987/api/empresas").header("Content-Type", "application/json").body(json2).asJson();
+
+                        System.out.println("Hecho Empresa");
+
+                        System.out.println("Hecho");
+
+                        nombreEmpresaRegistro.clear();
+                        bonoEmpleadosRegistro.clear();
+                        emailEmpresaRegistro.clear();
+                        contrasenaEmpresaRegistro.clear();
+                        Image image = new Image("/imagen/empresadefault.png");
+                        imagenEmpresaRegistro.setImage(image);
+                        todasEmpresas();
+                        empresaRegistroVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    empresaRegistroVBox.setStyle("-fx-background-color : #f4f723;" +
+                            "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+                    emailEmpresaRegistro.clear();
+
+                }
+            } catch (Exception e) {
+
+            }
+        } else {
+            empresaRegistroVBox.setStyle("-fx-background-color : #E3350E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+        }
 
     }
 
+
+
+
+
+    public void onImagenEmpresaRegistroMouseClick(MouseEvent mouseEvent) {
+        File file = tomarImagen(mouseEvent);
+        String base64 = codificarImagenRegistroUsuario(file);
+        Image imagen = decodificarImagen(base64);
+        imagenEmpresaRegistro.setImage(imagen);
+    }
+
+    public File tomarImagen (MouseEvent mouseEvent) {
+        File file = null;
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Elegir imagen centro");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("All images", "*.*"),
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG", "*.png")
+            );
+            file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
+            if (file != null) {
+                fileImagen = file;
+            }
+        } catch (Exception e) {
+            System.out.println("No se selecciono ningun archivo");
+        }
+        return file;
+    }
+
+    public String codificarImagenRegistroUsuario(File file) {
+        String base64String = null;
+        try {
+            System.out.println(file);
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            System.out.println("Convertí file en bytes");
+            base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
+            System.out.println("Converti bytes en string");
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return base64String;
+    }
+
+    public Image decodificarImagen(String imagen) {
+        byte[] imageDecoded = Base64.decodeBase64(imagen);
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+        BufferedImage bImage = null;
+        try {
+            bImage = ImageIO.read(bis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+        return toAdd;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Image imagen = new Image("/imagen/empresadefault.png");
+        imagenEmpresaRegistro.setImage(imagen);
+        empresaRegistroVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+    }
 }
 

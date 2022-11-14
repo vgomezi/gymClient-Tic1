@@ -97,24 +97,17 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
+            <VBox fx:id="empresaRegistroVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="25.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                  <TextField fx:id="nombreEmpresaRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE EMPRESA" />
-                  <ImageView fx:id="imagenEmpresaRegistro" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
-                  <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
-                     <children>
-                        <TextField fx:id="bonoEmpleadosRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="BONO EMPLEADOS" />
-                     </children></HBox>
-                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0">
-                     <children>
-                        <TextField fx:id="emailEmpresaRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="EMAIL EMPRESA" />
-                     </children>
-                  </HBox>
-                  <TextField fx:id="contrasenaEmpresaRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CONTRASEÑA EMPRESA" />
-                  <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0" />
-                  <Button fx:id="registrarEmpresaBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onRegistrarEmpresaButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
+                  <ImageView fx:id="imagenEmpresaRegistro" fitHeight="135.0" fitWidth="253.0" onMouseClicked="#onImagenEmpresaRegistroMouseClick" pickOnBounds="true" preserveRatio="true" />
+                  <TextField fx:id="nombreEmpresaRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE EMPRESA" style="-fx-background-radius: 15;" />
+                  <TextField fx:id="bonoEmpleadosRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="BONO EMPLEADOS" style="-fx-background-radius: 15;" />
+                  <TextField fx:id="emailEmpresaRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="EMAIL EMPRESA" style="-fx-background-radius: 15;" />
+                  <TextField fx:id="contrasenaEmpresaRegistro" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CONTRASEÑA EMPRESA" style="-fx-background-radius: 15;" />
+                  <HBox alignment="TOP_CENTER" prefHeight="12.0" prefWidth="254.0" />
+                  <Button fx:id="registrarEmpresaBoton" mnemonicParsing="false" onMouseClicked="#onRegistrarEmpresaButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
@@ -122,8 +115,11 @@
                   </Button>
                </children>
                <padding>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
             </VBox>
          </children>
         </VBox>

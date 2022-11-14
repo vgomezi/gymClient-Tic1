@@ -50,7 +50,7 @@ public class EmpresaTodaController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenEmpresa.setImage(toAdd);
         } else {
-            Image imageView = new Image("/imagen/centrodefault.png");
+            Image imageView = new Image("/imagen/empresadefault.png");
             imagenEmpresa.setImage(imageView);
         }
 

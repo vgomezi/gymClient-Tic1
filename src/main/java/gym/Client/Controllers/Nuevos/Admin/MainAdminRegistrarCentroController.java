@@ -268,15 +268,22 @@ public class MainAdminRegistrarCentroController implements Initializable {
     }
 
     public File tomarImagen (MouseEvent mouseEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Elegir imagen centro");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-        );
-        File file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
-        fileImagen = file;
+        File file = null;
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Elegir imagen centro");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("All images", "*.*"),
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG", "*.png")
+            );
+            file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
+            if (file != null) {
+                fileImagen = file;
+            }
+        } catch (Exception e) {
+            System.out.println("No se selecciono ningun archivo");
+        }
         return file;
     }
 
@@ -382,59 +389,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
                     "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         }
     }
-
-
-    /*
-    * String nombre = nombreText.getText();
-        String email = emailText.getText();
-        String contrasena = contrasenaText.getText();
-        String tipo = TipoActividadField.getText();
-        String imagen = registrarCentroAction(event);
-
-        if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
-            try {
-                String json = "";
-                String json2 = "";
-                String json3 = "";
-
-                try {
-                    ObjectMapper mapper = new ObjectMapper();
-                    ObjectMapper mapper2 = new ObjectMapper();
-                    ObjectMapper mapper3 = new ObjectMapper();
-                    UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Centro Deportivo");
-                    CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email, imagen);
-                    TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
-                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
-                    json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(centroDeportivoObject);
-                    json3 = mapper3.writerWithDefaultPrettyPrinter().writeValueAsString(tipoActividadObject);
-                    System.out.println(json);
-                    System.out.println(json3);
-                } catch (Exception ignored) {
-                }
-                HttpResponse<JsonNode> apiResponse = null;
-                apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
-                apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json2).asJson();
-                apiResponse = Unirest.post("http://localhost:8987/api/tipoactividad").header("Content-Type", "application/json").body(json3).asJson();
-                System.out.println("Hecho Centro Deportivo");
-
-                System.out.println("Hecho");
-
-                nombreText.clear();
-                emailText.clear();
-                contrasenaText.clear();
-                Node source = (Node) event.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
-
-            } catch (Exception e) {
-                System.out.println(e.toString());
-                System.out.println("Error");
-
-            }
-        }
-    *
-    * */
-
 
     public void onTodasLasEmpresasLabelClick(MouseEvent mouseEvent) {
     }

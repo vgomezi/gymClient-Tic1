@@ -415,15 +415,22 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     }
 
     public File tomarImagen (MouseEvent mouseEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Elegir imagen usuario");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-        );
-        File file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
-        fileImagen = file;
+        File file = null;
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Elegir imagen centro");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("All images", "*.*"),
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG", "*.png")
+            );
+            file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
+            if (file != null) {
+                fileImagen = file;
+            }
+        } catch (Exception e) {
+            System.out.println("No se selecciono ningun archivo");
+        }
         return file;
     }
 

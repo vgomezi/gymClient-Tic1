@@ -230,6 +230,7 @@ public class MainAdminController {
 
             MainAdminRegistrarEmpresaController mainAdminRegistrarEmpresaController = fxmlLoader.getController();
             mainAdminRegistrarEmpresaController.datosAdmin();
+            mainAdminRegistrarEmpresaController.todasEmpresas();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
