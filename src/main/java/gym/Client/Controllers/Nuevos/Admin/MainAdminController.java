@@ -5,10 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.TipoActividadObject;
 import gym.Client.Controllers.LoginController;
-import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -186,10 +184,11 @@ public class MainAdminController {
     void onAdministrarCentroLabelClick(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarCentro.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarCentro.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarCentroController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarCentro.fxml"));
 
             AdministrarCentroController administrarCentroController = fxmlLoader.getController();
             administrarCentroController.datosAdmin();
+            administrarCentroController.todosCentros();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -206,7 +205,7 @@ public class MainAdminController {
     void onAdministrarEmpresasLabelClick(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarEmpresa.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarEmpresa.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarEmpresa.fxml"));
 
             AdministrarEmpresaController administrarEmpresaController = fxmlLoader.getController();
             administrarEmpresaController.datosAdmin();
@@ -229,8 +228,8 @@ public class MainAdminController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(AdministrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarempresa.fxml"));
 
-            MainAdminRegistrarEmpresa mainAdminRegistrarEmpresa = fxmlLoader.getController();
-            mainAdminRegistrarEmpresa.datosAdmin();
+            MainAdminRegistrarEmpresaController mainAdminRegistrarEmpresaController = fxmlLoader.getController();
+            mainAdminRegistrarEmpresaController.datosAdmin();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -249,8 +248,9 @@ public class MainAdminController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(AdministrarCentroController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarCentro.fxml"));
 
-            MainAdminRegistrarCentro mainAdminRegistrarCentro = fxmlLoader.getController();
-            mainAdminRegistrarCentro.datosAdmin();
+            MainAdminRegistrarCentroController mainAdminRegistrarCentroController = fxmlLoader.getController();
+            mainAdminRegistrarCentroController.datosAdmin();
+            mainAdminRegistrarCentroController.todosCentros();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

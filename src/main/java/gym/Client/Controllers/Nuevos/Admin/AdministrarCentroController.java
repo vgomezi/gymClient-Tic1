@@ -1,5 +1,11 @@
 package gym.Client.Controllers.Nuevos.Admin;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Controllers.LoginController;
 import javafx.embed.swing.SwingFXUtils;
@@ -7,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,6 +40,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdministrarCentroController {
 
@@ -89,10 +98,78 @@ public class AdministrarCentroController {
 
     private File fileImagen;
 
+    private List<CentroDeportivoObject> centrosDeportivosList = new ArrayList<>();
+
+    private MyListenerCentro myListenerCentro;
+
     public void datosAdmin() {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
         Image imageView = new Image("/imagen/imagenadministrador.png");
         imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
+    }
+
+    private List<CentroDeportivoObject> todosLosCentros() {
+        List<CentroDeportivoObject> listaCentrosDeportivos = new ArrayList<>();
+        CentroDeportivoObject centroDeportivoObject;
+
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/centros").header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaCentrosDeportivos = mapper.readValue(json, new TypeReference<List<CentroDeportivoObject>>() {});
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaCentrosDeportivos;
+    }
+
+    public void todosCentros() {
+        todasLasActividadesGridPane = new GridPane();
+        todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
+        centrosDeportivosList.clear();
+        centrosDeportivosList.addAll(todosLosCentros());
+
+        this.myListenerCentro = new MyListenerCentro() {
+            @Override
+            public void onClickCentro(CentroDeportivoObject centroDeportivoObject) {
+
+            }
+        };
+
+        System.out.println("entro datos MainAdminRegistrarCentro");
+
+        int column = 0;
+        int row = 1;
+        try{
+            for(CentroDeportivoObject centro : centrosDeportivosList) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                VBox centroVBox = fxmlLoader.load();
+                CentroTodoController centroTodoController = fxmlLoader.getController();
+
+                centroTodoController.setearDatos(centro, myListenerCentro);
+
+                if (column == 2) {
+                    column = 0;
+                    ++row;
+                }
+
+                todasLasActividadesGridPane.add(centroVBox, column++, row);
+                GridPane.setMargin(centroVBox, new Insets(10));
+
+            }
+        } catch (Exception e){
+            System.out.println("Error creando panel " + e);
+
+        }
     }
 
     @FXML
@@ -148,9 +225,9 @@ public class AdministrarCentroController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(AdministrarCentroController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarCentro.fxml"));
 
-            MainAdminRegistrarCentro mainAdminRegistrarCentro = fxmlLoader.getController();
-            System.out.println(centro.getMail());
-            mainAdminRegistrarCentro.datosCentro(centro.getMail());
+            MainAdminRegistrarCentroController mainAdminRegistrarCentroController = fxmlLoader.getController();
+            mainAdminRegistrarCentroController.datosAdmin();
+            mainAdminRegistrarCentroController.todosCentros();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 

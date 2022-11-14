@@ -1,8 +1,8 @@
 package gym.Client.Controllers.Nuevos.Admin;
 
-import gym.Client.Classes.CentroDeportivoObject;
+
+import gym.Client.Classes.EmpresaObject;
 import gym.Client.Controllers.LoginController;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,31 +26,34 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class MainAdminRegistrarCentro {
+public class MainAdminRegistrarEmpresaController {
 
     @FXML
     private VBox actividadSeleccionadaVBox;
 
     @FXML
-    private Label administrarCentroLabel;
+    private Label administrarEmpresaLabel;
 
     @FXML
-    private Label anadidosRecientementeTitleLabel;
+    private Label anadidasRecientementeTitleLabel;
+
+    @FXML
+    private TextField bonoEmpleadosRegistro;
 
     @FXML
     private TextField busquedaTextField;
 
     @FXML
-    private HBox centrosRecientesLayout;
+    private TextField contrasenaEmpresaRegistro;
 
     @FXML
-    private TextField contrasenaCentroRegistro;
+    private TextField emailEmpresaRegistro;
 
     @FXML
-    private TextField emailCentroRegistro;
+    private HBox empresasRecientesLayout;
 
     @FXML
-    private ImageView imagenActividadRegistro;
+    private ImageView imagenEmpresaRegistro;
 
     @FXML
     private Circle imagenAdministradorCirculo;
@@ -62,25 +65,25 @@ public class MainAdminRegistrarCentro {
     private Label nombreAdministradorLabel;
 
     @FXML
-    private TextField nombreCentroRegistro;
+    private TextField nombreEmpresaRegistro;
 
     @FXML
     private BorderPane pantallaMainUsuario;
 
     @FXML
-    private Button registrarCentroBoton;
+    private Button registrarEmpresaBoton;
 
     @FXML
     private GridPane todasLasActividadesGridPane;
 
     @FXML
-    private Label todosLosCentrosLabel;
+    private Label todasLasEmpresasLabel;
 
     @FXML
-    private ScrollPane todosLosCentrosScroll;
+    private ScrollPane todasLasEmpresasScroll;
 
     @FXML
-    private Label todosLosCentrosTitleLabel;
+    private Label todasLasEmpresasTitleLabel;
 
     public void datosAdmin() {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
@@ -92,6 +95,7 @@ public class MainAdminRegistrarCentro {
     void onBusquedaKeyReleased(KeyEvent event) {
 
     }
+
 
     @FXML
     void onMouseClickedLogOut(MouseEvent mouseEvent) {
@@ -127,22 +131,21 @@ public class MainAdminRegistrarCentro {
 
     }
 
-    public CentroDeportivoObject centro;
+    public EmpresaObject empresa;
 
-    public void datosCentro(String correoElectronico) {
+    public void datosEmpresa(String correoElectronico) {
         //fijarse main usuarios todas actividades
 
     }
 
     @FXML
-    void onAdministrarCentroLabelClick(MouseEvent mouseEvent) {
+    void onAdministrarEmpresaLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarCentro.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarCentro.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarEmpresa.fxml"));
 
-            AdministrarCentroController administrarCentroController = fxmlLoader.getController();
-            System.out.println(centro.getMail());
-            administrarCentroController.datosAdmin();
+            AdministrarEmpresaController administrarEmpresaController = fxmlLoader.getController();
+            administrarEmpresaController.datosAdmin();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
@@ -153,18 +156,18 @@ public class MainAdminRegistrarCentro {
             System.out.println(ex.toString());
             System.out.println("Error");
         }
-    }
-
-    @FXML
-    void onTodosLosCentrosLabelClick(MouseEvent event) {
 
     }
 
     @FXML
-    void onRegistrarCentroButtonClick(ActionEvent event) {
+    void onTodasLasEmpresasLabelClick(MouseEvent event) {
 
     }
 
+    @FXML
+    void onRegistrarEmpresaButtonClick(MouseEvent event) {
+
+    }
 
 }
 

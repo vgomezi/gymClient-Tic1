@@ -2,7 +2,6 @@ package gym.Client.Controllers.Nuevos.Admin;
 
 import gym.Client.Classes.EmpresaObject;
 import gym.Client.Controllers.LoginController;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -146,9 +145,9 @@ public class AdministrarEmpresaController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root1 = (Parent) fxmlLoader.load(AdministrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarempresa.fxml"));
 
-            MainAdminRegistrarEmpresa mainAdminRegistrarEmpresa = fxmlLoader.getController();
+            MainAdminRegistrarEmpresaController mainAdminRegistrarEmpresaController = fxmlLoader.getController();
             System.out.println(empresa.getMail());
-            mainAdminRegistrarEmpresa.datosAdmin();
+            mainAdminRegistrarEmpresaController.datosAdmin();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
