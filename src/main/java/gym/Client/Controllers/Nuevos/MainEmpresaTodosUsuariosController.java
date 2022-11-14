@@ -13,7 +13,9 @@ import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.EmpresaObject;
 import gym.Client.Classes.UserLoginObject;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
+import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaNuevoController;
 import gym.Client.Controllers.LoginController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -52,6 +54,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -59,7 +62,7 @@ import java.util.ResourceBundle;
 public class MainEmpresaTodosUsuariosController implements Initializable {
 
     @FXML
-    private HBox actividadesRecienteLayout;
+    private HBox usuariosRecienteLayout;
 
     @FXML
     private Button administrarEmpresaBoton;
@@ -133,6 +136,9 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     @FXML
     private ScrollPane todosLosUsuariosScroll;
 
+    @FXML
+    private ScrollPane anadidosRecientementeUsuariosScroll;
+
     private String empresaLogInMail;
 
     private MyListener myListener;
@@ -142,6 +148,8 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     public EmpresaObject empresa;
 
     private List<EmpleadoObject> misEmpleados = new ArrayList<>();
+
+    private List<EmpleadoObject> misNuevosEmpleados = new ArrayList<>();
 
     private List<EmpleadoObject> empleadosLike;
 
@@ -352,28 +360,10 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
                             ObjectMapper mapper2 = new ObjectMapper();
                             UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Usuario");
 
-                            //Intentar cambiar por objeto empresa ya en este lugar
-                            //String empresa = "";
-                            //try {
-                            //    HttpResponse<String> apiResponse = null;
-
-                            //    apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + empresaLogInMail).asObject(String.class);
-                            //    empresa = apiResponse.getBody();
-                            //    System.out.println(empresa);
-
-                            //    if (!empresa.isBlank()) {
-                            //        ObjectMapper mapper1 = new ObjectMapper();
-                            //        EmpresaObject empresaObject = mapper1.readValue(apiResponse.getBody(), EmpresaObject.class);
-
-                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresa, Integer.parseInt(empresa.getBono()), Integer.parseInt(empresa.getBono()), 0, imagen);
+                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresa, Integer.parseInt(empresa.getBono()), new Date(), 0, imagen);
                             json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                             json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empleadoObject);
-                            //System.out.println(json);
-                                //}
-                            //} catch (Exception e) {
 
-                            //}
-                            //Cambiar definiciones obteniendo la empresa y sus datos
                         } catch (Exception ignored) {
                         }
                         HttpResponse<JsonNode> apiResponse = null;
@@ -410,6 +400,30 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
         }
     }
 
+     private List<EmpleadoObject> misEmpleadosNuevos() {
+        List<EmpleadoObject> listaMisNuevosEmpleados = new ArrayList<>();
+        EmpleadoObject empleadoObject;
+
+        String empleado = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/nuevosEmpleadosEmpresa/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaMisNuevosEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
+
+            System.out.println(empleado);
+            //System.out.println("Lista mis empleados " + listaMisEmpleados);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaMisNuevosEmpleados;
+    }
+
     private List<EmpleadoObject> todosMisEmpleados() {
         List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
         EmpleadoObject empleadoObject;
@@ -437,8 +451,12 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     public void empleadosEmpresa() {
         todasLasActividadesGridPane = new GridPane();
         todosLosUsuariosScroll.setContent(todasLasActividadesGridPane);
+        this.usuariosRecienteLayout.getChildren().clear();
+        //anadidosRecientementeUsuariosScroll.setContent(usuariosRecienteLayout);
         misEmpleados.clear();
         misEmpleados.addAll(todosMisEmpleados());
+        misNuevosEmpleados.clear();
+        misNuevosEmpleados.addAll(misEmpleadosNuevos());
 
         this.myListener = new MyListener() {
 
@@ -458,6 +476,21 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
         int column = 0;
         int row = 1;
         try{
+            for (int i = 0; i < misNuevosEmpleados.size(); i++) {
+                //System.out.println("tamaño i = " + anadidosRecienteLista.size());
+                System.out.println("Entro try");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresaNuevo.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                HBox anadidaRecienteBox = fxmlLoader.load();
+                UsuarioEmpresaNuevoController usuarioEmpresaNuevoController = fxmlLoader.getController();
+
+                usuarioEmpresaNuevoController.obtenerDatos(misNuevosEmpleados.get(i), myListener);
+
+                this.usuariosRecienteLayout.getChildren().add(anadidaRecienteBox);
+            }
+
             for(EmpleadoObject empleado : misEmpleados) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));

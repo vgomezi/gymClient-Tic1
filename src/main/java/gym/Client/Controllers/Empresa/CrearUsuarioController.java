@@ -32,6 +32,7 @@ import javafx.scene.control.TextField;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.Date;
 
 @Component
 public class CrearUsuarioController {
@@ -116,7 +117,7 @@ public class CrearUsuarioController {
                             EmpresaObject empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
 
                             //Corregir imagen al fondo
-                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresaObject, Integer.parseInt(empresaObject.getBono()), Integer.parseInt(empresaObject.getBono()), 0, imagen);
+                            EmpleadoObject empleadoObject = new EmpleadoObject(userLoginObject, nombre, apellido, email, telefono, empresaObject, Integer.parseInt(empresaObject.getBono()), new Date(), 0, imagen);
                             json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                             json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empleadoObject);
                             System.out.println(json);

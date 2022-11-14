@@ -1,5 +1,7 @@
 package gym.Client.Classes;
 
+import java.util.Date;
+
 public class EmpleadoObject {
 
     private UserLoginObject userLoginReference;
@@ -16,14 +18,13 @@ public class EmpleadoObject {
 
     private int saldoDisponible;
 
-    //Cambiar por date Creado;
-    private int saldoOriginal;
+    private Date dateCreado;
 
     private int deuda;
 
     private String imagen;
 
-    public EmpleadoObject(UserLoginObject userLoginReference, String nombre, String apellido, String mail, String telefono, EmpresaObject empresa, int saldoDisponible, int saldoOriginal, int deuda, String imagen) {
+    public EmpleadoObject(UserLoginObject userLoginReference, String nombre, String apellido, String mail, String telefono, EmpresaObject empresa, int saldoDisponible, Date dateCreado, int deuda, String imagen) {
         this.userLoginReference = userLoginReference;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -31,7 +32,7 @@ public class EmpleadoObject {
         this.telefono = telefono;
         this.empresa = empresa;
         this.saldoDisponible = saldoDisponible;
-        this.saldoOriginal = saldoOriginal;
+        this.dateCreado = dateCreado;
         this.deuda = deuda;
         this.imagen = imagen;
     }
@@ -95,12 +96,12 @@ public class EmpleadoObject {
         this.saldoDisponible = saldoDisponible;
     }
 
-    public int getSaldoOriginal() {
-        return saldoOriginal;
+    public Date getDateCreado() {
+        return dateCreado;
     }
 
-    public void setSaldoOriginal(int saldoOriginal) {
-        this.saldoOriginal = saldoOriginal;
+    public void setDateCreado(Date dateCreado) {
+        this.dateCreado = dateCreado;
     }
 
     public int getDeuda() {
@@ -129,7 +130,7 @@ public class EmpleadoObject {
                 ", telefono='" + telefono + '\'' +
                 ", empresa=" + empresa +
                 ", saldoDisponible=" + saldoDisponible +
-                ", saldoOriginal=" + saldoOriginal +
+                ", dateCreado=" + dateCreado +
                 ", deuda=" + deuda +
                 ", imagen='" + imagen + '\'' +
                 '}';

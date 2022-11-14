@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.Objects;
 
 public class InscripcionesActividadesObject {
@@ -28,10 +29,12 @@ public class InscripcionesActividadesObject {
 
     private String tipoReserva;
 
+    private Date dateIngreso;
+
     public InscripcionesActividadesObject() {
     }
 
-    public InscripcionesActividadesObject(String empleadoMailInscripcion, String actividadNombreInscripcion, LocalDate actividadDiaInscripcion, LocalTime actividadHoraInscripcion, String actividadCentroInscripcion, boolean asistencia, EmpleadoObject empleado, ActividadObject actividad, String tipoReserva) {
+    public InscripcionesActividadesObject(String empleadoMailInscripcion, String actividadNombreInscripcion, LocalDate actividadDiaInscripcion, LocalTime actividadHoraInscripcion, String actividadCentroInscripcion, boolean asistencia, EmpleadoObject empleado, ActividadObject actividad, String tipoReserva, Date dateIngreso) {
         this.empleadoMailInscripcion = empleadoMailInscripcion;
         this.actividadNombreInscripcion = actividadNombreInscripcion;
         this.actividadDiaInscripcion = actividadDiaInscripcion;
@@ -41,6 +44,7 @@ public class InscripcionesActividadesObject {
         this.empleado = empleado;
         this.actividad = actividad;
         this.tipoReserva = tipoReserva;
+        this.dateIngreso = dateIngreso;
     }
 
     public InscripcionesActividadesObject(String empleadoMailInscripciones, String actividadNombreInscripcion, LocalDate actividadDiaInscripcion, LocalTime actividadHoraInscripcion, boolean asistencia, EmpleadoObject empleado, ActividadObject actividad) {
@@ -133,17 +137,25 @@ public class InscripcionesActividadesObject {
         this.tipoReserva = tipoReserva;
     }
 
+    public Date getDateIngreso() {
+        return dateIngreso;
+    }
+
+    public void setDateIngreso(Date dateIngreso) {
+        this.dateIngreso = dateIngreso;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InscripcionesActividadesObject that = (InscripcionesActividadesObject) o;
-        return asistencia == that.asistencia && Objects.equals(empleadoMailInscripcion, that.empleadoMailInscripcion) && Objects.equals(actividadNombreInscripcion, that.actividadNombreInscripcion) && Objects.equals(actividadDiaInscripcion, that.actividadDiaInscripcion) && Objects.equals(actividadHoraInscripcion, that.actividadHoraInscripcion) && Objects.equals(actividadCentroInscripcion, that.actividadCentroInscripcion) && Objects.equals(empleado, that.empleado) && Objects.equals(actividad, that.actividad) && Objects.equals(tipoReserva, that.tipoReserva);
+        return asistencia == that.asistencia && Objects.equals(empleadoMailInscripcion, that.empleadoMailInscripcion) && Objects.equals(actividadNombreInscripcion, that.actividadNombreInscripcion) && Objects.equals(actividadDiaInscripcion, that.actividadDiaInscripcion) && Objects.equals(actividadHoraInscripcion, that.actividadHoraInscripcion) && Objects.equals(actividadCentroInscripcion, that.actividadCentroInscripcion) && Objects.equals(empleado, that.empleado) && Objects.equals(actividad, that.actividad) && Objects.equals(tipoReserva, that.tipoReserva) && Objects.equals(dateIngreso, that.dateIngreso);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(empleadoMailInscripcion, actividadNombreInscripcion, actividadDiaInscripcion, actividadHoraInscripcion, actividadCentroInscripcion, asistencia, empleado, actividad, tipoReserva);
+        return Objects.hash(empleadoMailInscripcion, actividadNombreInscripcion, actividadDiaInscripcion, actividadHoraInscripcion, actividadCentroInscripcion, asistencia, empleado, actividad, tipoReserva, dateIngreso);
     }
 
     @Override
@@ -158,6 +170,7 @@ public class InscripcionesActividadesObject {
                 ", empleado=" + empleado +
                 ", actividad=" + actividad +
                 ", tipoReserva='" + tipoReserva + '\'' +
+                ", dateIngreso=" + dateIngreso +
                 '}';
     }
 }

@@ -529,7 +529,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 try {
                     ObjectMapper mapper = new JsonMapper().builder().findAndAddModules().build();
                     mapper.registerModule(new JavaTimeModule());
-                    InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "RESERVAR");
+                    InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "RESERVAR", null);
                     json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
                     System.out.println("json hecho");
 
@@ -569,7 +569,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 try {
                     ObjectMapper mapper = new JsonMapper().builder().findAndAddModules().build();
                     mapper.registerModule(new JavaTimeModule());
-                    InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "GUARDAR");
+                    InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "GUARDAR", null);
                     json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
                     System.out.println("json hecho");
 

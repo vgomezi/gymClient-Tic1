@@ -146,8 +146,8 @@ public class AdministrarEmpresaController {
             Parent root1 = (Parent) fxmlLoader.load(AdministrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarempresa.fxml"));
 
             MainAdminRegistrarEmpresaController mainAdminRegistrarEmpresaController = fxmlLoader.getController();
-            System.out.println(empresa.getMail());
             mainAdminRegistrarEmpresaController.datosAdmin();
+            mainAdminRegistrarEmpresaController.todasEmpresas();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
