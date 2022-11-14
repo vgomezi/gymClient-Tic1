@@ -475,19 +475,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     }
 
-    /*private void setActividadSeleccionada(ActividadObject actividad) {
-        //centroActividadDisplay.setText(actividad.getCentroDeportivo().getNombre());
-        costoActividadDisplay.setText(String.valueOf(actividad.getCosto()));
-        cuposActividadDisplay.setText(String.valueOf(actividad.getCupos()));
-        tipoActividadDisplay.setText(actividad.getTipo().getTipo());
-        descripcionActividadDisplay.setText(actividad.getDescripcion());
-        diaActividadDisplay.setText(actividad.getDia().toString());
-        horaActividadDisplay.setText(actividad.getHora().toString());
-        nombreActividadDisplay.setText(actividad.getNombre());
-        Image image = new Image("/centro.jpg");
-        imagenActividadDisplay.setImage(image);
-    }*/
-
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
         Node source = (Node) mouseEvent.getSource();
         Stage stage1 = (Stage) source.getScene().getWindow();

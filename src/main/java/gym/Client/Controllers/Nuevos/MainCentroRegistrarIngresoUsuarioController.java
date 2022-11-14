@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Classes.EmpleadoObject;
+import gym.Client.Classes.InscripcionesActividadesObject;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
@@ -45,6 +47,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 public class MainCentroRegistrarIngresoUsuarioController {
@@ -445,11 +448,111 @@ public class MainCentroRegistrarIngresoUsuarioController {
     public void onRegistrarIngresoUsuarioButtonClick(MouseEvent mouseEvent) {
         if (!mailUsuarioDisplay.getText().isEmpty()) {
             String mailUsuario = mailUsuarioDisplay.getText();
-            if (actividadEnDisplay.isReservable()) {
-                // verificar que existe la reserva
-            } else {
-                // no es necesario verificar nada
+
+            try {
+                HttpResponse<String> apiResponse1 = null;
+
+                apiResponse1 = Unirest.get("http://localhost:8987/api/usuarios//empleadoMail/" + mailUsuario).header("Content-Type", "application/json").asObject(String.class);
+                String existeEmpleadoMail = apiResponse1.getBody();
+
+                if (!existeEmpleadoMail.isEmpty()) {
+
+                    ObjectMapper mapper = new ObjectMapper();
+                    System.out.println("Entro if usuario");
+                    EmpleadoObject empleadoObject = mapper.readValue(existeEmpleadoMail, EmpleadoObject.class);
+
+                    if (actividadEnDisplay.isReservable()) {
+                        String json = "";
+
+                        try {
+                            HttpResponse<String> apiResponse = null;
+                            //Arreglar direccion get
+                            apiResponse = Unirest.get("http://localhost:8987/api/actividades/proximasActividadesCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
+                            json = apiResponse.getBody();
+                        } catch (Exception e) {
+                            System.out.println("Error obteniendo actividad");
+                        }
+
+                        if (!json.isEmpty()) {
+                            System.out.println("Actualizo la inscripcion");
+                        } else {
+                            System.out.println("No reservó");
+                        }
+
+                        // verificar que existe la reserva
+                    } else if (actividadEnDisplay.getCupos() > 0) {
+                        String json = "";
+
+                        try {
+                            HttpResponse<String> apiResponse = null;
+                            //Arreglar direccion get
+                            //apiResponse = Unirest.get("http://localhost:8987/api/actividades/proximasActividadesCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
+                            json = apiResponse.getBody();
+                        } catch (Exception e) {
+                            System.out.println("Error obteniendo actividad");
+                        }
+
+                        if (!json.isEmpty()) {
+
+                            System.out.println("Actualizo la inscripcion");
+
+                        } else {
+
+                            String json1 = "";
+
+                            try {
+                                ObjectMapper mapper1 = new JsonMapper().builder().findAndAddModules().build();
+                                mapper1.registerModule(new JavaTimeModule());
+                                InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(mailUsuario, actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), true, empleadoObject, actividadEnDisplay, "GUARDAR", new Date());
+                                json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
+                                System.out.println("json hecho");
+
+                                HttpResponse<JsonNode> apiResponse = null;
+                                apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json1).asJson();
+                                System.out.println("Inscripciones actividades reserva hecho");
+                            } catch (Exception e) {
+                                System.out.println("Error ingresando reserva");
+                                System.out.println(e.getMessage());
+                            }
+
+                            System.out.println("Creo la inscripcion");
+                            System.out.println("Pintar de verde");
+
+                        }
+
+                        String json3 = "";
+                        try {
+                            actividadEnDisplay.setCupos(actividadEnDisplay.getCupos()-1);
+                            ObjectMapper mapperActividad = new JsonMapper().builder()
+                                    .findAndAddModules()
+                                    .build();
+                            mapperActividad.registerModule(new JavaTimeModule());
+                            json3 = mapperActividad.writeValueAsString(actividadEnDisplay);
+                            HttpResponse<JsonNode> apiResponse = null;
+                            apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json3).asJson();
+                            System.out.println("Put Hecho");
+
+
+                        } catch (Exception e) {
+                            System.out.println("Error actualizando put: " + e.getMessage());
+
+                        }
+
+                        System.out.println("Pintar en verde");
+
+                    } else {
+                        System.out.println("No quedan cupos");
+                    }
+                } else {
+                    System.out.println("No existe el usuario con ese mail");
+                }
+
+            } catch (Exception e){
+                System.out.println("Error obteniendo usuario ingreso");
             }
+
+        } else {
+            System.out.println("Pinto de color que el mail está vacío");
         }
 
     }
