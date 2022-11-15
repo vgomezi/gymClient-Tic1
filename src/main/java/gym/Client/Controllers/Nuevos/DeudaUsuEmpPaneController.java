@@ -1,5 +1,6 @@
 package gym.Client.Controllers.Nuevos;
 
+import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.PagoEmpCentObject;
 import gym.Client.Classes.PagoUsuEmpObject;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
@@ -22,20 +23,20 @@ public class DeudaUsuEmpPaneController {
 
     private MyListener myListener;
 
-    private PagoUsuEmpObject pago;
+    private EmpleadoObject empleado;
 
     @FXML
     void onDeudaPaneClick(MouseEvent mouseEvent) {
 
     }
 
-    public void setearDatos(PagoUsuEmpObject pagoUsuEmpObject, MyListener myListener) {
+    public void setearDatos(EmpleadoObject empleadoObject, MyListener myListener) {
         this.myListener = myListener;
-        this.pago = pagoUsuEmpObject;
+        this.empleado = empleadoObject;
 
-        nombreLabel.setText("USUARIO:  " + String.valueOf(pagoUsuEmpObject.getEmpleado().getNombre()));
-        mailLabel.setText("MAIL:  " + String.valueOf(pagoUsuEmpObject.getEmpleadoMailPago()));
-        deudaLabel.setText("DEUDA:  " + String.valueOf(pagoUsuEmpObject.getMonto()));
+        nombreLabel.setText("USUARIO:  " + empleadoObject.getNombre());
+        mailLabel.setText("MAIL:  " + empleadoObject.getMail());
+        deudaLabel.setText("DEUDA:  " + String.valueOf(empleadoObject.getDeuda()));
 
 
     }

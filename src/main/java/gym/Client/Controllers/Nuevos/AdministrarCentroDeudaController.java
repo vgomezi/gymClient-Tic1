@@ -211,7 +211,7 @@ public class AdministrarCentroDeudaController implements Initializable {
         try{
             for(PagoEmpCentObject pago : misEmpresas) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/DeudaEmpCentPane.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaEmpCentPane.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 VBox DeudaEmpCentVbox = fxmlLoader.load();
@@ -219,12 +219,10 @@ public class AdministrarCentroDeudaController implements Initializable {
 
                 deudaEmpCentPaneController.setearDatos(pago, myListener);
 
-                if (column == 2) {
-                    column = 0;
-                    ++row;
-                }
 
-                todasLasEmpresasGridPane.add(DeudaEmpCentVbox, column++, row);
+                row++;
+
+                todasLasEmpresasGridPane.add(DeudaEmpCentVbox, column, row);
                 GridPane.setMargin(DeudaEmpCentVbox, new Insets(10));
 
             }

@@ -576,7 +576,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
     public void onAdministrarEmpresaButtonClick(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaTodosUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/AdministrarCentroDeuda.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaTodosUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/AdministrarEmpresaDeuda.fxml"));
 
             AdministrarEmpresaDeudaController administrarEmpresaDeudaController = fxmlLoader.getController();
             administrarEmpresaDeudaController.setEmpresa(empresa);

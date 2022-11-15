@@ -64,7 +64,7 @@ public class AdministrarEmpresaDeudaController {
     private Circle imagenEmpresaDeudaCirculo;
 
     @FXML
-    private ScrollPane liquidacionEmpleadosScroll;
+    private ScrollPane liquidacionEmpleadoScroll;
 
     public EmpleadoObject empleado;
 
@@ -72,7 +72,7 @@ public class AdministrarEmpresaDeudaController {
 
     private MyListener myListener;
 
-    private List<PagoUsuEmpObject> misEmpleados = new ArrayList<>();
+    private List<EmpleadoObject> misEmpleados = new ArrayList<>();
 
     @FXML
     private Label todosLosUsuariosLabel;
@@ -126,23 +126,21 @@ public class AdministrarEmpresaDeudaController {
 
     }
 
-    private List<PagoUsuEmpObject> todosMisEmpleados() {
-        List<PagoUsuEmpObject> listaMisEmpleados = new ArrayList<>();
+    private List<EmpleadoObject> todosMisEmpleados() {
+        List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
         PagoUsuEmpObject pagoUsuEmpObject;
 
         String pago = "";
         try {
             HttpResponse<String> apiResponse = null;
-
-            //ver direccion http
-            apiResponse = Unirest.get("http://localhost:8987/api/pagos/allPagos/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadosEmpresa/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
             System.out.println("Imprimo json");
             System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-            listaMisEmpleados = mapper.readValue(json, new TypeReference<List<PagoUsuEmpObject>>() {});
+            listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
 
             System.out.println(pago);
 
@@ -154,7 +152,7 @@ public class AdministrarEmpresaDeudaController {
 
     public void deudaEmpleado() {
         todosLosEmpleadosGridPane = new GridPane();
-        liquidacionEmpleadosScroll.setContent(todosLosEmpleadosGridPane);
+        liquidacionEmpleadoScroll.setContent(todosLosEmpleadosGridPane);
         misEmpleados.clear();
         misEmpleados.addAll(todosMisEmpleados());
 
@@ -175,22 +173,19 @@ public class AdministrarEmpresaDeudaController {
         int column = 0;
         int row = 1;
         try{
-            for(PagoUsuEmpObject pago : misEmpleados) {
+            for(EmpleadoObject empleadoObject : misEmpleados) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/gym.Client/nuevo/Admin/DeudaUsuEmpPane.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaUsuEmpPane.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 VBox DeudaUsuEmpVbox = fxmlLoader.load();
                 DeudaUsuEmpPaneController deudaUsuEmpPaneController = fxmlLoader.getController();
 
-                deudaUsuEmpPaneController.setearDatos(pago, myListener);
+                deudaUsuEmpPaneController.setearDatos(empleadoObject, myListener);
 
-                if (column == 2) {
-                    column = 0;
-                    ++row;
-                }
+                row++;
 
-                todosLosEmpleadosGridPane.add(DeudaUsuEmpVbox, column++, row);
+                todosLosEmpleadosGridPane.add(DeudaUsuEmpVbox, column, row);
                 GridPane.setMargin(DeudaUsuEmpVbox, new Insets(10));
 
             }

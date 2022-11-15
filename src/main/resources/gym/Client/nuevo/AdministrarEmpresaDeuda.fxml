@@ -57,7 +57,7 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Circle fx:id="imagenEmpresaDeudaCirculoimagenCentroDeudaCirculo" radius="74.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="imagenEmpresaDeudaCirculo" radius="74.0" stroke="BLACK" strokeType="INSIDE" />
                     </children>
                 </VBox>
                 <VBox prefHeight="120.0" prefWidth="206.0">
