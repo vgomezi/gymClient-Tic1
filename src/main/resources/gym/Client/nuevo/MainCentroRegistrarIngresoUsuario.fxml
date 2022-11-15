@@ -169,7 +169,7 @@
                           </children>
                       </HBox>
                   <TextField fx:id="mailUsuarioDisplay" alignment="CENTER" prefHeight="42.0" prefWidth="256.0" promptText="MAIL USUARIO" style="-fx-background-radius: 15;" />
-                      <Button fx:id="registrarIngresoUsuarioBoton" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#onRegistrarIngresoUsuarioButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
+                      <Button fx:id="registrarIngresoUsuarioBoton" mnemonicParsing="false" onMouseClicked="#onRegistrarIngresoUsuarioButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="REGISTRAR" textFill="WHITE">
                           <font>
                               <Font name="System Bold" size="18.0" />
                           </font>

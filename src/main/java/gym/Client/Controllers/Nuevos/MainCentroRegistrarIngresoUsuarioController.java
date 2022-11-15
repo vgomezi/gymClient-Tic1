@@ -253,7 +253,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenActividadDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagen/actividaddefault.png");
+                Image imageView = new Image("/imagen/usuariodefault.png");
                 imagenActividadDisplay.setImage(imageView);
             }
         } else {
@@ -452,7 +452,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
             try {
                 HttpResponse<String> apiResponse1 = null;
 
-                apiResponse1 = Unirest.get("http://localhost:8987/api/usuarios//empleadoMail/" + mailUsuario).header("Content-Type", "application/json").asObject(String.class);
+                apiResponse1 = Unirest.get("http://localhost:8987/api/usuarios/empleadoMail/" + mailUsuario).header("Content-Type", "application/json").asObject(String.class);
                 String existeEmpleadoMail = apiResponse1.getBody();
 
                 if (!existeEmpleadoMail.isEmpty()) {
@@ -466,16 +466,26 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
                         try {
                             HttpResponse<String> apiResponse = null;
-                            //Arreglar direccion get
-                            apiResponse = Unirest.get("http://localhost:8987/api/actividades/proximasActividadesCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
+                            apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcion/" + mailUsuario + "/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).asObject(String.class);
                             json = apiResponse.getBody();
                         } catch (Exception e) {
                             System.out.println("Error obteniendo actividad");
                         }
+                        System.out.println(json);
 
                         if (!json.isEmpty()) {
+                            HttpResponse<JsonNode> apiResponse = null;
+                            apiResponse = Unirest.put("http://localhost:8987/inscripciones/actualizar/" + mailUsuario + "/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
+                            System.out.println("Put Hecho");
+
                             System.out.println("Actualizo la inscripcion");
+
+                            actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+
                         } else {
+                            actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
                             System.out.println("No reservó");
                         }
 
@@ -485,15 +495,18 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
                         try {
                             HttpResponse<String> apiResponse = null;
-                            //Arreglar direccion get
-                            //apiResponse = Unirest.get("http://localhost:8987/api/actividades/proximasActividadesCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
+                            apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcion/" + mailUsuario + "/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").asObject(String.class);
+                            System.out.println("Obtener la inscripcion hecha");
                             json = apiResponse.getBody();
+                            System.out.println(json);
                         } catch (Exception e) {
-                            System.out.println("Error obteniendo actividad");
+                            System.out.println("Error obteniendo actividad cupos mayor a '0");
                         }
 
                         if (!json.isEmpty()) {
-
+                            HttpResponse<JsonNode> apiResponse = null;
+                            apiResponse = Unirest.put("http://localhost:8987/inscripciones/actualizar/" + mailUsuario + "/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
+                            System.out.println("Put Hecho");
                             System.out.println("Actualizo la inscripcion");
 
                         } else {
@@ -531,19 +544,26 @@ public class MainCentroRegistrarIngresoUsuarioController {
                             HttpResponse<JsonNode> apiResponse = null;
                             apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json3).asJson();
                             System.out.println("Put Hecho");
+                            System.out.println("actualizacion cupos actividad hecha");
 
 
                         } catch (Exception e) {
                             System.out.println("Error actualizando put: " + e.getMessage());
 
                         }
+                        actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
 
                         System.out.println("Pintar en verde");
 
                     } else {
+                        actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
                         System.out.println("No quedan cupos");
                     }
                 } else {
+                    actividadSeleccionadaVBox.setStyle("-fx-background-color : #f4f723;" +
+                            "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
                     System.out.println("No existe el usuario con ese mail");
                 }
 
@@ -552,6 +572,8 @@ public class MainCentroRegistrarIngresoUsuarioController {
             }
 
         } else {
+            actividadSeleccionadaVBox.setStyle("-fx-background-color : #f4f723;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
             System.out.println("Pinto de color que el mail está vacío");
         }
 

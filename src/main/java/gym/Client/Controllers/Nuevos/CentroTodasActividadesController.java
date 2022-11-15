@@ -502,6 +502,8 @@ public class CentroTodasActividadesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Image imagen = new Image("/imagen/actividaddefault.png");
+        imagenActividadRegistroDisplay.setImage(imagen);
         inicializoChoiceBox();
     }
 }
