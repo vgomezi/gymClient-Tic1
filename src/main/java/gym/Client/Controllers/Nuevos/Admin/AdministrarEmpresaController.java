@@ -170,4 +170,12 @@ public class AdministrarEmpresaController {
 
     }
 
+    public void onTodosLosCentrosLabelClick(MouseEvent mouseEvent) {
+    }
+
+    public void onAdministrarCentroLabelClick(MouseEvent mouseEvent) {
+    }
+
+    public void onAdministrarEmpresasLabelClick(MouseEvent mouseEvent) {
+    }
 }

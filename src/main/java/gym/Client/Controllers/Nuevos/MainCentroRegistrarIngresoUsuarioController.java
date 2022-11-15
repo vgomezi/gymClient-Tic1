@@ -589,4 +589,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
     }
 
 
+    public void onBusquedaActividadKeyReleased(KeyEvent keyEvent) {
+    }
 }

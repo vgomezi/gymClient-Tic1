@@ -394,5 +394,11 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
         empresaRegistroVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
     }
+
+    public void onTodosLosCentrosLabelClick(MouseEvent mouseEvent) {
+    }
+
+    public void onAdministrarCentroLabelClick(MouseEvent mouseEvent) {
+    }
 }
 

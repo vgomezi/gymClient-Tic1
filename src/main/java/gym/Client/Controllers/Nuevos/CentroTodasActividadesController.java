@@ -506,4 +506,7 @@ public class CentroTodasActividadesController implements Initializable {
         imagenActividadRegistroDisplay.setImage(imagen);
         inicializoChoiceBox();
     }
+
+    public void onBusquedaActividadKeyReleased(KeyEvent keyEvent) {
+    }
 }

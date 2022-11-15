@@ -29,7 +29,7 @@
                 <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" />
                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="328.0" spacing="10.0" styleClass="round-layout" stylesheets="/css/style.css">
                     <children>
-                        <TextField onKeyPressed="#onEnterPressed" prefHeight="26.0" prefWidth="267.0" promptText="Barra de busqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
+                        <TextField onKeyReleased="#onBusquedaActividadKeyReleased" prefHeight="26.0" prefWidth="267.0" promptText="Barra de busqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@/Lupa.png" />

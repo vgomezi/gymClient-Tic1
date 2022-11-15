@@ -30,9 +30,6 @@ public class UsuarioEmpresaNuevoController {
     private Label emailUsuarioNuevo;
 
     @FXML
-    private HBox hboxUsuarioNuevo;
-
-    @FXML
     private ImageView imagenUsuarioNuevo;
 
     @FXML
@@ -68,7 +65,7 @@ public class UsuarioEmpresaNuevoController {
         nombreUsuarioNuevo.setText(empleadoObject.getNombre());
         apellidoUsuarioNuevo.setText(empleadoObject.getApellido());
         emailUsuarioNuevo.setText(empleadoObject.getMail());
-        hboxUsuarioNuevo.setStyle("-fx-background-color: #" + colores[(int) (Math.random()*(colores.length))] + ";" +
+        usuarioNuevoHbox.setStyle("-fx-background-color: #" + colores[(int) (Math.random()*(colores.length))] + ";" +
                 "-fx-background-radius: 15;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
     }
