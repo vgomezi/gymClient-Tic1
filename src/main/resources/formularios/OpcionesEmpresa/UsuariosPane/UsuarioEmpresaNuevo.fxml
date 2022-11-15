@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="hboxUsuarioNuevo" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onUsuarioNuevoPanelClick" prefHeight="125.0" prefWidth="400.0" spacing="20.0" style="-fx-background-radius: 15;" styleClass="shadow" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaNuevoController">
+<HBox fx:id="usuarioNuevoHbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onUsuarioNuevoPanelClick" prefHeight="125.0" prefWidth="400.0" spacing="20.0" style="-fx-background-radius: 15;" styleClass="shadow" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaNuevoController">
    <children>
       <ImageView fx:id="imagenUsuarioNuevo" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
