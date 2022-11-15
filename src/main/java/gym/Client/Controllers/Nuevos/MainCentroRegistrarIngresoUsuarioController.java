@@ -75,18 +75,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
     public Label reservableActividadDisplay;
 
     @FXML
-    public ChoiceBox tipoActividadChoiceBox;
-
-    ObservableList<String> tipoActividadChoiceBoxList = FXCollections.
-            observableArrayList("Canchas", "Gimnasio/Sala", "Náuticas");
-
-    /*@FXML
-    private void initialize() {
-        tipoActividadChoiceBox.setItems(tipoActividadChoiceBoxList);
-        tipoActividadChoiceBox.setValue("Categoria");
-    }*/
-
-    @FXML
     public VBox actividadSeleccionadaVBox;
 
     @FXML
