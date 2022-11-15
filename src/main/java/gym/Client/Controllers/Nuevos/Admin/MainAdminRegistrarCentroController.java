@@ -13,6 +13,7 @@ import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.UserLoginObject;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.LoginController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -112,6 +113,8 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
     private List<CentroDeportivoObject> centrosDeportivosList = new ArrayList<>();
 
+    private List<CentroDeportivoObject> similarCentro = new ArrayList<>();
+
     private MyListenerCentro myListenerCentro;
 
     private File fileImagen;
@@ -141,6 +144,31 @@ public class MainAdminRegistrarCentroController implements Initializable {
             System.out.println("Error: " + e);
         }
         return listaCentrosDeportivos;
+    }
+
+    private List<CentroDeportivoObject> similarCentros(String similar) {
+        List<CentroDeportivoObject> listaCentrosSimilares = new ArrayList<>();
+        CentroDeportivoObject centroDeportivoObject;
+
+        String centro = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/similarCentroDeportivo/" + similar).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            //System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaCentrosSimilares = mapper.readValue(json, new TypeReference<List<CentroDeportivoObject>>() {});
+
+            //System.out.println(actividad);
+            System.out.println("Lista centro similares "/* + listaActividades*/);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaCentrosSimilares;
     }
 
     public void todosCentros() {
@@ -192,6 +220,75 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
     @FXML
     void onBusquedaKeyReleased(KeyEvent event) {
+        this.myListenerCentro = new MyListenerCentro() {
+            @Override
+            public void onClickCentro(CentroDeportivoObject centroDeportivoObject) {
+                centroRegistroVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+            }
+        };
+        //System.out.println(busquedaTextField.getText());
+        if (busquedaTextField.getText().isEmpty()) {
+            todasLasActividadesGridPane = new GridPane();
+            todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
+            int column = 0;
+            int row = 1;
+            try{
+                for(CentroDeportivoObject centro : centrosDeportivosList) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox centroVBox = fxmlLoader.load();
+                    CentroTodoController centroTodoController = fxmlLoader.getController();
+
+                    centroTodoController.setearDatos(centro, myListenerCentro);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasActividadesGridPane.add(centroVBox, column++, row);
+                    GridPane.setMargin(centroVBox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+        } else {
+            todasLasActividadesGridPane = new GridPane();
+            todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
+            similarCentro = similarCentros(busquedaTextField.getText());
+            int column = 0;
+            int row = 1;
+            try{
+                for(CentroDeportivoObject centro : similarCentro) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox centroVBox = fxmlLoader.load();
+                    CentroTodoController centroTodoController = fxmlLoader.getController();
+
+                    centroTodoController.setearDatos(centro, myListenerCentro);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasActividadesGridPane.add(centroVBox, column++, row);
+                    GridPane.setMargin(centroVBox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+
+        }
 
     }
 
