@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -113,7 +112,11 @@
                   </VBox>
                   <VBox prefHeight="395.0" prefWidth="254.0">
                      <children>
-                        <PieChart fx:id="usuariosActivosChart" legendVisible="false" prefHeight="188.0" prefWidth="254.0" />
+                        <Label fx:id="cantidadUsuariosLabel" alignment="CENTER" prefHeight="192.0" prefWidth="254.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="64.0" />
+                           </font>
+                        </Label>
                         <Label prefHeight="130.0" prefWidth="285.0" text="USUARIOS ACTIVOS" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font name="System Bold" size="36.0" />

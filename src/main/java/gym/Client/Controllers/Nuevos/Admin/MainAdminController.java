@@ -78,7 +78,7 @@ public class MainAdminController {
     private Label todosLosCentrosLabel;
 
     @FXML
-    private PieChart usuariosActivosChart;
+    private Label cantidadUsuariosLabel;
 
     public void datosAdmin() {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
@@ -86,6 +86,7 @@ public class MainAdminController {
         imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
         setNumeroEmpresas();
         setNumeroCentros();
+        setNumeroUsuarios();
         tiposActividades();
     }
 
@@ -107,6 +108,18 @@ public class MainAdminController {
             apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/numberCentros").asObject(String.class);
             System.out.println("Logre get tipos actividades");
             cantidadCentrosLabel.setText(apiResponse.getBody());
+        } catch (Exception e){
+            System.out.println("Error");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void setNumeroUsuarios() {
+        HttpResponse<String> apiResponse = null;
+        try {
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/cantidadEmpleados").asObject(String.class);
+            System.out.println("Logre get tipos actividades");
+            cantidadUsuariosLabel.setText(apiResponse.getBody());
         } catch (Exception e){
             System.out.println("Error");
             System.out.println(e.getMessage());
