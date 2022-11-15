@@ -9,6 +9,7 @@ import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.*;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,9 +25,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +59,9 @@ public class AdministrarEmpresaDeudaController {
 
     @FXML
     private GridPane todosLosEmpleadosGridPane;
+
+    @FXML
+    private Circle imagenEmpresaDeudaCirculo;
 
     @FXML
     private ScrollPane liquidacionEmpleadosScroll;
@@ -190,5 +200,41 @@ public class AdministrarEmpresaDeudaController {
         }
     }
 
+    public EmpleadoObject getEmpleado() {
+        return empleado;
+    }
 
+    public void setEmpleado(EmpleadoObject empleado) {
+        this.empleado = empleado;
+    }
+
+    public EmpresaObject getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(EmpresaObject empresa) {
+        this.empresa = empresa;
+    }
+
+    public void datosEmpresa(EmpresaObject empresaObject) {
+        this.empresa = empresaObject;
+        if(empresaObject.getImagen() != null) {
+            byte[] imageDecoded = java.util.Base64.getDecoder().decode(empresaObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenEmpresaDeudaCirculo.setFill(new ImagePattern(toAdd));
+        } else {
+            Image imageView = new Image("/imagen/empresadefault.png");
+            imagenEmpresaDeudaCirculo.setFill(new ImagePattern(imageView));
+        }
+
+        nombreLabel.setText(empresaObject.getNombre());
+    }
 }

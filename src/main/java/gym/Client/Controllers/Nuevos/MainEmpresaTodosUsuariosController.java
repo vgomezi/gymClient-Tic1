@@ -8,10 +8,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import gym.Client.Classes.ActividadObject;
-import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Classes.EmpresaObject;
-import gym.Client.Classes.UserLoginObject;
+import gym.Client.Classes.*;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaNuevoController;
 import gym.Client.Controllers.LoginController;
@@ -153,50 +150,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
     private List<EmpleadoObject> empleadosLike;
 
-    public void datosEmpresa(String correoElectronico) {
-        EmpresaObject empresaObject = null;
-        try {
-            System.out.println("try obtener empresa");
-            String empresa = "";
-            HttpResponse<String> apiResponse = null;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correoElectronico).asObject(String.class);
-            empresa = apiResponse.getBody();
-            System.out.println("Imprimo empresa");
-            //System.out.println(empresa);
-
-
-            if (!empresa.isBlank()) {
-                ObjectMapper mapper = new ObjectMapper();
-                System.out.println("Entro if empresa");
-                empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
-                this.empresa = empresaObject;
-                //System.out.println(empresaObject);
-            }
-            System.out.println("Try obtener empresa hecho");
-        } catch (Exception e) {
-            System.out.println("Try obtener empresa error");
-        }
-
-        if(empresaObject.getImagen() != null) {
-            byte[] imageDecoded = java.util.Base64.getDecoder().decode(empresaObject.getImagen());
-            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
-            BufferedImage bImage = null;
-            try {
-                bImage = ImageIO.read(bis);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
-            imagenEmpresaCirculo.setFill(new ImagePattern(toAdd));
-        } else {
-            Image imageView = new Image("/imagen/empresadefault.png");
-            imagenEmpresaCirculo.setFill(new ImagePattern(imageView));
-        }
-
-        nombreLabel.setText(empresaObject.getNombre());
-    }
 
     @FXML
     void onAdministrarUsuariosLabelClick(MouseEvent mouseEvent) {
@@ -617,6 +571,72 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
     public void setEmpresaLogInMail(String empresaLogInMail) {
         this.empresaLogInMail = empresaLogInMail;
+    }
+
+    public void onAdministrarEmpresaButtonClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaTodosUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/AdministrarCentroDeuda.fxml"));
+
+            AdministrarEmpresaDeudaController administrarEmpresaDeudaController = fxmlLoader.getController();
+            administrarEmpresaDeudaController.setEmpresa(empresa);
+            administrarEmpresaDeudaController.datosEmpresa(empresa);
+            administrarEmpresaDeudaController.deudaEmpleado();
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
+    }
+
+    public void datosEmpresa(String correoElectronico) {
+        EmpresaObject empresaObject = null;
+        try {
+            System.out.println("try obtener empresa");
+            String empresa = "";
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correoElectronico).asObject(String.class);
+            empresa = apiResponse.getBody();
+            System.out.println("Imprimo empresa");
+            //System.out.println(empresa);
+
+
+            if (!empresa.isBlank()) {
+                ObjectMapper mapper = new ObjectMapper();
+                System.out.println("Entro if empresa");
+                empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
+                this.empresa = empresaObject;
+                //System.out.println(empresaObject);
+            }
+            System.out.println("Try obtener empresa hecho");
+        } catch (Exception e) {
+            System.out.println("Try obtener empresa error");
+        }
+
+        if(empresaObject.getImagen() != null) {
+            byte[] imageDecoded = java.util.Base64.getDecoder().decode(empresaObject.getImagen());
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+            imagenEmpresaCirculo.setFill(new ImagePattern(toAdd));
+        } else {
+            Image imageView = new Image("/imagen/empresadefault.png");
+            imagenEmpresaCirculo.setFill(new ImagePattern(imageView));
+        }
+
+        nombreLabel.setText(empresaObject.getNombre());
     }
 
 }
