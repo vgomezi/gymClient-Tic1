@@ -74,18 +74,28 @@
                     </children>
                 </VBox>
                 <VBox alignment="TOP_CENTER" prefHeight="283.0" prefWidth="206.0">
-                    <children>
-                        <Label fx:id="todosLosCentrosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodosLosCentrosLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS LOS CENTROS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
-                            <font>
-                                <Font name="Baskerville Old Face" size="18.0" />
-                            </font>
-                        </Label>
-                  <Label fx:id="administrarCentroLabel" alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" onMouseClicked="#onAdministrarCentroLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR CENTRO" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+               <children>
+                  <Label fx:id="todosLosCentrosLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodosLosCentrosLabelClick" prefHeight="58.0" prefWidth="206.0" text="TODOS LOS CENTROS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                    </children>
+                  <Label fx:id="administrarCentroLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarCentroLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR CENTRO" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="todasLasEmpresasLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onTodasLasEmpresasLabelClick" prefHeight="50.0" prefWidth="205.0" text="TODAS LAS EMPRESAS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="administrarEmpresaLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarEmpresasLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR EMPRESA" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0" />
             </children>
@@ -94,7 +104,7 @@
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
+            <VBox fx:id="centroRegistroVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
                   <TextField fx:id="nombreCentroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE CENTRO" />
                       <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />

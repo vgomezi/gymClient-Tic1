@@ -69,7 +69,7 @@
                                 <Font name="Baskerville Old Face" size="18.0" />
                             </font>
                         </Label>
-                  <Label fx:id="administrarCentrosLabel" alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" onMouseClicked="#onAdministrarCentroLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR CENTRO" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                  <Label fx:id="administrarCentroLabel" alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" onMouseClicked="#onAdministrarCentroLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR CENTRO" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
@@ -79,7 +79,7 @@
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="administrarEmpresasLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarEmpresasLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR EMPRESAS" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                  <Label fx:id="administrarEmpresaLabel" alignment="CENTER" contentDisplay="RIGHT" onMouseClicked="#onAdministrarEmpresasLabelClick" prefHeight="50.0" prefWidth="205.0" text="ADMINISTRAR EMPRESA" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
