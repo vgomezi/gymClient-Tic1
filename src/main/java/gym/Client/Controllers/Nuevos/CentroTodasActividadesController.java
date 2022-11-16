@@ -13,6 +13,7 @@ import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.TipoActividadObject;
 import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
 import gym.Client.Controllers.LoginController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -132,16 +133,15 @@ public class CentroTodasActividadesController implements Initializable {
 
     private List<ActividadObject> similarActividades = new ArrayList<>();
 
-    public void onEnterPressed(KeyEvent keyEvent) {
-    }
 
 
-    /*
-    public void desplegarActividadSeleccionada(@Nullable EmpleadoObject empleadoObject) {
-        empleadoEnDisplay = empleadoObject;
-        if (empleadoObject != null) {
-            if (empleadoObject.getImagen() != null) {
-                byte[] imageDecoded = Base64.getDecoder().decode(empleadoObject.getImagen());
+    public ActividadObject actividadEnDisplay;
+
+    public void desplegarActividadSeleccionada(@Nullable ActividadObject actividadObject) {
+        actividadEnDisplay = actividadObject;
+        if (actividadObject != null) {
+            if (actividadEnDisplay.getImagen() != null) {
+                byte[] imageDecoded = Base64.getDecoder().decode(actividadEnDisplay.getImagen());
                 ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
                 BufferedImage bImage = null;
                 try {
@@ -151,100 +151,121 @@ public class CentroTodasActividadesController implements Initializable {
                 }
 
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
-                imagenUsuarioDisplay.setImage(toAdd);
+                imagenActividadRegistroDisplay.setImage(toAdd);
             } else {
                 Image imageView = new Image("/imagen/usuariodefault.png");
-                imagenUsuarioDisplay.setImage(imageView);
+                imagenActividadRegistroDisplay.setImage(imageView);
             }
-            nombreTextField.setText(empleadoObject.getNombre());
-            apellidoTextField.setText(empleadoObject.getApellido());
-            emailUsuarioLabel.setText(empleadoObject.getMail());
-            saldoTextField.setText(String.valueOf(empleadoObject.getSaldoDisponible()));
-            deudaTextField.setText(String.valueOf(empleadoObject.getDeuda()));
-            telefonoTextField.setText(empleadoObject.getTelefono());
-            actualizarUsuarioBoton.setVisible(true);
-            eliminarUsuarioBoton.setVisible(true);
+            nombreActividadRegistroDisplay.setText(actividadObject.getNombre());
+            if (actividadObject.isReservable()) {
+                reservableCheckBoxRegistroDisplay.setSelected(true);
+            } else {
+                reservableCheckBoxRegistroDisplay.setSelected(false);
+            }
+            tipoActividadChoiceBoxRegistroDisplay.setValue(actividadObject.getTipo().getTipo());
+            diaDatePickerRegistroDisplay.setValue(actividadObject.getDia());
+            horaActividadRegistroDisplay.setText(String.valueOf(actividadObject.getHora()));
+            descripcionActividadRegistroDisplay.setText(actividadObject.getDescripcion());
+            cuposActividadRegistroDisplay.setText(String.valueOf(actividadObject.getCupos()));
+            duracionActividadRegistroDisplay.setText(String.valueOf(actividadObject.getDuracion()));
+            costoActividadRegistroDisplay.setText(String.valueOf(actividadObject.getCosto()));
+
+            registrarActividadBoton.setVisible(true);
+            actualizarActividadBoton.setVisible(true);
+            eliminarActividadBoton.setVisible(true);
         } else {
-            nombreTextField.clear();
-            apellidoTextField.clear();
-            emailUsuarioLabel.setText("");
-            saldoTextField.clear();
-            deudaTextField.clear();
-            telefonoTextField.clear();
-            imagenUsuarioDisplay.setImage(null);
-            actualizarUsuarioBoton.setVisible(false);
-            eliminarUsuarioBoton.setVisible(false);
+            nombreActividadRegistroDisplay.clear();
+            reservableCheckBoxRegistroDisplay.setSelected(false);
+            tipoActividadChoiceBoxRegistroDisplay.setValue(null);
+            diaDatePickerRegistroDisplay.getEditor().clear();
+            horaActividadRegistroDisplay.clear();
+            descripcionActividadRegistroDisplay.clear();
+            cuposActividadRegistroDisplay.clear();
+            duracionActividadRegistroDisplay.clear();
+            costoActividadRegistroDisplay.clear();
+
+            registrarActividadBoton.setVisible(false);
+            actualizarActividadBoton.setVisible(false);
+            eliminarActividadBoton.setVisible(false);
+
 
         }
         actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
     }
 
-    private List<ActividadObject> todasMisActividades() {
-        List<ActividadObject> listaMisActividades = new ArrayList<>();
+    private List<ActividadObject> todasLasActividadesCentro() {
+        List<ActividadObject> listaActividades = new ArrayList<>();
         ActividadObject actividadObject;
 
-        String empleado = "";
+        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/actividadesCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
+            System.out.println("Logro json");
             //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-            listaMisActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+            listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-
+            //System.out.println(actividad);
+            System.out.println("Lista actividades Todas Actividades " /*+ listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        return listaMisActividades;
+        return listaActividades;
     }
 
     public void actividadesCentro() {
         todasLasActividadesGridPane = new GridPane();
-        todasLasActividadesGridPane.setContent(todasLasActividadesGridPane);
-        misActividades.addAll(todasMisActividades());
+        todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
+        todasLasActividades = new ArrayList<>();
+        todasLasActividades.addAll(todasLasActividadesCentro());
 
-        this.myListener = new MyListener() {
+        if(todasLasActividades.size() > 0) {
+            //desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
+            this.myListener = new MyListener() {
 
-            @Override
-            public void onClickActividad(ActividadObject actividadObject) {
-            }
 
-            @Override
-            public void onClickUsuario(ActividadObject actividadObject) {
-                desplegarActividadSeleccionada(actividadObject);
+                @Override
+                public void onClickActividad(ActividadObject actividadObject) {
+                    desplegarActividadSeleccionada(actividadObject);
+                }
 
-            }
-        };
+                @Override
+                public void onClickUsuario(EmpleadoObject empleadoObject) {
 
-        System.out.println("entro datos MainEmpresa");
+                }
+            };
+        } else {
+
+        }
+
+        System.out.println("entro initialize UsuarioMisActividadesController");
 
         int column = 0;
         int row = 1;
         try{
-            for(ActividadObject actividad : misActividades) {
+            for(ActividadObject actividad : todasLasActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                //bien la direccion?
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesCentro/ActividadesPane/ActividadCentro.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
                 System.out.println("Carga FXMLLoader");
 
-                VBox actividadCentroVbox = fxmlLoader.load();
-                UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
-                //hacer controller
-                usuarioEmpresaController.setearDatos(actividad, myListener);
+                VBox todaActividadbox = fxmlLoader.load();
+                ActividadTodaController actividadTodaController = fxmlLoader.getController();
+
+                actividadTodaController.setearDatos(actividad, myListener);
 
                 if (column == 2) {
                     column = 0;
                     ++row;
                 }
 
-                todasLasActividadesGridPane.add(actividadCentroVbox, column++, row);
-                GridPane.setMargin(actividadCentroVbox, new Insets(10));
+                todasLasActividadesGridPane.add(todaActividadbox, column++, row);
+                GridPane.setMargin(todaActividadbox, new Insets(10));
 
             }
         } catch (Exception e){
@@ -252,7 +273,6 @@ public class CentroTodasActividadesController implements Initializable {
 
         }
     }
-    */
 
     public void inicializoChoiceBox() {
         try {
@@ -421,7 +441,7 @@ public class CentroTodasActividadesController implements Initializable {
 
     private List<ActividadObject> misActividades;
 
-    public ActividadObject actividadEnDisplay;
+
 
 
     public void onEliminarActividadButtonClick(MouseEvent mouseEvent) {
