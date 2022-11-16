@@ -36,12 +36,6 @@ import java.util.List;
 public class MainAdminController {
 
     @FXML
-    private Label administrarCentrosLabel;
-
-    @FXML
-    private Label administrarEmpresasLabel;
-
-    @FXML
     private Label cantidadCentrosLabel;
 
     @FXML
@@ -76,6 +70,13 @@ public class MainAdminController {
 
     @FXML
     private Label todosLosCentrosLabel;
+
+    @FXML
+    private Label administrarCentroLabel;
+
+    @FXML
+    private Label administrarEmpresaLabel;
+
 
     @FXML
     private Label cantidadUsuariosLabel;
@@ -197,7 +198,7 @@ public class MainAdminController {
     void onAdministrarCentroLabelClick(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarCentroController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarCentro.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarCentro.fxml"));
 
             AdministrarCentroController administrarCentroController = fxmlLoader.getController();
             administrarCentroController.datosAdmin();
@@ -215,10 +216,10 @@ public class MainAdminController {
     }
 
     @FXML
-    void onAdministrarEmpresasLabelClick(MouseEvent event) {
+    void onAdministrarEmpresaLabelClick(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarEmpresa.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarEmpresa.fxml"));
 
             AdministrarEmpresaController administrarEmpresaController = fxmlLoader.getController();
             administrarEmpresaController.datosAdmin();
@@ -239,7 +240,7 @@ public class MainAdminController {
     void onTodasLasEmpresasLabelClick(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(AdministrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarempresa.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarEmpresa.fxml"));
 
             MainAdminRegistrarEmpresaController mainAdminRegistrarEmpresaController = fxmlLoader.getController();
             mainAdminRegistrarEmpresaController.datosAdmin();
@@ -260,7 +261,7 @@ public class MainAdminController {
     void onTodosLosCentrosLabelClick(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(AdministrarCentroController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarCentro.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarCentro.fxml"));
 
             MainAdminRegistrarCentroController mainAdminRegistrarCentroController = fxmlLoader.getController();
             mainAdminRegistrarCentroController.datosAdmin();

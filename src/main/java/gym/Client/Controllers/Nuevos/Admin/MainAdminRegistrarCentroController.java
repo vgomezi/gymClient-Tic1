@@ -61,9 +61,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
     private VBox centroRegistroVBox;
 
     @FXML
-    private Label administrarCentroLabel;
-
-    @FXML
     private Label anadidosRecientementeTitleLabel;
 
     @FXML
@@ -103,13 +100,22 @@ public class MainAdminRegistrarCentroController implements Initializable {
     private GridPane todasLasActividadesGridPane;
 
     @FXML
-    private Label todosLosCentrosLabel;
-
-    @FXML
     private ScrollPane todosLosCentrosScroll;
 
     @FXML
     private Label todosLosCentrosTitleLabel;
+
+    @FXML
+    private Label todasLasEmpresasLabel;
+
+    @FXML
+    private Label todosLosCentrosLabel;
+
+    @FXML
+    private Label administrarCentroLabel;
+
+    @FXML
+    private Label administrarEmpresaLabel;
 
     private List<CentroDeportivoObject> centrosDeportivosList = new ArrayList<>();
 
@@ -328,26 +334,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
     public CentroDeportivoObject centro;
 
-    @FXML
-    void onAdministrarCentroLabelClick(MouseEvent mouseEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarCentroController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarCentro.fxml"));
-
-            AdministrarCentroController administrarCentroController = fxmlLoader.getController();
-            administrarCentroController.datosAdmin();
-            administrarCentroController.todosCentros();
-
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-            System.out.println("Error");
-        }
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -410,11 +396,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
         Image toAdd = SwingFXUtils.toFXImage(bImage, null);
         return toAdd;
-    }
-
-    @FXML
-    void onTodosLosCentrosLabelClick(MouseEvent event) {
-
     }
 
     @FXML
@@ -487,11 +468,71 @@ public class MainAdminRegistrarCentroController implements Initializable {
         }
     }
 
-    public void onTodasLasEmpresasLabelClick(MouseEvent mouseEvent) {
+    @FXML
+    void onAdministrarCentroLabelClick(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarCentroController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarCentro.fxml"));
+
+            AdministrarCentroController administrarCentroController = fxmlLoader.getController();
+            administrarCentroController.datosAdmin();
+            administrarCentroController.todosCentros();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
-    public void onAdministrarEmpresaLabelClick(MouseEvent mouseEvent) {
+    @FXML
+    void onAdministrarEmpresaLabelClick(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarCentroController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarEmpresa.fxml"));
+
+            AdministrarEmpresaController administrarEmpresaController = fxmlLoader.getController();
+            administrarEmpresaController.datosAdmin();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
+
     }
+
+    @FXML
+    void onTodasLasEmpresasLabelClick(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarCentroController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarEmpresa.fxml"));
+
+            MainAdminRegistrarEmpresaController mainAdminRegistrarEmpresaController = fxmlLoader.getController();
+            mainAdminRegistrarEmpresaController.datosAdmin();
+            mainAdminRegistrarEmpresaController.todasEmpresas();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
+    }
+
+    @FXML
+    void onTodosLosCentrosLabelClick(MouseEvent event) { }
 
 }
 
