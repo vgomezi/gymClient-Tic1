@@ -57,9 +57,6 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
     private VBox empresaRegistroVBox;
 
     @FXML
-    private Label administrarEmpresaLabel;
-
-    @FXML
     private Label anadidasRecientementeTitleLabel;
 
     @FXML
@@ -103,6 +100,15 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
 
     @FXML
     private Label todasLasEmpresasLabel;
+
+    @FXML
+    private Label todosLosCentrosLabel;
+
+    @FXML
+    private Label administrarCentroLabel;
+
+    @FXML
+    private Label administrarEmpresaLabel;
 
     @FXML
     private ScrollPane todasLasEmpresasScroll;
@@ -229,31 +235,6 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
 
     public EmpresaObject empresa;
 
-    @FXML
-    void onAdministrarEmpresaLabelClick(MouseEvent mouseEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarEmpresa.fxml"));
-
-            AdministrarEmpresaController administrarEmpresaController = fxmlLoader.getController();
-            administrarEmpresaController.datosAdmin();
-
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-            System.out.println("Error");
-        }
-
-    }
-
-    @FXML
-    void onTodasLasEmpresasLabelClick(MouseEvent event) {
-
-    }
 
     @FXML
     void onRegistrarEmpresaButtonClick(MouseEvent event) {
@@ -395,10 +376,71 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
     }
 
-    public void onTodosLosCentrosLabelClick(MouseEvent mouseEvent) {
+
+    @FXML
+    void onAdministrarCentroLabelClick(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarCentro.fxml"));
+
+            AdministrarCentroController administrarCentroController = fxmlLoader.getController();
+            administrarCentroController.datosAdmin();
+            administrarCentroController.todosCentros();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
-    public void onAdministrarCentroLabelClick(MouseEvent mouseEvent) {
+    @FXML
+    void onAdministrarEmpresaLabelClick(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/AdministrarEmpresa.fxml"));
+
+            AdministrarEmpresaController administrarEmpresaController = fxmlLoader.getController();
+            administrarEmpresaController.datosAdmin();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
+
+    }
+
+    @FXML
+    void onTodasLasEmpresasLabelClick(MouseEvent event) { }
+
+    @FXML
+    void onTodosLosCentrosLabelClick(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainAdminRegistrarEmpresaController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdminRegistrarCentro.fxml"));
+
+            MainAdminRegistrarCentroController mainAdminRegistrarCentroController = fxmlLoader.getController();
+            mainAdminRegistrarCentroController.datosAdmin();
+            mainAdminRegistrarCentroController.todosCentros();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 }
 
