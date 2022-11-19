@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="DeudaEmpCentVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="248.0" prefWidth="940.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.DeudaUsuEmpPaneController">
+<VBox fx:id="DeudaEmpCentVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="248.0" prefWidth="924.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.DeudaUsuEmpPaneController">
    <children>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="920.0">
          <children>
@@ -33,12 +33,12 @@
          <children>
             <HBox alignment="CENTER" prefHeight="125.0" prefWidth="920.0">
                <children>
-                  <Label fx:id="actividadesLabel" alignment="CENTER" prefHeight="40.0" prefWidth="313.0" text="ACTIVIDADES">
+                  <Label fx:id="actividadesLabel" alignment="CENTER" prefHeight="18.0" prefWidth="170.0" text="ACTIVIDADES">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="vacio1" alignment="CENTER" prefHeight="31.0" prefWidth="313.0">
+                  <Label fx:id="vacio1" alignment="CENTER" prefHeight="18.0" prefWidth="648.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
