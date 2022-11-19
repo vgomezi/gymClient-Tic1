@@ -106,10 +106,13 @@
             <children>
             <VBox fx:id="centroRegistroVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                  <TextField fx:id="nombreCentroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE CENTRO" />
-                      <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextField fx:id="emailCentroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="EMAIL CENTRO" />
-                  <TextField fx:id="contrasenaCentroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CONTRASEÑA" />
+                      <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" onMouseClicked="#onImagenDisplayMouseClick" pickOnBounds="true" preserveRatio="true" />
+                  <TextField fx:id="nombreCentroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE CENTRO" style="-fx-background-radius: 15;" />
+                  <Label fx:id="emailCentroLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="EMAIL" textAlignment="CENTER" textOverrun="CLIP">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
                       <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0" />
                       <Button fx:id="actualizarCentroBoton" mnemonicParsing="false" mouseTransparent="false" onAction="#onActualizarCentroButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ACTUALIZAR" textFill="WHITE" textOverrun="CLIP">
                           <font>
@@ -132,7 +135,7 @@
                   <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                </VBox.margin>
                <padding>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </VBox>
             </children>

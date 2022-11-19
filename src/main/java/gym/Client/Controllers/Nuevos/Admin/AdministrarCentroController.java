@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -39,11 +40,13 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class AdministrarCentroController {
+public class AdministrarCentroController implements Initializable {
 
     @FXML
     private VBox centroRegistroVBox;
@@ -55,13 +58,10 @@ public class AdministrarCentroController {
     private TextField busquedaTextField;
 
     @FXML
-    private TextField contrasenaCentroDisplay;
+    private Label emailCentroLabel;
 
     @FXML
     private Button eliminarCentroBoton;
-
-    @FXML
-    private TextField emailCentroDisplay;
 
     @FXML
     private ImageView imagenActividadDisplay;
@@ -441,5 +441,11 @@ public class AdministrarCentroController {
             System.out.println(ex.toString());
             System.out.println("Error");
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Image imageView2 = new Image("/imagen/centrodefault.png");
+        imagenActividadDisplay.setImage(imageView2);
     }
 }
