@@ -453,7 +453,7 @@ public class CentroTodasActividadesController implements Initializable {
             HttpResponse<JsonNode> apiResponse = null;
             System.out.println(nombreActividad);
             //chequear camino borrar actividad
-            apiResponse = Unirest.delete("http://localhost:8987/api/actividades/deleteActividad/" + nombreActividad + diaActividad + horaActividad).asJson();
+            apiResponse = Unirest.delete("http://localhost:8987/api/actividades/deleteActividad/" + nombreActividad + diaActividad + horaActividad + centro.getMail()).asJson();
             System.out.println("Actividad borrada");
 
         } catch (Exception e) {
