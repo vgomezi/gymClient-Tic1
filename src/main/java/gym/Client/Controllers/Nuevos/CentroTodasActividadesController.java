@@ -157,7 +157,7 @@ public class CentroTodasActividadesController implements Initializable {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenActividadRegistroDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagen/usuariodefault.png");
+                Image imageView = new Image("/imagen/actividaddefault.png");
                 imagenActividadRegistroDisplay.setImage(imageView);
             }
             nombreActividadRegistroDisplay.setText(actividadObject.getNombre());
@@ -444,8 +444,19 @@ public class CentroTodasActividadesController implements Initializable {
     }
 
     public void onLimpiarActividadButtonClick(ActionEvent actionEvent) {
-
+        nombreActividadRegistroDisplay.clear();
+        reservableCheckBoxRegistroDisplay.setSelected(false);
+        tipoActividadChoiceBoxRegistroDisplay.setValue(null);
+        diaDatePickerRegistroDisplay.getEditor().clear();
+        horaActividadRegistroDisplay.clear();
+        descripcionActividadRegistroDisplay.clear();
+        cuposActividadRegistroDisplay.clear();
+        duracionActividadRegistroDisplay.clear();
+        costoActividadRegistroDisplay.clear();
+        Image imageView = new Image("/imagen/actividaddefault.png");
+        imagenActividadRegistroDisplay.setImage(imageView);
     }
+
 
     private List<ActividadObject> misActividades;
 
