@@ -120,6 +120,9 @@ public class CentroTodasActividadesController implements Initializable {
     @FXML
     private VBox actividadSeleccionadaVBox;
 
+    @FXML
+    public TextField busquedaActividadTextfield;
+
 
 
     private List<ActividadObject> todasLasActividades = new ArrayList<>();
@@ -524,6 +527,107 @@ public class CentroTodasActividadesController implements Initializable {
         inicializoChoiceBox();
     }
 
+    private List<ActividadObject> similarActividades(String similar) {
+        List<ActividadObject> listaActividades = new ArrayList<>();
+        ActividadObject actividadObject;
+
+        String actividad = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/similarActividadCentro/" + similar + "/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            //System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+
+            //System.out.println(actividad);
+            System.out.println("Lista actividades similares "/* + listaActividades*/);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaActividades;
+    }
+
+
+
     public void onBusquedaActividadKeyReleased(KeyEvent keyEvent) {
+        this.myListener = new MyListener() {
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {
+                desplegarActividadSeleccionada(actividadObject);
+            }
+
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
+
+            }
+        };
+        //System.out.println(busquedaTextField.getText());
+        if (busquedaActividadTextfield.getText().isEmpty()) {
+            todasLasActividadesGridPane = new GridPane();
+            todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
+            int column = 0;
+            int row = 1;
+            try{
+                for(ActividadObject actividad : todasLasActividades) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox todaActividadbox = fxmlLoader.load();
+                    ActividadTodaController actividadTodaController = fxmlLoader.getController();
+
+                    actividadTodaController.setearDatos(actividad, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasActividadesGridPane.add(todaActividadbox, column++, row);
+                    GridPane.setMargin(todaActividadbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+        } else {
+            todasLasActividadesGridPane = new GridPane();
+            todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
+            similarActividades = similarActividades(busquedaActividadTextfield.getText());
+            int column = 0;
+            int row = 1;
+            try{
+                for(ActividadObject actividad : similarActividades) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox todaActividadbox = fxmlLoader.load();
+                    ActividadTodaController actividadTodaController = fxmlLoader.getController();
+
+                    actividadTodaController.setearDatos(actividad, myListener);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasActividadesGridPane.add(todaActividadbox, column++, row);
+                    System.out.println(similarActividades.size());
+                    GridPane.setMargin(todaActividadbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+
+        }
     }
 }
