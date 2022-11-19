@@ -27,10 +27,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -126,6 +123,9 @@ public class UsuarioMisActividadesController implements Initializable {
 
     @FXML
     private ChoiceBox<String> filtroNuevasTodasActividades;
+
+    @FXML
+    private TextField busquedaTextField;
 
     private MyListener myListener;
 
@@ -477,10 +477,6 @@ public class UsuarioMisActividadesController implements Initializable {
         }
     }
 
-    public void onAdministrarUsuarioLabelClick(MouseEvent mouseEvent) {
-
-    }
-
     public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -533,12 +529,6 @@ public class UsuarioMisActividadesController implements Initializable {
             System.out.println("Error");
         }
 
-    }
-
-    public void onKeyReleased(KeyEvent keyEvent) {
-        //Desplegar pantalla con los resultados encontrados
-
-        //Si no se encuentra ninguno desplegar "No se encontraron actividades relacionadas con esa busqueda"
     }
 
     public Label getCentroActividadDisplay() {

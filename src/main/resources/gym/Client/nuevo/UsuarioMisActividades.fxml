@@ -6,8 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -28,16 +26,6 @@
                     </font>
                 </Label>
                 <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" />
-                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="328.0" spacing="10.0" styleClass="round-layout" stylesheets="/css/style.css">
-                    <children>
-                        <TextField onKeyReleased="#onKeyReleased" prefHeight="26.0" prefWidth="267.0" promptText="Barra de busqueda" style="-fx-background-radius: 15;" styleClass="transparent" stylesheets="/css/style.css" />
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@/Lupa.png" />
-                            </image>
-                        </ImageView>
-                    </children>
-                </HBox>
                 <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
                   <ChoiceBox fx:id="filtroNuevasTodasActividades" layoutX="14.0" layoutY="17.0" prefWidth="150.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" />
@@ -99,15 +87,7 @@
                   </Label>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0">
-               <children>
-                  <Button fx:id="darseBajaUsuarioBoton" mnemonicParsing="false" prefHeight="34.0" prefWidth="185.0" style="-fx-background-radius: 15;" stylesheets="@/css/style.css" text="DARSE DE BAJA" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-                </VBox>
+                <VBox alignment="CENTER" prefHeight="64.0" prefWidth="205.0" />
             </children>
         </VBox>
     </left>

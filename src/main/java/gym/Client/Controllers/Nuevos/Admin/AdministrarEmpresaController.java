@@ -258,7 +258,7 @@ public class AdministrarEmpresaController {
         this.myListenerEmpresa = new MyListenerEmpresa() {
             @Override
             public void onClickEmpresa(EmpresaObject empresaObject) {
-
+                desplegarEmpresaSeleccionada(empresaObject);
             }
         };
 
