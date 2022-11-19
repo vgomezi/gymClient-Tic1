@@ -9,10 +9,9 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import gym.Client.Classes.*;
-import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
-import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaNuevoController;
+import gym.Client.Controllers.Nuevos.Admin.UsuarioEmpresaController;
+import gym.Client.Controllers.Nuevos.Admin.UsuarioEmpresaNuevoController;
 import gym.Client.Controllers.LoginController;
-import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -226,7 +225,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             try{
                 for(EmpleadoObject empleado : misEmpleados) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
                     System.out.println("Carga FXMLLoader");
 
                     VBox usuarioEmpresaVbox = fxmlLoader.load();
@@ -256,7 +255,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             try{
                 for(EmpleadoObject empleado : empleadosLike) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
                     System.out.println("Carga FXMLLoader");
 
                     VBox usuarioEmpresaVbox = fxmlLoader.load();
@@ -432,7 +431,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             for (EmpleadoObject misNuevosEmpleado : misNuevosEmpleados) {
                 System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresaNuevo.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresaNuevo.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 HBox anadidaRecienteBox = fxmlLoader.load();
@@ -445,7 +444,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
             for(EmpleadoObject empleado : misEmpleados) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 VBox usuarioEmpresaVbox = fxmlLoader.load();

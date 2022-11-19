@@ -10,9 +10,8 @@ import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.EmpresaObject;
-import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
+import gym.Client.Controllers.Nuevos.Admin.UsuarioEmpresaController;
 import gym.Client.Controllers.LoginController;
-import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -30,7 +29,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -52,8 +50,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -275,7 +271,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
         try{
             for(EmpleadoObject empleado : misEmpleados) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 VBox usuarioEmpresaVbox = fxmlLoader.load();
@@ -508,7 +504,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             try{
                 for(EmpleadoObject empleado : misEmpleados) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
                     System.out.println("Carga FXMLLoader");
 
                     VBox usuarioEmpresaVbox = fxmlLoader.load();
@@ -538,7 +534,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             try{
                 for(EmpleadoObject empleado : empleadosLike) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
                     System.out.println("Carga FXMLLoader");
 
                     VBox usuarioEmpresaVbox = fxmlLoader.load();
@@ -602,7 +598,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             try{
                 for(EmpleadoObject empleado : misEmpleados) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
                     System.out.println("Carga FXMLLoader");
 
                     VBox usuarioEmpresaVbox = fxmlLoader.load();
@@ -633,7 +629,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                 for(EmpleadoObject empleado : misEmpleados) {
                     if (empleado.getDeuda() > 0) {
                         FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                        fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
                         System.out.println("Carga FXMLLoader");
 
                         VBox usuarioEmpresaVbox = fxmlLoader.load();

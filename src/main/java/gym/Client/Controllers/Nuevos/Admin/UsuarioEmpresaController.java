@@ -1,4 +1,4 @@
-package gym.Client.Controllers.Empresa.Pane;
+package gym.Client.Controllers.Nuevos.Admin;
 
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import javax.imageio.ImageIO;
@@ -18,30 +17,29 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Base64;
 
-public class UsuarioEmpresaNuevoController {
+public class UsuarioEmpresaController {
 
     @FXML
-    private HBox usuarioNuevoHbox;
+    private VBox usuarioEmpresaVbox;
 
     @FXML
-    private Label apellidoUsuarioNuevo;
+    private Label apellidoUsuarioLabel;
 
     @FXML
-    private Label emailUsuarioNuevo;
+    private Label emailUsuarioLabel;
 
     @FXML
-    private ImageView imagenUsuarioNuevo;
+    private ImageView imagenActividadTodaImage;
 
     @FXML
-    private Label nombreUsuarioNuevo;
+    private Label nombreUsuarioLabel;
+
 
     private MyListener myListener;
 
     private EmpleadoObject empleado;
 
-    private String [] colores = {"D96FE3", "B7E67E", "8AE3D4", "0DFF72", "B9E5FF", "BDB2FE", "FB9AA8", "FF5056"};
-
-    public void obtenerDatos(EmpleadoObject empleadoObject, MyListener myListener){
+    public void setearDatos(EmpleadoObject empleadoObject, MyListener myListener) {
         this.myListener = myListener;
         this.empleado = empleadoObject;
 
@@ -56,23 +54,20 @@ public class UsuarioEmpresaNuevoController {
             }
 
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
-            imagenUsuarioNuevo.setImage(toAdd);
+            imagenActividadTodaImage.setImage(toAdd);
         } else {
             Image imageView = new Image("/imagen/usuariodefault.png");
-            imagenUsuarioNuevo.setImage(imageView);
+            imagenActividadTodaImage.setImage(imageView);
         }
 
-        nombreUsuarioNuevo.setText(empleadoObject.getNombre());
-        apellidoUsuarioNuevo.setText(empleadoObject.getApellido());
-        emailUsuarioNuevo.setText(empleadoObject.getMail());
-        usuarioNuevoHbox.setStyle("-fx-background-color: #" + colores[(int) (Math.random()*(colores.length))] + ";" +
-                "-fx-background-radius: 15;" +
-                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+        apellidoUsuarioLabel.setText(empleadoObject.getApellido().toUpperCase());
+        nombreUsuarioLabel.setText(empleadoObject.getNombre().toUpperCase());
+        emailUsuarioLabel.setText(empleadoObject.getMail());
+        usuarioEmpresaVbox.setStyle("-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
     }
 
     @FXML
-    void onUsuarioNuevoPanelClick(MouseEvent event) {
+    void onUsuarioEmpresaPaneClick(MouseEvent event) {
         myListener.onClickUsuario(empleado);
-
     }
 }

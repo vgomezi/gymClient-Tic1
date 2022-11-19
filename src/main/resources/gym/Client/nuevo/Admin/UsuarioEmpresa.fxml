@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="usuarioEmpresaVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onUsuarioEmpresaPaneClick" prefHeight="300.0" prefWidth="300.0" spacing="10.0" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController">
+<VBox fx:id="usuarioEmpresaVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onUsuarioEmpresaPaneClick" prefHeight="300.0" prefWidth="300.0" spacing="10.0" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.Admin.UsuarioEmpresaController">
    <children>
       <ImageView fx:id="imagenActividadTodaImage" fitHeight="125.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true" />
       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="280.0">

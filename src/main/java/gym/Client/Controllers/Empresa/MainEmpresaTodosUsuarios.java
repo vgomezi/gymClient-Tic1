@@ -8,11 +8,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaController;
-import gym.Client.Controllers.Empresa.Pane.UsuarioEmpresaNuevoController;
-import gym.Client.Controllers.LoginController;
-import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
-import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
+import gym.Client.Controllers.Nuevos.Admin.UsuarioEmpresaController;
+import gym.Client.Controllers.Nuevos.Admin.UsuarioEmpresaNuevoController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -32,7 +29,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -195,7 +191,7 @@ public class MainEmpresaTodosUsuarios implements Initializable {
                 System.out.println("tamaño i = " + anadidosRecienteUsuarioLista.size());
                 System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresaNuevo.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresaNuevo.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 HBox anadidaRecienteBox = fxmlLoader.load();
@@ -208,7 +204,7 @@ public class MainEmpresaTodosUsuarios implements Initializable {
 
             for(EmpleadoObject empleado : todosLosUsuarios) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesEmpresa/UsuariosPane/UsuarioEmpresa.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 VBox todaActividadbox = fxmlLoader.load();
