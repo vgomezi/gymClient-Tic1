@@ -124,7 +124,7 @@ public class DeudaUsuEmpPaneController {
                 row++;
 
                 deudaUsuEmpGridPane.add(ActUsuVbox, column, row);
-                GridPane.setMargin(ActUsuVbox, new Insets(10));
+                GridPane.setMargin(ActUsuVbox, new Insets(5));
 
             }
         } catch (Exception e){
