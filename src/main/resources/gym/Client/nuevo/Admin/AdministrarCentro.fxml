@@ -104,9 +104,9 @@
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox fx:id="centroRegistroVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
+            <VBox fx:id="centroRegistroVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="25.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
-                      <ImageView fx:id="imagenActividadDisplay" fitHeight="101.0" fitWidth="253.0" onMouseClicked="#onImagenDisplayMouseClick" pickOnBounds="true" preserveRatio="true" />
+                      <ImageView fx:id="imagenActividadDisplay" fitHeight="123.0" fitWidth="253.0" onMouseClicked="#onImagenDisplayMouseClick" pickOnBounds="true" preserveRatio="true" />
                   <TextField fx:id="nombreCentroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE CENTRO" style="-fx-background-radius: 15;" />
                   <Label fx:id="emailCentroLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="286.0" text="EMAIL" textAlignment="CENTER" textOverrun="CLIP">
                      <font>

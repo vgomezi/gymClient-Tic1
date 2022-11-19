@@ -5,8 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.CentroDeportivoObject;
+import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.LoginController;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -34,6 +37,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.springframework.lang.Nullable;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -43,6 +47,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -114,6 +119,7 @@ public class AdministrarCentroController implements Initializable {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
         Image imageView = new Image("/imagen/imagenadministrador.png");
         imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
+        desplegarCentroSeleccionado(null);
     }
 
     private List<CentroDeportivoObject> todosLosCentros() {
@@ -171,7 +177,7 @@ public class AdministrarCentroController implements Initializable {
         this.myListenerCentro = new MyListenerCentro() {
             @Override
             public void onClickCentro(CentroDeportivoObject centroDeportivoObject) {
-
+                desplegarCentroSeleccionado(centroDeportivoObject);
             }
         };
 
@@ -205,16 +211,54 @@ public class AdministrarCentroController implements Initializable {
         }
     }
 
+    public CentroDeportivoObject centroEnDisplay;
+
+    public void desplegarCentroSeleccionado(@Nullable CentroDeportivoObject centroDeportivoObject) {
+        centroEnDisplay = centroDeportivoObject;
+        if (centroDeportivoObject != null) {
+            if (centroDeportivoObject.getImagen() != null) {
+                byte[] imageDecoded = Base64.getDecoder().decode(centroDeportivoObject.getImagen());
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+                BufferedImage bImage = null;
+                try {
+                    bImage = ImageIO.read(bis);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+                imagenActividadDisplay.setImage(toAdd);
+            } else {
+                Image imageView = new Image("/imagen/centrodefault.png");
+                imagenActividadDisplay.setImage(imageView);
+            }
+            nombreCentroDisplay.setText(centroDeportivoObject.getNombre());
+            emailCentroLabel.setText(centroDeportivoObject.getMail());
+            actualizarCentroBoton.setVisible(true);
+            eliminarCentroBoton.setVisible(true);
+            nombreCentroDisplay.setVisible(true);
+        } else {
+            nombreCentroDisplay.clear();
+            emailCentroLabel.setText("");
+            imagenActividadDisplay.setImage(null);
+            actualizarCentroBoton.setVisible(false);
+            eliminarCentroBoton.setVisible(false);
+            nombreCentroDisplay.setVisible(false);
+        }
+        centroRegistroVBox.setStyle("-fx-background-color : #9AC8F5;" +
+                "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+    }
+
     @FXML
     void onBusquedaKeyReleased(KeyEvent event) {
         this.myListenerCentro = new MyListenerCentro() {
             @Override
             public void onClickCentro(CentroDeportivoObject centroDeportivoObject) {
+                desplegarCentroSeleccionado(centroDeportivoObject);
                 centroRegistroVBox.setStyle("-fx-background-color : #9AC8F5;" +
                         "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
             }
         };
-        //System.out.println(busquedaTextField.getText());
         if (busquedaTextField.getText().isEmpty()) {
             todasLasActividadesGridPane = new GridPane();
             todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
@@ -320,11 +364,84 @@ public class AdministrarCentroController implements Initializable {
 
     @FXML
     void onActualizarCentroButtonClick(ActionEvent event) {
+        String nombre = nombreCentroDisplay.getText();
+        String imagen = null;
+        try {
+            imagen = codificarImagenRegistroUsuario(fileImagen);
+        } catch (Exception ignored) {
 
+        }
+
+        if (!nombre.isEmpty()) {
+            try {
+                centroEnDisplay.setNombre(nombre);
+                if (imagen != null) {
+                    centroEnDisplay.setImagen(imagen);
+                }
+                String json = "";
+                try {
+                    ObjectMapper mapperEmpleado = new ObjectMapper();
+                    json = mapperEmpleado.writeValueAsString(centroEnDisplay);
+                    HttpResponse<JsonNode> apiResponse = null;
+                    apiResponse = Unirest.put("http://localhost:8987/api/centroDeportivo/actualizar/" + centroEnDisplay.getMail()).header("Content-Type", "application/json").body(json).asJson();
+                    System.out.println("Put Hecho empleado");
+
+
+                } catch (Exception e) {
+                    System.out.println("Error actualizando put: " + e.getMessage());
+
+                }
+            } catch (Exception e) {
+
+            }
+        } else {
+
+        }
+        centrosDeportivosList.clear();
+        todosCentros();
+        desplegarCentroSeleccionado(null);
+        fileImagen = null;
     }
 
     @FXML
     void onEliminarCentroButtonClick(ActionEvent event) {
+        String mailCentro = emailCentroLabel.getText();
+
+        List<ActividadObject> listaActividades = new ArrayList<>();
+
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/actividades/actividadesCentro/" + mailCentro).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Logro json");
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+
+            System.out.println("Lista actividades Todas Actividades " /*+ listaActividades*/);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        if (listaActividades.size() == 0) {
+            try {
+                HttpResponse<JsonNode> apiResponse = null;
+                System.out.println(mailCentro);
+                apiResponse = Unirest.delete("http://localhost:8987/api/centroDeportivo/delete/" + mailCentro).asJson();
+                System.out.println("Usuario borrado");
+
+            } catch (Exception e) {
+                System.out.println("Error borrando inscripcion: " + e);
+            }
+            centrosDeportivosList.clear();
+            todosCentros();
+            desplegarCentroSeleccionado(null);
+            centroRegistroVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+        } else {
+            centroRegistroVBox.setStyle("-fx-background-color : #E3350E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+        }
     }
 
     @FXML
