@@ -91,7 +91,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
     private Button registrarCentroBoton;
 
     @FXML
-    private GridPane todasLasActividadesGridPane;
+    private GridPane todosLosCentrosGridPane;
 
     @FXML
     private ScrollPane todosLosCentrosScroll;
@@ -172,8 +172,8 @@ public class MainAdminRegistrarCentroController implements Initializable {
     }
 
     public void todosCentros() {
-        todasLasActividadesGridPane = new GridPane();
-        todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
+        todosLosCentrosGridPane = new GridPane();
+        todosLosCentrosScroll.setContent(todosLosCentrosGridPane);
         centrosDeportivosList.clear();
         centrosDeportivosList.addAll(todosLosCentros());
 
@@ -208,7 +208,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
                     ++row;
                 }
 
-                todasLasActividadesGridPane.add(centroVBox, column++, row);
+                todosLosCentrosGridPane.add(centroVBox, column++, row);
                 GridPane.setMargin(centroVBox, new Insets(10));
 
             }
@@ -229,8 +229,8 @@ public class MainAdminRegistrarCentroController implements Initializable {
         };
         //System.out.println(busquedaTextField.getText());
         if (busquedaTextField.getText().isEmpty()) {
-            todasLasActividadesGridPane = new GridPane();
-            todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
+            todosLosCentrosGridPane = new GridPane();
+            todosLosCentrosScroll.setContent(todosLosCentrosGridPane);
             int column = 0;
             int row = 1;
             try{
@@ -249,7 +249,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
                         ++row;
                     }
 
-                    todasLasActividadesGridPane.add(centroVBox, column++, row);
+                    todosLosCentrosGridPane.add(centroVBox, column++, row);
                     GridPane.setMargin(centroVBox, new Insets(10));
 
                 }
@@ -258,8 +258,8 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
             }
         } else {
-            todasLasActividadesGridPane = new GridPane();
-            todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
+            todosLosCentrosGridPane = new GridPane();
+            todosLosCentrosScroll.setContent(todosLosCentrosGridPane);
             similarCentro = similarCentros(busquedaTextField.getText());
             int column = 0;
             int row = 1;
@@ -279,7 +279,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
                         ++row;
                     }
 
-                    todasLasActividadesGridPane.add(centroVBox, column++, row);
+                    todosLosCentrosGridPane.add(centroVBox, column++, row);
                     GridPane.setMargin(centroVBox, new Insets(10));
 
                 }

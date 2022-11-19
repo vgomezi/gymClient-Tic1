@@ -82,7 +82,7 @@ public class AdministrarEmpresaController {
     private BorderPane pantallaMainUsuario;
 
     @FXML
-    private GridPane todasLasActividadesGridPane;
+    private GridPane todasLasEmpresasGridPane;
 
     @FXML
     private ScrollPane todasLasEmpresasScroll;
@@ -163,8 +163,8 @@ public class AdministrarEmpresaController {
     }
 
     public void todasEmpresas() {
-        todasLasActividadesGridPane = new GridPane();
-        todasLasEmpresasScroll.setContent(todasLasActividadesGridPane);
+        todasLasEmpresasGridPane = new GridPane();
+        todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
         empresasList.clear();
         empresasList.addAll(todasLasEmpresas());
 
@@ -196,7 +196,7 @@ public class AdministrarEmpresaController {
                     ++row;
                 }
 
-                todasLasActividadesGridPane.add(empresaVBox, column++, row);
+                todasLasEmpresasGridPane.add(empresaVBox, column++, row);
                 GridPane.setMargin(empresaVBox, new Insets(10));
 
             }

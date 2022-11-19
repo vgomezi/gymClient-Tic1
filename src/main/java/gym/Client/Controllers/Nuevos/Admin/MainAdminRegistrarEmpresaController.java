@@ -8,10 +8,10 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-import gym.Client.Classes.CentroDeportivoObject;
-import gym.Client.Classes.EmpresaObject;
-import gym.Client.Classes.UserLoginObject;
+import gym.Client.Classes.*;
 import gym.Client.Controllers.LoginController;
+import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
+import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -96,7 +96,7 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
     private Button registrarEmpresaBoton;
 
     @FXML
-    private GridPane todasLasActividadesGridPane;
+    private GridPane todasLasEmpresasGridPane;
 
     @FXML
     private Label todasLasEmpresasLabel;
@@ -117,6 +117,8 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
     private Label todasLasEmpresasTitleLabel;
 
     private List<EmpresaObject> empresasList = new ArrayList<>();
+
+    private List<EmpresaObject> similarEmpresa = new ArrayList<>();
 
     private MyListenerEmpresa myListenerEmpresa;
 
@@ -141,7 +143,8 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
             //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            listaEmpresas = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {});
+            listaEmpresas = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {
+            });
 
         } catch (Exception e) {
             System.out.println("Error: " + e);
@@ -150,8 +153,8 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
     }
 
     public void todasEmpresas() {
-        todasLasActividadesGridPane = new GridPane();
-        todasLasEmpresasScroll.setContent(todasLasActividadesGridPane);
+        todasLasEmpresasGridPane = new GridPane();
+        todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
         empresasList.clear();
         empresasList.addAll(todasLasEmpresas());
 
@@ -167,8 +170,8 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
 
         int column = 0;
         int row = 1;
-        try{
-            for(EmpresaObject empresa : empresasList) {
+        try {
+            for (EmpresaObject empresa : empresasList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
                 System.out.println("Carga FXMLLoader");
@@ -183,20 +186,117 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
                     ++row;
                 }
 
-                todasLasActividadesGridPane.add(empresaVBox, column++, row);
+                todasLasEmpresasGridPane.add(empresaVBox, column++, row);
                 GridPane.setMargin(empresaVBox, new Insets(10));
 
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error creando panel " + e);
 
         }
     }
 
-    @FXML
-    void onBusquedaKeyReleased(KeyEvent event) {
 
+    private List<EmpresaObject> similarEmpresas(String similar) {
+        List<EmpresaObject> listaEmpresasSimilares = new ArrayList<>();
+        EmpresaObject empresaObject;
+
+        String actividad = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/empresa/similarEmpresa/" + similar + "/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            //System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaEmpresasSimilares = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {
+            });
+
+            //System.out.println(actividad);
+            System.out.println("Lista empresas similares "/* + listaActividades*/);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaEmpresasSimilares;
     }
+
+
+    public void onBusquedaKeyReleased(KeyEvent keyEvent) {
+        this.myListenerEmpresa = new MyListenerEmpresa() {
+            @Override
+            public void onClickEmpresa(EmpresaObject empresaObject) {
+
+            }
+        };
+
+        //System.out.println(busquedaTextField.getText());
+        if (busquedaTextField.getText().isEmpty()) {
+            todasLasEmpresasGridPane = new GridPane();
+            todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
+            int column = 0;
+            int row = 1;
+            try {
+                for (EmpresaObject empresa : empresasList) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox empresaVbox = fxmlLoader.load();
+                    EmpresaTodaController empresaTodaController = fxmlLoader.getController();
+
+                    empresaTodaController.setearDatos(empresa, myListenerEmpresa);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasEmpresasGridPane.add(empresaVbox, column++, row);
+                    GridPane.setMargin(empresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e) {
+                System.out.println("Error creando panel " + e);
+
+            }
+        } else {
+            todasLasEmpresasGridPane = new GridPane();
+            todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
+            similarEmpresa = similarEmpresas(busquedaTextField.getText());
+            int column = 0;
+            int row = 1;
+            try {
+                for (EmpresaObject empresa : similarEmpresa) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox empresaVbox = fxmlLoader.load();
+                    EmpresaTodaController empresaTodaController = fxmlLoader.getController();
+
+                    empresaTodaController.setearDatos(empresa, myListenerEmpresa);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasEmpresasGridPane.add(empresaVbox, column++, row);
+                    GridPane.setMargin(empresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e) {
+                System.out.println("Error creando panel " + e);
+
+            }
+
+        }
+    }
+
+
 
 
     @FXML

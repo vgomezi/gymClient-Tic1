@@ -87,7 +87,7 @@ public class AdministrarCentroController implements Initializable {
     private BorderPane pantallaMainUsuario;
 
     @FXML
-    private GridPane todasLasActividadesGridPane;
+    private GridPane todosLosCentrosGridPane;
 
     @FXML
     private Label todasLosCentrosTitleLabel;
@@ -169,8 +169,8 @@ public class AdministrarCentroController implements Initializable {
     }
 
     public void todosCentros() {
-        todasLasActividadesGridPane = new GridPane();
-        todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
+        todosLosCentrosGridPane = new GridPane();
+        todosLosCentrosScroll.setContent(todosLosCentrosGridPane);
         centrosDeportivosList.clear();
         centrosDeportivosList.addAll(todosLosCentros());
 
@@ -201,7 +201,7 @@ public class AdministrarCentroController implements Initializable {
                     ++row;
                 }
 
-                todasLasActividadesGridPane.add(centroVBox, column++, row);
+                todosLosCentrosGridPane.add(centroVBox, column++, row);
                 GridPane.setMargin(centroVBox, new Insets(10));
 
             }
@@ -260,8 +260,8 @@ public class AdministrarCentroController implements Initializable {
             }
         };
         if (busquedaTextField.getText().isEmpty()) {
-            todasLasActividadesGridPane = new GridPane();
-            todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
+            todosLosCentrosGridPane = new GridPane();
+            todosLosCentrosScroll.setContent(todosLosCentrosGridPane);
             int column = 0;
             int row = 1;
             try{
@@ -280,7 +280,7 @@ public class AdministrarCentroController implements Initializable {
                         ++row;
                     }
 
-                    todasLasActividadesGridPane.add(centroVBox, column++, row);
+                    todosLosCentrosGridPane.add(centroVBox, column++, row);
                     GridPane.setMargin(centroVBox, new Insets(10));
 
                 }
@@ -289,8 +289,8 @@ public class AdministrarCentroController implements Initializable {
 
             }
         } else {
-            todasLasActividadesGridPane = new GridPane();
-            todosLosCentrosScroll.setContent(todasLasActividadesGridPane);
+            todosLosCentrosGridPane = new GridPane();
+            todosLosCentrosScroll.setContent(todosLosCentrosGridPane);
             similarCentro = similarCentros(busquedaTextField.getText());
             int column = 0;
             int row = 1;
@@ -310,7 +310,7 @@ public class AdministrarCentroController implements Initializable {
                         ++row;
                     }
 
-                    todasLasActividadesGridPane.add(centroVBox, column++, row);
+                    todosLosCentrosGridPane.add(centroVBox, column++, row);
                     GridPane.setMargin(centroVBox, new Insets(10));
 
                 }
