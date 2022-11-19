@@ -182,6 +182,7 @@ public class AdministrarEmpresaDeudaController {
                 DeudaUsuEmpPaneController deudaUsuEmpPaneController = fxmlLoader.getController();
 
                 deudaUsuEmpPaneController.setearDatos(empleadoObject, myListener);
+                deudaUsuEmpPaneController.actividadesEmpleado();
 
                 row++;
 
