@@ -68,7 +68,7 @@ public class ActividadRecienteController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenActividadReciente.setImage(toAdd);
         } else {
-            Image imageView = new Image("/centro.jpg");
+            Image imageView = new Image("/imagen/actividaddefault.png");
             imagenActividadReciente.setImage(imageView);
         }
         centroActividadReciente.setText(actividadObject.getCentroDeportivo().getNombre());

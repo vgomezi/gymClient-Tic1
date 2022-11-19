@@ -65,7 +65,7 @@ public class ActividadTodaController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenActividadTodaImage.setImage(toAdd);
         } else {
-            Image imageView = new Image("/imagen/usuariodefault.png");
+            Image imageView = new Image("/imagen/actividaddefault.png");
             imagenActividadTodaImage.setImage(imageView);
         }
 
