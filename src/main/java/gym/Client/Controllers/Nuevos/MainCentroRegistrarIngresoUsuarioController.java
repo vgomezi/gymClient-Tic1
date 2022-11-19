@@ -462,7 +462,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
         }
     }
 
-    public void onRegistrarIngresoUsuarioButtonClick(MouseEvent mouseEvent) {
+    public void onRegistrarIngresoUsuarioButtonClick(ActionEvent actionEvent) {
         if (!mailUsuarioDisplay.getText().isEmpty()) {
             String mailUsuario = mailUsuarioDisplay.getText();
 
