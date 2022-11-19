@@ -99,6 +99,18 @@
             <children>
             <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="616.0" prefWidth="266.0" spacing="6.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="160.0">
+                     <children>
+                        <Button fx:id="limpiarActividadBoton" mnemonicParsing="false" onAction="#onLimpiarActividadButtonClick" prefHeight="18.0" prefWidth="66.0" stylesheets="@/css/style.css" text="LIMPIAR" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                     </children>
+                  </HBox>
                   <TextField fx:id="nombreActividadRegistroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE" style="-fx-background-radius: 15;" />
                       <ImageView fx:id="imagenActividadRegistroDisplay" fitHeight="101.0" fitWidth="253.0" onMouseClicked="#onImagenRegistroMouseClick" pickOnBounds="true" preserveRatio="true" />
                   <HBox alignment="CENTER" prefHeight="39.0" prefWidth="286.0">
@@ -116,7 +128,7 @@
                   <TextField fx:id="descripcionActividadRegistroDisplay" alignment="CENTER" prefHeight="133.0" prefWidth="266.0" promptText="DESCRIPCIÓN" style="-fx-background-radius: 15;" />
                       <HBox alignment="CENTER" prefHeight="45.0" prefWidth="286.0">
                      <children>
-                        <TextField fx:id="cuposActividadRegistroDisplay" alignment="CENTER" prefHeight="34.0" prefWidth="256.0" promptText="CUPOS" style="-fx-background-radius: 15;" />
+                        <TextField fx:id="cuposActividadRegistroDisplay" alignment="CENTER" prefHeight="27.0" prefWidth="253.0" promptText="CUPOS" style="-fx-background-radius: 15;" />
                      </children>
                       </HBox>
                   <TextField fx:id="duracionActividadRegistroDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="DURACIÓN (mm)" style="-fx-background-radius: 15;" />
@@ -125,7 +137,7 @@
                         <TextField fx:id="costoActividadRegistroDisplay" alignment="CENTER" prefHeight="52.0" prefWidth="266.0" promptText="COSTO" style="-fx-background-radius: 15;" />
                      </children>
                       </HBox>
-                  <Button fx:id="registrarActividadBoton" mnemonicParsing="false" onMouseClicked="#onRegistrarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@/css/style.css" text="REGISTRAR" textFill="WHITE">
+                  <Button fx:id="registrarActividadBoton" mnemonicParsing="false" onAction="#onRegistrarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@/css/style.css" text="REGISTRAR" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -133,7 +145,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="actualizarActividadBoton" mnemonicParsing="false" onMouseClicked="#onActualizarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@/css/style.css" text="ACTUALIZAR" textFill="WHITE">
+                  <Button fx:id="actualizarActividadBoton" mnemonicParsing="false" onAction="#onActualizarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@/css/style.css" text="ACTUALIZAR" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -141,7 +153,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="eliminarActividadBoton" mnemonicParsing="false" onMouseClicked="#onEliminarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@/css/style.css" text="ELIMINAR" textFill="WHITE">
+                  <Button fx:id="eliminarActividadBoton" mnemonicParsing="false" onAction="#onEliminarActividadButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="@/css/style.css" text="ELIMINAR" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

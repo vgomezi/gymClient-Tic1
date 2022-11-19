@@ -349,7 +349,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     }
 
     @FXML
-    void onActualizarUsuarioButtonClick(ActionEvent event) {
+    void onActualizarUsuarioButtonClick(ActionEvent actionEvent) {
         String nombre = nombreTextField.getText();
         String apellido = apellidoTextField.getText();
         String saldo = saldoTextField.getText();
@@ -656,7 +656,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
 
     @FXML
-    void onEliminarUsuarioButtonClick(ActionEvent event) {
+    void onEliminarUsuarioButtonClick(ActionEvent actionEvent) {
         String mailUsuario = emailUsuarioLabel.getText();
         try {
             HttpResponse<JsonNode> apiResponse = null;

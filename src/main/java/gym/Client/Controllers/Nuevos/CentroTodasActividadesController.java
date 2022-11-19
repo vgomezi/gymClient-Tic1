@@ -17,6 +17,7 @@ import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -106,6 +107,9 @@ public class CentroTodasActividadesController implements Initializable {
 
     @FXML
     public Button eliminarActividadBoton;
+
+    @FXML
+    public Button limpiarActividadBoton;
 
     @FXML
     private GridPane todasLasActividadesGridPane;
@@ -380,7 +384,7 @@ public class CentroTodasActividadesController implements Initializable {
 
     }
 
-    public void onRegistrarActividadButtonClick(MouseEvent mouseEvent) {
+    public void onRegistrarActividadButtonClick(ActionEvent actionEvent) {
         String nombre = nombreActividadRegistroDisplay.getText();
         String descripcion = descripcionActividadRegistroDisplay.getText();
         String hora = horaActividadRegistroDisplay.getText();
@@ -435,7 +439,11 @@ public class CentroTodasActividadesController implements Initializable {
 
     }
 
-    public void onActualizarActividadButtonClick(MouseEvent mouseEvent) {
+    public void onActualizarActividadButtonClick(ActionEvent actionEvent) {
+
+    }
+
+    public void onLimpiarActividadButtonClick(ActionEvent actionEvent) {
 
     }
 
@@ -444,7 +452,7 @@ public class CentroTodasActividadesController implements Initializable {
 
 
 
-    public void onEliminarActividadButtonClick(MouseEvent mouseEvent) {
+    public void onEliminarActividadButtonClick(ActionEvent actionEvent) {
         String nombreActividad = nombreActividadRegistroDisplay.getText();
         String diaActividad = diaDatePickerRegistroDisplay.getValue().toString();
         String horaActividad = horaActividadRegistroDisplay.getText();

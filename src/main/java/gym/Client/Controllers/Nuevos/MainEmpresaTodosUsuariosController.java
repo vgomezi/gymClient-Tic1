@@ -281,7 +281,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
 
     @FXML
-    void onRegistrarUsuarioBotonClick(ActionEvent event) {
+    void onRegistrarUsuarioBotonClick(ActionEvent actionEvent) {
         System.out.println("Apreto Boton");
         String nombre = nombreRegistroEmpleado.getText()/*.toLowerCase()*/;
         String apellido = apellidoRegistroEmpleado.getText()/*.toLowerCase()*/;
