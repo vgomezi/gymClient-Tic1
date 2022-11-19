@@ -104,18 +104,17 @@
     <right>
         <VBox alignment="CENTER" prefHeight="540.0" prefWidth="286.0" spacing="5.0" styleClass="white-background" stylesheets="/css/style.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox fx:id="actividadSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="5.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
+            <VBox fx:id="empresaSeleccionadaVBox" alignment="CENTER" prefHeight="578.0" prefWidth="286.0" spacing="25.0" styleClass="chosen-activity-card" stylesheets="/css/style.css">
                <children>
+                      <ImageView fx:id="imagenEmpresaDisplay" fitHeight="120.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <TextField fx:id="nombreEmpresaDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="266.0" promptText="NOMBRE EMPRESA" style="-fx-background-radius: 15;" />
-                      <ImageView fx:id="imagenEmpresaDisplay" fitHeight="101.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                   <TextField fx:id="bonoEmpleadosDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="302.0" promptText="BONO EMPLEADOS" style="-fx-background-radius: 15;" />
                   <Label fx:id="emailEmpresaLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="39.0" prefWidth="256.0" text="EMAIL" textAlignment="CENTER" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="contrasenaEmpresaDisplay" alignment="CENTER" prefHeight="39.0" prefWidth="134.0" promptText="CONTRASEÑA EMPRESA" style="-fx-background-radius: 15;" />
-                      <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="286.0" />
+                      <HBox alignment="TOP_CENTER" prefHeight="14.0" prefWidth="256.0" />
                       <Button fx:id="actualizarEmpresaBoton" mnemonicParsing="false" mouseTransparent="false" onAction="#onActualizarEmpresaButtonClick" prefHeight="42.0" prefWidth="178.0" stylesheets="/css/style.css" text="ACTUALIZAR" textFill="WHITE" textOverrun="CLIP">
                           <font>
                               <Font name="System Bold" size="18.0" />
@@ -137,7 +136,7 @@
                   <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                </VBox.margin>
                <padding>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </VBox>
             </children>
