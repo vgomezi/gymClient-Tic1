@@ -5,11 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.CentroDeportivoObject;
+import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.EmpresaObject;
 import gym.Client.Controllers.LoginController;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +33,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.springframework.lang.Nullable;
@@ -39,6 +43,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -106,7 +111,7 @@ public class AdministrarEmpresaController {
 
     private List<EmpresaObject> empresasList = new ArrayList<>();
 
-    private List<CentroDeportivoObject> similarEmpresas = new ArrayList<>();
+    private List<EmpresaObject> similarEmpresas = new ArrayList<>();
 
     private MyListenerEmpresa myListenerEmpresa;
 
@@ -250,7 +255,75 @@ public class AdministrarEmpresaController {
 
     @FXML
     void onBusquedaKeyReleased(KeyEvent event) {
+        this.myListenerEmpresa = new MyListenerEmpresa() {
+            @Override
+            public void onClickEmpresa(EmpresaObject empresaObject) {
 
+            }
+        };
+
+        //System.out.println(busquedaTextField.getText());
+        if (busquedaTextField.getText().isEmpty()) {
+            todasLasEmpresasGridPane = new GridPane();
+            todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
+            int column = 0;
+            int row = 1;
+            try {
+                for (EmpresaObject empresa : empresasList) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox empresaVbox = fxmlLoader.load();
+                    EmpresaTodaController empresaTodaController = fxmlLoader.getController();
+
+                    empresaTodaController.setearDatos(empresa, myListenerEmpresa);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasEmpresasGridPane.add(empresaVbox, column++, row);
+                    GridPane.setMargin(empresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e) {
+                System.out.println("Error creando panel " + e);
+
+            }
+        } else {
+            todasLasEmpresasGridPane = new GridPane();
+            todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
+            similarEmpresas = similarEmpresas(busquedaTextField.getText());
+            int column = 0;
+            int row = 1;
+            try {
+                for (EmpresaObject empresa : similarEmpresas) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox empresaVbox = fxmlLoader.load();
+                    EmpresaTodaController empresaTodaController = fxmlLoader.getController();
+
+                    empresaTodaController.setearDatos(empresa, myListenerEmpresa);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasEmpresasGridPane.add(empresaVbox, column++, row);
+                    GridPane.setMargin(empresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e) {
+                System.out.println("Error creando panel " + e);
+
+            }
+
+        }
     }
 
 
@@ -288,23 +361,88 @@ public class AdministrarEmpresaController {
 
     }
 
-    public EmpresaObject empresa;
+    @FXML
+    void onActualizarEmpresaButtonClick(ActionEvent event) {
+        String nombre = nombreEmpresaDisplay.getText();
+        String bono = bonoEmpleadosDisplay.getText();
+        String imagen = null;
+        try {
+            imagen = codificarImagenRegistroUsuario(fileImagen);
+        } catch (Exception ignored) {
 
-    public void datosEmpresa(String correoElectronico) {
-        //fijarse main usuarios todas actividades
+        }
 
+        if (!nombre.isEmpty() && !bono.isEmpty()) {
+            try {
+                empresaEnDisplay.setNombre(nombre);
+                empresaEnDisplay.setBono(bono);
+                if (imagen != null) {
+                    empresaEnDisplay.setImagen(imagen);
+                }
+                String json = "";
+                try {
+                    ObjectMapper mapperEmpleado = new ObjectMapper();
+                    json = mapperEmpleado.writeValueAsString(empresaEnDisplay);
+                    HttpResponse<JsonNode> apiResponse = null;
+                    apiResponse = Unirest.put("http://localhost:8987/api/empresas/actualizar/" + empresaEnDisplay.getMail()).header("Content-Type", "application/json").body(json).asJson();
+                    System.out.println("Put Hecho empresa");
+
+
+                } catch (Exception e) {
+                    System.out.println("Error actualizando put: " + e.getMessage());
+
+                }
+            } catch (Exception e) {
+
+            }
+        } else {
+
+        }
+        empresasList.clear();
+        todasEmpresas();
+        desplegarEmpresaSeleccionada(null);
+        fileImagen = null;
     }
 
-
-
     @FXML
-    void onActualizarEmpresaButtonClick(MouseEvent event) {
+    void onEliminarEmpresaButtonClick(ActionEvent event) {
+        String mailEmpresa = emailEmpresaLabel.getText();
 
-    }
+        List<EmpleadoObject> listaEmpleados = new ArrayList<>();
 
-    @FXML
-    void onEliminarEmpresaButtonClick(MouseEvent event) {
+        try {
+            HttpResponse<String> apiResponse = null;
 
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadosEmpresa/" + mailEmpresa).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Logro json");
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
+
+            System.out.println("Lista empresa Todos empleados " /*+ listaActividades*/);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        if (listaEmpleados.size() == 0) {
+            try {
+                HttpResponse<JsonNode> apiResponse = null;
+                System.out.println(mailEmpresa);
+                apiResponse = Unirest.delete("http://localhost:8987/api/empresas/delete/" + mailEmpresa).asJson();
+                System.out.println("Empresa borrada");
+
+            } catch (Exception e) {
+                System.out.println("Error borrando inscripcion: " + e);
+            }
+            empresasList.clear();
+            todasEmpresas();
+            desplegarEmpresaSeleccionada(null);
+            empresaSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+        } else {
+            empresaSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+        }
     }
 
 
@@ -372,5 +510,54 @@ public class AdministrarEmpresaController {
             System.out.println(ex.toString());
             System.out.println("Error");
         }
+    }
+
+    @FXML
+    void onImagenDisplayMouseClick (MouseEvent event) {
+        File file = tomarImagen(event);
+        String base64 = codificarImagenRegistroUsuario(file);
+        Image imagen = decodificarImagen(base64);
+        imagenEmpresaDisplay.setImage(imagen);
+    }
+
+    public File tomarImagen (MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Elegir imagen usuario");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        File file = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
+        fileImagen = file;
+        return file;
+    }
+
+    public String codificarImagenRegistroUsuario(File file) {
+        String base64String = null;
+        try {
+            System.out.println(file);
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            System.out.println("Convertí file en bytes");
+            base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
+            System.out.println("Converti bytes en string");
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        return base64String;
+    }
+
+    public Image decodificarImagen(String imagen) {
+        byte[] imageDecoded = org.apache.commons.codec.binary.Base64.decodeBase64(imagen);
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageDecoded);
+        BufferedImage bImage = null;
+        try {
+            bImage = ImageIO.read(bis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Image toAdd = SwingFXUtils.toFXImage(bImage, null);
+        return toAdd;
     }
 }
