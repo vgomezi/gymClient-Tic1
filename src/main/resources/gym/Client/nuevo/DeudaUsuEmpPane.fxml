@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="DeudaEmpCentVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="248.0" prefWidth="940.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.DeudaUsuEmpPaneController">
+<VBox fx:id="DeudaEmpCentVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="248.0" prefWidth="940.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gym.Client.Controllers.Nuevos.DeudaUsuEmpPaneController">
    <children>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="920.0">
          <children>
@@ -29,7 +29,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox fx:id="DeudaEmpCentVbox1" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="199.0" prefWidth="940.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css">
+      <VBox fx:id="DeudaEmpCentVbox1" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="940.0" spacing="10.0" style="-fx-background-radius: 15;" stylesheets="/css/style.css">
          <children>
             <HBox alignment="CENTER" prefHeight="125.0" prefWidth="920.0">
                <children>
@@ -51,7 +51,7 @@
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="480.0" />
-            <ScrollPane fx:id="actividadesUsuarioScroll" prefHeight="250.0" prefWidth="920.0" />
+            <ScrollPane fx:id="deudaUsuEmpScroll" prefHeight="250.0" prefWidth="920.0" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

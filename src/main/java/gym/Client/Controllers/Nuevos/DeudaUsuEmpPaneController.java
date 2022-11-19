@@ -40,9 +40,6 @@ public class DeudaUsuEmpPaneController {
     private Label deudaLabel;
 
     @FXML
-    private GridPane deudaUsuEmpGridPane;
-
-    @FXML
     private ScrollPane deudaUsuEmpScroll;
 
     @FXML
@@ -104,7 +101,7 @@ public class DeudaUsuEmpPaneController {
     }
 
     public void actividadesEmpleado() {
-        deudaUsuEmpGridPane = new GridPane();
+        GridPane deudaUsuEmpGridPane = new GridPane();
         deudaUsuEmpScroll.setContent(deudaUsuEmpGridPane);
         misActividades.clear();
         misActividades.addAll(todasMisActividades());
@@ -116,7 +113,7 @@ public class DeudaUsuEmpPaneController {
         try{
             for(ActividadObject actividadObject : misActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActUseEmpPane.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActUsuEmpPane.fxml"));
                 System.out.println("Carga FXMLLoader");
 
                 VBox ActUsuVbox = fxmlLoader.load();

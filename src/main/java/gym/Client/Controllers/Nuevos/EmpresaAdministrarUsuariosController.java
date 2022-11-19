@@ -658,19 +658,42 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     @FXML
     void onEliminarUsuarioButtonClick(ActionEvent actionEvent) {
         String mailUsuario = emailUsuarioLabel.getText();
+
+        List<ActividadObject> listaMisActividades = new ArrayList<>();
         try {
-            HttpResponse<JsonNode> apiResponse = null;
-            System.out.println(mailUsuario);
-            apiResponse = Unirest.delete("http://localhost:8987/api/usuarios/deleteEmpleado/" + mailUsuario).asJson();
-            System.out.println("Usuario borrado");
+            HttpResponse<String> apiResponse = null;
 
+            apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcionUsuario/" + mailUsuario).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaMisActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
+
+            //System.out.println(actividad);
+            //System.out.println("Lista actividades mis actividades " + listaMisActividades);
         } catch (Exception e) {
-            System.out.println("Error borrando inscripcion: " + e);
+            System.out.println("Error: " + e);
         }
-        misEmpleados.clear();
-        empleadosEmpresa();
-        desplegarEmpleadoSeleccionado(null);
+        if (listaMisActividades.size() == 0) {
+            try {
+                HttpResponse<JsonNode> apiResponse = null;
+                System.out.println(mailUsuario);
+                apiResponse = Unirest.delete("http://localhost:8987/api/usuarios/deleteEmpleado/" + mailUsuario).asJson();
+                System.out.println("Usuario borrado");
+                misEmpleados.clear();
+                empleadosEmpresa();
+                desplegarEmpleadoSeleccionado(null);
+                empleadoSeleccionadoVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
 
+            } catch (Exception e) {
+                System.out.println("Error borrando inscripcion: " + e);
+            }
+        } else {
+            empleadoSeleccionadoVBox.setStyle("-fx-background-color : #E3350E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+        }
     }
 
     @Override

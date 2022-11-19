@@ -131,10 +131,6 @@ public class CentroTodasActividadesController implements Initializable {
 
     private List<ActividadObject> todasLasActividades = new ArrayList<>();
 
-    //Poner en lugar de anadidas recientemente las proximas actividades que estan por ocurrir, de forma que sea más
-    //fácil encontrarlas
-    private List<ActividadObject> proximasActividades = new ArrayList<>();
-
     private List<ActividadObject> similarActividades = new ArrayList<>();
 
 
@@ -181,18 +177,17 @@ public class CentroTodasActividadesController implements Initializable {
             nombreActividadRegistroDisplay.clear();
             reservableCheckBoxRegistroDisplay.setSelected(false);
             tipoActividadChoiceBoxRegistroDisplay.setValue(null);
-            diaDatePickerRegistroDisplay.getEditor().clear();
+            diaDatePickerRegistroDisplay.setValue(null);
             horaActividadRegistroDisplay.clear();
             descripcionActividadRegistroDisplay.clear();
             cuposActividadRegistroDisplay.clear();
             duracionActividadRegistroDisplay.clear();
             costoActividadRegistroDisplay.clear();
+            Image imageView = new Image("/imagen/actividaddefault.png");
+            imagenActividadRegistroDisplay.setImage(imageView);
 
-            registrarActividadBoton.setVisible(false);
             actualizarActividadBoton.setVisible(false);
             eliminarActividadBoton.setVisible(false);
-
-
         }
         actividadSeleccionadaVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
@@ -354,6 +349,7 @@ public class CentroTodasActividadesController implements Initializable {
         }
 
         nombreLabel.setText(centroDeportivoObject.getNombre());
+        desplegarActividadSeleccionada(null);
     }
 
     public void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
@@ -427,6 +423,11 @@ public class CentroTodasActividadesController implements Initializable {
                     HttpResponse<JsonNode> apiResponse = null;
                     apiResponse = Unirest.post("http://localhost:8987/api/actividades").header("Content-Type", "application/json").body(json).asJson();
                     System.out.println("Registro actividad hecho");
+                    todasLasActividades.clear();
+                    actividadesCentro();
+                    desplegarActividadSeleccionada(null);
+                    fileImagen = null;
+
 
                 } catch (Exception e) {
 
@@ -440,47 +441,88 @@ public class CentroTodasActividadesController implements Initializable {
     }
 
     public void onActualizarActividadButtonClick(ActionEvent actionEvent) {
+        String descripcion = descripcionActividadRegistroDisplay.getText();
+        String cupos = cuposActividadRegistroDisplay.getText();
+        String costo = costoActividadRegistroDisplay.getText();
+        String duracion = duracionActividadRegistroDisplay.getText();
+        Boolean reservable = reservableCheckBoxRegistroDisplay.isSelected();
+        String tipo = tipoActividadChoiceBoxRegistroDisplay.getValue().toString();
+        String imagen = null;
+        try {
+            imagen = codificarImagenRegistroActividad(fileImagen);
+        } catch (Exception ignored) {
 
+        }
+
+        if (!descripcion.isEmpty() && !cupos.isEmpty() && !costo.isEmpty() && !duracion.isEmpty() && !tipo.isEmpty()) {
+            try {
+                Integer cuposInt = Integer.parseInt(cupos);
+                Integer costoInt = Integer.parseInt(costo);
+                int duracionInt = Integer.parseInt(duracion);
+
+                actividadEnDisplay.setCosto(costoInt);
+                actividadEnDisplay.setCupos(cuposInt);
+                actividadEnDisplay.setDuracion(duracionInt);
+                actividadEnDisplay.setReservable(reservable);
+                actividadEnDisplay.setDescripcion(descripcion);
+                TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
+                actividadEnDisplay.setTipo(tipoActividadObject);
+                if (imagen != null) {
+                    actividadEnDisplay.setImagen(imagen);
+                }
+
+
+                String json = "";
+
+                try {
+                    ObjectMapper mapperActividad = new JsonMapper().builder()
+                            .findAndAddModules()
+                            .build();
+                    mapperActividad.registerModule(new JavaTimeModule());
+                    json = mapperActividad.writeValueAsString(actividadEnDisplay);
+                    HttpResponse<JsonNode> apiResponse = null;
+                    apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
+
+                    System.out.println("Put actividad hecho");
+
+                } catch (Exception e) {
+
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        todasLasActividades.clear();
+        actividadesCentro();
+        desplegarActividadSeleccionada(null);
+        fileImagen = null;
     }
 
     public void onLimpiarActividadButtonClick(ActionEvent actionEvent) {
-        nombreActividadRegistroDisplay.clear();
-        reservableCheckBoxRegistroDisplay.setSelected(false);
-        tipoActividadChoiceBoxRegistroDisplay.setValue(null);
-        diaDatePickerRegistroDisplay.getEditor().clear();
-        horaActividadRegistroDisplay.clear();
-        descripcionActividadRegistroDisplay.clear();
-        cuposActividadRegistroDisplay.clear();
-        duracionActividadRegistroDisplay.clear();
-        costoActividadRegistroDisplay.clear();
-        Image imageView = new Image("/imagen/actividaddefault.png");
-        imagenActividadRegistroDisplay.setImage(imageView);
+        desplegarActividadSeleccionada(null);
     }
-
-
-    private List<ActividadObject> misActividades;
-
-
-
 
     public void onEliminarActividadButtonClick(ActionEvent actionEvent) {
         String nombreActividad = nombreActividadRegistroDisplay.getText();
         String diaActividad = diaDatePickerRegistroDisplay.getValue().toString();
         String horaActividad = horaActividadRegistroDisplay.getText();
 
+        //if no hay inscripciones
         try {
             HttpResponse<JsonNode> apiResponse = null;
             System.out.println(nombreActividad);
-            //chequear camino borrar actividad
-            apiResponse = Unirest.delete("http://localhost:8987/api/actividades/deleteActividad/" + nombreActividad + diaActividad + horaActividad + centro.getMail()).asJson();
+            apiResponse = Unirest.delete("http://localhost:8987/api/actividades/deleteActividad/" + nombreActividad + "/" + diaActividad + "/" + horaActividad + "/" + centro.getMail()).asJson();
             System.out.println("Actividad borrada");
+            todasLasActividades.clear();
+            actividadesCentro();
+            desplegarActividadSeleccionada(null);
+            actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
 
         } catch (Exception e) {
             System.out.println("Error borrando inscripcion: " + e);
         }
-        misActividades.clear();
-        //actividadesCentro();
-        //desplegarActividadSeleccionada(null);
+        //else
     }
 
     @FXML
