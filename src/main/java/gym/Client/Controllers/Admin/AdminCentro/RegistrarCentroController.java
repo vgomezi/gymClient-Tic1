@@ -31,6 +31,7 @@ import org.springframework.stereotype.Controller;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.Date;
 
 
 @Controller
@@ -86,7 +87,7 @@ public class RegistrarCentroController {
                     ObjectMapper mapper2 = new ObjectMapper();
                     ObjectMapper mapper3 = new ObjectMapper();
                     UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Centro Deportivo");
-                    CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email, imagen);
+                    CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email, imagen, new Date());
                     TipoActividadObject tipoActividadObject = new TipoActividadObject(tipo);
                     json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                     json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(centroDeportivoObject);

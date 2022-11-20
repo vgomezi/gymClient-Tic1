@@ -46,6 +46,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -421,7 +422,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
                             ObjectMapper mapper = new ObjectMapper();
                             ObjectMapper mapper2 = new ObjectMapper();
                             UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Centro Deportivo");
-                            CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email, imagen);
+                            CentroDeportivoObject centroDeportivoObject = new CentroDeportivoObject(userLoginObject, nombre, email, imagen, new Date());
                             json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                             json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(centroDeportivoObject);
 

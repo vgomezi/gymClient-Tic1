@@ -1,5 +1,6 @@
 package gym.Client.Classes;
 
+import java.util.Date;
 import java.util.List;
 
 public class CentroDeportivoObject {
@@ -13,6 +14,8 @@ public class CentroDeportivoObject {
 
     private String imagen;
 
+    private Date dateCreado;
+
 
     //private List<ActividadObject> listaActividades;
 
@@ -22,11 +25,12 @@ public class CentroDeportivoObject {
     public CentroDeportivoObject() {
     }
 
-    public CentroDeportivoObject(UserLoginObject userLogin, String nombre, String mail, String imagen) {
+    public CentroDeportivoObject(UserLoginObject userLogin, String nombre, String mail, String imagen, Date dateCreado) {
         this.userLogin = userLogin;
         this.nombre = nombre;
         this.mail = mail;
         this.imagen = imagen;
+        this.dateCreado = dateCreado;
     }
 
     public UserLoginObject getUserLogin() {
@@ -61,6 +65,14 @@ public class CentroDeportivoObject {
         this.imagen = imagen;
     }
 
+    public Date getDateCreado() {
+        return dateCreado;
+    }
+
+    public void setDateCreado(Date dateCreado) {
+        this.dateCreado = dateCreado;
+    }
+
     /*public List<ActividadObject> getListaActividades() {
         return listaActividades;
     }
@@ -84,6 +96,7 @@ public class CentroDeportivoObject {
                 ", nombre='" + nombre + '\'' +
                 ", mail='" + mail + '\'' +
                 ", imagen='" + imagen + '\'' +
+                ", dateCreado=" + dateCreado +
                 '}';
     }
 }

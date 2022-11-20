@@ -48,6 +48,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -366,7 +367,7 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
                             ObjectMapper mapper = new ObjectMapper();
                             ObjectMapper mapper2 = new ObjectMapper();
                             UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Empresa");
-                            EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, bono, email, imagen);
+                            EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, bono, email, imagen, new Date());
                             json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                             json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empresaObject);
 

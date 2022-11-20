@@ -28,6 +28,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.net.http.HttpRequest;
 import java.nio.file.Files;
+import java.util.Date;
 
 
 @Component
@@ -84,7 +85,7 @@ public class RegistrarEmpresaController {
                     ObjectMapper mapper = new ObjectMapper();
                     ObjectMapper mapper2 = new ObjectMapper();
                     UserLoginObject userLoginObject = new UserLoginObject(email, contrasena, "Empresa");
-                    EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, bono, email, imagen);
+                    EmpresaObject empresaObject = new EmpresaObject(userLoginObject, nombre, bono, email, imagen, new Date());
                     json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userLoginObject);
                     json2 = mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(empresaObject);
                     System.out.println(json);

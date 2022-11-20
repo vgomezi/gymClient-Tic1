@@ -1,6 +1,7 @@
 package gym.Client.Classes;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 public class EmpresaObject {
@@ -15,6 +16,8 @@ public class EmpresaObject {
 
     private String imagen;
 
+    private Date dateCreada;
+
     /*private List<EmpleadoObject> listaEmpleados;
 
     private List<PagoObject> pagos;*/
@@ -22,12 +25,13 @@ public class EmpresaObject {
     public EmpresaObject() {
     }
 
-    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String bono, String mail, String imagen) {
+    public EmpresaObject(UserLoginObject userLoginReference, String nombre, String bono, String mail, String imagen, Date dateCreada) {
         this.userLoginReference = userLoginReference;
         this.nombre = nombre;
         this.bono = bono;
         this.mail = mail;
         this.imagen = imagen;
+        this.dateCreada = dateCreada;
     }
 
     public UserLoginObject getUserLoginReference() {
@@ -66,6 +70,15 @@ public class EmpresaObject {
         this.imagen = imagen;
     }
 
+    public Date getDateCreada() {
+        return dateCreada;
+    }
+
+    public void setDateCreada(Date dateCreada) {
+        this.dateCreada = dateCreada;
+    }
+
+
     /*public List<EmpleadoObject> getListaEmpleados() {
         return listaEmpleados;
     }
@@ -90,6 +103,7 @@ public class EmpresaObject {
                 ", bono='" + bono + '\'' +
                 ", mail='" + mail + '\'' +
                 ", imagen='" + imagen + '\'' +
+                ", dateCreada=" + dateCreada +
                 '}';
     }
 }
