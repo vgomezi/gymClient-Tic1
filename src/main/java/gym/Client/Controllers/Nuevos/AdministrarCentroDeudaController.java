@@ -127,12 +127,49 @@ public class AdministrarCentroDeudaController {
 
     @FXML
     void onRegistrarIngresoUsuarioLabelClick(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(CentroTodasActividadesController.class.getResourceAsStream("/gym/Client/nuevo/MainCentroRegistrarIngresoUsuario.fxml"));
+
+            MainCentroRegistrarIngresoUsuarioController mainCentroRegistrarIngresoUsuarioController = fxmlLoader.getController();
+            System.out.println(centro.getMail());
+            mainCentroRegistrarIngresoUsuarioController.datosCentro(centro.getMail());
+            mainCentroRegistrarIngresoUsuarioController.actividadesProximasCentro();
+            mainCentroRegistrarIngresoUsuarioController.actividadesCentro();
+
+
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
 
     }
 
     @FXML
     void onTodasLasActividadesLabelClick(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(MainCentroRegistrarIngresoUsuarioController.class.getResourceAsStream("/gym/Client/nuevo/CentroTodasActividades.fxml"));
 
+            CentroTodasActividadesController centroRegistrarActividadController = fxmlLoader.getController();
+            System.out.println(centro.getMail());
+            centroRegistrarActividadController.datosCentro(centro);
+            centroRegistrarActividadController.actividadesCentro();
+
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
     public void datosCentro(CentroDeportivoObject centroDeportivoObject) {

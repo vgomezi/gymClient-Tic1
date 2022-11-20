@@ -79,12 +79,49 @@ public class AdministrarEmpresaDeudaController {
 
     @FXML
     void onAdministrarUsuariosLabelClick(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            System.out.println("Apreto administrar usuarios");
+            Parent root1 = (Parent) fxmlLoader.load(MainEmpresaTodosUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/EmpresaAdministrarUsuarios.fxml"));
+            System.out.println("HOLA 2");
+            EmpresaAdministrarUsuariosController empresaAdministrarUsuariosController = fxmlLoader.getController();
+            empresaAdministrarUsuariosController.setEmpresaLogInMail(empresa.getMail());
+            System.out.println(empresa.getMail());
+            empresaAdministrarUsuariosController.datosEmpresa(empresa.getMail());
+            empresaAdministrarUsuariosController.empleadosEmpresa();
+            empresaAdministrarUsuariosController.desplegarEmpleadoSeleccionado(null);
 
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
     @FXML
     void onTodosLosUsuariosLabelClick(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root1 = (Parent) fxmlLoader.load(EmpresaAdministrarUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
 
+            MainEmpresaTodosUsuariosController mainEmpresaTodosUsuariosController = fxmlLoader.getController();
+            System.out.println(empresa.getMail());
+            mainEmpresaTodosUsuariosController.datosEmpresa(empresa.getMail());
+            mainEmpresaTodosUsuariosController.empleadosEmpresa();
+
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+        }
     }
 
     @FXML
