@@ -136,6 +136,7 @@ public class AdministrarCentroDeudaController {
             mainCentroRegistrarIngresoUsuarioController.datosCentro(centro.getMail());
             mainCentroRegistrarIngresoUsuarioController.actividadesProximasCentro();
             mainCentroRegistrarIngresoUsuarioController.actividadesCentro();
+            mainCentroRegistrarIngresoUsuarioController.desplegarInfoActividadSeleccionada(null);
 
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();

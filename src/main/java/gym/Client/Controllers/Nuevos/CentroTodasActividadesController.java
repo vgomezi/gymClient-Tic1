@@ -366,6 +366,7 @@ public class CentroTodasActividadesController implements Initializable {
             mainCentroRegistrarIngresoUsuarioController.datosCentro(centro.getMail());
             mainCentroRegistrarIngresoUsuarioController.actividadesProximasCentro();
             mainCentroRegistrarIngresoUsuarioController.actividadesCentro();
+            mainCentroRegistrarIngresoUsuarioController.desplegarInfoActividadSeleccionada(null);
 
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
