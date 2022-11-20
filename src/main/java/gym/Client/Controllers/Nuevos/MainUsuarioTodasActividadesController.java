@@ -509,70 +509,91 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     }
 
     public void onReservarActividadClick(ActionEvent event) {
-        if (reservarActividadBoton.getText().equals("RESERVAR")) {
-            try {
-                String json = "";
+        String json2 = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+            apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcion/" + empleado.getMail() + "/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).asObject(String.class);
+            json2 = apiResponse.getBody();
+        } catch (Exception e) {
+            System.out.println("Error obteniendo actividad");
+        }
 
+        if (json2.isEmpty()) {
+            if (reservarActividadBoton.getText().equals("RESERVAR")) {
                 try {
-                    ObjectMapper mapper = new JsonMapper().builder().findAndAddModules().build();
-                    mapper.registerModule(new JavaTimeModule());
-                    InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "RESERVAR", null);
-                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
-                    System.out.println("json hecho");
+                    String json = "";
 
-                    HttpResponse<JsonNode> apiResponse = null;
-                    apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json).asJson();
-                    System.out.println("Inscripciones actividades reserva hecho");
+                    try {
+                        //Verificar que no existe la inscripcion
+                        ///inscripcion/{mailEmpleado}/{nombreActividad}/{diaActividad}/{horaActividad}/{centroMailActividad}
+                        ObjectMapper mapper = new JsonMapper().builder().findAndAddModules().build();
+                        mapper.registerModule(new JavaTimeModule());
+                        InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "RESERVAR", null);
+                        json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
+                        System.out.println("json hecho");
+
+                        HttpResponse<JsonNode> apiResponse = null;
+                        apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json).asJson();
+                        System.out.println("Inscripciones actividades reserva hecho");
+                    } catch (Exception e) {
+                        System.out.println("Error ingresando reserva");
+                        System.out.println(e.getMessage());
+                    }
+
+                    String json1 = "";
+                    try {
+                        actividadEnDisplay.setCupos(actividadEnDisplay.getCupos() - 1);
+                        ObjectMapper mapperActividad = new JsonMapper().builder()
+                                .findAndAddModules()
+                                .build();
+                        mapperActividad.registerModule(new JavaTimeModule());
+                        json1 = mapperActividad.writeValueAsString(actividadEnDisplay);
+                        HttpResponse<JsonNode> apiResponse = null;
+                        apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json1).asJson();
+                        System.out.println("Put Hecho");
+
+
+                    } catch (Exception e) {
+                        System.out.println("Error actualizando put: " + e.getMessage());
+
+                    }
                 } catch (Exception e) {
-                    System.out.println("Error ingresando reserva");
-                    System.out.println(e.getMessage());
+                    System.out.println("Error fatal");
                 }
-
-                String json1 = "";
+                actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+                System.out.println("Reservar actividad");
+            } else if (reservarActividadBoton.getText().equals("GUARDAR")) {
                 try {
-                    actividadEnDisplay.setCupos(actividadEnDisplay.getCupos()-1);
-                    ObjectMapper mapperActividad = new JsonMapper().builder()
-                            .findAndAddModules()
-                            .build();
-                    mapperActividad.registerModule(new JavaTimeModule());
-                    json1 = mapperActividad.writeValueAsString(actividadEnDisplay);
-                    HttpResponse<JsonNode> apiResponse = null;
-                    apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json1).asJson();
-                    System.out.println("Put Hecho");
+                    String json = "";
 
+                    try {
+                        ObjectMapper mapper = new JsonMapper().builder().findAndAddModules().build();
+                        mapper.registerModule(new JavaTimeModule());
+                        InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "GUARDAR", null);
+                        json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
+                        System.out.println("json hecho");
 
+                        HttpResponse<JsonNode> apiResponse = null;
+                        apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json).asJson();
+                        System.out.println("Inscripciones actividades guardar hecho");
+                    } catch (Exception e) {
+                        System.out.println("Error ingresando reserva");
+                        System.out.println(e.getMessage());
+                    }
                 } catch (Exception e) {
-                    System.out.println("Error actualizando put: " + e.getMessage());
-
+                    System.out.println("Error fatal");
                 }
-            } catch (Exception e) {
-                System.out.println("Error fatal");
+                actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+                System.out.println("Guardar actividad");
+            } else {
+                System.out.println("ERROR");
             }
-            System.out.println("Reservar actividad");
-        } else if (reservarActividadBoton.getText().equals("GUARDAR")) {
-            try {
-                String json = "";
-
-                try {
-                    ObjectMapper mapper = new JsonMapper().builder().findAndAddModules().build();
-                    mapper.registerModule(new JavaTimeModule());
-                    InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "GUARDAR", null);
-                    json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
-                    System.out.println("json hecho");
-
-                    HttpResponse<JsonNode> apiResponse = null;
-                    apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json).asJson();
-                    System.out.println("Inscripciones actividades guardar hecho");
-                } catch (Exception e) {
-                    System.out.println("Error ingresando reserva");
-                    System.out.println(e.getMessage());
-                }
-            } catch (Exception e) {
-                System.out.println("Error fatal");
-            }
-            System.out.println("Guardar actividad");
         } else {
-            System.out.println("ERROR");
+            actividadSeleccionadaVBox.setStyle("-fx-background-color : #f4f723;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+            System.out.println("Ya existe la reserva");
         }
     }
 

@@ -41,7 +41,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AdministrarCentroDeudaController implements Initializable {
+public class AdministrarCentroDeudaController {
 
     @FXML
     private VBox DeudaEmpCentVbox;
@@ -69,6 +69,9 @@ public class AdministrarCentroDeudaController implements Initializable {
 
     @FXML
     private ScrollPane liquidacionEmpresasScroll;
+
+    @FXML
+    private Label deudaTotalLabel;
 
     public EmpresaObject empresa;
 
@@ -132,11 +135,6 @@ public class AdministrarCentroDeudaController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
     public void datosCentro(CentroDeportivoObject centroDeportivoObject) {
         this.centro = centroDeportivoObject;
         if(centroDeportivoObject.getImagen() != null) {
@@ -191,6 +189,7 @@ public class AdministrarCentroDeudaController implements Initializable {
         liquidacionEmpresasScroll.setContent(todasLasEmpresasGridPane);
         misEmpresas.clear();
         misEmpresas.addAll(todasMisEmpresas());
+        int deudaTotal = 0;
 
         this.myListener = new MyListener() {
 
@@ -218,6 +217,7 @@ public class AdministrarCentroDeudaController implements Initializable {
                 DeudaEmpCentPaneController deudaEmpCentPaneController = fxmlLoader.getController();
 
                 deudaEmpCentPaneController.setearDatos(pago, myListener);
+                deudaTotal = deudaTotal + pago.getMonto();
 
 
                 row++;
@@ -230,6 +230,7 @@ public class AdministrarCentroDeudaController implements Initializable {
             System.out.println("Error creando panel " + e);
 
         }
+        deudaTotalLabel.setText("Importe total: " + deudaTotal);
     }
 
     public CentroDeportivoObject getCentro() {

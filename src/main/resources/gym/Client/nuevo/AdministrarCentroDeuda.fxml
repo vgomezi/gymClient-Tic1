@@ -36,8 +36,18 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="273.0" spacing="20.0">
+                <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="deudaTotalLabel" alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="374.0" text="LIQUIDACIÓN">
+                     <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin></Pane>
+                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="206.0" spacing="20.0">
                     <children>
                         <Label fx:id="logOutLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" onMouseClicked="#onMouseClickedLogOut" prefHeight="46.0" prefWidth="96.0" text="LOG OUT" textAlignment="RIGHT" textOverrun="CLIP">
                             <font>

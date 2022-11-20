@@ -496,11 +496,12 @@ public class MainCentroRegistrarIngresoUsuarioController {
                             System.out.println("Put Hecho");
 
                             System.out.println("Actualizo la inscripcion");
-
                             actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
                                     "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
 
                         } else {
+                            mailUsuarioDisplay.clear();
+                            desplegarInfoActividadSeleccionada(null);
                             actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
                                     "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
                             System.out.println("No reservó");
@@ -569,6 +570,9 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
                         }
                         mailUsuarioDisplay.clear();
+                        todasLasActividades.clear();
+                        actividadesCentro();
+                        actividadesProximasCentro();
                         actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
                                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
 
