@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -66,6 +67,9 @@ public class AdministrarEmpresaDeudaController {
     @FXML
     private ScrollPane liquidacionEmpleadoScroll;
 
+    @FXML
+    private TextField busquedaTextField;
+
     public EmpleadoObject empleado;
 
     public EmpresaObject empresa;
@@ -73,6 +77,8 @@ public class AdministrarEmpresaDeudaController {
     private MyListener myListener;
 
     private List<EmpleadoObject> misEmpleados = new ArrayList<>();
+
+    private List<EmpleadoObject> empleadosLike;
 
     @FXML
     private Label todosLosUsuariosLabel;
@@ -126,6 +132,83 @@ public class AdministrarEmpresaDeudaController {
 
     @FXML
     void onBusquedaEmpleadoKeyReleased(KeyEvent keyEvent) {
+        this.myListener = new MyListener() {
+
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {
+            }
+
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
+
+            }
+        };
+
+        if (busquedaTextField.getText().isEmpty()) {
+            todosLosEmpleadosGridPane = new GridPane();
+            liquidacionEmpleadoScroll.setContent(todosLosEmpleadosGridPane);
+
+            System.out.println("hola");
+
+            int column = 0;
+            int row = 1;
+            try{
+                for(EmpleadoObject empleadoObject : misEmpleados) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaUsuEmpPane.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox DeudaUsuEmpVbox = fxmlLoader.load();
+                    DeudaUsuEmpPaneController deudaUsuEmpPaneController = fxmlLoader.getController();
+
+                    deudaUsuEmpPaneController.setearDatos(empleadoObject, myListener);
+                    deudaUsuEmpPaneController.actividadesEmpleado();
+
+                    row++;
+
+                    todosLosEmpleadosGridPane.add(DeudaUsuEmpVbox, column, row);
+                    GridPane.setMargin(DeudaUsuEmpVbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+
+        } else {
+            todosLosEmpleadosGridPane = new GridPane();
+            liquidacionEmpleadoScroll.setContent(todosLosEmpleadosGridPane);
+            empleadosLike = misEmpleadosLike(busquedaTextField.getText());
+
+            System.out.println("hola");
+
+            int column = 0;
+            int row = 1;
+            try{
+                for(EmpleadoObject empleadoObject : empleadosLike) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaUsuEmpPane.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox DeudaUsuEmpVbox = fxmlLoader.load();
+                    DeudaUsuEmpPaneController deudaUsuEmpPaneController = fxmlLoader.getController();
+
+                    deudaUsuEmpPaneController.setearDatos(empleadoObject, myListener);
+                    deudaUsuEmpPaneController.actividadesEmpleado();
+
+                    row++;
+
+                    todosLosEmpleadosGridPane.add(DeudaUsuEmpVbox, column, row);
+                    GridPane.setMargin(DeudaUsuEmpVbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+
+        }
+
 
     }
 
@@ -180,6 +263,26 @@ public class AdministrarEmpresaDeudaController {
             listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
 
             System.out.println(pago);
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaMisEmpleados;
+    }
+
+    private List<EmpleadoObject> misEmpleadosLike(String like) {
+        List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
+        EmpleadoObject empleadoObject;
+
+        String empleado = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios//similarEmpleado/" + empresa.getMail() + "/" + like).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
 
         } catch (Exception e) {
             System.out.println("Error: " + e);

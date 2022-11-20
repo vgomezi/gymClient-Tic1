@@ -71,7 +71,7 @@ public class DeudaUsuEmpPaneController {
         this.myListener = myListener;
         this.empleado = empleadoObject;
 
-        nombreLabel.setText("USUARIO:  " + empleadoObject.getNombre());
+        nombreLabel.setText("USUARIO:  " + empleadoObject.getNombre() + " " + empleadoObject.getApellido());
         mailLabel.setText("MAIL:  " + empleadoObject.getMail());
         deudaLabel.setText("DEUDA:  " + String.valueOf(empleadoObject.getDeuda()));
         actividadesLabel.setText("ACTIVIDADES: ");
