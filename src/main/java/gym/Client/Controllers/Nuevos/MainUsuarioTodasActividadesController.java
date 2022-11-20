@@ -277,34 +277,26 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             todasLasActividades.addAll(todasLasActividades());
         }
         System.out.println("Inicializo listas");
+
+        this.myListener = new MyListener() {
+            @Override
+            public void onClickActividad(ActividadObject actividadObject) {
+                desplegarInfoActividadSeleccionada(actividadObject);
+            }
+
+            @Override
+            public void onClickUsuario(EmpleadoObject empleadoObject) {
+
+            }
+        };
+
         if(todasLasActividades.size() > 0) {
             desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
-            System.out.println("Desplega informacion");
-            this.myListener = new MyListener() {
-                @Override
-                public void onClickActividad(ActividadObject actividadObject) {
-                    desplegarInfoActividadSeleccionada(actividadObject);
-                }
-
-                @Override
-                public void onClickUsuario(EmpleadoObject empleadoObject) {
-
-                }
-            };
+            System.out.println("Despliega informacion");
         } else {
             desplegarInfoActividadSeleccionada(null);
-            System.out.println("Desplega informacion");
-            this.myListener = new MyListener() {
-                @Override
-                public void onClickActividad(ActividadObject actividadObject) {
-                    desplegarInfoActividadSeleccionada(actividadObject);
-                }
+            System.out.println("No despliega informacion");
 
-                @Override
-                public void onClickUsuario(EmpleadoObject empleadoObject) {
-
-                }
-            };
         }
 
         //System.out.println(anadidosRecienteLista + "anadidos reciente lista");
@@ -598,7 +590,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     }
 
     public void filtrarPorTipo(String tipo) {
-        //busquedaTextField.deleteText(0, busquedaTextField.getText().length());
+        desplegarInfoActividadSeleccionada(null);
         busquedaTextField.clear();
         System.out.println(tipo);
 
@@ -708,6 +700,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     }
 
     public void onBusquedaKeyReleased(KeyEvent keyEvent) {
+        desplegarInfoActividadSeleccionada(null);
 
         if (!tiposPantallaPrincipalChoiceBox.getValue().equals("TODAS")) {
             String caracter = busquedaTextField.getText();
