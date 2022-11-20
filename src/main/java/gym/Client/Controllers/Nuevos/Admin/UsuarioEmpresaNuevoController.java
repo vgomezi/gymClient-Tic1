@@ -1,6 +1,5 @@
 package gym.Client.Controllers.Nuevos.Admin;
 
-import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
@@ -10,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -58,7 +56,7 @@ public class UsuarioEmpresaNuevoController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenUsuarioNuevo.setImage(toAdd);
         } else {
-            Image imageView = new Image("/imagen/usuariodefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/usuariodefault.png");
             imagenUsuarioNuevo.setImage(imageView);
         }
 

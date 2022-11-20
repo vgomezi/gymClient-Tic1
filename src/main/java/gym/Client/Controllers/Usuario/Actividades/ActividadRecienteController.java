@@ -3,23 +3,18 @@ package gym.Client.Controllers.Usuario.Actividades;
 import gym.Client.Classes.ActividadObject;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Base64;
-import java.util.ResourceBundle;
 
 public class ActividadRecienteController {
 
@@ -68,7 +63,7 @@ public class ActividadRecienteController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenActividadReciente.setImage(toAdd);
         } else {
-            Image imageView = new Image("/imagen/actividaddefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/actividaddefault.png");
             imagenActividadReciente.setImage(imageView);
         }
         centroActividadReciente.setText(actividadObject.getCentroDeportivo().getNombre());

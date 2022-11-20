@@ -9,7 +9,6 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Classes.TipoActividadObject;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
@@ -31,7 +30,6 @@ import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -51,11 +49,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Period;
-import java.time.ZoneOffset;
-import java.time.temporal.Temporal;
 import java.util.*;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class UsuarioMisActividadesController implements Initializable {
 
@@ -148,7 +142,7 @@ public class UsuarioMisActividadesController implements Initializable {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenUsuarioCirculo.setFill(new ImagePattern(toAdd));
         } else {
-            Image imageView = new Image("/imagen/usuariodefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/usuariodefault.png");
             imagenUsuarioCirculo.setFill(new ImagePattern(imageView));
         }
 
@@ -403,7 +397,7 @@ public class UsuarioMisActividadesController implements Initializable {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenActividadDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagen/actividaddefault.png");
+                Image imageView = new Image("/imagenes/imagenesDefault/actividaddefault.png");
                 imagenActividadDisplay.setImage(imageView);
             }
 

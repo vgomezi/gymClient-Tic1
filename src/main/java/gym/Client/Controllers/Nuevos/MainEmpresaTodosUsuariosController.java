@@ -331,7 +331,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
                         telefonoRegistroEmpleado.clear();
                         contrasenaRegistroEmpleado.clear();
                         fileImagen = null;
-                        Image image = new Image("/imagen/usuariodefault.png");
+                        Image image = new Image("/imagenes/imagenesDefault/usuariodefault.png");
                         imagenUsuarioRegistro.setImage(image);
                         empleadosEmpresa();
                         usuarioSeleccionadoVBox.setStyle("-fx-background-color : #1FDB5E;" +
@@ -503,7 +503,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image imagen = new Image("/imagen/usuariodefault.png");
+        Image imagen = new Image("/imagenes/imagenesDefault/usuariodefault.png");
         imagenUsuarioRegistro.setImage(imagen);
         usuarioSeleccionadoVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
@@ -632,7 +632,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenEmpresaCirculo.setFill(new ImagePattern(toAdd));
         } else {
-            Image imageView = new Image("/imagen/empresadefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/empresadefault.png");
             imagenEmpresaCirculo.setFill(new ImagePattern(imageView));
         }
 

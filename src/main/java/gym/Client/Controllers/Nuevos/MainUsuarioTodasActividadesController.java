@@ -258,7 +258,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenUsuarioCirculo.setFill(new ImagePattern(toAdd));
         } else {
-            Image imageView = new Image("/imagen/usuariodefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/usuariodefault.png");
             imagenUsuarioCirculo.setFill(new ImagePattern(imageView));
         }
 
@@ -426,7 +426,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenActividadDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagen/actividaddefault.png");
+                Image imageView = new Image("/imagenes/imagenesDefault/actividaddefault.png");
                 imagenActividadDisplay.setImage(imageView);
             }
         } else {

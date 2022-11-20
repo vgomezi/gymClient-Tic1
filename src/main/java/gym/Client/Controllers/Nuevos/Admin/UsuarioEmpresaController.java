@@ -1,6 +1,5 @@
 package gym.Client.Controllers.Nuevos.Admin;
 
-import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
@@ -56,7 +55,7 @@ public class UsuarioEmpresaController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenActividadTodaImage.setImage(toAdd);
         } else {
-            Image imageView = new Image("/imagen/usuariodefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/usuariodefault.png");
             imagenActividadTodaImage.setImage(imageView);
         }
 

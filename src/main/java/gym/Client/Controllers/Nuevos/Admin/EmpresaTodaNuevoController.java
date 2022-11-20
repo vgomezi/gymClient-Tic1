@@ -52,7 +52,7 @@ public class EmpresaTodaNuevoController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenEmpresaNuevo.setImage(toAdd);
         } else {
-            Image imageView = new Image("/imagen/empresadefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/empresadefault.png");
             imagenEmpresaNuevo.setImage(imageView);
         }
 

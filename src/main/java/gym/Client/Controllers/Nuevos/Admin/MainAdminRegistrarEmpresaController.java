@@ -10,8 +10,6 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.*;
 import gym.Client.Controllers.LoginController;
-import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
-import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -129,7 +127,7 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
 
     public void datosAdmin() {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
-        Image imageView = new Image("/imagen/imagenadministrador.png");
+        Image imageView = new Image("/imagenes/imagenesDefault/imagenadministrador.png");
         imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
     }
 
@@ -429,7 +427,7 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
                         emailEmpresaRegistro.clear();
                         contrasenaEmpresaRegistro.clear();
                         fileImagen = null;
-                        Image image = new Image("/imagen/empresadefault.png");
+                        Image image = new Image("/imagenes/imagenesDefault/empresadefault.png");
                         imagenEmpresaRegistro.setImage(image);
                         todasEmpresas();
                         empresaRegistroVBox.setStyle("-fx-background-color : #1FDB5E;" +
@@ -514,7 +512,7 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image imagen = new Image("/imagen/empresadefault.png");
+        Image imagen = new Image("/imagenes/imagenesDefault/empresadefault.png");
         imagenEmpresaRegistro.setImage(imagen);
         empresaRegistroVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");

@@ -9,7 +9,6 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.CentroDeportivoObject;
-import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Controllers.LoginController;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -117,7 +116,7 @@ public class AdministrarCentroController implements Initializable {
 
     public void datosAdmin() {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
-        Image imageView = new Image("/imagen/imagenadministrador.png");
+        Image imageView = new Image("/imagenes/imagenesDefault/imagenadministrador.png");
         imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
         desplegarCentroSeleccionado(null);
     }
@@ -229,7 +228,7 @@ public class AdministrarCentroController implements Initializable {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenActividadDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagen/centrodefault.png");
+                Image imageView = new Image("/imagenes/imagenesDefault/centrodefault.png");
                 imagenActividadDisplay.setImage(imageView);
             }
             nombreCentroDisplay.setText(centroDeportivoObject.getNombre());
@@ -562,7 +561,7 @@ public class AdministrarCentroController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image imageView2 = new Image("/imagen/centrodefault.png");
+        Image imageView2 = new Image("/imagenes/imagenesDefault/centrodefault.png");
         imagenActividadDisplay.setImage(imageView2);
     }
 }

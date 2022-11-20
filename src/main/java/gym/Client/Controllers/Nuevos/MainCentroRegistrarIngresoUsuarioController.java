@@ -15,8 +15,6 @@ import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadRecienteController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -203,7 +201,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             centroUsuarioCirculo.setFill(new ImagePattern(toAdd));
         } else {
-            Image imageView = new Image("/imagen/centrodefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/centrodefault.png");
             centroUsuarioCirculo.setFill(new ImagePattern(imageView));
         }
 
@@ -244,7 +242,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenActividadDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagen/usuariodefault.png");
+                Image imageView = new Image("/imagenes/imagenesDefault/usuariodefault.png");
                 imagenActividadDisplay.setImage(imageView);
             }
         } else {

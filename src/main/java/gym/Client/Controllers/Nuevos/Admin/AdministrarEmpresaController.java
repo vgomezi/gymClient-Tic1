@@ -7,7 +7,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-import gym.Client.Classes.CentroDeportivoObject;
 import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.EmpresaObject;
 import gym.Client.Controllers.LoginController;
@@ -117,7 +116,7 @@ public class AdministrarEmpresaController {
 
     public void datosAdmin() {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
-        Image imageView = new Image("/imagen/imagenadministrador.png");
+        Image imageView = new Image("/imagenes/imagenesDefault/imagenadministrador.png");
         imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
         todasEmpresas();
         desplegarEmpresaSeleccionada(null);
@@ -229,7 +228,7 @@ public class AdministrarEmpresaController {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenEmpresaDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagen/empresadefault.png");
+                Image imageView = new Image("/imagenes/imagenesDefault/empresadefault.png");
                 imagenEmpresaDisplay.setImage(imageView);
             }
             nombreEmpresaDisplay.setText(empresaObject.getNombre());

@@ -8,7 +8,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.CentroDeportivoObject;
-import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.UserLoginObject;
 import gym.Client.Controllers.LoginController;
 import javafx.embed.swing.SwingFXUtils;
@@ -125,7 +124,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
     public void datosAdmin() {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
-        Image imageView = new Image("/imagen/imagenadministrador.png");
+        Image imageView = new Image("/imagenes/imagenesDefault/imagenadministrador.png");
         imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
     }
 
@@ -375,7 +374,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image imagen = new Image("/imagen/centrodefault.png");
+        Image imagen = new Image("/imagenes/imagenesDefault/centrodefault.png");
         imagenCentroRegistro.setImage(imagen);
         centroRegistroVBox.setStyle("-fx-background-color : #9AC8F5;" +
                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
@@ -484,7 +483,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
                         emailCentroRegistro.clear();
                         contrasenaCentroRegistro.clear();
                         fileImagen = null;
-                        Image image = new Image("/imagen/centrodefault.png");
+                        Image image = new Image("/imagenes/imagenesDefault/centrodefault.png");
                         imagenCentroRegistro.setImage(image);
                         todosCentros();
                         centroRegistroVBox.setStyle("-fx-background-color : #1FDB5E;" +

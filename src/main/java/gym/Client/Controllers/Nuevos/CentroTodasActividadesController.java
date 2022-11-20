@@ -153,7 +153,7 @@ public class CentroTodasActividadesController implements Initializable {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenActividadRegistroDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagen/actividaddefault.png");
+                Image imageView = new Image("/imagenes/imagenesDefault/actividaddefault.png");
                 imagenActividadRegistroDisplay.setImage(imageView);
             }
             nombreActividadRegistroDisplay.setText(actividadObject.getNombre());
@@ -183,7 +183,7 @@ public class CentroTodasActividadesController implements Initializable {
             cuposActividadRegistroDisplay.clear();
             duracionActividadRegistroDisplay.clear();
             costoActividadRegistroDisplay.clear();
-            Image imageView = new Image("/imagen/actividaddefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/actividaddefault.png");
             imagenActividadRegistroDisplay.setImage(imageView);
 
             actualizarActividadBoton.setVisible(false);
@@ -344,7 +344,7 @@ public class CentroTodasActividadesController implements Initializable {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             centroImagenCirculo.setFill(new ImagePattern(toAdd));
         } else {
-            Image imageView = new Image("/imagen/centrodefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/centrodefault.png");
             centroImagenCirculo.setFill(new ImagePattern(imageView));
         }
 
@@ -584,7 +584,7 @@ public class CentroTodasActividadesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image imagen = new Image("/imagen/actividaddefault.png");
+        Image imagen = new Image("/imagenes/imagenesDefault/actividaddefault.png");
         imagenActividadRegistroDisplay.setImage(imagen);
         inicializoChoiceBox();
     }

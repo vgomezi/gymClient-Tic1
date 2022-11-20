@@ -13,7 +13,6 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -35,11 +34,9 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class AdministrarCentroDeudaController {
 
@@ -188,7 +185,7 @@ public class AdministrarCentroDeudaController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenCentroDeudaCirculo.setFill(new ImagePattern(toAdd));
         } else {
-            Image imageView = new Image("/imagen/centrodefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/centrodefault.png");
             imagenCentroDeudaCirculo.setFill(new ImagePattern(imageView));
         }
 

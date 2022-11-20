@@ -50,7 +50,7 @@ public class CentroTodoController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenCentro.setImage(toAdd);
         } else {
-            Image imageView = new Image("/imagen/centrodefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/centrodefault.png");
             imagenCentro.setImage(imageView);
         }
 

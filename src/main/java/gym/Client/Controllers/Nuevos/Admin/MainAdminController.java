@@ -15,7 +15,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -83,7 +82,7 @@ public class MainAdminController {
 
     public void datosAdmin() {
         nombreAdministradorLabel.setText("ADMINISTRADOR");
-        Image imageView = new Image("/imagen/imagenadministrador.png");
+        Image imageView = new Image("/imagenes/imagenesDefault/imagenadministrador.png");
         imagenAdministradorCirculo.setFill(new ImagePattern(imageView));
         setNumeroEmpresas();
         setNumeroCentros();

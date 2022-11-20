@@ -367,7 +367,7 @@ public class AdministrarEmpresaDeudaController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenEmpresaDeudaCirculo.setFill(new ImagePattern(toAdd));
         } else {
-            Image imageView = new Image("/imagen/empresadefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/empresadefault.png");
             imagenEmpresaDeudaCirculo.setFill(new ImagePattern(imageView));
         }
 

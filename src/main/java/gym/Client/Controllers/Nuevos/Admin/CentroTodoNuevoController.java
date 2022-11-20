@@ -1,8 +1,6 @@
 package gym.Client.Controllers.Nuevos.Admin;
 
 import gym.Client.Classes.CentroDeportivoObject;
-import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -54,7 +52,7 @@ public class CentroTodoNuevoController {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             imagenCentroNuevo.setImage(toAdd);
         } else {
-            Image imageView = new Image("/imagen/centrodefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/centrodefault.png");
             imagenCentroNuevo.setImage(imageView);
         }
 

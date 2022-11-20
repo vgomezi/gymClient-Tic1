@@ -159,7 +159,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             Image toAdd = SwingFXUtils.toFXImage(bImage, null);
             empresaImagenCircle.setFill(new ImagePattern(toAdd));
         } else {
-            Image imageView = new Image("/imagen/empresadefault.png");
+            Image imageView = new Image("/imagenes/imagenesDefault/empresadefault.png");
             empresaImagenCircle.setFill(new ImagePattern(imageView));
         }
 
@@ -184,7 +184,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenUsuarioDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagen/usuariodefault.png");
+                Image imageView = new Image("/imagenes/imagenesDefault/usuariodefault.png");
                 imagenUsuarioDisplay.setImage(imageView);
             }
             nombreTextField.setText(empleadoObject.getNombre());
