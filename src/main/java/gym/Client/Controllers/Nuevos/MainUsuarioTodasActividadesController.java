@@ -511,7 +511,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         }
 
         if (json2.isEmpty()) {
-            if (reservarActividadBoton.getText().equals("RESERVAR")) {
+            if (reservarActividadBoton.getText().equals("RESERVAR") && actividadEnDisplay.getCupos() > 0) {
                 try {
                     String json = "";
 
@@ -543,6 +543,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                         HttpResponse<JsonNode> apiResponse = null;
                         apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json1).asJson();
                         System.out.println("Put Hecho");
+                        actividadesDisponibles();
 
 
                     } catch (Exception e) {
@@ -580,6 +581,8 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                         "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
                 System.out.println("Guardar actividad");
             } else {
+                actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
                 System.out.println("ERROR");
             }
         } else {

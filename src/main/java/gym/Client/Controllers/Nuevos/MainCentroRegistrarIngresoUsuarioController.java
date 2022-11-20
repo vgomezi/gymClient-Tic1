@@ -242,7 +242,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
                 Image toAdd = SwingFXUtils.toFXImage(bImage, null);
                 imagenActividadDisplay.setImage(toAdd);
             } else {
-                Image imageView = new Image("/imagenes/imagenesDefault/usuariodefault.png");
+                Image imageView = new Image("/imagenes/imagenesDefault/actividaddefault.png");
                 imagenActividadDisplay.setImage(imageView);
             }
         } else {
