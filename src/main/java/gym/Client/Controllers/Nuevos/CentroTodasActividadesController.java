@@ -7,10 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-import gym.Client.Classes.ActividadObject;
-import gym.Client.Classes.CentroDeportivoObject;
-import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Classes.TipoActividadObject;
+import gym.Client.Classes.*;
 import gym.Client.Controllers.LoginController;
 import gym.Client.Controllers.Usuario.Actividades.ActividadTodaController;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
@@ -382,23 +379,22 @@ public class CentroTodasActividadesController implements Initializable {
     }
 
     public void onRegistrarActividadButtonClick(ActionEvent actionEvent) {
-        String nombre = nombreActividadRegistroDisplay.getText();
-        String descripcion = descripcionActividadRegistroDisplay.getText();
-        String hora = horaActividadRegistroDisplay.getText();
-        String dia = diaDatePickerRegistroDisplay.getValue().toString();
-        String cupos = cuposActividadRegistroDisplay.getText();
-        String costo = costoActividadRegistroDisplay.getText();
-        String duracion = duracionActividadRegistroDisplay.getText();
-        Boolean reservable = reservableCheckBoxRegistroDisplay.isSelected();
-        String tipo = tipoActividadChoiceBoxRegistroDisplay.getValue().toString();
-        String imagen = null;
-        try {
-            imagen = codificarImagenRegistroActividad(fileImagen);
-        } catch (Exception ignored) {
+        if (!nombreActividadRegistroDisplay.getText().isEmpty() && !descripcionActividadRegistroDisplay.getText().isEmpty() && !horaActividadRegistroDisplay.getText().isEmpty() && !diaDatePickerRegistroDisplay.getValue().toString().isEmpty() && !cuposActividadRegistroDisplay.getText().isEmpty() && !costoActividadRegistroDisplay.getText().isEmpty() && !duracionActividadRegistroDisplay.getText().isEmpty() && !tipoActividadChoiceBoxRegistroDisplay.getValue().toString().isEmpty()) {
+            String nombre = nombreActividadRegistroDisplay.getText();
+            String descripcion = descripcionActividadRegistroDisplay.getText();
+            String hora = horaActividadRegistroDisplay.getText();
+            String dia = diaDatePickerRegistroDisplay.getValue().toString();
+            String cupos = cuposActividadRegistroDisplay.getText();
+            String costo = costoActividadRegistroDisplay.getText();
+            String duracion = duracionActividadRegistroDisplay.getText();
+            Boolean reservable = reservableCheckBoxRegistroDisplay.isSelected();
+            String tipo = tipoActividadChoiceBoxRegistroDisplay.getValue().toString();
+            String imagen = null;
+            try {
+                imagen = codificarImagenRegistroActividad(fileImagen);
+            } catch (Exception ignored) {
 
-        }
-
-        if (!nombre.isEmpty() && !descripcion.isEmpty() && !hora.isEmpty() && !dia.isEmpty() && !cupos.isEmpty() && !costo.isEmpty() && !duracion.isEmpty() && !tipo.isEmpty()) {
+            }
             try {
                 LocalTime timeLT = LocalTime.parse(hora);
                 LocalDate dateDT = LocalDate.parse(dia);
@@ -427,15 +423,27 @@ public class CentroTodasActividadesController implements Initializable {
                     todasLasActividades.clear();
                     actividadesCentro();
                     desplegarActividadSeleccionada(null);
+                    actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                            "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
                     fileImagen = null;
 
 
                 } catch (Exception e) {
-
+                    actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                            "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
                 }
             } catch (Exception e) {
-
+                horaActividadRegistroDisplay.clear();
+                diaDatePickerRegistroDisplay.setValue(null);
+                cuposActividadRegistroDisplay.clear();
+                costoActividadRegistroDisplay.clear();
+                duracionActividadRegistroDisplay.clear();
+                actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
             }
+        } else {
+            actividadSeleccionadaVBox.setStyle("-fx-background-color : #f4f723;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         }
 
 
@@ -483,20 +491,27 @@ public class CentroTodasActividadesController implements Initializable {
                     json = mapperActividad.writeValueAsString(actividadEnDisplay);
                     HttpResponse<JsonNode> apiResponse = null;
                     apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
-
+                    todasLasActividades.clear();
+                    actividadesCentro();
+                    desplegarActividadSeleccionada(null);
+                    actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                            "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+                    fileImagen = null;
                     System.out.println("Put actividad hecho");
 
                 } catch (Exception e) {
-
+                    actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                            "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
                 }
             } catch (Exception e) {
+                actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
 
             }
+        } else {
+            actividadSeleccionadaVBox.setStyle("-fx-background-color : #f4f723;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         }
-        todasLasActividades.clear();
-        actividadesCentro();
-        desplegarActividadSeleccionada(null);
-        fileImagen = null;
     }
 
     public void onLimpiarActividadButtonClick(ActionEvent actionEvent) {
@@ -508,22 +523,42 @@ public class CentroTodasActividadesController implements Initializable {
         String diaActividad = diaDatePickerRegistroDisplay.getValue().toString();
         String horaActividad = horaActividadRegistroDisplay.getText();
 
-        //if no hay inscripciones
+        InscripcionesActividadesObject listaInscriptos = null;
         try {
-            HttpResponse<JsonNode> apiResponse = null;
-            System.out.println(nombreActividad);
-            apiResponse = Unirest.delete("http://localhost:8987/api/actividades/deleteActividad/" + nombreActividad + "/" + diaActividad + "/" + horaActividad + "/" + centro.getMail()).asJson();
-            System.out.println("Actividad borrada");
-            todasLasActividades.clear();
-            actividadesCentro();
-            desplegarActividadSeleccionada(null);
-            actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
-                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+            HttpResponse<String> apiResponse = null;
+            System.out.println("Apreto borrar");
 
+            apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcionesActividad/" + nombreActividad + "/" + diaActividad + "/" + horaActividad + "/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
+            System.out.println(apiResponse.getBody());
+            Integer num = Integer.valueOf(apiResponse.getBody());
+            //System.out.println(actividad);
+            //System.out.println("Lista actividades mis actividades " + listaMisActividades);
+
+            if (num == 0) {
+
+                //if no hay inscripciones
+                try {
+                    HttpResponse<JsonNode> apiResponse1 = null;
+                    System.out.println(nombreActividad);
+                    apiResponse1 = Unirest.delete("http://localhost:8987/api/actividades/deleteActividad/" + nombreActividad + "/" + diaActividad + "/" + horaActividad + "/" + centro.getMail()).asJson();
+                    System.out.println("Actividad borrada");
+                    todasLasActividades.clear();
+                    actividadesCentro();
+                    desplegarActividadSeleccionada(null);
+                    actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
+                            "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+
+                } catch (Exception e) {
+                    System.out.println("Error borrando inscripcion: " + e);
+                }
+            } else {
+                actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
+            }
         } catch (Exception e) {
-            System.out.println("Error borrando inscripcion: " + e);
+            actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         }
-        //else
     }
 
     @FXML
@@ -562,8 +597,8 @@ public class CentroTodasActividadesController implements Initializable {
             System.out.println("Convertí file en bytes");
             base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
             System.out.println("Converti bytes en string");
-        } catch (Exception e) {
-            System.out.println("Error " + e.getMessage());
+        } catch (Exception ignored) {
+
         }
         return base64String;
     }
