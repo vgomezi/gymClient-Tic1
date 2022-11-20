@@ -19,8 +19,6 @@ public class DeudaEmpCentPaneController {
     @FXML
     private Label mailLabel;
 
-    private MyListener myListener;
-
     private PagoEmpCentObject pago;
 
     @FXML
@@ -28,8 +26,7 @@ public class DeudaEmpCentPaneController {
 
     }
 
-    public void setearDatos(PagoEmpCentObject pagoEmpCentObject, MyListener myListener) {
-        this.myListener = myListener;
+    public void setearDatos(PagoEmpCentObject pagoEmpCentObject) {
         this.pago = pagoEmpCentObject;
 
         nombreLabel.setText("EMPRESA:  " + String.valueOf(pagoEmpCentObject.getEmpresa().getNombre()));

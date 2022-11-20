@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -70,6 +71,9 @@ public class AdministrarCentroDeudaController {
     @FXML
     private Label deudaTotalLabel;
 
+    @FXML
+    private TextField busquedaTextField;
+
     public EmpresaObject empresa;
 
     public CentroDeportivoObject centro;
@@ -78,6 +82,8 @@ public class AdministrarCentroDeudaController {
 
     private List<PagoEmpCentObject> misEmpresas = new ArrayList<>();
 
+    private List<PagoEmpCentObject> similarEmpresas = new ArrayList<>();
+
     @FXML
     private Label todasLasActividadesLabel;
 
@@ -85,8 +91,145 @@ public class AdministrarCentroDeudaController {
 
     @FXML
     void onBusquedaEmpleadoKeyReleased(KeyEvent keyEvent) {
+        if (busquedaTextField.getText().isEmpty()) {
+            todasLasEmpresasGridPane = new GridPane();
+            liquidacionEmpresasScroll.setContent(todasLasEmpresasGridPane);
+            misEmpresas.clear();
+            misEmpresas.addAll(todasMisEmpresas());
+
+            System.out.println("hola");
+
+            int column = 0;
+            int row = 1;
+            try{
+                for(PagoEmpCentObject pago : misEmpresas) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaEmpCentPane.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox DeudaEmpCentVbox = fxmlLoader.load();
+                    DeudaEmpCentPaneController deudaEmpCentPaneController = fxmlLoader.getController();
+
+                    deudaEmpCentPaneController.setearDatos(pago);
+
+
+                    row++;
+
+                    todasLasEmpresasGridPane.add(DeudaEmpCentVbox, column, row);
+                    GridPane.setMargin(DeudaEmpCentVbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+        } else {
+            todasLasEmpresasGridPane = new GridPane();
+            liquidacionEmpresasScroll.setContent(todasLasEmpresasGridPane);
+            similarEmpresas = similarPagoEmpresas(busquedaTextField.getText());
+            int column = 0;
+            int row = 1;
+            try{
+                for(PagoEmpCentObject pago : similarEmpresas) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaEmpCentPane.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox DeudaEmpCentVbox = fxmlLoader.load();
+                    DeudaEmpCentPaneController deudaEmpCentPaneController = fxmlLoader.getController();
+
+                    deudaEmpCentPaneController.setearDatos(pago);
+
+
+                    row++;
+
+                    todasLasEmpresasGridPane.add(DeudaEmpCentVbox, column, row);
+                    GridPane.setMargin(DeudaEmpCentVbox, new Insets(10));
+
+                }
+            } catch (Exception e){
+                System.out.println("Error creando panel " + e);
+
+            }
+
+        }
+
+
 
     }
+
+    /*
+
+    this.myListenerEmpresa = new MyListenerEmpresa() {
+            @Override
+            public void onClickEmpresa(EmpresaObject empresaObject) {
+                desplegarEmpresaSeleccionada(empresaObject);
+            }
+        };
+
+        //System.out.println(busquedaTextField.getText());
+        if (busquedaTextField.getText().isEmpty()) {
+            todasLasEmpresasGridPane = new GridPane();
+            todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
+            int column = 0;
+            int row = 1;
+            try {
+                for (EmpresaObject empresa : empresasList) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox empresaVbox = fxmlLoader.load();
+                    EmpresaTodaController empresaTodaController = fxmlLoader.getController();
+
+                    empresaTodaController.setearDatos(empresa, myListenerEmpresa);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasEmpresasGridPane.add(empresaVbox, column++, row);
+                    GridPane.setMargin(empresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e) {
+                System.out.println("Error creando panel " + e);
+
+            }
+        } else {
+            todasLasEmpresasGridPane = new GridPane();
+            todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
+            similarEmpresas = similarEmpresas(busquedaTextField.getText());
+            int column = 0;
+            int row = 1;
+            try {
+                for (EmpresaObject empresa : similarEmpresas) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
+                    System.out.println("Carga FXMLLoader");
+
+                    VBox empresaVbox = fxmlLoader.load();
+                    EmpresaTodaController empresaTodaController = fxmlLoader.getController();
+
+                    empresaTodaController.setearDatos(empresa, myListenerEmpresa);
+
+                    if (column == 2) {
+                        column = 0;
+                        ++row;
+                    }
+
+                    todasLasEmpresasGridPane.add(empresaVbox, column++, row);
+                    GridPane.setMargin(empresaVbox, new Insets(10));
+
+                }
+            } catch (Exception e) {
+                System.out.println("Error creando panel " + e);
+
+            }
+
+        }
+     */
 
     @FXML
     void onMouseClickedLogOut(MouseEvent mouseEvent) {
@@ -219,24 +362,36 @@ public class AdministrarCentroDeudaController {
         return listaMisEmpresas;
     }
 
+    private List<PagoEmpCentObject> similarPagoEmpresas(String similar) {
+        List<PagoEmpCentObject> listaEmpresasSimilares = new ArrayList<>();
+        PagoEmpCentObject pagoEmpCentObject;
+
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/pagos/pagosByCentroAndSearch/" + centro.getMail() + "/" + similar).header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            //System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            listaEmpresasSimilares = mapper.readValue(json, new TypeReference<List<PagoEmpCentObject>>() {});
+
+            //System.out.println(actividad);
+            System.out.println("Lista centro similares "/* + listaActividades*/);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaEmpresasSimilares;
+    }
+
     public void deudaEmpresa() {
         todasLasEmpresasGridPane = new GridPane();
         liquidacionEmpresasScroll.setContent(todasLasEmpresasGridPane);
         misEmpresas.clear();
         misEmpresas.addAll(todasMisEmpresas());
         int deudaTotal = 0;
-
-        this.myListener = new MyListener() {
-
-            @Override
-            public void onClickActividad(ActividadObject actividadObject) {
-            }
-
-            @Override
-            public void onClickUsuario(EmpleadoObject empleadoObject) {
-
-            }
-        };
 
         System.out.println("hola");
 
@@ -251,7 +406,7 @@ public class AdministrarCentroDeudaController {
                 VBox DeudaEmpCentVbox = fxmlLoader.load();
                 DeudaEmpCentPaneController deudaEmpCentPaneController = fxmlLoader.getController();
 
-                deudaEmpCentPaneController.setearDatos(pago, myListener);
+                deudaEmpCentPaneController.setearDatos(pago);
                 deudaTotal = deudaTotal + pago.getMonto();
 
 
