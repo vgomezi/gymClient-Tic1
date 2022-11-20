@@ -119,7 +119,7 @@
                         </Label>
                         <Label fx:id="tipoActividadDisplay" alignment="CENTER" contentDisplay="RIGHT" prefHeight="38.0" prefWidth="139.0" text="TIPO" textAlignment="CENTER" textOverrun="CLIP">
                            <font>
-                              <Font name="Baskerville Old Face" size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                      </children>
