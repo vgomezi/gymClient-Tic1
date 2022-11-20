@@ -8,6 +8,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.CentroDeportivoObject;
+import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.UserLoginObject;
 import gym.Client.Controllers.LoginController;
 import javafx.embed.swing.SwingFXUtils;
@@ -114,6 +115,8 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
     private List<CentroDeportivoObject> centrosDeportivosList = new ArrayList<>();
 
+    private List<CentroDeportivoObject> nuevosCentrosDeportivos = new ArrayList<>();
+
     private List<CentroDeportivoObject> similarCentro = new ArrayList<>();
 
     private MyListenerCentro myListenerCentro;
@@ -147,6 +150,29 @@ public class MainAdminRegistrarCentroController implements Initializable {
         return listaCentrosDeportivos;
     }
 
+    private List<CentroDeportivoObject> centrosDeportivosNuevos() {
+        List<CentroDeportivoObject> listaNuevosCentros = new ArrayList<>();
+        CentroDeportivoObject centroDeportivoObject;
+
+        String centro = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/nuevosCentros").header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaNuevosCentros = mapper.readValue(json, new TypeReference<List<CentroDeportivoObject>>() {});
+
+            //System.out.println("Lista mis empleados " + listaMisEmpleados);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaNuevosCentros;
+    }
+
     private List<CentroDeportivoObject> similarCentros(String similar) {
         List<CentroDeportivoObject> listaCentrosSimilares = new ArrayList<>();
         CentroDeportivoObject centroDeportivoObject;
@@ -175,8 +201,11 @@ public class MainAdminRegistrarCentroController implements Initializable {
     public void todosCentros() {
         todosLosCentrosGridPane = new GridPane();
         todosLosCentrosScroll.setContent(todosLosCentrosGridPane);
+        this.centrosRecientesLayout.getChildren().clear();
         centrosDeportivosList.clear();
         centrosDeportivosList.addAll(todosLosCentros());
+        nuevosCentrosDeportivos.clear();
+        nuevosCentrosDeportivos.addAll(centrosDeportivosNuevos());
 
         this.myListenerCentro = new MyListenerCentro() {
 
@@ -194,6 +223,20 @@ public class MainAdminRegistrarCentroController implements Initializable {
         int column = 0;
         int row = 1;
         try{
+            for (CentroDeportivoObject nuevoCentro : nuevosCentrosDeportivos) {
+                System.out.println("Entro try");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodoNuevo.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                HBox anadidaRecienteBox = fxmlLoader.load();
+                CentroTodoNuevoController centroTodoNuevoController = fxmlLoader.getController();
+
+                centroTodoNuevoController.obtenerDatos(nuevoCentro, myListenerCentro);
+
+                this.centrosRecientesLayout.getChildren().add(anadidaRecienteBox);
+            }
+
             for(CentroDeportivoObject centro : centrosDeportivosList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
@@ -440,6 +483,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
                         nombreCentroRegistro.clear();
                         emailCentroRegistro.clear();
                         contrasenaCentroRegistro.clear();
+                        fileImagen = null;
                         Image image = new Image("/imagen/centrodefault.png");
                         imagenCentroRegistro.setImage(image);
                         todosCentros();

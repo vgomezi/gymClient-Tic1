@@ -330,6 +330,7 @@ public class MainEmpresaTodosUsuariosController implements Initializable {
                         emailRegistroEmpleado.clear();
                         telefonoRegistroEmpleado.clear();
                         contrasenaRegistroEmpleado.clear();
+                        fileImagen = null;
                         Image image = new Image("/imagen/usuariodefault.png");
                         imagenUsuarioRegistro.setImage(image);
                         empleadosEmpresa();

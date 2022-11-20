@@ -119,6 +119,8 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
 
     private List<EmpresaObject> empresasList = new ArrayList<>();
 
+    private List<EmpresaObject> nuevasEmpresas = new ArrayList<>();
+
     private List<EmpresaObject> similarEmpresa = new ArrayList<>();
 
     private MyListenerEmpresa myListenerEmpresa;
@@ -153,11 +155,37 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
         return listaEmpresas;
     }
 
+    private List<EmpresaObject> empresasNuevas() {
+        List<EmpresaObject> listaNuevasEmpresas = new ArrayList<>();
+        EmpresaObject empresaObject;
+
+        String empresa = "";
+        try {
+            HttpResponse<String> apiResponse = null;
+
+            apiResponse = Unirest.get("http://localhost:8987/api/empresas/nuevasEmpresas").header("Content-Type", "application/json").asObject(String.class);
+            String json = apiResponse.getBody();
+            System.out.println("Imprimo json");
+            //System.out.println(json);
+
+            ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
+            listaNuevasEmpresas = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {});
+
+            //System.out.println("Lista mis empleados " + listaMisEmpleados);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return listaNuevasEmpresas;
+    }
+
     public void todasEmpresas() {
         todasLasEmpresasGridPane = new GridPane();
         todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
+        this.empresasRecientesLayout.getChildren().clear();
         empresasList.clear();
         empresasList.addAll(todasLasEmpresas());
+        nuevasEmpresas.clear();
+        nuevasEmpresas.addAll(empresasNuevas());
 
         this.myListenerEmpresa = new MyListenerEmpresa() {
             @Override
@@ -172,6 +200,20 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
         int column = 0;
         int row = 1;
         try {
+            for (EmpresaObject nuevaEmpresa : nuevasEmpresas) {
+                System.out.println("Entro try");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaTodaNuevo.fxml"));
+                System.out.println("Carga FXMLLoader");
+
+                HBox anadidaRecienteBox = fxmlLoader.load();
+                EmpresaTodaNuevoController empresaTodaNuevoController = fxmlLoader.getController();
+
+                empresaTodaNuevoController.obtenerDatos(nuevaEmpresa, myListenerEmpresa);
+
+                this.empresasRecientesLayout.getChildren().add(anadidaRecienteBox);
+            }
+
             for (EmpresaObject empresa : empresasList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
@@ -386,6 +428,7 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
                         bonoEmpleadosRegistro.clear();
                         emailEmpresaRegistro.clear();
                         contrasenaEmpresaRegistro.clear();
+                        fileImagen = null;
                         Image image = new Image("/imagen/empresadefault.png");
                         imagenEmpresaRegistro.setImage(image);
                         todasEmpresas();
