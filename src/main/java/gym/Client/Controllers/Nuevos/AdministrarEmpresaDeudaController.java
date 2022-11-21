@@ -259,7 +259,7 @@ public class AdministrarEmpresaDeudaController {
         try {
             HttpResponse<String> apiResponse = null;
 
-            apiResponse = Unirest.get("http://localhost:8987/api/usuarios//similarEmpleado/" + empresa.getMail() + "/" + like).header("Content-Type", "application/json").asObject(String.class);
+            apiResponse = Unirest.get("http://localhost:8987/api/usuarios/similarEmpleado/" + empresa.getMail() + "/" + like).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
