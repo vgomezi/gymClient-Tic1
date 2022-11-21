@@ -3,7 +3,6 @@ package gym.Client.Classes;
 public class PagoUsuEmpObject {
     private String empresaMailPago;
 
-
     private String empleadoMailPago;
 
     private Integer monto;

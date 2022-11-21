@@ -16,12 +16,6 @@ public class CentroDeportivoObject {
 
     private Date dateCreado;
 
-
-    //private List<ActividadObject> listaActividades;
-
-
-    //private List<PagoObject> pagos;
-
     public CentroDeportivoObject() {
     }
 
@@ -72,22 +66,6 @@ public class CentroDeportivoObject {
     public void setDateCreado(Date dateCreado) {
         this.dateCreado = dateCreado;
     }
-
-    /*public List<ActividadObject> getListaActividades() {
-        return listaActividades;
-    }
-
-    public void setListaActividades(List<ActividadObject> listaActividades) {
-        this.listaActividades = listaActividades;
-    }
-
-    public List<PagoObject> getPagos() {
-        return pagos;
-    }
-
-    public void setPagos(List<PagoObject> pagos) {
-        this.pagos = pagos;
-    }*/
 
     @Override
     public String toString() {

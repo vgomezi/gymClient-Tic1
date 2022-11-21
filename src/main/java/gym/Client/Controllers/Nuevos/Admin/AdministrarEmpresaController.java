@@ -124,14 +124,12 @@ public class AdministrarEmpresaController {
 
     private List<EmpresaObject> todasLasEmpresas() {
         List<EmpresaObject> listaEmpresas = new ArrayList<>();
-        EmpresaObject empresaObject;
 
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/empresas/allEmpresas").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             listaEmpresas = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {});
@@ -144,22 +142,16 @@ public class AdministrarEmpresaController {
 
     private List<EmpresaObject> similarEmpresas(String similar) {
         List<EmpresaObject> listaEmpresasSimilares = new ArrayList<>();
-        EmpresaObject empresaObject;
 
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/empresas/similarEmpresa/" + similar).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            //System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaEmpresasSimilares = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista centro similares "/* + listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -180,15 +172,12 @@ public class AdministrarEmpresaController {
             }
         };
 
-        System.out.println("entro datos AdministrarEmpresa");
-
         int column = 0;
         int row = 1;
         try{
             for(EmpresaObject empresa : empresasList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox empresaVBox = fxmlLoader.load();
                 EmpresaTodaController empresaTodaController = fxmlLoader.getController();
@@ -261,7 +250,6 @@ public class AdministrarEmpresaController {
             }
         };
 
-        //System.out.println(busquedaTextField.getText());
         if (busquedaTextField.getText().isEmpty()) {
             todasLasEmpresasGridPane = new GridPane();
             todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
@@ -271,7 +259,6 @@ public class AdministrarEmpresaController {
                 for (EmpresaObject empresa : empresasList) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox empresaVbox = fxmlLoader.load();
                     EmpresaTodaController empresaTodaController = fxmlLoader.getController();
@@ -301,7 +288,6 @@ public class AdministrarEmpresaController {
                 for (EmpresaObject empresa : similarEmpresas) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox empresaVbox = fxmlLoader.load();
                     EmpresaTodaController empresaTodaController = fxmlLoader.getController();
@@ -384,7 +370,6 @@ public class AdministrarEmpresaController {
                     json = mapperEmpleado.writeValueAsString(empresaEnDisplay);
                     HttpResponse<JsonNode> apiResponse = null;
                     apiResponse = Unirest.put("http://localhost:8987/api/empresas/actualizar/" + empresaEnDisplay.getMail()).header("Content-Type", "application/json").body(json).asJson();
-                    System.out.println("Put Hecho empresa");
 
 
                 } catch (Exception e) {
@@ -414,21 +399,17 @@ public class AdministrarEmpresaController {
 
             apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadosEmpresa/" + mailEmpresa).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Logro json");
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             listaEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
 
-            System.out.println("Lista empresa Todos empleados " /*+ listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
         if (listaEmpleados.size() == 0) {
             try {
                 HttpResponse<JsonNode> apiResponse = null;
-                System.out.println(mailEmpresa);
                 apiResponse = Unirest.delete("http://localhost:8987/api/empresas/delete/" + mailEmpresa).asJson();
-                System.out.println("Empresa borrada");
 
             } catch (Exception e) {
                 System.out.println("Error borrando inscripcion: " + e);
@@ -521,7 +502,7 @@ public class AdministrarEmpresaController {
 
     public File tomarImagen (MouseEvent mouseEvent) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Elegir imagen usuario");
+        fileChooser.setTitle("Elegir imagen empresa");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
@@ -535,11 +516,8 @@ public class AdministrarEmpresaController {
     public String codificarImagenRegistroUsuario(File file) {
         String base64String = null;
         try {
-            System.out.println(file);
             byte[] bytes = Files.readAllBytes(file.toPath());
-            System.out.println("Convertí file en bytes");
             base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
-            System.out.println("Converti bytes en string");
         } catch (Exception e) {
             System.out.println("Error " + e.getMessage());
         }

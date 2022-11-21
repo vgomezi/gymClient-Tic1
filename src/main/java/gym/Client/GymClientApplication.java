@@ -19,14 +19,9 @@ public class GymClientApplication extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
-			//FXMLLoader fxmlLoader = new FXMLLoader();
-			//fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-			//Scene scene = new Scene(fxmlLoader.load(GymClientApplication.class.getResourceAsStream("Login.fxml")), 600, 400);
-			//Parent root = FXMLLoader.load(getClass().getResource("/gym/Client/nuevo/MainUsuarioTodasActividadesController.fxml"));
 			Parent root = FXMLLoader.load(getClass().getResource("/gym/Client/Login.fxml"));
 			stage.setTitle("LOGIN");
-			stage.setIconified(false);
-			//stage.setResizable(false);
+			stage.setResizable(false);
 			stage.getIcons().add(new Image("FitnessIcon.png"));
 			stage.setScene(new Scene(root));
 			stage.show();

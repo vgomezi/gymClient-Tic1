@@ -130,15 +130,12 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
     private List<CentroDeportivoObject> todosLosCentros() {
         List<CentroDeportivoObject> listaCentrosDeportivos = new ArrayList<>();
-        CentroDeportivoObject centroDeportivoObject;
 
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/centros").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             listaCentrosDeportivos = mapper.readValue(json, new TypeReference<List<CentroDeportivoObject>>() {});
@@ -151,21 +148,16 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
     private List<CentroDeportivoObject> centrosDeportivosNuevos() {
         List<CentroDeportivoObject> listaNuevosCentros = new ArrayList<>();
-        CentroDeportivoObject centroDeportivoObject;
 
-        String centro = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/nuevosCentros").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             listaNuevosCentros = mapper.readValue(json, new TypeReference<List<CentroDeportivoObject>>() {});
 
-            //System.out.println("Lista mis empleados " + listaMisEmpleados);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -174,23 +166,16 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
     private List<CentroDeportivoObject> similarCentros(String similar) {
         List<CentroDeportivoObject> listaCentrosSimilares = new ArrayList<>();
-        CentroDeportivoObject centroDeportivoObject;
 
-        String centro = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/similarCentroDeportivo/" + similar).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            //System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaCentrosSimilares = mapper.readValue(json, new TypeReference<List<CentroDeportivoObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista centro similares "/* + listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -208,7 +193,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
 
         this.myListenerCentro = new MyListenerCentro() {
 
-            //Agregar cambio color
             @Override
             public void onClickCentro(CentroDeportivoObject centroDeportivoObject) {
                 centroRegistroVBox.setStyle("-fx-background-color : #9AC8F5;" +
@@ -217,16 +201,12 @@ public class MainAdminRegistrarCentroController implements Initializable {
             }
         };
 
-        System.out.println("entro datos MainAdminRegistrarCentro");
-
         int column = 0;
         int row = 1;
         try{
             for (CentroDeportivoObject nuevoCentro : nuevosCentrosDeportivos) {
-                System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodoNuevo.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 HBox anadidaRecienteBox = fxmlLoader.load();
                 CentroTodoNuevoController centroTodoNuevoController = fxmlLoader.getController();
@@ -239,7 +219,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
             for(CentroDeportivoObject centro : centrosDeportivosList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox centroVBox = fxmlLoader.load();
                 CentroTodoController centroTodoController = fxmlLoader.getController();
@@ -270,7 +249,7 @@ public class MainAdminRegistrarCentroController implements Initializable {
                         "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
             }
         };
-        //System.out.println(busquedaTextField.getText());
+
         if (busquedaTextField.getText().isEmpty()) {
             todosLosCentrosGridPane = new GridPane();
             todosLosCentrosScroll.setContent(todosLosCentrosGridPane);
@@ -280,7 +259,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
                 for(CentroDeportivoObject centro : centrosDeportivosList) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox centroVBox = fxmlLoader.load();
                     CentroTodoController centroTodoController = fxmlLoader.getController();
@@ -310,7 +288,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
                 for(CentroDeportivoObject centro : similarCentro) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox centroVBox = fxmlLoader.load();
                     CentroTodoController centroTodoController = fxmlLoader.getController();
@@ -410,11 +387,8 @@ public class MainAdminRegistrarCentroController implements Initializable {
     public String codificarImagenRegistroUsuario(File file) {
         String base64String = null;
         try {
-            System.out.println(file);
             byte[] bytes = Files.readAllBytes(file.toPath());
-            System.out.println("Convertí file en bytes");
             base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
-            System.out.println("Converti bytes en string");
         } catch (Exception e) {
             System.out.println("Error " + e.getMessage());
         }
@@ -455,7 +429,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
                 String existeCentroMail = apiResponse1.getBody();
 
                 if (existeCentroMail.isEmpty()) {
-                    System.out.println("No existe");
                     try {
                         String json = "";
                         String json2 = "";
@@ -474,10 +447,6 @@ public class MainAdminRegistrarCentroController implements Initializable {
                         HttpResponse<JsonNode> apiResponse = null;
                         apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
                         apiResponse = Unirest.post("http://localhost:8987/api/centroDeportivo").header("Content-Type", "application/json").body(json2).asJson();
-
-                        System.out.println("Hecho Centro Deportivo");
-
-                        System.out.println("Hecho");
 
                         nombreCentroRegistro.clear();
                         emailCentroRegistro.clear();

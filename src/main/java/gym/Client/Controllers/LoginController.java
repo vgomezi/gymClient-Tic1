@@ -57,17 +57,14 @@ public class LoginController {
                 HttpResponse<String> apiResponse = null;
 
                 apiResponse = Unirest.get("http://localhost:8987/api/login/role/" + correoElectronico).asObject(String.class);
-                System.out.println(apiResponse.getBody());
 
                 if (apiResponse.getBody().isBlank()) {
                     errorLabel.setText("Correo no registrado");
                 } else {
-                    System.out.println("Entro else");
                     String contrasenaCorrecta = "false";
                     try {
                         HttpResponse<String> apiResponseP = Unirest.get("http://localhost:8987/api/login/password/" + correoElectronico + "/" + contrasena).asString();
                         contrasenaCorrecta = apiResponseP.getBody();
-                        System.out.println(apiResponseP.getBody().toString());
                     } catch (Exception e) {
                         System.out.println(e);
                         System.out.println("Error");
@@ -86,16 +83,12 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    System.out.println("Entro Admin Login");
-                                    //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/MainAdmin.fxml"));
                                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdmin.fxml"));
 
                                     MainAdminController mainAdminController = fxmlLoader.getController();
                                     mainAdminController.datosAdmin();
 
                                     Stage stage = new Stage();
-
-                                    stage.initModality(Modality.APPLICATION_MODAL);
 
                                     stage.setTitle("Login Admin");
                                     stage.setIconified(false);
@@ -125,14 +118,7 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
                                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
-
-                                    //Parent root1 = FXMLLoader.load(getClass().getResource("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
-                                    //Parent root1 = FXMLLoader.load(getClass().getResource("/formularios/OpcionesEmpresa/MainEmpresa.fxml"));
-
-                                    //MainEmpresaController mainEmpresaController = fxmlLoader.getController();
-                                    //mainEmpresaController.setUsuarioEmpresaMain(correoElectronico);
 
                                     MainEmpresaTodosUsuariosController mainEmpresaTodosUsuariosController = fxmlLoader.getController();
                                     mainEmpresaTodosUsuariosController.setEmpresaLogInMail(correoElectronico);
@@ -141,7 +127,6 @@ public class LoginController {
 
                                     Stage stage = new Stage();
 
-                                    //stage.initModality(Modality.APPLICATION_MODAL);
 
                                     stage.setTitle("SENSE FIT");
                                     stage.setIconified(false);
@@ -172,7 +157,6 @@ public class LoginController {
                                 try {
 
                                     FXMLLoader fxmlLoader = new FXMLLoader();
-                                    //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesCentro/MainCentro.fxml"));
                                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainCentroRegistrarIngresoUsuario.fxml"));
 
                                     MainCentroRegistrarIngresoUsuarioController mainCentroRegistrarIngresoUsuarioController = fxmlLoader.getController();
@@ -181,15 +165,11 @@ public class LoginController {
                                     mainCentroRegistrarIngresoUsuarioController.actividadesCentro();
                                     mainCentroRegistrarIngresoUsuarioController.desplegarInfoActividadSeleccionada(null);
 
-
-                                   // MainCentroController mainCentroController = fxmlLoader.getController();
-                                    //mainCentroController.setUsuarioMainCentro(correoElectronico);
-
                                     Stage stage = new Stage();
 
-                                    stage.initModality(Modality.APPLICATION_MODAL);
-
                                     stage.setTitle("Login Centro Deportivo");
+                                    stage.setIconified(false);
+                                    stage.setResizable(false);
                                     stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();
@@ -219,7 +199,6 @@ public class LoginController {
                                     Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/MainUsuarioTodasActividades.fxml"));
 
                                     MainUsuarioTodasActividadesController mainUsuarioTodasActividadesController = fxmlLoader.getController();
-                                    System.out.println(emailText.getText());
                                     mainUsuarioTodasActividadesController.datosUsuario(correoElectronico);
                                     mainUsuarioTodasActividadesController.actividadesDisponibles();
 
@@ -227,7 +206,7 @@ public class LoginController {
 
                                     stage.setTitle("Login USUARIO");
                                     stage.setIconified(false);
-                                    //stage.setResizable(false);
+                                    stage.setResizable(false);
                                     stage.getIcons().add(new Image("FitnessIcon.png"));
                                     stage.setScene(new Scene(root1));
                                     stage.show();
@@ -269,7 +248,6 @@ public class LoginController {
                         }
                     }
                 }
-                System.out.println(role);
             }catch (Exception e) {
                 try {
 

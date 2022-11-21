@@ -24,14 +24,6 @@ public class ActividadObject {
 
     private int duracion;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "empleado_actividad", joinColumns = {@JoinColumn(name = "nombre_actividad", referencedColumnName = "nombreActividad"),
-//            @JoinColumn(name = "hora_actividad", referencedColumnName = "horaActividad"),
-//            @JoinColumn(name = "dia_actividad", referencedColumnName = "diaActividad"),
-//            @JoinColumn(name = "centro_actividad", referencedColumnName = "centro_mail")},
-//            inverseJoinColumns = @JoinColumn(name = "mail_empleado", referencedColumnName = "mailEmpleado"))
-//    private List<Empleado> listaEmpleadoInscriptos;
-
     private int costo;
 
     private int cupos;
@@ -42,13 +34,7 @@ public class ActividadObject {
 
     private String imagen;
 
-    //@ManyToOne()
-    //@JoinColumn(name = "centro", referencedColumnName = "mailCentro")
-    //@JsonBackReference
     private CentroDeportivoObject centroDeportivo;
-
-    /*@OneToMany(fetch = FetchType.EAGER, mappedBy = "actividad")
-    private List<InscripcionesActividades> actividadesInscripto = new ArrayList<>();*/
 
     public ActividadObject() {
     }

@@ -1,6 +1,5 @@
 package gym.Client.Controllers.Nuevos.Admin;
 
-import gym.Client.Classes.EmpleadoObject;
 import gym.Client.Classes.TipoActividadObject;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

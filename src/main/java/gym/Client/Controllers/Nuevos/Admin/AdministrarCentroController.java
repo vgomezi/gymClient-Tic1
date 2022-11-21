@@ -123,15 +123,12 @@ public class AdministrarCentroController implements Initializable {
 
     private List<CentroDeportivoObject> todosLosCentros() {
         List<CentroDeportivoObject> listaCentrosDeportivos = new ArrayList<>();
-        CentroDeportivoObject centroDeportivoObject;
 
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/centros").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             listaCentrosDeportivos = mapper.readValue(json, new TypeReference<List<CentroDeportivoObject>>() {});
@@ -144,23 +141,16 @@ public class AdministrarCentroController implements Initializable {
 
     private List<CentroDeportivoObject> similarCentros(String similar) {
         List<CentroDeportivoObject> listaCentrosSimilares = new ArrayList<>();
-        CentroDeportivoObject centroDeportivoObject;
 
-        String centro = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/similarCentroDeportivo/" + similar).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            //System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaCentrosSimilares = mapper.readValue(json, new TypeReference<List<CentroDeportivoObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista centro similares "/* + listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -180,15 +170,12 @@ public class AdministrarCentroController implements Initializable {
             }
         };
 
-        System.out.println("entro datos MainAdminRegistrarCentro");
-
         int column = 0;
         int row = 1;
         try{
             for(CentroDeportivoObject centro : centrosDeportivosList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox centroVBox = fxmlLoader.load();
                 CentroTodoController centroTodoController = fxmlLoader.getController();
@@ -267,7 +254,6 @@ public class AdministrarCentroController implements Initializable {
                 for(CentroDeportivoObject centro : centrosDeportivosList) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox centroVBox = fxmlLoader.load();
                     CentroTodoController centroTodoController = fxmlLoader.getController();
@@ -297,7 +283,6 @@ public class AdministrarCentroController implements Initializable {
                 for(CentroDeportivoObject centro : similarCentro) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/CentroTodo.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox centroVBox = fxmlLoader.load();
                     CentroTodoController centroTodoController = fxmlLoader.getController();
@@ -383,7 +368,6 @@ public class AdministrarCentroController implements Initializable {
                     json = mapperEmpleado.writeValueAsString(centroEnDisplay);
                     HttpResponse<JsonNode> apiResponse = null;
                     apiResponse = Unirest.put("http://localhost:8987/api/centroDeportivo/actualizar/" + centroEnDisplay.getMail()).header("Content-Type", "application/json").body(json).asJson();
-                    System.out.println("Put Hecho empleado");
 
 
                 } catch (Exception e) {
@@ -413,21 +397,17 @@ public class AdministrarCentroController implements Initializable {
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/actividadesCentro/" + mailCentro).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Logro json");
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            System.out.println("Lista actividades Todas Actividades " /*+ listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
         if (listaActividades.size() == 0) {
             try {
                 HttpResponse<JsonNode> apiResponse = null;
-                System.out.println(mailCentro);
                 apiResponse = Unirest.delete("http://localhost:8987/api/centroDeportivo/delete/" + mailCentro).asJson();
-                System.out.println("Usuario borrado");
 
             } catch (Exception e) {
                 System.out.println("Error borrando inscripcion: " + e);
@@ -453,7 +433,7 @@ public class AdministrarCentroController implements Initializable {
 
     public File tomarImagen (MouseEvent mouseEvent) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Elegir imagen usuario");
+        fileChooser.setTitle("Elegir imagen centro");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
@@ -467,11 +447,8 @@ public class AdministrarCentroController implements Initializable {
     public String codificarImagenRegistroUsuario(File file) {
         String base64String = null;
         try {
-            System.out.println(file);
             byte[] bytes = Files.readAllBytes(file.toPath());
-            System.out.println("Convertí file en bytes");
             base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
-            System.out.println("Converti bytes en string");
         } catch (Exception e) {
             System.out.println("Error " + e.getMessage());
         }

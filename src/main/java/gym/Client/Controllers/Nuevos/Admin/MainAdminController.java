@@ -94,7 +94,6 @@ public class MainAdminController {
         HttpResponse<String> apiResponse = null;
         try {
             apiResponse = Unirest.get("http://localhost:8987/api/empresas/numberEmpresas").asObject(String.class);
-            System.out.println("Logre get tipos actividades");
             cantidadEmpresasLabel.setText(apiResponse.getBody());
         } catch (Exception e){
             System.out.println("Error");
@@ -106,7 +105,6 @@ public class MainAdminController {
         HttpResponse<String> apiResponse = null;
         try {
             apiResponse = Unirest.get("http://localhost:8987/api/centroDeportivo/numberCentros").asObject(String.class);
-            System.out.println("Logre get tipos actividades");
             cantidadCentrosLabel.setText(apiResponse.getBody());
         } catch (Exception e){
             System.out.println("Error");
@@ -118,7 +116,6 @@ public class MainAdminController {
         HttpResponse<String> apiResponse = null;
         try {
             apiResponse = Unirest.get("http://localhost:8987/api/usuarios/cantidadEmpleados").asObject(String.class);
-            System.out.println("Logre get tipos actividades");
             cantidadUsuariosLabel.setText(apiResponse.getBody());
         } catch (Exception e){
             System.out.println("Error");
@@ -133,11 +130,9 @@ public class MainAdminController {
         try {
             HttpResponse<String> apiResponse = null;
             apiResponse = Unirest.get("http://localhost:8987/api/tipoactividad/allTipoActividad").asObject(String.class);
-            System.out.println("Logre get tipos actividades");
 
             if (!apiResponse.getBody().isEmpty()) {
                 ObjectMapper mapper = new ObjectMapper();
-                System.out.println("Entro if inicializoChoiceBox");
                 tipos = mapper.readValue(apiResponse.getBody(), new TypeReference<List<TipoActividadObject>>() {
                 });
             }
@@ -151,7 +146,6 @@ public class MainAdminController {
             for(TipoActividadObject tipoActividad : tipos) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/TiposActividad.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox tipoActividadVBox = fxmlLoader.load();
                 TiposActividadController tiposActividadController = fxmlLoader.getController();
@@ -168,7 +162,7 @@ public class MainAdminController {
 
             }
         } catch (Exception e){
-            System.out.println("Error creando panel PARA FILTRO TODAS " + e);
+            System.out.println("Error creando panel para tipos de actividades " + e);
 
         }
     }

@@ -5,8 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication//(exclude={DataSourceAutoConfiguration.class})
-//@EnableAutoConfiguration
+@SpringBootApplication
 public class Main {
 
     private static ConfigurableApplicationContext context;

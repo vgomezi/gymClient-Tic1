@@ -18,10 +18,6 @@ public class EmpresaObject {
 
     private Date dateCreada;
 
-    /*private List<EmpleadoObject> listaEmpleados;
-
-    private List<PagoObject> pagos;*/
-
     public EmpresaObject() {
     }
 
@@ -77,23 +73,6 @@ public class EmpresaObject {
     public void setDateCreada(Date dateCreada) {
         this.dateCreada = dateCreada;
     }
-
-
-    /*public List<EmpleadoObject> getListaEmpleados() {
-        return listaEmpleados;
-    }
-
-    public void setListaEmpleados(List<EmpleadoObject> listaEmpleados) {
-        this.listaEmpleados = listaEmpleados;
-    }
-
-    public List<PagoObject> getPagos() {
-        return pagos;
-    }
-
-    public void setPagos(List<PagoObject> pagos) {
-        this.pagos = pagos;
-    }*/
 
     @Override
     public String toString() {

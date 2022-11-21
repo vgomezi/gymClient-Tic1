@@ -1,8 +1,6 @@
 package gym.Client.Controllers.Nuevos;
 
 import gym.Client.Classes.ActividadObject;
-import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;

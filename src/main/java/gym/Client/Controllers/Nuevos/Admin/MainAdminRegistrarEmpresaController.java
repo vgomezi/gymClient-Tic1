@@ -133,19 +133,15 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
 
     private List<EmpresaObject> todasLasEmpresas() {
         List<EmpresaObject> listaEmpresas = new ArrayList<>();
-        EmpresaObject empresaObject;
 
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/empresas/allEmpresas").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            listaEmpresas = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {
-            });
+            listaEmpresas = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {});
 
         } catch (Exception e) {
             System.out.println("Error: " + e);
@@ -155,21 +151,16 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
 
     private List<EmpresaObject> empresasNuevas() {
         List<EmpresaObject> listaNuevasEmpresas = new ArrayList<>();
-        EmpresaObject empresaObject;
 
-        String empresa = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/empresas/nuevasEmpresas").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             listaNuevasEmpresas = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {});
 
-            //System.out.println("Lista mis empleados " + listaMisEmpleados);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -193,16 +184,12 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
             }
         };
 
-        System.out.println("entro datos MainAdminRegistrarCentro");
-
         int column = 0;
         int row = 1;
         try {
             for (EmpresaObject nuevaEmpresa : nuevasEmpresas) {
-                System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaTodaNuevo.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 HBox anadidaRecienteBox = fxmlLoader.load();
                 EmpresaTodaNuevoController empresaTodaNuevoController = fxmlLoader.getController();
@@ -215,7 +202,6 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
             for (EmpresaObject empresa : empresasList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox empresaVBox = fxmlLoader.load();
                 EmpresaTodaController empresaTodaController = fxmlLoader.getController();
@@ -240,24 +226,16 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
 
     private List<EmpresaObject> similarEmpresas(String similar) {
         List<EmpresaObject> listaEmpresasSimilares = new ArrayList<>();
-        EmpresaObject empresaObject;
 
-        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/empresas/similarEmpresa/" + similar).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            //System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-            listaEmpresasSimilares = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {
-            });
+            listaEmpresasSimilares = mapper.readValue(json, new TypeReference<List<EmpresaObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista empresas similares "/* + listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -273,7 +251,6 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
             }
         };
 
-        //System.out.println(busquedaTextField.getText());
         if (busquedaTextField.getText().isEmpty()) {
             todasLasEmpresasGridPane = new GridPane();
             todasLasEmpresasScroll.setContent(todasLasEmpresasGridPane);
@@ -283,7 +260,6 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
                 for (EmpresaObject empresa : empresasList) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox empresaVbox = fxmlLoader.load();
                     EmpresaTodaController empresaTodaController = fxmlLoader.getController();
@@ -313,7 +289,6 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
                 for (EmpresaObject empresa : similarEmpresa) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/EmpresaToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox empresaVbox = fxmlLoader.load();
                     EmpresaTodaController empresaTodaController = fxmlLoader.getController();
@@ -398,7 +373,6 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
                 String existeEmpresaMail = apiResponse1.getBody();
 
                 if (existeEmpresaMail.isEmpty()) {
-                    System.out.println("No existe");
                     try {
                         String json = "";
                         String json2 = "";
@@ -417,10 +391,6 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
                         HttpResponse<JsonNode> apiResponse = null;
                         apiResponse = Unirest.post("http://localhost:8987/api/login").header("Content-Type", "application/json").body(json).asJson();
                         apiResponse = Unirest.post("http://localhost:8987/api/empresas").header("Content-Type", "application/json").body(json2).asJson();
-
-                        System.out.println("Hecho Empresa");
-
-                        System.out.println("Hecho");
 
                         nombreEmpresaRegistro.clear();
                         bonoEmpleadosRegistro.clear();
@@ -452,9 +422,6 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
     }
 
 
-
-
-
     public void onImagenEmpresaRegistroMouseClick(MouseEvent mouseEvent) {
         File file = tomarImagen(mouseEvent);
         String base64 = codificarImagenRegistroUsuario(file);
@@ -466,7 +433,7 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
         File file = null;
         try {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Elegir imagen centro");
+            fileChooser.setTitle("Elegir imagen empresa");
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("All images", "*.*"),
                     new FileChooser.ExtensionFilter("JPG", "*.jpg"),
@@ -485,11 +452,8 @@ public class MainAdminRegistrarEmpresaController implements Initializable {
     public String codificarImagenRegistroUsuario(File file) {
         String base64String = null;
         try {
-            System.out.println(file);
             byte[] bytes = Files.readAllBytes(file.toPath());
-            System.out.println("Convertí file en bytes");
             base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
-            System.out.println("Converti bytes en string");
         } catch (Exception e) {
             System.out.println("Error " + e.getMessage());
         }
