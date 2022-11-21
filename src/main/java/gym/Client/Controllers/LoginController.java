@@ -88,7 +88,7 @@ public class LoginController {
                                     FXMLLoader fxmlLoader = new FXMLLoader();
                                     System.out.println("Entro Admin Login");
                                     //Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/formularios/OpcionesAdministrador/MainAdmin.fxml"));
-                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/admin/MainAdmin.fxml"));
+                                    Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/nuevo/Admin/MainAdmin.fxml"));
 
                                     MainAdminController mainAdminController = fxmlLoader.getController();
                                     mainAdminController.datosAdmin();
