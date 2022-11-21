@@ -49,7 +49,6 @@ import java.util.Date;
 import java.util.List;
 
 public class MainCentroRegistrarIngresoUsuarioController {
-    // implements Initializable
 
     @FXML
     public Label logOutLabel;
@@ -124,14 +123,9 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     private List<ActividadObject> todasLasActividades;
 
-    //Poner en lugar de anadidas recientemente las proximas actividades que estan por ocurrir, de forma que sea más
-    //fácil encontrarlas
     private List<ActividadObject> proximasActividades = new ArrayList<>();
 
     private List<ActividadObject> similarActividades = new ArrayList<>();
-
-    public void onEnterPressed(KeyEvent keyEvent) {
-    }
 
     public void onMouseClickedLogOut(MouseEvent mouseEvent) {
         Node source = (Node) mouseEvent.getSource();
@@ -171,7 +165,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
     public void datosCentro(String correoElectronico) {
         CentroDeportivoObject centroDeportivoObject = null;
         try {
-            System.out.println("try obtener empresa");
             String centroD = "";
             HttpResponse<String> apiResponse = null;
 
@@ -179,10 +172,8 @@ public class MainCentroRegistrarIngresoUsuarioController {
             centroD = apiResponse.getBody();
             if (!centroD.isBlank()) {
                 ObjectMapper mapper = new ObjectMapper();
-                System.out.println("Entro if empresa");
                 centroDeportivoObject = mapper.readValue(apiResponse.getBody(), CentroDeportivoObject.class);
                 this.centro = centroDeportivoObject;
-                System.out.println(centroDeportivoObject.getMail());
             }
         } catch (Exception e) {
             System.out.println("Try obtener empresa error");
@@ -265,23 +256,16 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     private List<ActividadObject> todasLasActividadesCentro() {
         List<ActividadObject> listaActividades = new ArrayList<>();
-        ActividadObject actividadObject;
 
-        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/actividadesCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Logro json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista actividades Todas Actividades " /*+ listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -290,23 +274,16 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     private List<ActividadObject> proximasActividadesCentro() {
         List<ActividadObject> listaActividades = new ArrayList<>();
-        ActividadObject actividadObject;
 
-        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/proximasActividadesCentro/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Logro json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista actividades Proximas Actividades " /*+ listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -315,23 +292,16 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     private List<ActividadObject> similarActividades(String similar) {
         List<ActividadObject> listaActividades = new ArrayList<>();
-        ActividadObject actividadObject;
 
-        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/similarActividadCentro/" + similar + "/" + centro.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            //System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista actividades similares "/* + listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -340,12 +310,10 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
     public void actividadesProximasCentro() {
         if (proximasActividades.isEmpty()) {
-            System.out.println("entro anadidosreciente if");
             proximasActividades.addAll(proximasActividadesCentro());
         }
 
         if(proximasActividades.size() > 0) {
-            //desplegarInfoActividadSeleccionada(misActividades.get(0));
             this.myListener = new MyListener() {
 
 
@@ -361,16 +329,10 @@ public class MainCentroRegistrarIngresoUsuarioController {
             };
         }
 
-        //System.out.println(anadidosRecienteLista + "anadidos reciente lista");
-        System.out.println("entro initialize actividadRecienteScrollController");
-
         try {
             for (ActividadObject proximasActividade : proximasActividades) {
-                //System.out.println("tamaño i = " + anadidosRecienteLista.size());
-                System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadReciente.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 HBox anadidaRecienteBox = fxmlLoader.load();
                 ActividadRecienteController actividadRecienteController = fxmlLoader.getController();
@@ -391,7 +353,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
         todasLasActividades.addAll(todasLasActividadesCentro());
 
         if(todasLasActividades.size() > 0) {
-            //desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
             this.myListener = new MyListener() {
 
 
@@ -405,11 +366,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
                 }
             };
-        } else {
-
         }
-
-        System.out.println("entro initialize UsuarioMisActividadesController");
 
         int column = 0;
         int row = 1;
@@ -417,7 +374,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
             for(ActividadObject actividad : todasLasActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox todaActividadbox = fxmlLoader.load();
                 ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -445,7 +401,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
             Parent root1 = (Parent) fxmlLoader.load(MainCentroRegistrarIngresoUsuarioController.class.getResourceAsStream("/gym/Client/nuevo/CentroTodasActividades.fxml"));
 
             CentroTodasActividadesController centroRegistrarActividadController = fxmlLoader.getController();
-            System.out.println(centro.getMail());
             centroRegistrarActividadController.datosCentro(centro);
             centroRegistrarActividadController.actividadesCentro();
 
@@ -473,7 +428,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
                 if (!existeEmpleadoMail.isEmpty()) {
 
                     ObjectMapper mapper = new ObjectMapper();
-                    System.out.println("Entro if usuario");
                     EmpleadoObject empleadoObject = mapper.readValue(existeEmpleadoMail, EmpleadoObject.class);
 
                     if (actividadEnDisplay.isReservable()) {
@@ -486,14 +440,11 @@ public class MainCentroRegistrarIngresoUsuarioController {
                         } catch (Exception e) {
                             System.out.println("Error obteniendo actividad");
                         }
-                        System.out.println(json);
 
                         if (!json.isEmpty()) {
                             HttpResponse<JsonNode> apiResponse = null;
                             apiResponse = Unirest.put("http://localhost:8987/inscripciones/actualizar/" + mailUsuario + "/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
-                            System.out.println("Put Hecho");
 
-                            System.out.println("Actualizo la inscripcion");
                             actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
                                     "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
 
@@ -502,20 +453,16 @@ public class MainCentroRegistrarIngresoUsuarioController {
                             desplegarInfoActividadSeleccionada(null);
                             actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
                                     "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-                            System.out.println("No reservó");
                         }
                         mailUsuarioDisplay.clear();
 
-                        // verificar que existe la reserva
                     } else if (actividadEnDisplay.getCupos() > 0) {
                         String json = "";
 
                         try {
                             HttpResponse<String> apiResponse = null;
                             apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcion/" + mailUsuario + "/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").asObject(String.class);
-                            System.out.println("Obtener la inscripcion hecha");
                             json = apiResponse.getBody();
-                            System.out.println(json);
                         } catch (Exception e) {
                             System.out.println("Error obteniendo actividad cupos mayor a '0");
                         }
@@ -523,8 +470,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
                         if (!json.isEmpty()) {
                             HttpResponse<JsonNode> apiResponse = null;
                             apiResponse = Unirest.put("http://localhost:8987/inscripciones/actualizar/" + mailUsuario + "/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
-                            System.out.println("Put Hecho");
-                            System.out.println("Actualizo la inscripcion");
 
                         } else {
 
@@ -535,18 +480,13 @@ public class MainCentroRegistrarIngresoUsuarioController {
                                 mapper1.registerModule(new JavaTimeModule());
                                 InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(mailUsuario, actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), true, empleadoObject, actividadEnDisplay, "GUARDAR", new Date());
                                 json1 = mapper1.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
-                                System.out.println("json hecho");
 
                                 HttpResponse<JsonNode> apiResponse = null;
                                 apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json1).asJson();
-                                System.out.println("Inscripciones actividades reserva hecho");
                             } catch (Exception e) {
                                 System.out.println("Error ingresando reserva");
                                 System.out.println(e.getMessage());
                             }
-                            System.out.println("Creo la inscripcion");
-                            System.out.println("Pintar de verde");
-
                         }
 
                         String json3 = "";
@@ -559,9 +499,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
                             json3 = mapperActividad.writeValueAsString(actividadEnDisplay);
                             HttpResponse<JsonNode> apiResponse = null;
                             apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json3).asJson();
-                            System.out.println("Put Hecho");
-                            System.out.println("actualizacion cupos actividad hecha");
-
 
                         } catch (Exception e) {
                             System.out.println("Error actualizando put: " + e.getMessage());
@@ -574,19 +511,15 @@ public class MainCentroRegistrarIngresoUsuarioController {
                         actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
                                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
 
-                        System.out.println("Pintar en verde");
-
                     } else {
                         mailUsuarioDisplay.clear();
                         actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
                                 "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-                        System.out.println("No quedan cupos");
                     }
                 } else {
                     mailUsuarioDisplay.clear();
                     actividadSeleccionadaVBox.setStyle("-fx-background-color : #f4f723;" +
                             "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-                    System.out.println("No existe el usuario con ese mail");
                 }
 
             } catch (Exception e){
@@ -596,9 +529,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
         } else {
             actividadSeleccionadaVBox.setStyle("-fx-background-color : #f4f723;" +
                     "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-            System.out.println("Pinto de color que el mail está vacío");
         }
-
     }
 
     public void onAdministrarCentroButtonClick(ActionEvent actionEvent) {
@@ -635,7 +566,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
 
             }
         };
-        //System.out.println(busquedaTextField.getText());
+
         if (busquedaActividadTextfield.getText().isEmpty()) {
             todasLasActividadesGridPane = new GridPane();
             todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
@@ -645,7 +576,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
                 for(ActividadObject actividad : todasLasActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -675,7 +605,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
                 for(ActividadObject actividad : similarActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -688,7 +617,6 @@ public class MainCentroRegistrarIngresoUsuarioController {
                     }
 
                     todasLasActividadesGridPane.add(todaActividadbox, column++, row);
-                    System.out.println(similarActividades.size());
                     GridPane.setMargin(todaActividadbox, new Insets(10));
 
                 }

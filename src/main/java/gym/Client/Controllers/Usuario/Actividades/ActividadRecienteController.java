@@ -48,7 +48,6 @@ public class ActividadRecienteController {
     public void obtenerDatos(ActividadObject actividadObject, MyListener myListener){
         this.myListener = myListener;
         this.actividad = actividadObject;
-        //Cambiar
 
         if(actividadObject.getImagen() != null) {
             byte[] imageDecoded = Base64.getDecoder().decode(actividadObject.getImagen());

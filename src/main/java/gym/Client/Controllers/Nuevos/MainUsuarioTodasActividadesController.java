@@ -141,25 +141,16 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     private List<ActividadObject> anadidosRecientemente() {
         List<ActividadObject> listaActividadesNuevas = new ArrayList<>();
-        ActividadObject actividadObject;
 
-        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/nuevasActividades").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Logro get");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            System.out.println("Hago object mapper");
-            //mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividadesNuevas = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista actividades AÑADIDAS RECIENTEMENTE");
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -168,23 +159,16 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     private List<ActividadObject> todasLasActividades() {
         List<ActividadObject> listaActividades = new ArrayList<>();
-        ActividadObject actividadObject;
 
-        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/actividadesDisponibles").header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Logro json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista actividades Todas Actividades " /*+ listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -193,23 +177,16 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
     private List<ActividadObject> similarActividades(String similar) {
         List<ActividadObject> listaActividades = new ArrayList<>();
-        ActividadObject actividadObject;
 
-        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/similarActividad/" + similar).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            //System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista actividades similares "/* + listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -223,26 +200,19 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     public void datosUsuario(String correoElectronico) {
         EmpleadoObject empleadoObject = null;
         try {
-            System.out.println("try obtener usuario");
             String empleado = "";
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadoMail/" + correoElectronico).asObject(String.class);
             empleado = apiResponse.getBody();
-            System.out.println("Imprimo empleado");
-            System.out.println(empleado);
-
 
             if (!empleado.isBlank()) {
                 ObjectMapper mapper = new ObjectMapper();
-                System.out.println("Entro if usuario");
                 empleadoObject = mapper.readValue(apiResponse.getBody(), EmpleadoObject.class);
                 this.empleado = empleadoObject;
-                System.out.println(empleadoObject);
             }
-            System.out.println("Try obtener usuario hecho");
         } catch (Exception e) {
-            System.out.println("Try obtener usuario error");
+            System.out.println("Error obteniendo el usuario: " + e.getMessage());
         }
 
         if(empleadoObject.getImagen() != null) {
@@ -267,16 +237,12 @@ public class MainUsuarioTodasActividadesController implements Initializable {
     }
 
     public void actividadesDisponibles() {
-        System.out.println("Entro initialize");
-        //System.out.println(anadidosRecientemente());
         if (anadidosRecienteLista.isEmpty()) {
-            System.out.println("entro anadidosreciente if");
             anadidosRecienteLista.addAll(anadidosRecientemente());
         }
         if (todasLasActividades.isEmpty()) {
             todasLasActividades.addAll(todasLasActividades());
         }
-        System.out.println("Inicializo listas");
 
         this.myListener = new MyListener() {
             @Override
@@ -292,25 +258,16 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
         if(todasLasActividades.size() > 0) {
             desplegarInfoActividadSeleccionada(todasLasActividades.get(0));
-            System.out.println("Despliega informacion");
         } else {
             desplegarInfoActividadSeleccionada(null);
-            System.out.println("No despliega informacion");
-
         }
-
-        //System.out.println(anadidosRecienteLista + "anadidos reciente lista");
-        System.out.println("entro initialize actividadRecienteScrollController");
 
         int column = 0;
         int row = 1;
         try{
             for (int i = 0; i < anadidosRecienteLista.size(); i++) {
-                //System.out.println("tamaño i = " + anadidosRecienteLista.size());
-                System.out.println("Entro try");
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadReciente.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 HBox anadidaRecienteBox = fxmlLoader.load();
                 ActividadRecienteController actividadRecienteController = fxmlLoader.getController();
@@ -323,7 +280,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             for(ActividadObject actividad : todasLasActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox todaActividadbox = fxmlLoader.load();
                 ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -355,15 +311,13 @@ public class MainUsuarioTodasActividadesController implements Initializable {
         try {
             HttpResponse<String> apiResponse = null;
             apiResponse = Unirest.get("http://localhost:8987/api/tipoactividad/allTipoActividad").asObject(String.class);
-            System.out.println("Logre get tipos actividades");
 
             if (!apiResponse.getBody().isEmpty()) {
                 ObjectMapper mapper = new ObjectMapper();
-                System.out.println("Entro if inicializoChoiceBox");
                 List<TipoActividadObject> listaTipos = mapper.readValue(apiResponse.getBody(), new TypeReference<List<TipoActividadObject>>() {});
                 ObservableList<String> listaItems = FXCollections.observableArrayList();
                 for (TipoActividadObject tipoActividad: listaTipos) {
-                    listaItems.add(tipoActividad.getTipo()); /*.toUpperCase()*/
+                    listaItems.add(tipoActividad.getTipo());
                 }
                 listaItems.add("TODAS");
                 tiposPantallaPrincipalChoiceBox.setItems(listaItems);
@@ -445,21 +399,18 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load(MainUsuarioTodasActividadesController.class.getResourceAsStream("/gym/Client/nuevo/UsuarioMisActividades.fxml"));
 
             UsuarioMisActividadesController usuarioMisActividadesController = fxmlLoader.getController();
-            System.out.println(empleado.getMail());
             usuarioMisActividadesController.datosUsuario(empleado);
             usuarioMisActividadesController.actividadesUsuario();
             usuarioMisActividadesController.filtrarNuevas("NUEVAS");
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
-            //stage.setTitle("SENSE FIT");
             stage.setScene(new Scene(root1));
             stage.show();
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
             System.out.println("Error");
-            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -516,17 +467,13 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                     String json = "";
 
                     try {
-                        //Verificar que no existe la inscripcion
-                        ///inscripcion/{mailEmpleado}/{nombreActividad}/{diaActividad}/{horaActividad}/{centroMailActividad}
                         ObjectMapper mapper = new JsonMapper().builder().findAndAddModules().build();
                         mapper.registerModule(new JavaTimeModule());
                         InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "RESERVAR", null);
                         json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
-                        System.out.println("json hecho");
 
                         HttpResponse<JsonNode> apiResponse = null;
                         apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json).asJson();
-                        System.out.println("Inscripciones actividades reserva hecho");
                     } catch (Exception e) {
                         System.out.println("Error ingresando reserva");
                         System.out.println(e.getMessage());
@@ -542,12 +489,10 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                         json1 = mapperActividad.writeValueAsString(actividadEnDisplay);
                         HttpResponse<JsonNode> apiResponse = null;
                         apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json1).asJson();
-                        System.out.println("Put Hecho");
                         actividadesDisponibles();
 
-
                     } catch (Exception e) {
-                        System.out.println("Error actualizando put: " + e.getMessage());
+                        System.out.println("Error actualizando cupos: " + e.getMessage());
 
                     }
                 } catch (Exception e) {
@@ -565,11 +510,9 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                         mapper.registerModule(new JavaTimeModule());
                         InscripcionesActividadesObject inscripcionesActividadesObject = new InscripcionesActividadesObject(empleado.getMail(), actividadEnDisplay.getNombre(), actividadEnDisplay.getDia(), actividadEnDisplay.getHora(), actividadEnDisplay.getCentroMail(), false, empleado, actividadEnDisplay, "GUARDAR", null);
                         json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(inscripcionesActividadesObject);
-                        System.out.println("json hecho");
 
                         HttpResponse<JsonNode> apiResponse = null;
                         apiResponse = Unirest.post("http://localhost:8987/inscripciones").header("Content-Type", "application/json").body(json).asJson();
-                        System.out.println("Inscripciones actividades guardar hecho");
                     } catch (Exception e) {
                         System.out.println("Error ingresando reserva");
                         System.out.println(e.getMessage());
@@ -579,23 +522,19 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 }
                 actividadSeleccionadaVBox.setStyle("-fx-background-color : #1FDB5E;" +
                         "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-                System.out.println("Guardar actividad");
             } else {
                 actividadSeleccionadaVBox.setStyle("-fx-background-color : #E3350E;" +
                         "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-                System.out.println("ERROR");
             }
         } else {
             actividadSeleccionadaVBox.setStyle("-fx-background-color : #f4f723;" +
                     "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
-            System.out.println("Ya existe la reserva");
         }
     }
 
     public void filtrarPorTipo(String tipo) {
         desplegarInfoActividadSeleccionada(null);
         busquedaTextField.clear();
-        System.out.println(tipo);
 
         this.myListener = new MyListener() {
             @Override
@@ -608,7 +547,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
             }
         };
-        //System.out.println(busquedaTextField.getText());
+
         if (tipo.equals("TODAS")) {
             todasLasActividadesGridPane = new GridPane();
             todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
@@ -618,7 +557,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 for(ActividadObject actividad : todasLasActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -642,15 +580,13 @@ public class MainUsuarioTodasActividadesController implements Initializable {
             todasLasActividadesGridPane = new GridPane();
             todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
             tipoActividades = tipoDeActividades(tipo);
-            System.out.println("Tamaño lista actividades = " + tipoActividades.size());
-            System.out.println("Tipos de actividad");
+
             int column = 0;
             int row = 1;
             try{
                 for(ActividadObject actividad : tipoActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -663,8 +599,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                     }
 
                     todasLasActividadesGridPane.add(todaActividadbox, column++, row);
-                    //System.out.println(similarActividades.size());
-                    System.out.println(tipoActividades.size());
                     GridPane.setMargin(todaActividadbox, new Insets(10));
 
                 }
@@ -672,30 +606,21 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 System.out.println("Error creando panel " + e);
 
             }
-
         }
     }
 
     private List<ActividadObject> tipoDeActividades(String tipo) {
-
         List<ActividadObject> listaActividades = new ArrayList<>();
-        ActividadObject actividadObject;
 
-        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/actividades/actividadTipo/" + tipo).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            //System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            //System.out.println(actividad);
-            System.out.println("Lista actividades tipo "/* + listaActividades*/);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -723,7 +648,7 @@ public class MainUsuarioTodasActividadesController implements Initializable {
 
             }
         };
-        //System.out.println(busquedaTextField.getText());
+
         if (busquedaTextField.getText().isEmpty()) {
             todasLasActividadesGridPane = new GridPane();
             todasLasActividadesScroll.setContent(todasLasActividadesGridPane);
@@ -733,7 +658,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 for(ActividadObject actividad : todasLasActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -763,7 +687,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                 for(ActividadObject actividad : similarActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -776,7 +699,6 @@ public class MainUsuarioTodasActividadesController implements Initializable {
                     }
 
                     todasLasActividadesGridPane.add(todaActividadbox, column++, row);
-                    System.out.println(similarActividades.size());
                     GridPane.setMargin(todaActividadbox, new Insets(10));
 
                 }

@@ -56,7 +56,6 @@ public class UsuarioMisActividadesController implements Initializable {
     @FXML
     private BorderPane pantallaMainUsuario;
 
-
     @FXML
     private Label centroActividadDisplay;
 
@@ -93,7 +92,6 @@ public class UsuarioMisActividadesController implements Initializable {
     @FXML
     private Label nombreActividadDisplay;
 
-
     @FXML
     private GridPane todasLasActividadesGridPane;
 
@@ -117,9 +115,6 @@ public class UsuarioMisActividadesController implements Initializable {
 
     @FXML
     private ChoiceBox<String> filtroNuevasTodasActividades;
-
-    @FXML
-    private TextField busquedaTextField;
 
     private MyListener myListener;
 
@@ -152,23 +147,16 @@ public class UsuarioMisActividadesController implements Initializable {
 
     private List<ActividadObject> todasMisActividades() {
         List<ActividadObject> listaMisActividades = new ArrayList<>();
-        ActividadObject actividadObject;
 
-        String actividad = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcionUsuario/" + empleado.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaMisActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            //System.out.println(actividad);
-            //System.out.println("Lista actividades mis actividades " + listaMisActividades);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -179,8 +167,6 @@ public class UsuarioMisActividadesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         inicializoChoiceBox();
-        System.out.println("Entro initialize");
-
     }
 
     public void inicializoChoiceBox() {
@@ -214,7 +200,6 @@ public class UsuarioMisActividadesController implements Initializable {
 
             }
         };
-        System.out.println(filtro);
 
         if (filtro.equals("TODAS")) {
             todasLasActividadesGridPane = new GridPane();
@@ -228,7 +213,6 @@ public class UsuarioMisActividadesController implements Initializable {
                     }
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -251,7 +235,6 @@ public class UsuarioMisActividadesController implements Initializable {
         } else {
             todasLasActividadesGridPane = new GridPane();
             misActividadesScroll.setContent(todasLasActividadesGridPane);
-            System.out.println("Actividades Nuevas");
             int column = 0;
             int row = 1;
             try{
@@ -265,7 +248,6 @@ public class UsuarioMisActividadesController implements Initializable {
                         }
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                        System.out.println("Carga FXMLLoader");
 
                         VBox todaActividadbox = fxmlLoader.load();
                         ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -278,7 +260,6 @@ public class UsuarioMisActividadesController implements Initializable {
                         }
 
                         todasLasActividadesGridPane.add(todaActividadbox, column++, row);
-                        //System.out.println(similarActividades.size());
                         GridPane.setMargin(todaActividadbox, new Insets(10));
                     }
                 }
@@ -287,9 +268,7 @@ public class UsuarioMisActividadesController implements Initializable {
                 }
             } catch (Exception e){
                 System.out.println("Error creando panel " + e);
-
             }
-
         }
     }
 
@@ -328,15 +307,12 @@ public class UsuarioMisActividadesController implements Initializable {
             cancelarActividadBoton.setVisible(false);
         }
 
-        System.out.println("entro initialize UsuarioMisActividadesController");
-
         int column = 0;
         int row = 1;
         try{
             for(ActividadObject actividad : misActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox todaActividadbox = fxmlLoader.load();
                 ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -405,7 +381,7 @@ public class UsuarioMisActividadesController implements Initializable {
                     "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
             centroActividadDisplay.setText(actividadObject.getCentroDeportivo().getNombre());
             Period period = Period.between(LocalDate.now(), actividadEnDisplay.getDia());
-            if (period.getDays() < 0) {
+            if (period.getDays() <= 0) {
                 cancelarActividadBoton.setVisible(false);
             } else {
                 cancelarActividadBoton.setVisible(true);
@@ -418,56 +394,41 @@ public class UsuarioMisActividadesController implements Initializable {
     }
 
     public void onCancelarActividadBoton(ActionEvent event) {
-        System.out.println("Apreto boton cancelar");
         String nombre = actividadEnDisplay.getNombre();
         String dia = diaActividadDisplay.getText();
         String hora = horaActividadDisplay.getText();
         String centromail = actividadEnDisplay.getCentroMail();
 
         try {
-            LocalTime horaTime = LocalTime.parse(hora);
-            LocalDate diaDate = LocalDate.parse(dia);
+            try {
+                HttpResponse<JsonNode> apiResponse = null;
+                apiResponse = Unirest.delete("http://localhost:8987/inscripciones/delete/" + empleado.getMail() + "/" + nombre + "/" + dia + "/" + hora + "/" + centromail).asJson();
 
+            } catch (Exception e) {
+                System.out.println("Error borrando inscripcion: " + e);
+            }
 
-                System.out.println("Borro inscripcion usuario");
+            if (actividadEnDisplay.isReservable()) {
+                String json = "";
                 try {
+                    actividadEnDisplay.setCupos(actividadEnDisplay.getCupos() + 1);
+                    ObjectMapper mapperActividad = new JsonMapper().builder()
+                            .findAndAddModules()
+                            .build();
+                    mapperActividad.registerModule(new JavaTimeModule());
+                    json = mapperActividad.writeValueAsString(actividadEnDisplay);
                     HttpResponse<JsonNode> apiResponse = null;
-                    System.out.println(horaTime);
-                    apiResponse = Unirest.delete("http://localhost:8987/inscripciones/delete/" + empleado.getMail() + "/" + nombre + "/" + dia + "/" + horaTime + "/" + centromail).asJson();
-                    System.out.println("Inscripcion borrada");
-
+                    apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
                 } catch (Exception e) {
-                    System.out.println("Error borrando inscripcion: " + e);
+                    System.out.println("Error actualizando cupos: " + e.getMessage());
                 }
+            }
 
-                if (actividadEnDisplay.isReservable()) {
-                    String json = "";
-                    try {
-                        actividadEnDisplay.setCupos(actividadEnDisplay.getCupos() + 1);
-                        ObjectMapper mapperActividad = new JsonMapper().builder()
-                                .findAndAddModules()
-                                .build();
-                        mapperActividad.registerModule(new JavaTimeModule());
-                        json = mapperActividad.writeValueAsString(actividadEnDisplay);
-                        HttpResponse<JsonNode> apiResponse = null;
-                        apiResponse = Unirest.put("http://localhost:8987/api/actividades/actualizar/" + actividadEnDisplay.getNombre() + "/" + actividadEnDisplay.getDia() + "/" + actividadEnDisplay.getHora() + "/" + actividadEnDisplay.getCentroMail()).header("Content-Type", "application/json").body(json).asJson();
-                        System.out.println("Put Hecho");
-
-
-                    } catch (Exception e) {
-                        System.out.println("Error actualizando put: " + e.getMessage());
-
-                    }
-                }
-
-                misActividades = new ArrayList<>();
-                misActividades.addAll(todasMisActividades());
-                filtrarNuevas("NUEVAS");
-                System.out.println("Actualizo actividades del usuario");
-
+            misActividades = new ArrayList<>();
+            misActividades.addAll(todasMisActividades());
+            filtrarNuevas("NUEVAS");
         } catch (Exception e) {
             System.out.println("Error boton cancelar: " + e.getMessage());
-
         }
     }
 
@@ -501,8 +462,6 @@ public class UsuarioMisActividadesController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load(LoginController.class.getResourceAsStream("/gym/Client/Login.fxml"));
 
             Stage stage = new Stage();
-
-            //stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.setTitle("Login");
             stage.setIconified(false);

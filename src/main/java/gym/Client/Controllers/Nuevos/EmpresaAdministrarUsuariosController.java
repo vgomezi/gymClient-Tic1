@@ -93,7 +93,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     @FXML
     private TextField busquedaEmpleadoTextField;
 
-
     @FXML
     public ChoiceBox<String> deudoresChoiceBox;
 
@@ -123,25 +122,20 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     public void datosEmpresa(String correoElectronico) {
         EmpresaObject empresaObject = null;
+
         try {
-            System.out.println("try obtener empresa");
             String empresa = "";
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/empresas/empresaMail/" + correoElectronico).asObject(String.class);
             empresa = apiResponse.getBody();
-            System.out.println("Imprimo empresa");
-            //System.out.println(empresa);
-
 
             if (!empresa.isBlank()) {
                 ObjectMapper mapper = new ObjectMapper();
-                System.out.println("Entro if empresa");
                 empresaObject = mapper.readValue(apiResponse.getBody(), EmpresaObject.class);
                 this.empresa = empresaObject;
-                //System.out.println(empresaObject);
             }
-            System.out.println("Try obtener empresa hecho");
+
         } catch (Exception e) {
             System.out.println("Try obtener empresa error");
         }
@@ -223,23 +217,16 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     private List<EmpleadoObject> todosMisEmpleados() {
         List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
-        EmpleadoObject empleadoObject;
 
-        String empleado = "";
         try {
             HttpResponse<String> apiResponse = null;
 
             apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadosEmpresa/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            //System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
 
-            //System.out.println(empleado);
-            //System.out.println("Lista mis empleados " + listaMisEmpleados);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -264,15 +251,12 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             }
         };
 
-        System.out.println("entro datos MainEmpresa");
-
         int column = 0;
         int row = 1;
         try{
             for(EmpleadoObject empleado : misEmpleados) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox usuarioEmpresaVbox = fxmlLoader.load();
                 UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
@@ -333,7 +317,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load(EmpresaAdministrarUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
 
             MainEmpresaTodosUsuariosController mainEmpresaTodosUsuariosController = fxmlLoader.getController();
-            System.out.println(empresa.getMail());
             mainEmpresaTodosUsuariosController.datosEmpresa(empresa.getMail());
             mainEmpresaTodosUsuariosController.empleadosEmpresa();
 
@@ -382,24 +365,25 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                     json = mapperEmpleado.writeValueAsString(empleadoEnDisplay);
                     HttpResponse<JsonNode> apiResponse = null;
                     apiResponse = Unirest.put("http://localhost:8987/api/usuarios/actualizar/" + empleadoEnDisplay.getMail()).header("Content-Type", "application/json").body(json).asJson();
-                    System.out.println("Put Hecho empleado");
-
 
                 } catch (Exception e) {
                     System.out.println("Error actualizando put: " + e.getMessage());
-
                 }
+                misEmpleados.clear();
+                empleadosEmpresa();
+                desplegarEmpleadoSeleccionado(null);
+                fileImagen = null;
 
             } catch (Exception e) {
-
+                saldoTextField.clear();
+                deudaTextField.clear();
+                empleadoSeleccionadoVBox.setStyle("-fx-background-color : #E3350E;" +
+                        "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
             }
         } else {
-
+            empleadoSeleccionadoVBox.setStyle("-fx-background-color : #E3350E;" +
+                    "-fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 10);");
         }
-        misEmpleados.clear();
-        empleadosEmpresa();
-        desplegarEmpleadoSeleccionado(null);
-        fileImagen = null;
     }
 
     @FXML
@@ -414,7 +398,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
         File file = null;
         try {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Elegir imagen centro");
+            fileChooser.setTitle("Elegir imagen usuario");
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("All images", "*.*"),
                     new FileChooser.ExtensionFilter("JPG", "*.jpg"),
@@ -433,11 +417,8 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
     public String codificarImagenRegistroUsuario(File file) {
         String base64String = null;
         try {
-            System.out.println(file);
             byte[] bytes = Files.readAllBytes(file.toPath());
-            System.out.println("Convertí file en bytes");
             base64String = org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
-            System.out.println("Converti bytes en string");
         } catch (Exception e) {
             System.out.println("Error " + e.getMessage());
         }
@@ -466,9 +447,7 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     private List<EmpleadoObject> misEmpleadosLike(String like) {
         List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
-        EmpleadoObject empleadoObject;
 
-        String empleado = "";
         try {
             HttpResponse<String> apiResponse = null;
 
@@ -505,7 +484,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                 for(EmpleadoObject empleado : misEmpleados) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox usuarioEmpresaVbox = fxmlLoader.load();
                     UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
@@ -535,7 +513,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                 for(EmpleadoObject empleado : empleadosLike) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox usuarioEmpresaVbox = fxmlLoader.load();
                     UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
@@ -588,7 +565,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                 desplegarEmpleadoSeleccionado(empleadoObject);
             }
         };
-        System.out.println(filtro);
 
         if (filtro.equals("TODOS")) {
             todosLosEmpleadosGridPane = new GridPane();
@@ -599,7 +575,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                 for(EmpleadoObject empleado : misEmpleados) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox usuarioEmpresaVbox = fxmlLoader.load();
                     UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
@@ -622,7 +597,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
         } else {
             todosLosEmpleadosGridPane = new GridPane();
             todosLosEmpleadosScroll.setContent(todosLosEmpleadosGridPane);
-            System.out.println("Empleados con deuda");
             int column = 0;
             int row = 1;
             try{
@@ -630,7 +604,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                     if (empleado.getDeuda() > 0) {
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/Admin/UsuarioEmpresa.fxml"));
-                        System.out.println("Carga FXMLLoader");
 
                         VBox usuarioEmpresaVbox = fxmlLoader.load();
                         UsuarioEmpresaController usuarioEmpresaController = fxmlLoader.getController();
@@ -665,13 +638,10 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
             apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcionUsuario/" + mailUsuario).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
             listaMisActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
-            //System.out.println(actividad);
-            //System.out.println("Lista actividades mis actividades " + listaMisActividades);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -680,7 +650,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
                 HttpResponse<JsonNode> apiResponse = null;
                 System.out.println(mailUsuario);
                 apiResponse = Unirest.delete("http://localhost:8987/api/usuarios/deleteEmpleado/" + mailUsuario).asJson();
-                System.out.println("Usuario borrado");
                 misEmpleados.clear();
                 empleadosEmpresa();
                 desplegarEmpleadoSeleccionado(null);
@@ -698,7 +667,6 @@ public class EmpresaAdministrarUsuariosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("HOLA");
         inicializoChoiceBox();
     }
 

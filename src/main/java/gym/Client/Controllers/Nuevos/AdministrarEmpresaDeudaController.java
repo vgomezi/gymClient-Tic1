@@ -87,12 +87,9 @@ public class AdministrarEmpresaDeudaController {
     void onAdministrarUsuariosLabelClick(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            System.out.println("Apreto administrar usuarios");
             Parent root1 = (Parent) fxmlLoader.load(MainEmpresaTodosUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/EmpresaAdministrarUsuarios.fxml"));
-            System.out.println("HOLA 2");
             EmpresaAdministrarUsuariosController empresaAdministrarUsuariosController = fxmlLoader.getController();
             empresaAdministrarUsuariosController.setEmpresaLogInMail(empresa.getMail());
-            System.out.println(empresa.getMail());
             empresaAdministrarUsuariosController.datosEmpresa(empresa.getMail());
             empresaAdministrarUsuariosController.empleadosEmpresa();
             empresaAdministrarUsuariosController.desplegarEmpleadoSeleccionado(null);
@@ -115,7 +112,6 @@ public class AdministrarEmpresaDeudaController {
             Parent root1 = (Parent) fxmlLoader.load(EmpresaAdministrarUsuariosController.class.getResourceAsStream("/gym/Client/nuevo/MainEmpresaTodosUsuarios.fxml"));
 
             MainEmpresaTodosUsuariosController mainEmpresaTodosUsuariosController = fxmlLoader.getController();
-            System.out.println(empresa.getMail());
             mainEmpresaTodosUsuariosController.datosEmpresa(empresa.getMail());
             mainEmpresaTodosUsuariosController.empleadosEmpresa();
 
@@ -148,15 +144,12 @@ public class AdministrarEmpresaDeudaController {
             todosLosEmpleadosGridPane = new GridPane();
             liquidacionEmpleadoScroll.setContent(todosLosEmpleadosGridPane);
 
-            System.out.println("hola");
-
             int column = 0;
             int row = 1;
             try{
                 for(EmpleadoObject empleadoObject : misEmpleados) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaUsuEmpPane.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox DeudaUsuEmpVbox = fxmlLoader.load();
                     DeudaUsuEmpPaneController deudaUsuEmpPaneController = fxmlLoader.getController();
@@ -180,15 +173,12 @@ public class AdministrarEmpresaDeudaController {
             liquidacionEmpleadoScroll.setContent(todosLosEmpleadosGridPane);
             empleadosLike = misEmpleadosLike(busquedaTextField.getText());
 
-            System.out.println("hola");
-
             int column = 0;
             int row = 1;
             try{
                 for(EmpleadoObject empleadoObject : empleadosLike) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaUsuEmpPane.fxml"));
-                    System.out.println("Carga FXMLLoader");
 
                     VBox DeudaUsuEmpVbox = fxmlLoader.load();
                     DeudaUsuEmpPaneController deudaUsuEmpPaneController = fxmlLoader.getController();
@@ -248,21 +238,14 @@ public class AdministrarEmpresaDeudaController {
 
     private List<EmpleadoObject> todosMisEmpleados() {
         List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
-        PagoUsuEmpObject pagoUsuEmpObject;
 
-        String pago = "";
         try {
             HttpResponse<String> apiResponse = null;
             apiResponse = Unirest.get("http://localhost:8987/api/usuarios/empleadosEmpresa/" + empresa.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            System.out.println(json);
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaMisEmpleados = mapper.readValue(json, new TypeReference<List<EmpleadoObject>>() {});
-
-            System.out.println(pago);
 
         } catch (Exception e) {
             System.out.println("Error: " + e);
@@ -272,9 +255,7 @@ public class AdministrarEmpresaDeudaController {
 
     private List<EmpleadoObject> misEmpleadosLike(String like) {
         List<EmpleadoObject> listaMisEmpleados = new ArrayList<>();
-        EmpleadoObject empleadoObject;
 
-        String empleado = "";
         try {
             HttpResponse<String> apiResponse = null;
 
@@ -308,15 +289,12 @@ public class AdministrarEmpresaDeudaController {
             }
         };
 
-        System.out.println("hola");
-
         int column = 0;
         int row = 1;
         try{
             for(EmpleadoObject empleadoObject : misEmpleados) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/DeudaUsuEmpPane.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox DeudaUsuEmpVbox = fxmlLoader.load();
                 DeudaUsuEmpPaneController deudaUsuEmpPaneController = fxmlLoader.getController();

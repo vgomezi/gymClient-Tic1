@@ -8,21 +8,14 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import gym.Client.Classes.ActividadObject;
 import gym.Client.Classes.EmpleadoObject;
-import gym.Client.Classes.PagoEmpCentObject;
-import gym.Client.Classes.PagoUsuEmpObject;
 import gym.Client.Controllers.Usuario.Actividades.MyListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,17 +73,14 @@ public class DeudaUsuEmpPaneController {
 
     private List<ActividadObject> todasMisActividades() {
         List<ActividadObject> listaMisActividades = new ArrayList<>();
-        ActividadObject actividadObject;
 
         try {
             HttpResponse<String> apiResponse = null;
             apiResponse = Unirest.get("http://localhost:8987/inscripciones/inscripcionUsuario/" + empleado.getMail()).header("Content-Type", "application/json").asObject(String.class);
             String json = apiResponse.getBody();
-            System.out.println("Imprimo json");
-            System.out.println(json);
+
 
             ObjectMapper mapper = new JsonMapper().builder().addModule(new JavaTimeModule()).build();
-            //mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
             listaMisActividades = mapper.readValue(json, new TypeReference<List<ActividadObject>>() {});
 
 
@@ -106,15 +96,12 @@ public class DeudaUsuEmpPaneController {
         misActividades.clear();
         misActividades.addAll(todasMisActividades());
 
-        System.out.println("hola");
-
         int column = 0;
         int row = 1;
         try{
             for(ActividadObject actividadObject : misActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActUsuEmpPane.fxml"));
-                System.out.println("Carga FXMLLoader");
 
                 VBox ActUsuVbox = fxmlLoader.load();
                 ActUsuEmpPaneController actUsuEmpPaneController = fxmlLoader.getController();
@@ -129,7 +116,7 @@ public class DeudaUsuEmpPaneController {
             }
         } catch (Exception e){
             System.out.println("Error creando panel " + e);
-
         }
     }
+
 }
