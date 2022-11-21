@@ -47,7 +47,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.Period;
 import java.util.*;
 
@@ -212,7 +211,7 @@ public class UsuarioMisActividadesController implements Initializable {
                         desplegarInfoActividadSeleccionada(actividad);
                     }
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadToda.fxml"));
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -247,7 +246,7 @@ public class UsuarioMisActividadesController implements Initializable {
                             desplegarInfoActividadSeleccionada(actividad);
                         }
                         FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                        fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadToda.fxml"));
 
                         VBox todaActividadbox = fxmlLoader.load();
                         ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -312,7 +311,7 @@ public class UsuarioMisActividadesController implements Initializable {
         try{
             for(ActividadObject actividad : misActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadToda.fxml"));
 
                 VBox todaActividadbox = fxmlLoader.load();
                 ActividadTodaController actividadTodaController = fxmlLoader.getController();

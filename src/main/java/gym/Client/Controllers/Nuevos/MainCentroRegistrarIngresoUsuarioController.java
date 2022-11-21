@@ -332,7 +332,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
         try {
             for (ActividadObject proximasActividade : proximasActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadReciente.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadReciente.fxml"));
 
                 HBox anadidaRecienteBox = fxmlLoader.load();
                 ActividadRecienteController actividadRecienteController = fxmlLoader.getController();
@@ -373,7 +373,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
         try{
             for(ActividadObject actividad : todasLasActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadToda.fxml"));
 
                 VBox todaActividadbox = fxmlLoader.load();
                 ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -575,7 +575,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
             try{
                 for(ActividadObject actividad : todasLasActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadToda.fxml"));
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -604,7 +604,7 @@ public class MainCentroRegistrarIngresoUsuarioController {
             try{
                 for(ActividadObject actividad : similarActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadToda.fxml"));
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();

@@ -233,7 +233,7 @@ public class CentroTodasActividadesController implements Initializable {
         try{
             for(ActividadObject actividad : todasLasActividades) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadToda.fxml"));
 
                 VBox todaActividadbox = fxmlLoader.load();
                 ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -631,7 +631,7 @@ public class CentroTodasActividadesController implements Initializable {
             try{
                 for(ActividadObject actividad : todasLasActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadToda.fxml"));
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
@@ -660,7 +660,7 @@ public class CentroTodasActividadesController implements Initializable {
             try{
                 for(ActividadObject actividad : similarActividades) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/formularios/OpcionesUsuario/Actividades/ActividadToda.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/gym/Client/nuevo/ActividadToda.fxml"));
 
                     VBox todaActividadbox = fxmlLoader.load();
                     ActividadTodaController actividadTodaController = fxmlLoader.getController();
